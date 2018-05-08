@@ -8,5 +8,6 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "9.0"
   s.source       = { :git => "https://github.com/zgjff/JJKit.git", :tag => "0.0.1" }
   s.source_files  = "Sources/Base/*.{swift}"
+  s.public_header_files  = "Sources/JJKit.h"
   s.requires_arc = true
 end
