@@ -12,7 +12,7 @@
 		5EA4606720A18DA20005AAA5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EA4606520A18DA20005AAA5 /* Main.storyboard */; };
 		5EA4606920A18DAC0005AAA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EA4606820A18DAC0005AAA5 /* Assets.xcassets */; };
 		5EA4606C20A18DAC0005AAA5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EA4606A20A18DAC0005AAA5 /* LaunchScreen.storyboard */; };
-		5EA4607620A18EDF0005AAA5 /* GCDTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA4607520A18EDF0005AAA5 /* GCDTimer.swift */; };
+		5EA4607820A191040005AAA5 /* GCDTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA4607720A191040005AAA5 /* GCDTimer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +23,7 @@
 		5EA4606820A18DAC0005AAA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5EA4606B20A18DAC0005AAA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5EA4606D20A18DAC0005AAA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5EA4607520A18EDF0005AAA5 /* GCDTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDTimer.swift; sourceTree = "<group>"; };
+		5EA4607720A191040005AAA5 /* GCDTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDTimer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +40,6 @@
 		5EA4605520A18DA10005AAA5 = {
 			isa = PBXGroup;
 			children = (
-				5EA4607520A18EDF0005AAA5 /* GCDTimer.swift */,
 				5EA4607320A18E420005AAA5 /* Sources */,
 				5EA4606020A18DA20005AAA5 /* Demo */,
 				5EA4605F20A18DA20005AAA5 /* Products */,
@@ -80,6 +79,7 @@
 		5EA4607420A18E420005AAA5 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				5EA4607720A191040005AAA5 /* GCDTimer.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -156,7 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EA4606420A18DA20005AAA5 /* ViewController.swift in Sources */,
-				5EA4607620A18EDF0005AAA5 /* GCDTimer.swift in Sources */,
+				5EA4607820A191040005AAA5 /* GCDTimer.swift in Sources */,
 				5EA4606220A18DA20005AAA5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
