@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E74076820AC06CA00A46657 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E74076720AC06CA00A46657 /* UIImage+Extension.swift */; };
 		5EA4606220A18DA20005AAA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA4606120A18DA20005AAA5 /* AppDelegate.swift */; };
 		5EA4606420A18DA20005AAA5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA4606320A18DA20005AAA5 /* ViewController.swift */; };
 		5EA4606720A18DA20005AAA5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EA4606520A18DA20005AAA5 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5E74076720AC06CA00A46657 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		5EA4605E20A18DA20005AAA5 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EA4606120A18DA20005AAA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5EA4606320A18DA20005AAA5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -39,6 +41,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E74076620AC06B900A46657 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5E74076720AC06CA00A46657 /* UIImage+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		5EA4605520A18DA10005AAA5 = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +82,7 @@
 		5EA4607320A18E420005AAA5 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				5E74076620AC06B900A46657 /* Extensions */,
 				5EA4607420A18E420005AAA5 /* Base */,
 			);
 			name = Sources;
@@ -160,6 +171,7 @@
 			files = (
 				5EA4606420A18DA20005AAA5 /* ViewController.swift in Sources */,
 				5EA4607820A191040005AAA5 /* GCDTimer.swift in Sources */,
+				5E74076820AC06CA00A46657 /* UIImage+Extension.swift in Sources */,
 				5EA4606220A18DA20005AAA5 /* AppDelegate.swift in Sources */,
 				5EA4607A20A19C160005AAA5 /* PlaceholderTextView.swift in Sources */,
 			);
