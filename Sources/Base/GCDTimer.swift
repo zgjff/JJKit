@@ -8,7 +8,7 @@
 
 import Foundation
 
-public final class GCDTimer {
+final public class GCDTimer {
     private enum State {
         case suspended, resumed
     }

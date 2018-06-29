@@ -15,6 +15,12 @@
 		5EA4606C20A18DAC0005AAA5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EA4606A20A18DAC0005AAA5 /* LaunchScreen.storyboard */; };
 		5EA4607820A191040005AAA5 /* GCDTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA4607720A191040005AAA5 /* GCDTimer.swift */; };
 		5EA4607A20A19C160005AAA5 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA4607920A19C160005AAA5 /* PlaceholderTextView.swift */; };
+		9D16B64320E5FC9C008AE489 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D16B64220E5FC9C008AE489 /* UIColor+Extension.swift */; };
+		9D16B64620E5FCE0008AE489 /* JJCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D16B64520E5FCE0008AE489 /* JJCompatible.swift */; };
+		9D16B64920E5FDA8008AE489 /* ReusableViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D16B64820E5FDA8008AE489 /* ReusableViewable.swift */; };
+		9D16B64B20E5FDDF008AE489 /* Configable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D16B64A20E5FDDF008AE489 /* Configable.swift */; };
+		9D16B64D20E5FE05008AE489 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D16B64C20E5FE05008AE489 /* UIApplication+Extension.swift */; };
+		9D16B64F20E5FF03008AE489 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D16B64E20E5FF03008AE489 /* UIView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +34,12 @@
 		5EA4606D20A18DAC0005AAA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5EA4607720A191040005AAA5 /* GCDTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDTimer.swift; sourceTree = "<group>"; };
 		5EA4607920A19C160005AAA5 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
+		9D16B64220E5FC9C008AE489 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		9D16B64520E5FCE0008AE489 /* JJCompatible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJCompatible.swift; sourceTree = "<group>"; };
+		9D16B64820E5FDA8008AE489 /* ReusableViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewable.swift; sourceTree = "<group>"; };
+		9D16B64A20E5FDDF008AE489 /* Configable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configable.swift; sourceTree = "<group>"; };
+		9D16B64C20E5FE05008AE489 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
+		9D16B64E20E5FF03008AE489 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +57,9 @@
 			isa = PBXGroup;
 			children = (
 				5E74076720AC06CA00A46657 /* UIImage+Extension.swift */,
+				9D16B64220E5FC9C008AE489 /* UIColor+Extension.swift */,
+				9D16B64C20E5FE05008AE489 /* UIApplication+Extension.swift */,
+				9D16B64E20E5FF03008AE489 /* UIView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -82,6 +97,8 @@
 		5EA4607320A18E420005AAA5 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				9D16B64720E5FD9C008AE489 /* Protocols */,
+				9D16B64420E5FCCE008AE489 /* Utils */,
 				5E74076620AC06B900A46657 /* Extensions */,
 				5EA4607420A18E420005AAA5 /* Base */,
 			);
@@ -96,6 +113,23 @@
 				5EA4607920A19C160005AAA5 /* PlaceholderTextView.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		9D16B64420E5FCCE008AE489 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				9D16B64520E5FCE0008AE489 /* JJCompatible.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		9D16B64720E5FD9C008AE489 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				9D16B64820E5FDA8008AE489 /* ReusableViewable.swift */,
+				9D16B64A20E5FDDF008AE489 /* Configable.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,10 +203,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D16B64F20E5FF03008AE489 /* UIView+Extension.swift in Sources */,
 				5EA4606420A18DA20005AAA5 /* ViewController.swift in Sources */,
 				5EA4607820A191040005AAA5 /* GCDTimer.swift in Sources */,
 				5E74076820AC06CA00A46657 /* UIImage+Extension.swift in Sources */,
+				9D16B64920E5FDA8008AE489 /* ReusableViewable.swift in Sources */,
+				9D16B64320E5FC9C008AE489 /* UIColor+Extension.swift in Sources */,
+				9D16B64620E5FCE0008AE489 /* JJCompatible.swift in Sources */,
+				9D16B64B20E5FDDF008AE489 /* Configable.swift in Sources */,
 				5EA4606220A18DA20005AAA5 /* AppDelegate.swift in Sources */,
+				9D16B64D20E5FE05008AE489 /* UIApplication+Extension.swift in Sources */,
 				5EA4607A20A19C160005AAA5 /* PlaceholderTextView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
