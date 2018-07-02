@@ -9,7 +9,7 @@
 import Foundation
 extension Date: JJCompatible {}
 
-extension JJ where Base == Date {
+public extension JJ where Base == Date {
     var year: Int {
         return Calendar.current.component(.year, from: base)
     }
@@ -135,7 +135,7 @@ extension Date {
 /// - ym: yyyy年MM月
 /// - md: MM月dd日
 /// - custom: 自定义
-enum DateFormatterStyle {
+public enum DateFormatterStyle {
     case ymd
     case ymdHms
     case ym
