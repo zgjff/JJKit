@@ -110,6 +110,49 @@ extension UIImage {
             view.layer.render(in: context)
         })
     }
+    
+    
+    public func applyTintColor(_ tintColor: UIColor) -> UIImage? {
+        let size = self.size
+        return UIImage.apply(size: size, modify: { context in
+            tintColor.setFill()
+            UIRectFill(CGRect(origin: .zero, size: size))
+            self.draw(in: CGRect(origin: .zero, size: size), blendMode: .destinationIn, alpha: 1.0)
+        })
+    }
+    
+    public func apply(radius: CGFloat, corners: UIRectCorner, border: CGFloat, color: UIColor?) -> UIImage? {
+        return UIImage.apply(size: size, modify: { context in
+            guard let cgImg = self.cgImage else { return }
+            let rect = CGRect(origin: .zero, size: self.size)
+            
+            context.scaleBy(x: 1, y: -1)
+            context.translateBy(x: 0, y: -rect.size.height)
+            
+            let minSize = min(self.size.width, self.size.height)
+
+            if border < minSize / 2 {
+                let path = UIBezierPath(roundedRect: rect.insetBy(dx: border, dy: border), byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: border))
+                path.close()
+                context.saveGState()
+                path.addClip()
+                context.draw(cgImg, in: rect)
+                context.restoreGState()
+            }
+            
+            if let borderColor = color, border > 0, border < minSize / 2 {
+                let strokeInset = (floor(border * self.scale) + 0.5) / self.scale
+                let strokeRect = rect.insetBy(dx: strokeInset, dy: strokeInset)
+                let strokeRadius = radius > self.scale / 2 ? radius - self.scale / 2 : 0
+                let path = UIBezierPath(roundedRect: strokeRect, byRoundingCorners: corners, cornerRadii: CGSize(width: strokeRadius, height: border))
+                path.close()
+                path.lineWidth = border
+                path.lineJoinStyle = .miter
+                borderColor.setStroke()
+                path.stroke()
+            }
+        })
+    }
 }
 
 private extension UIImage {

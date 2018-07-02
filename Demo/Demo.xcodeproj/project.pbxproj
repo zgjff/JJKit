@@ -21,6 +21,9 @@
 		9D16B64B20E5FDDF008AE489 /* Configable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D16B64A20E5FDDF008AE489 /* Configable.swift */; };
 		9D16B64D20E5FE05008AE489 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D16B64C20E5FE05008AE489 /* UIApplication+Extension.swift */; };
 		9D16B64F20E5FF03008AE489 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D16B64E20E5FF03008AE489 /* UIView+Extension.swift */; };
+		9D16B65120E60B13008AE489 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D16B65020E60B13008AE489 /* Date+Extensions.swift */; };
+		9D16B65320E60C44008AE489 /* StoreValueManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D16B65220E60C44008AE489 /* StoreValueManager.swift */; };
+		9D16B65520E631EC008AE489 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D16B65420E631EC008AE489 /* String+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		9D16B64A20E5FDDF008AE489 /* Configable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configable.swift; sourceTree = "<group>"; };
 		9D16B64C20E5FE05008AE489 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		9D16B64E20E5FF03008AE489 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		9D16B65020E60B13008AE489 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		9D16B65220E60C44008AE489 /* StoreValueManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreValueManager.swift; sourceTree = "<group>"; };
+		9D16B65420E631EC008AE489 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +66,8 @@
 				9D16B64220E5FC9C008AE489 /* UIColor+Extension.swift */,
 				9D16B64C20E5FE05008AE489 /* UIApplication+Extension.swift */,
 				9D16B64E20E5FF03008AE489 /* UIView+Extension.swift */,
+				9D16B65020E60B13008AE489 /* Date+Extensions.swift */,
+				9D16B65420E631EC008AE489 /* String+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -119,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				9D16B64520E5FCE0008AE489 /* JJCompatible.swift */,
+				9D16B65220E60C44008AE489 /* StoreValueManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -208,7 +217,10 @@
 				5EA4607820A191040005AAA5 /* GCDTimer.swift in Sources */,
 				5E74076820AC06CA00A46657 /* UIImage+Extension.swift in Sources */,
 				9D16B64920E5FDA8008AE489 /* ReusableViewable.swift in Sources */,
+				9D16B65120E60B13008AE489 /* Date+Extensions.swift in Sources */,
+				9D16B65320E60C44008AE489 /* StoreValueManager.swift in Sources */,
 				9D16B64320E5FC9C008AE489 /* UIColor+Extension.swift in Sources */,
+				9D16B65520E631EC008AE489 /* String+Extension.swift in Sources */,
 				9D16B64620E5FCE0008AE489 /* JJCompatible.swift in Sources */,
 				9D16B64B20E5FDDF008AE489 /* Configable.swift in Sources */,
 				5EA4606220A18DA20005AAA5 /* AppDelegate.swift in Sources */,
