@@ -10,7 +10,12 @@ import UIKit
 
 extension JJ where Base == String {
     
-   
+    public func attribute(make: (AttributMaker) -> ()) -> NSAttributedString {
+        let maker = AttributMaker(string: base)
+        make(maker)
+        return maker.build()
+    }
+    
     /// 如果使用指定的约束呈现字符串，则返回字符串的大小
     ///
     /// - Parameters:
