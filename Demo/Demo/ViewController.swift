@@ -12,6 +12,11 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
+    let v = UIView().jj.config {
+        $0.backgroundColor = UIColor.red
+    }
+
 }
 

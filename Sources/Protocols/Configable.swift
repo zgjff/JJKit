@@ -7,43 +7,11 @@
 //
 
 import Foundation
-public protocol Configable {}
 
-extension Configable where Self: AnyObject {
+extension JJ where Base: AnyObject {
     @discardableResult
-    public func config(_ make: (Self) -> Void) -> Self {
-        make(self)
-        return self
+    public func config(_ make: (Base) -> Void) -> Base {
+        make(base)
+        return base
     }
 }
-
-extension Configable where Self: NSObject {
-    public static func alloc(_ make: (Self) -> Void) -> Self {
-        let object = Self()
-        make(object)
-        return object
-    }
-}
-
-extension Configable where Self: Any {
-    ///     let frame = CGRect().with {
-    ///       $0.origin.x = 10
-    ///       $0.size.width = 100
-    ///     }
-    public func with(_ block: (inout Self) -> Void) -> Self {
-        var copy = self
-        block(&copy)
-        return copy
-    }
-    
-    ///     UserDefaults.standard.do {
-    ///       $0.set("devxoul", forKey: "username")
-    ///       $0.set("devxoul@gmail.com", forKey: "email")
-    ///       $0.synchronize()
-    ///     }
-    public func `do`(_ make: (Self) -> Void) {
-        make(self)
-    }
-}
-
-extension NSObject: Configable{}
