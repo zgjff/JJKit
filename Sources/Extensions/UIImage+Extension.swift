@@ -9,22 +9,23 @@
 import UIKit
 
 extension UIImage {
-    
     /// 颜色 -> 纯色图像
     ///
-    /// - Parameter color: 颜色
+    /// - Parameters:
+    ///   - color: 颜色
+    ///   - size: 大小
     /// - Returns: 纯色图像
-     public static func fromColor(_ color: UIColor) -> UIImage? {
-        let cacheImg = UIColorCache.shared.imageFor(color: color)
+    public static func fromColor(_ color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) -> UIImage? {
+        let colorSize = UIColorCache.ColorSize(color: color, size: size)
+        let cacheImg = UIColorCache.shared.imageFor(colorSize: colorSize)
         guard cacheImg == nil else {
             return cacheImg
         }
-        let size = CGSize(width: 1, height: 1)
         if let img = apply(size: size, modify: { context in
             color.set()
             context.fill(CGRect(origin: .zero, size: size))
         }) {
-            UIColorCache.shared.setImage(img, for: color)
+            UIColorCache.shared.setImage(img, for: colorSize)
             return img
         } else {
             return nil
@@ -186,16 +187,31 @@ private extension UIImage {
 }
 
 private struct UIColorCache {
+    struct ColorSize: CustomStringConvertible {
+        var description: String {
+            let width = size.width
+            let height = size.height
+            return color.description + "\(width)" + "\(height)"
+        }
+        let color: UIColor
+        let size: CGSize
+        
+        init(color: UIColor, size: CGSize) {
+            self.color = color
+            self.size = size
+        }
+    }
+    
     static let shared = UIColorCache()
-    private let cache: NSCache<UIColor, UIImage>
+    private let cache: NSCache<NSString, UIImage>
     private init() {
         cache = NSCache()
     }
     
-    func imageFor(color: UIColor) -> UIImage? {
-        return cache.object(forKey: color)
+    func imageFor(colorSize: ColorSize) -> UIImage? {
+        return cache.object(forKey: colorSize.description as NSString)
     }
-    func setImage(_ image: UIImage, for color: UIColor) {
-        cache.setObject(image, forKey: color)
+    func setImage(_ image: UIImage, for colorSize: ColorSize) {
+        cache.setObject(image, forKey: colorSize.description as NSString)
     }
 }
