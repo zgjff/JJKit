@@ -122,7 +122,7 @@ extension UIImage {
         })
     }
     
-    public func apply(radius: CGFloat, corners: UIRectCorner, border: CGFloat, color: UIColor?) -> UIImage? {
+    public func apply(radius: CGFloat, corners: UIRectCorner = .allCorners, border: CGFloat = 0, color: UIColor? = nil) -> UIImage? {
         return UIImage.apply(size: size, modify: { context in
             guard let cgImg = self.cgImage else { return }
             let rect = CGRect(origin: .zero, size: self.size)

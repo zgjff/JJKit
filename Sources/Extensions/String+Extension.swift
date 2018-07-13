@@ -8,6 +8,8 @@
 
 import UIKit
 
+extension String: JJCompatible {}
+
 extension JJ where Base == String {
     
     public func attribute(make: (AttributMaker) -> ()) -> NSAttributedString {
