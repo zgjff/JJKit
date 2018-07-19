@@ -97,7 +97,7 @@ public extension JJ where Base == Date {
     }
 }
 
-extension Date {
+public extension Date {
     static func from(_ string: String, format: String, timeZone: TimeZone = .current, locale: Locale = .current) -> Date? {
         let formatter = DateFormatter()
         formatter.dateFormat = format
