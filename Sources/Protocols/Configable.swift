@@ -8,10 +8,11 @@
 
 import Foundation
 
-extension JJ where Base: AnyObject {
+extension JJ where Original: AnyObject {
     @discardableResult
-    public func config(_ make: (Base) -> Void) -> Base {
-        make(base)
-        return base
+    public func config(_ block: (_ object: Original) -> Void) -> Original {
+        block(original)
+        return original
     }
 }
+

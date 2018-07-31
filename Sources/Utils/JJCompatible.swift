@@ -19,9 +19,9 @@ extension JJCompatible {
     }
 }
 
-final public class JJ<Base>: NSObject {
-    let base: Base
-    init(_ base: Base) {
-        self.base = base
+final public class JJ<Original>: NSObject {
+    let original: Original
+    init(_ original: Original) {
+        self.original = original
     }
 }

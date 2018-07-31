@@ -24,6 +24,8 @@
 		9D16B65320E60C44008AE489 /* StoreValueManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D16B65220E60C44008AE489 /* StoreValueManager.swift */; };
 		9D16B65520E631EC008AE489 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D16B65420E631EC008AE489 /* String+Extension.swift */; };
 		9D48369E20F321600086F323 /* AttributMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D48369D20F321600086F323 /* AttributMaker.swift */; };
+		9D96BFE0210AC47D0015F18B /* JJCycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D96BFDF210AC47D0015F18B /* JJCycleView.swift */; };
+		9D96BFE2210AC6220015F18B /* CALayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D96BFE1210AC6220015F18B /* CALayer+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		9D16B65220E60C44008AE489 /* StoreValueManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreValueManager.swift; sourceTree = "<group>"; };
 		9D16B65420E631EC008AE489 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		9D48369D20F321600086F323 /* AttributMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributMaker.swift; sourceTree = "<group>"; };
+		9D96BFDF210AC47D0015F18B /* JJCycleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJCycleView.swift; sourceTree = "<group>"; };
+		9D96BFE1210AC6220015F18B /* CALayer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +70,7 @@
 				9D16B64220E5FC9C008AE489 /* UIColor+Extension.swift */,
 				9D16B64C20E5FE05008AE489 /* UIApplication+Extension.swift */,
 				9D16B64E20E5FF03008AE489 /* UIView+Extension.swift */,
+				9D96BFE1210AC6220015F18B /* CALayer+Extension.swift */,
 				9D16B65020E60B13008AE489 /* Date+Extensions.swift */,
 				9D16B65420E631EC008AE489 /* String+Extension.swift */,
 			);
@@ -118,6 +123,7 @@
 			children = (
 				5EA4607720A191040005AAA5 /* GCDTimer.swift */,
 				5EA4607920A19C160005AAA5 /* PlaceholderTextView.swift */,
+				9D96BFDF210AC47D0015F18B /* JJCycleView.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -221,10 +227,12 @@
 				9D16B65320E60C44008AE489 /* StoreValueManager.swift in Sources */,
 				9D16B64320E5FC9C008AE489 /* UIColor+Extension.swift in Sources */,
 				9D16B65520E631EC008AE489 /* String+Extension.swift in Sources */,
+				9D96BFE2210AC6220015F18B /* CALayer+Extension.swift in Sources */,
 				9D16B64620E5FCE0008AE489 /* JJCompatible.swift in Sources */,
 				9D16B64B20E5FDDF008AE489 /* Configable.swift in Sources */,
 				5EA4606220A18DA20005AAA5 /* AppDelegate.swift in Sources */,
 				9D16B64D20E5FE05008AE489 /* UIApplication+Extension.swift in Sources */,
+				9D96BFE0210AC47D0015F18B /* JJCycleView.swift in Sources */,
 				5EA4607A20A19C160005AAA5 /* PlaceholderTextView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

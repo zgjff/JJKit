@@ -13,7 +13,7 @@ final public class GCDTimer {
         case suspended, resumed
     }
     
-    public init(repeating: Double, block: @escaping (GCDTimer) -> ()) {
+    public init(repeating: TimeInterval, block: @escaping (GCDTimer) -> ()) {
         self.timer = DispatchSource.makeTimerSource(queue: timeQueue)
         timer?.schedule(deadline: .now(), repeating: repeating)
         timer?.setEventHandler {
@@ -38,7 +38,7 @@ extension GCDTimer {
         state = .suspended
     }
     
-    public func resume(after seconds: Double = 0) {
+    public func resume(after seconds: TimeInterval = 0) {
         guard timer != nil else { return }
         guard state != .resumed else { return }
         DispatchQueue.main.asyncAfter(deadline: .now() + seconds) { [weak self] in

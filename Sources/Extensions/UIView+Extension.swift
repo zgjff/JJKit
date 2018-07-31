@@ -16,28 +16,28 @@ extension UIView {
 
 extension UIView: JJCompatible {}
 
-extension JJ where Base: UIView {
+extension JJ where Original: UIView {
     public func addViews(_ views: UIView...) {
-        views.forEach { base.addSubview($0) }
+        views.forEach { original.addSubview($0) }
     }
     
     public func removeAll() {
-        base.subviews
+        original.subviews
         .forEach { $0.removeFromSuperview() }
     }
 }
 
-extension JJ where Base: UIView {
+extension JJ where Original: UIView {
     /**
      * get for frame.origin.y
      * set frame.origin.y = top
      */
     public var top: CGFloat {
-        get { return base.frame.origin.y }
+        get { return original.frame.origin.y }
         set {
-            var newFrame = base.frame
+            var newFrame = original.frame
             newFrame.origin.y = newValue
-            base.frame = newFrame
+            original.frame = newFrame
         }
     }
     @discardableResult
@@ -50,11 +50,11 @@ extension JJ where Base: UIView {
      * set frame.origin.y = bottom - frame.size.height
      */
     public var bottom: CGFloat {
-        get { return base.frame.origin.y + base.frame.size.height }
+        get { return original.frame.origin.y + original.frame.size.height }
         set {
-            var newFrame = base.frame
-            newFrame.origin.y = newValue - base.frame.size.height
-            base.frame = newFrame
+            var newFrame = original.frame
+            newFrame.origin.y = newValue - original.frame.size.height
+            original.frame = newFrame
         }
     }
     @discardableResult
@@ -67,11 +67,11 @@ extension JJ where Base: UIView {
      * set frame.origin.x = left
      */
     public var left: CGFloat {
-        get { return base.frame.origin.x }
+        get { return original.frame.origin.x }
         set {
-            var newFrame = base.frame
+            var newFrame = original.frame
             newFrame.origin.x = newValue
-            base.frame = newFrame
+            original.frame = newFrame
         }
     }
     @discardableResult
@@ -84,11 +84,11 @@ extension JJ where Base: UIView {
      * set frame.origin.x = right - frame.size.width
      */
     public var right: CGFloat {
-        get { return base.frame.origin.x + base.frame.size.width }
+        get { return original.frame.origin.x + original.frame.size.width }
         set {
-            var newFrame = base.frame
-            newFrame.origin.x = newValue - base.frame.size.width
-            base.frame = newFrame
+            var newFrame = original.frame
+            newFrame.origin.x = newValue - original.frame.size.width
+            original.frame = newFrame
         }
     }
     @discardableResult
@@ -101,9 +101,9 @@ extension JJ where Base: UIView {
      * Sets center.x = centerX
      */
     public var centerX: CGFloat {
-        get { return base.center.x }
+        get { return original.center.x }
         set {
-            base.center = CGPoint(x: newValue, y: base.center.y)
+            original.center = CGPoint(x: newValue, y: original.center.y)
         }
     }
     @discardableResult
@@ -116,9 +116,9 @@ extension JJ where Base: UIView {
      * Sets center.y = centerY
      */
     public var centerY: CGFloat {
-        get { return base.center.y }
+        get { return original.center.y }
         set {
-            base.center = CGPoint(x: base.center.x, y: newValue)
+            original.center = CGPoint(x: original.center.x, y: newValue)
         }
     }
     @discardableResult
@@ -131,11 +131,11 @@ extension JJ where Base: UIView {
      * set frame.size.width = width
      */
     public var width: CGFloat {
-        get { return base.frame.size.width }
+        get { return original.frame.size.width }
         set {
-            var newFrame = base.frame
+            var newFrame = original.frame
             newFrame.size.width = newValue
-            base.frame = newFrame
+            original.frame = newFrame
         }
     }
     @discardableResult
@@ -148,11 +148,11 @@ extension JJ where Base: UIView {
      * set frame.size.height = height
      */
     public var height: CGFloat {
-        get { return base.frame.size.height }
+        get { return original.frame.size.height }
         set {
-            var newFrame = base.frame
+            var newFrame = original.frame
             newFrame.size.height = newValue
-            base.frame = newFrame
+            original.frame = newFrame
         }
     }
     @discardableResult
@@ -165,11 +165,11 @@ extension JJ where Base: UIView {
      * set frame.origin = origin
      */
     public var origin: CGPoint {
-        get { return base.frame.origin }
+        get { return original.frame.origin }
         set {
-            var newFrame = base.frame
+            var newFrame = original.frame
             newFrame.origin = newValue
-            base.frame = newFrame
+            original.frame = newFrame
         }
     }
     @discardableResult
@@ -182,11 +182,11 @@ extension JJ where Base: UIView {
      * set frame.size = size
      */
     public var size: CGSize {
-        get { return base.frame.size }
+        get { return original.frame.size }
         set {
-            var newFrame = base.frame
+            var newFrame = original.frame
             newFrame.size = newValue
-            base.frame = newFrame
+            original.frame = newFrame
         }
     }
     @discardableResult
@@ -195,8 +195,8 @@ extension JJ where Base: UIView {
         return self
     }
     public var frame: CGRect {
-        get { return base.frame }
-        set { base.frame = newValue }
+        get { return original.frame }
+        set { original.frame = newValue }
     }
     @discardableResult
     public func frame(is frame: CGRect) -> Self {
@@ -204,8 +204,8 @@ extension JJ where Base: UIView {
         return self
     }
     public var bounds: CGRect {
-        get { return base.bounds }
-        set { base.bounds = newValue }
+        get { return original.bounds }
+        set { original.bounds = newValue }
     }
     @discardableResult
     public func bounds(is bounds: CGRect) -> Self {
@@ -213,8 +213,8 @@ extension JJ where Base: UIView {
         return self
     }
     public var center: CGPoint {
-        get { return base.center }
-        set { base.center = newValue }
+        get { return original.center }
+        set {  original.center = newValue }
     }
     @discardableResult
     public func center(is center: CGPoint) -> Self {

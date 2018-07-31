@@ -10,10 +10,10 @@ import UIKit
 
 extension String: JJCompatible {}
 
-extension JJ where Base == String {
+extension JJ where Original == String {
     
     public func attribute(make: (AttributMaker) -> ()) -> NSAttributedString {
-        let maker = AttributMaker(string: base)
+        let maker = AttributMaker(string: original)
         make(maker)
         return maker.build()
     }
@@ -27,7 +27,7 @@ extension JJ where Base == String {
     /// - Returns: 生成的字符串的边界框的宽度和高度
     public func sizeForFont(_ font: UIFont, size: CGSize, lineBreakMode mode: NSLineBreakMode) -> CGSize {
         
-        let text = base as NSString
+        let text = original as NSString
         var atts: [NSAttributedStringKey: Any]? = nil
         if mode != .byWordWrapping {
             let par = NSMutableParagraphStyle()
