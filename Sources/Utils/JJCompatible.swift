@@ -9,8 +9,8 @@
 import Foundation
 
 public protocol JJCompatible {
-    associatedtype CompatibleType
-    var jj: CompatibleType { get }
+    associatedtype CompatibleObject
+    var jj: CompatibleObject { get }
 }
 
 extension JJCompatible {
