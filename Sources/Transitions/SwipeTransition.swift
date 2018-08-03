@@ -8,26 +8,26 @@
 
 import UIKit
 
-class SwipeTransitionDelegate: NSObject {
+public class SwipeTransitionDelegate: NSObject {
     var gestureRecognizer: UIScreenEdgePanGestureRecognizer?
     var targetEdge: UIRectEdge = .right
 }
 
 extension SwipeTransitionDelegate: UIViewControllerTransitioningDelegate {
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return SwipeTransitionAnimator(edge: targetEdge)
     }
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return SwipeTransitionAnimator(edge: targetEdge)
     }
-    func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    public func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         if let ges = gestureRecognizer {
             return SwipeDrivenTransition(gestureRecognizer: ges, edgeForDragging: targetEdge)
         } else {
             return nil
         }
     }
-    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    public func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         if let ges = gestureRecognizer {
             return SwipeDrivenTransition(gestureRecognizer: ges, edgeForDragging: targetEdge)
         } else {
