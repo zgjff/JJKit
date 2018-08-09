@@ -1,12 +1,22 @@
 //
-//  JJCycleView.swift
-//  Demo
+//  无限循环轮播图
+//  本轮播图不限制所用的第三方，你可以通过使用第三方或者自定义下载显示url图片，只需要实现CycleViewImageSource协议中的方法
+//  eg: 使用Kingfisher
+/*
+ extension URL: CycleViewImageSource {
+   func showInView(_ view: UIImageView) {
+     view.kf.setImage(with: URL(string: url))
+   }
+ }
+ */
 //
 //  Created by 123 on 2018/7/27.
 //  Copyright © 2018年 郑桂杰. All rights reserved.
 //
 
 import UIKit
+
+
 
 class JJCycleView: UIView {
     override init(frame: CGRect) {

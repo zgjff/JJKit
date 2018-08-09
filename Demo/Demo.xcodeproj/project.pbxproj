@@ -14,6 +14,7 @@
 		5EA4606C20A18DAC0005AAA5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EA4606A20A18DAC0005AAA5 /* LaunchScreen.storyboard */; };
 		5EA4607820A191040005AAA5 /* GCDTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA4607720A191040005AAA5 /* GCDTimer.swift */; };
 		5EA4607A20A19C160005AAA5 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA4607920A19C160005AAA5 /* PlaceholderTextView.swift */; };
+		9D14DEBD211C3A7C0077451F /* Filterformula.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D14DEBC211C3A7C0077451F /* Filterformula.swift */; };
 		9D16B64320E5FC9C008AE489 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D16B64220E5FC9C008AE489 /* UIColor+Extension.swift */; };
 		9D16B64620E5FCE0008AE489 /* JJCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D16B64520E5FCE0008AE489 /* JJCompatible.swift */; };
 		9D16B64920E5FDA8008AE489 /* ReusableViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D16B64820E5FDA8008AE489 /* ReusableViewable.swift */; };
@@ -39,6 +40,7 @@
 		5EA4606D20A18DAC0005AAA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5EA4607720A191040005AAA5 /* GCDTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDTimer.swift; sourceTree = "<group>"; };
 		5EA4607920A19C160005AAA5 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
+		9D14DEBC211C3A7C0077451F /* Filterformula.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filterformula.swift; sourceTree = "<group>"; };
 		9D16B64220E5FC9C008AE489 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		9D16B64520E5FCE0008AE489 /* JJCompatible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJCompatible.swift; sourceTree = "<group>"; };
 		9D16B64820E5FDA8008AE489 /* ReusableViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewable.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				9D16B64520E5FCE0008AE489 /* JJCompatible.swift */,
 				9D16B65220E60C44008AE489 /* StoreValueManager.swift */,
 				9D48369D20F321600086F323 /* AttributMaker.swift */,
+				9D14DEBC211C3A7C0077451F /* Filterformula.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 				9D96BFE2210AC6220015F18B /* CALayer+Extension.swift in Sources */,
 				9D16B64620E5FCE0008AE489 /* JJCompatible.swift in Sources */,
 				9D16B64B20E5FDDF008AE489 /* Configable.swift in Sources */,
+				9D14DEBD211C3A7C0077451F /* Filterformula.swift in Sources */,
 				5EA4606220A18DA20005AAA5 /* AppDelegate.swift in Sources */,
 				9D16B64D20E5FE05008AE489 /* UIApplication+Extension.swift in Sources */,
 				9D96BFE0210AC47D0015F18B /* JJCycleView.swift in Sources */,
@@ -383,6 +387,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -400,6 +405,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -11,9 +11,31 @@ import UIKit
 class ViewController: UIViewController {
 
 
+    private lazy var imageView = UIImageView()
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("viewDidLoad")
+        imageView.jj.size = CGSize(width: 200, height: 200)
+        imageView.jj.center = view.jj.center
+        view.addSubview(imageView)
+        let img1 = UIImage.fromColor(#colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1))
+        imageView.image = img1
+        let b = UIButton()
+        b.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
+        b.jj.height(is: 50)
+        .width(is: view.jj.width - 100)
+        .left(is: 50)
+        .bottom(is: view.jj.bottom - 50)
+        b.addTarget(self, action: #selector(change), for: .primaryActionTriggered)
+        view.addSubview(b)
+    }
+    
+    @IBAction private func change() {
+        print("!1111")
+        debugPrint("11111111d")
+        let img2 = UIImage.fromColor(#colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1))
+        self.imageView.image = img2
     }
 }
+
 
