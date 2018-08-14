@@ -9,8 +9,8 @@
 import UIKit
 
 public class SwipeTransitionDelegate: NSObject {
-    var gestureRecognizer: UIScreenEdgePanGestureRecognizer?
-    var targetEdge: UIRectEdge = .right
+    public var gestureRecognizer: UIScreenEdgePanGestureRecognizer?
+    public var targetEdge: UIRectEdge = .right
 }
 
 extension SwipeTransitionDelegate: UIViewControllerTransitioningDelegate {

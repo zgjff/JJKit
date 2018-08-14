@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+private let context = CIContext(options: nil)
 extension UIImage {
     /// 所在位置 占 总长的百分比
     public typealias Location = CGFloat
@@ -197,13 +197,12 @@ extension UIImage {
 }
 
 extension UIImage {
-    
     /// 根据滤镜配方创建滤镜图片
     ///
     /// - Parameters:
-    ///   - filter: 滤镜配方(可使用Filterformula中已有的，或者自定义)
+    ///   - filter: (CIImage) -> CIImage
     ///   - result: 主线程回掉滤镜结果
-    public func apply(_ filter: Filterformula.Filter, result: @escaping (UIImage?) -> ()) {
+    public func applyFilter(_ filter: (CIImage) -> CIImage, result: @escaping (UIImage) -> ()) {
         guard let inputImage = CIImage(image: self) else {
             result(self)
             return
@@ -211,9 +210,9 @@ extension UIImage {
         let out = filter(inputImage)
         let filterQueue = DispatchQueue(label: "filterImageQueue.JJKit", attributes: [.concurrent])
         filterQueue.async {
-            var img: UIImage?
-            if let cg = Filterformula.shared.context.createCGImage(out, from: inputImage.extent) {
-                img = UIImage(cgImage: cg)
+            var img: UIImage = self
+            if let cg = context.createCGImage(out, from: inputImage.extent) {
+                img = UIImage(cgImage: cg, scale: self.scale, orientation: self.imageOrientation)
             }
             DispatchQueue.main.async {
                 result(img)
