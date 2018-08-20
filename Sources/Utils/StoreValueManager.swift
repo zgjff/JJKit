@@ -7,7 +7,7 @@
 //
 
 import Foundation
-struct StoreValueManager {
+public struct StoreValueManager {
     public static func get<ValueType: Any>(from base: Any,
                                     key: UnsafeRawPointer,
                                     initialiser: () -> ValueType) -> ValueType {
