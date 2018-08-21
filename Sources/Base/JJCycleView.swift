@@ -18,7 +18,7 @@ import UIKit
 
 
 
-class JJCycleView: UIView {
+public class JJCycleView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1.0)
@@ -27,15 +27,15 @@ class JJCycleView: UIView {
         scrollView.delegate = self
     }
     
-    weak var delegate: JJCycleViewDataDelegate?
-    var timeInterval: TimeInterval = 5
-    var pageControlColor = UIColor.gray {
+    public weak var delegate: JJCycleViewDataDelegate?
+    public var timeInterval: TimeInterval = 5
+    public var pageControlColor = UIColor.gray {
         didSet { pageControl.pageIndicatorTintColor = pageControlColor }
     }
-    var pageControlCurrentColor = UIColor.white {
+    public var pageControlCurrentColor = UIColor.white {
         didSet { pageControl.currentPageIndicatorTintColor = pageControlCurrentColor }
     }
-    var imageContentMode: UIViewContentMode = .scaleAspectFill {
+    public var imageContentMode: UIViewContentMode = .scaleAspectFill {
         didSet {
             leftImageView.contentMode = imageContentMode
             midImageView.contentMode = imageContentMode
@@ -95,7 +95,7 @@ class JJCycleView: UIView {
         }
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     private var timer: GCDTimer?
@@ -165,11 +165,11 @@ extension JJCycleView {
 // MARK: - UIScrollViewDelegate
 extension JJCycleView: UIScrollViewDelegate {
     /// 当手指开始滑动
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         timer?.suspend()
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(restart), object: nil)
     }
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offset = scrollView.contentOffset.x
         if offset == jj.width * 2 {
             currentIndex = (currentIndex == imgSources.count - 1) ? 0 : (currentIndex + 1)
@@ -180,15 +180,15 @@ extension JJCycleView: UIScrollViewDelegate {
         }
     }
     /// 手指滑动停止后调用
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         perform(#selector(restart), with: nil, afterDelay: timeInterval)
     }
     /// 滚动视图动画完成后（setContentOffset: animated: true 的时候才触发）
-    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {}
+    public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {}
 }
 
 extension JJCycleView {
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         scrollView.jj
             .width(is: jj.width)
@@ -231,18 +231,18 @@ private class CycleItemView: UIImageView {
     }
 }
 
-protocol CycleViewImageSource {
+public protocol CycleViewImageSource {
     func showInView(_ view: UIImageView)
 }
 
 extension UIImage: CycleViewImageSource {
-    func showInView(_ view: UIImageView) {
+    public func showInView(_ view: UIImageView) {
         view.image = self
     }
 }
 
 /// 轮播图数据代理
-protocol JJCycleViewDataDelegate: NSObjectProtocol {
+public protocol JJCycleViewDataDelegate: NSObjectProtocol {
     func imageSources(for cycleView: JJCycleView) -> [CycleViewImageSource]
     func cycleView(_ cycleView: JJCycleView, didSelectIndex index: Int)
 }
