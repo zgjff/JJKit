@@ -120,7 +120,7 @@ public class JJCycleView: UIView {
 }
 
 extension JJCycleView {
-    func reloadData() {
+    public func reloadData() {
         guard let delegate = delegate else { return }
         imgSources = delegate.imageSources(for: self)
     }
