@@ -19,25 +19,6 @@ extension JJ where Original: UIView {
         original.subviews
         .forEach { $0.removeFromSuperview() }
     }
-    
-    public func capture() -> UIImage? {
-        if #available(iOS 10.0, *) {
-            let format = UIGraphicsImageRendererFormat()
-            let render = UIGraphicsImageRenderer(size: original.frame.size, format: format)
-            return render.image(actions: { _ in
-                original.drawHierarchy(in: original.frame, afterScreenUpdates: true)
-            })
-        } else {
-            UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
-            defer {
-                UIGraphicsEndImageContext()
-            }
-            if let context = UIGraphicsGetCurrentContext() {
-                original.layer.render(in: context)
-            }
-            return UIGraphicsGetImageFromCurrentImageContext()
-        }
-    }
 }
 
 extension JJ where Original: UIView {
