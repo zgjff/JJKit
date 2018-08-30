@@ -1,11 +1,5 @@
 //
 //  UIView+Extension.swift
-//  Demo
-//
-//  Created by 123 on 2018/6/29.
-//  Copyright © 2018年 郑桂杰. All rights reserved.
-//
-
 import UIKit
 
 extension UIView {
@@ -24,6 +18,15 @@ extension JJ where Original: UIView {
     public func removeAll() {
         original.subviews
         .forEach { $0.removeFromSuperview() }
+    }
+    
+    public func capture() -> UIImage? {
+        let format = UIGraphicsImageRendererFormat()
+        format.opaque = original.isOpaque
+        let render = UIGraphicsImageRenderer(size: original.frame.size, format: format)
+        return render.image(actions: { _ in
+            original.drawHierarchy(in: original.frame, afterScreenUpdates: true)
+        })
     }
 }
 

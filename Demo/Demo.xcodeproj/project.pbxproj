@@ -27,6 +27,7 @@
 		9D48369E20F321600086F323 /* AttributMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D48369D20F321600086F323 /* AttributMaker.swift */; };
 		9D96BFE0210AC47D0015F18B /* JJCycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D96BFDF210AC47D0015F18B /* JJCycleView.swift */; };
 		9D96BFE2210AC6220015F18B /* CALayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D96BFE1210AC6220015F18B /* CALayer+Extension.swift */; };
+		9DAB82E52137A0EE00528DBB /* GenericPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAB82E42137A0EE00528DBB /* GenericPresentationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		9D48369D20F321600086F323 /* AttributMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributMaker.swift; sourceTree = "<group>"; };
 		9D96BFDF210AC47D0015F18B /* JJCycleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJCycleView.swift; sourceTree = "<group>"; };
 		9D96BFE1210AC6220015F18B /* CALayer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extension.swift"; sourceTree = "<group>"; };
+		9DAB82E42137A0EE00528DBB /* GenericPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericPresentationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				9D1D2ACC2112B56000DDFC43 /* SwipeTransition.swift */,
+				9DAB82E42137A0EE00528DBB /* GenericPresentationController.swift */,
 			);
 			path = Transitions;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				5EA4606420A18DA20005AAA5 /* ViewController.swift in Sources */,
 				9D48369E20F321600086F323 /* AttributMaker.swift in Sources */,
 				5EA4607820A191040005AAA5 /* GCDTimer.swift in Sources */,
+				9DAB82E52137A0EE00528DBB /* GenericPresentationController.swift in Sources */,
 				5E74076820AC06CA00A46657 /* UIImage+Extension.swift in Sources */,
 				9D16B64920E5FDA8008AE489 /* ReusableViewable.swift in Sources */,
 				9D16B65120E60B13008AE489 /* Date+Extensions.swift in Sources */,
