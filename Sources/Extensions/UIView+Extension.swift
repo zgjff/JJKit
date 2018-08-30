@@ -23,7 +23,6 @@ extension JJ where Original: UIView {
     public func capture() -> UIImage? {
         if #available(iOS 10.0, *) {
             let format = UIGraphicsImageRendererFormat()
-//            format.opaque = original.isOpaque
             let render = UIGraphicsImageRenderer(size: original.frame.size, format: format)
             return render.image(actions: { _ in
                 original.drawHierarchy(in: original.frame, afterScreenUpdates: true)
