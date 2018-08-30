@@ -1,5 +1,3 @@
-//
-//  UIView+Extension.swift
 import UIKit
 
 extension UIView {

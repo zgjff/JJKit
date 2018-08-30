@@ -30,9 +30,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction private func change() {
-        let img = self.view.jj.capture()
-        
-        imageView.image = img
+
     }
 }
 

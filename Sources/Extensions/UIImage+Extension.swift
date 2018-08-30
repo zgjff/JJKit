@@ -1,11 +1,3 @@
-//
-//  UIImage+Extension.swift
-//  Demo
-//
-//  Created by 郑桂杰 on 2018/5/16.
-//  Copyright © 2018年 郑桂杰. All rights reserved.
-//
-
 import UIKit
 private let context = CIContext(options: nil)
 extension UIImage {
