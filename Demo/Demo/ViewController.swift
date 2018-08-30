@@ -14,7 +14,6 @@ class ViewController: UIViewController {
     private lazy var imageView = UIImageView()
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("viewDidLoad")
         imageView.jj.size = CGSize(width: 200, height: 200)
         imageView.jj.center = view.jj.center
         view.addSubview(imageView)
@@ -31,11 +30,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction private func change() {
-        print("!1111")
-        debugPrint("11111111d")
-        let img2 = UIImage.fromColor(#colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1))
-        self.imageView.image = img2
+        let img = self.view.jj.capture()
         
+        imageView.image = img
     }
 }
 
