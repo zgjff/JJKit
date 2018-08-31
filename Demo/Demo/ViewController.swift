@@ -25,12 +25,12 @@ class ViewController: UIViewController {
         .width(is: view.jj.width - 100)
         .left(is: 50)
         .bottom(is: view.jj.bottom - 50)
-        b.addTarget(self, action: #selector(change), for: .primaryActionTriggered)
+        b.addTarget(self, action: #selector(change(_:)), for: .primaryActionTriggered)
         view.addSubview(b)
     }
     
-    @IBAction private func change() {
-
+    @IBAction private func change(_ sender: UIButton) {
+        sender.jj.setBackgroundColor(#colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1), radius: 25, for: [])
     }
 }
 

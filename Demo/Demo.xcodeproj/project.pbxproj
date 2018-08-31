@@ -28,6 +28,8 @@
 		9D96BFE0210AC47D0015F18B /* JJCycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D96BFDF210AC47D0015F18B /* JJCycleView.swift */; };
 		9D96BFE2210AC6220015F18B /* CALayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D96BFE1210AC6220015F18B /* CALayer+Extension.swift */; };
 		9DAB82E52137A0EE00528DBB /* GenericPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAB82E42137A0EE00528DBB /* GenericPresentationController.swift */; };
+		9DAB83052137CB1400528DBB /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAB83042137CB1400528DBB /* UIButton+Extension.swift */; };
+		9DB52A50213903BF00D9D771 /* BlockAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB52A4F213903BF00D9D771 /* BlockAction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,8 @@
 		9D96BFDF210AC47D0015F18B /* JJCycleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJCycleView.swift; sourceTree = "<group>"; };
 		9D96BFE1210AC6220015F18B /* CALayer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extension.swift"; sourceTree = "<group>"; };
 		9DAB82E42137A0EE00528DBB /* GenericPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericPresentationController.swift; sourceTree = "<group>"; };
+		9DAB83042137CB1400528DBB /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		9DB52A4F213903BF00D9D771 /* BlockAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockAction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,7 @@
 				9D96BFE1210AC6220015F18B /* CALayer+Extension.swift */,
 				9D16B65020E60B13008AE489 /* Date+Extensions.swift */,
 				9D16B65420E631EC008AE489 /* String+Extension.swift */,
+				9DAB83042137CB1400528DBB /* UIButton+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -139,6 +144,7 @@
 				9D16B64520E5FCE0008AE489 /* JJCompatible.swift */,
 				9D16B65220E60C44008AE489 /* StoreValueManager.swift */,
 				9D48369D20F321600086F323 /* AttributMaker.swift */,
+				9DB52A4F213903BF00D9D771 /* BlockAction.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -234,6 +240,7 @@
 				9D16B64F20E5FF03008AE489 /* UIView+Extension.swift in Sources */,
 				9D1D2ACD2112B56000DDFC43 /* SwipeTransition.swift in Sources */,
 				5EA4606420A18DA20005AAA5 /* ViewController.swift in Sources */,
+				9DB52A50213903BF00D9D771 /* BlockAction.swift in Sources */,
 				9D48369E20F321600086F323 /* AttributMaker.swift in Sources */,
 				5EA4607820A191040005AAA5 /* GCDTimer.swift in Sources */,
 				9DAB82E52137A0EE00528DBB /* GenericPresentationController.swift in Sources */,
@@ -244,6 +251,7 @@
 				9D16B64320E5FC9C008AE489 /* UIColor+Extension.swift in Sources */,
 				9D16B65520E631EC008AE489 /* String+Extension.swift in Sources */,
 				9D96BFE2210AC6220015F18B /* CALayer+Extension.swift in Sources */,
+				9DAB83052137CB1400528DBB /* UIButton+Extension.swift in Sources */,
 				9D16B64620E5FCE0008AE489 /* JJCompatible.swift in Sources */,
 				9D16B64B20E5FDDF008AE489 /* Configable.swift in Sources */,
 				5EA4606220A18DA20005AAA5 /* AppDelegate.swift in Sources */,
