@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         imageView.jj.size = CGSize(width: 200, height: 200)
+        imageView.isUserInteractionEnabled = true
         imageView.jj.center = view.jj.center
         view.addSubview(imageView)
         let img1 = UIImage.fromColor(#colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1))

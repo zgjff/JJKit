@@ -1,7 +1,7 @@
 import UIKit
 
 extension JJ where Original: UIControl {
-    public func handle(_ block: @escaping (Original) -> (), for state: UIControlEvents? = nil) {
+    public func handle(state: UIControlEvents? = nil, _ block: @escaping (Original) -> ()) {
         original.handle(block, for: state)
     }
     public func removeAllBlocksForEvents(_ state: UIControlEvents) {
@@ -9,26 +9,19 @@ extension JJ where Original: UIControl {
     }
 }
 
-
-public protocol StoreBlockTargetsable: NSObjectProtocol {}
-
-private var BlockTargetKeys: Void?
-extension StoreBlockTargetsable {
-    var targets: [BlockTargetInvoke<Self>] {
-        get {
-            return StoreValueManager.get(from: self, key: &BlockTargetKeys, initialiser: { () -> [BlockTargetInvoke<Self>] in
-                return []
-            })
-        }
-        set {
-            StoreValueManager.set(for: self, key: &BlockTargetKeys, value: newValue)
-        }
+extension JJ where Original: UIGestureRecognizer {
+    public func handle(block: @escaping (Original) -> ()) {
+        original.handle(block: block)
+    }
+    public func removeAllBlocks() {
+        original.removeAllBlocks()
     }
 }
 
+extension UIControl: StoreBlockTargetsable {}
 
 extension StoreBlockTargetsable where Self: UIControl {
-    func handle(_ block: @escaping (Self) -> (), for state: UIControlEvents? = nil) {
+    func handle(_ block: @escaping (Self) -> (), for state: UIControlEvents?) {
         var events: UIControlEvents?
         if let state = state {
             events = state
@@ -82,9 +75,73 @@ extension StoreBlockTargetsable where Self: UIControl {
     }
 }
 
-extension UIControl: StoreBlockTargetsable {}
 
-class BlockTargetInvoke<T: AnyObject>: NSObject {
+extension UIGestureRecognizer: StoreBlockTargetsable {}
+
+extension StoreBlockTargetsable where Self: UIGestureRecognizer {
+    public init(block: @escaping (Self) -> ()) {
+        self.init()
+        handle(block: block)
+    }
+    func handle(block: @escaping (Self) -> ()) {
+        let target = BlockTargetInvoke(self, block)
+        addTarget(target, action: #selector(target.invoke))
+        targets.append(target)
+    }
+    func removeAllBlocks() {
+        guard !targets.isEmpty else {
+            return
+        }
+        for target in targets {
+            removeTarget(target, action: #selector(target.invoke))
+        }
+        targets.removeAll()
+    }
+}
+
+extension UIBarButtonItem: StoreBlockTargetsable {
+    public convenience init(title: String?, style: UIBarButtonItemStyle, block: @escaping (UIBarButtonItem) -> ()) {
+        self.init(title: title, style: style, target: nil, action: nil)
+        let t = BlockTargetInvoke(self, block)
+        target = t
+        action = #selector(t.invoke)
+        targets.append(t)
+    }
+    public convenience init(image: UIImage?, style: UIBarButtonItemStyle, block: @escaping (UIBarButtonItem) -> ()) {
+        self.init(image: image, style: style, target: nil, action: nil)
+        let t = BlockTargetInvoke(self, block)
+        target = t
+        action = #selector(t.invoke)
+        targets.append(t)
+    }
+    public convenience init(barButtonSystemItem systemItem: UIBarButtonSystemItem, block: @escaping (UIBarButtonItem) -> ()) {
+        self.init(barButtonSystemItem: systemItem, target: nil, action: nil)
+        let t = BlockTargetInvoke(self, block)
+        target = t
+        action = #selector(t.invoke)
+        targets.append(t)
+    }
+}
+
+
+public protocol StoreBlockTargetsable: NSObjectProtocol {}
+
+private var BlockTargetKeys: Void?
+extension StoreBlockTargetsable {
+   public var targets: [BlockTargetInvoke<Self>] {
+        get {
+            return StoreValueManager.get(from: self, key: &BlockTargetKeys, initialiser: { () -> [BlockTargetInvoke<Self>] in
+                return []
+            })
+        }
+        set {
+            StoreValueManager.set(for: self, key: &BlockTargetKeys, value: newValue)
+        }
+    }
+}
+
+
+public final class BlockTargetInvoke<T: AnyObject>: NSObject {
     private weak var sender: T?
     private let block: (T) -> ()
     fileprivate var events: UIControlEvents?
@@ -97,8 +154,5 @@ class BlockTargetInvoke<T: AnyObject>: NSObject {
         if let sender = sender {
             block(sender)
         }
-    }
-    deinit {
-        print("BlockTargetInvoke  deinit")
     }
 }
