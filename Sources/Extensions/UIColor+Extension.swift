@@ -17,11 +17,12 @@ extension UIColor {
             let g = (c >> 4 & 0xf) | (c & 0xf0)
             let b = ((c & 0xf) << 4) | (c & 0xf)
             self.init(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: 1.0)
-        case 4: //RGBA-----未完成
-            let r = (c >> 8 & 0xf) | (c >> 4 & 0x0f0)
-            let g = (c >> 4 & 0xf) | (c & 0xf0)
-            let b = ((c & 0xf) << 4) | (c & 0xf)
-            self.init(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: 1.0)
+        case 4: //ARGB
+            let r = c >> 16 & 0xff
+            let g = c >> 8 & 0xff
+            let b = c & 0xff
+            let a = c >> 24 & 0xff
+            self.init(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: CGFloat(a) / 100.0)
         case 6: //RRGGBB
             let r = c >> 16 & 0xff
             let g = c >> 8 & 0xff

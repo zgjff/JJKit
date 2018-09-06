@@ -1,5 +1,6 @@
 import UIKit
 private let context = CIContext(options: nil)
+private let filterQueue = DispatchQueue(label: "filterImageQueue.JJKit", attributes: [.concurrent])
 extension UIImage {
     /// 所在位置 占 总长的百分比
     public typealias Location = CGFloat
@@ -8,24 +9,60 @@ extension UIImage {
 }
 
 extension UIImage {
+    /// 在size大小CGContext画布中，根据modiy闭包来操作画布
+    ///
+    /// - Parameters:
+    ///   - size: 图像画布大小
+    ///   - actions: 操作画布---block(CGContext)
+    public convenience init?(size: CGSize, scale: CGFloat = UIScreen.main.scale, action: @escaping (CGContext) -> ()) {
+        if #available(iOS 10.0, *) {
+            let f = UIGraphicsImageRendererFormat.default()
+            f.scale = scale
+            let render = UIGraphicsImageRenderer(size: size, format: f)
+            let i = render.image { c in
+                action(c.cgContext)
+            }
+            if let cg = i.cgImage {
+                self.init(cgImage: cg, scale: i.scale, orientation: i.imageOrientation)
+            } else {
+                return nil
+            }
+        } else {
+            UIGraphicsBeginImageContextWithOptions(size, false, scale)
+            defer {
+                UIGraphicsEndImageContext()
+            }
+            if let c = UIGraphicsGetCurrentContext() {
+                c.saveGState()
+                action(c)
+                c.restoreGState()
+            }
+            guard let img = UIGraphicsGetImageFromCurrentImageContext(),
+                let cg = img.cgImage else {
+                    return nil
+            }
+            self.init(cgImage: cg, scale: img.scale, orientation: img.imageOrientation)
+        }
+    }
     /// 颜色 -> 纯色图像
     ///
     /// - Parameters:
     ///   - color: 颜色
-    ///   - size: 大小
-    /// - Returns: 纯色图像
-    public static func fromColor(_ color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) -> UIImage? {
+    ///   - size: 大小 默认 CGSize(width: 1, height: 1)
+    public convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
         let colorSize = UIColorImageCache.ColorSize(color: color, size: size)
         let cacheImg = UIColorImageCache.shared.imageFor(colorSize: colorSize)
         guard cacheImg == nil else {
-            return cacheImg
+            self.init(cgImage: cacheImg!.cgImage!, scale: cacheImg!.scale, orientation: cacheImg!.imageOrientation)
+            return
         }
-        if let img = apply(size: size, modify: { context in
+        let build: (CGContext) -> () = { context in
             color.set()
             context.fill(CGRect(origin: .zero, size: size))
-        }) {
+        }
+        if let img = UIImage(size: size, action: build), let cg = img.cgImage {
             UIColorImageCache.shared.setImage(img, for: colorSize)
-            return img
+            self.init(cgImage: cg, scale: img.scale, orientation: img.imageOrientation)
         } else {
             return nil
         }
@@ -34,23 +71,19 @@ extension UIImage {
     /// 线性颜色渐变图像
     ///
     /// - Parameters:
-    ///   - colors: (颜色, 起始点)变参 注意：起始点范围(0~1.0)
-    ///   - size: 图像大小
+    ///   - linearColors: (颜色, 起始点)变参 注意：起始点范围(0~1.0)
+    ///   - size: 大小
     ///   - start: 起始点(起点所在size中的x，y的百分比)
     ///   - end: 结束点(起点所在size中的x，y的百分比)
-    /// - Returns: 渐变图像
-    public static func fromLinearColors(_ colors: (color: UIColor, location: Location)..., size: CGSize, start: Position = .zero, end: Position) -> UIImage? {
-        return apply(size: size) { context in
+    public convenience init?(linearColors: (color: UIColor, location: Location)..., size: CGSize, start: Position = .zero, end: Position = CGPoint(x: 1, y: 0)) {
+        let build: (CGContext) -> () = { context in
             let colorSpace = CGColorSpaceCreateDeviceRGB()
-            
             let initial: ([CGFloat], [Location]) = ([], [])
-            let (colorComponents, locations) = colors.map({ tupe -> ([CGFloat], Location)? in
+            let (colorComponents, locations) = linearColors.map({ tupe -> ([CGFloat], Location)? in
                 guard let colorComponents = tupe.color.cgColor.components else {
                     return nil
                 }
-                let location = tupe.location
-                
-                return (colorComponents, location)
+                return (colorComponents, tupe.location)
             })
                 .reduce(initial, { (result, signle) -> ([CGFloat], [Location]) in
                     var temp = result
@@ -66,29 +99,29 @@ extension UIImage {
                 context.drawLinearGradient(gradient, start: s, end: e, options: .drawsAfterEndLocation)
             }
         }
+        guard let img = UIImage(size: size, action: build),
+            let cg = img.cgImage else {
+                return nil
+        }
+        self.init(cgImage: cg, scale: img.scale, orientation: img.imageOrientation)
     }
     
     /// 径向颜色渐变图像
     ///
     /// - Parameters:
-    ///   - colors: (颜色, 起始点)变参 注意：起始点范围(0~1.0)
-    ///   - size: 画布大小
-    ///   - center: 径向渐变中心点(0~1.0)
+    ///   - radialColors: (颜色, 起始点)变参 注意：起始点范围(0~1.0)
+    ///   - size: 大小
+    ///   - center: 中心点(中心点所在size中的x，y的百分比)
     ///   - radius: 径向渐变半径
-    /// - Returns: 渐变图像
-    public static func fromRadialColors(_ colors: (color: UIColor, location: Location)..., size: CGSize, center: Position, radius: CGFloat) -> UIImage? {
-        return apply(size: size, modify: { context in
+    public convenience init?(radialColors: (color: UIColor, location: Location)..., size: CGSize, center: Position, radius: CGFloat) {
+        let build: (CGContext) -> () = { context in
             let colorSpace = CGColorSpaceCreateDeviceRGB()
-            
             let initial: ([CGFloat], [Location]) = ([], [])
-            let (colorComponents, locations) = colors.map({ tupe -> ([CGFloat], Location)? in
+            let (colorComponents, locations) = radialColors.map({ tupe -> ([CGFloat], Location)? in
                 guard let colorComponents = tupe.color.cgColor.components else {
                     return nil
                 }
-                
-                let location = tupe.location
-                
-                return (colorComponents, location)
+                return (colorComponents, tupe.location)
             })
                 .reduce(initial, { (result, signle) -> ([CGFloat], [Location]) in
                     var temp = result
@@ -102,40 +135,46 @@ extension UIImage {
             if let gradient = CGGradient(colorSpace: colorSpace, colorComponents: colorComponents, locations: locations, count: locations.count) {
                 context.drawRadialGradient(gradient, startCenter: aCenter, startRadius: 0, endCenter: aCenter, endRadius: radius, options: .drawsAfterEndLocation)
             }
-        })
+        }
+        guard let img = UIImage(size: size, action: build),
+            let cg = img.cgImage else {
+                return nil
+        }
+        self.init(cgImage: cg, scale: img.scale, orientation: img.imageOrientation)
     }
-    
+}
+
+extension UIImage: JJCompatible {}
+
+extension JJ where Original: UIImage {
     /// 改变图像的颜色
     ///
     /// - Parameter tintColor: 要变的颜色
     /// - Returns: 结果
     public func applyTintColor(_ tintColor: UIColor) -> UIImage? {
-        let size = self.size
-        return UIImage.apply(size: size, modify: { context in
+        let size = original.size
+        return UIImage(size: size, action: { context in
             tintColor.setFill()
             UIRectFill(CGRect(origin: .zero, size: size))
-            self.draw(in: CGRect(origin: .zero, size: size), blendMode: .destinationIn, alpha: 1.0)
+            self.original.draw(in: CGRect(origin: .zero, size: size), blendMode: .destinationIn, alpha: 1.0)
         })
     }
-    
     /// 创建圆角图片
     ///
     /// - Parameters:
-    ///   - radius: 圆角
-    ///   - corners: 哪几个角
+    ///   - radius: 圆角大小
+    ///   - corners: UIRectCorner
     ///   - border: 边框宽度
     ///   - color: 边框颜色
     /// - Returns: 圆角图片
     public func apply(radius: CGFloat, corners: UIRectCorner = .allCorners, border: CGFloat = 0, color: UIColor? = nil) -> UIImage? {
-        return UIImage.apply(size: size, modify: { context in
-            guard let cgImg = self.cgImage else { return }
-            let rect = CGRect(origin: .zero, size: self.size)
-            
+        let size = original.size
+        return UIImage(size: size, action: { context in
+            guard let cgImg = self.original.cgImage else { return }
+            let rect = CGRect(origin: .zero, size: size)
             context.scaleBy(x: 1, y: -1)
             context.translateBy(x: 0, y: -rect.size.height)
-            
-            let minSize = min(self.size.width, self.size.height)
-            
+            let minSize = min(size.width, size.height)
             if border < minSize / 2 {
                 let path = UIBezierPath(roundedRect: rect.insetBy(dx: border, dy: border), byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: border))
                 path.close()
@@ -144,11 +183,10 @@ extension UIImage {
                 context.draw(cgImg, in: rect)
                 context.restoreGState()
             }
-            
             if let borderColor = color, border > 0, border < minSize / 2 {
-                let strokeInset = (floor(border * self.scale) + 0.5) / self.scale
+                let strokeInset = (floor(border * self.original.scale) + 0.5) / self.original.scale
                 let strokeRect = rect.insetBy(dx: strokeInset, dy: strokeInset)
-                let strokeRadius = radius > self.scale / 2 ? radius - self.scale / 2 : 0
+                let strokeRadius = radius > self.original.scale / 2 ? radius - self.original.scale / 2 : 0
                 let path = UIBezierPath(roundedRect: strokeRect, byRoundingCorners: corners, cornerRadii: CGSize(width: strokeRadius, height: border))
                 path.close()
                 path.lineWidth = border
@@ -158,53 +196,21 @@ extension UIImage {
             }
         })
     }
-    
-    /// 在size大小CGContext画布中，根据modiy闭包来操作画布，并返回图像
-    ///
-    /// - Parameters:
-    ///   - size: 画布的大小
-    ///   - modify: 操作画布---block(CGContext)
-    /// - Returns: 图像
-    public static func apply(size: CGSize, modify: @escaping (CGContext) -> ()) -> UIImage? {
-        if #available(iOS 10.0, *) {
-            let render = UIGraphicsImageRenderer(size: size)
-            return render.image(actions: { context in
-                context.cgContext.saveGState()
-                modify(context.cgContext)
-                context.cgContext.restoreGState()
-            })
-        } else {
-            UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
-            defer {
-                UIGraphicsEndImageContext()
-            }
-            if let context = UIGraphicsGetCurrentContext() {
-                context.saveGState()
-                modify(context)
-                context.restoreGState()
-            }
-            return UIGraphicsGetImageFromCurrentImageContext()
-        }
-    }
-}
-
-extension UIImage {
     /// 根据滤镜配方创建滤镜图片
     ///
     /// - Parameters:
     ///   - filter: (CIImage) -> CIImage
     ///   - result: 主线程回掉滤镜结果
     public func applyFilter(_ filter: (CIImage) -> CIImage, result: @escaping (UIImage) -> ()) {
-        guard let inputImage = CIImage(image: self) else {
-            result(self)
+        guard let inputImage = CIImage(image: original) else {
+            result(original)
             return
         }
         let out = filter(inputImage)
-        let filterQueue = DispatchQueue(label: "filterImageQueue.JJKit", attributes: [.concurrent])
         filterQueue.async {
-            var img: UIImage = self
+            var img: UIImage = self.original
             if let cg = context.createCGImage(out, from: inputImage.extent) {
-                img = UIImage(cgImage: cg, scale: self.scale, orientation: self.imageOrientation)
+                img = UIImage(cgImage: cg, scale: self.original.scale, orientation: self.original.imageOrientation)
             }
             DispatchQueue.main.async {
                 result(img)
@@ -214,6 +220,7 @@ extension UIImage {
 }
 
 
+/**************************private*****************************/
 /// 纯色图像缓存
 private struct UIColorImageCache {
     struct ColorSize: CustomStringConvertible {
@@ -224,19 +231,16 @@ private struct UIColorImageCache {
         }
         let color: UIColor
         let size: CGSize
-        
         init(color: UIColor, size: CGSize) {
             self.color = color
             self.size = size
         }
     }
-    
     static let shared = UIColorImageCache()
     private let cache: NSCache<NSString, UIImage>
     private init() {
         cache = NSCache()
     }
-    
     func imageFor(colorSize: ColorSize) -> UIImage? {
         return cache.object(forKey: colorSize.description as NSString)
     }

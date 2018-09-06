@@ -4,9 +4,9 @@ extension JJ where Original: UIButton {
     func setBackgroundColor(_ color: UIColor, radius: CGFloat = 0, for state: UIControlState) {
         var img: UIImage?
         if radius <= 0.1 {
-            img = UIImage.fromColor(color)
+            img = UIImage(color: color)
         } else {
-            img = UIImage.fromColor(color, size: size)?.apply(radius: radius)
+            img = UIImage(color: color, size: size)?.jj.apply(radius: radius)
         }
         original.setBackgroundImage(img, for: state)
     }

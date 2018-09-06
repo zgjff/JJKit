@@ -17,6 +17,9 @@ public final class AttributMaker {
     }
     
     public func build() -> NSAttributedString {
+        if (string.isEmpty || string.count == 0) {
+            return NSAttributedString(string: "")
+        }
         let att = NSMutableAttributedString(string: string)
         for (_, e) in dic.enumerated() {
             if e.key.length > 0 {
