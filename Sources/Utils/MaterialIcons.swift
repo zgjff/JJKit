@@ -3,8 +3,12 @@ import Foundation
 /// https://github.com/google/material-design-icons/blob/master/iconfont/MaterialIcons-Regular.ttf6
 public final class Material: Fontloadable {
     public static var url: URL {
-        let inbundle = Bundle.main
-        if let u = inbundle.url(forResource: "MaterialIcons-Regular", withExtension: "ttf") {
+        let bundle = Bundle(for: self)
+        guard let bu = bundle.url(forResource: "JJLibrary", withExtension: "bundle") else {
+            fatalError("bundle 不存在")
+        }
+        let inbundle = Bundle(url: bu)
+        if let u = inbundle?.url(forResource: "MaterialIcons-Regular", withExtension: "ttf") {
             return u
         } else {
             fatalError("不存在ttf文件")
