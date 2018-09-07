@@ -1,22 +1,17 @@
 import UIKit
 
-public struct IconData<Font: Fontloadable>: CustomStringConvertible {
-    public typealias CodeUnit = UInt16
-    private let codePoint: CodeUnit
-    
-    public init(codePoint: CodeUnit) {
-        self.codePoint = codePoint
-    }
+public protocol IconData: CustomStringConvertible {
+    associatedtype Font: Fontloadable
+    var codePoint: UInt16 { get }
+    init(codePoint: UInt16)
 }
 
 extension IconData {
     public var description: String {
+        let m = Mirror(reflecting: self).subjectType
         let radix16 = String(codePoint, radix: 16, uppercase: true)
-        return Font.familyName + "+U{0x" + radix16 + "}"
+        return "\(m)" + " U+{0x" + radix16 + "}"
     }
-}
-
-extension IconData {
     public func toString() -> String? {
         guard let scalar = Unicode.Scalar.init(codePoint) else {
             return nil
@@ -55,8 +50,6 @@ extension IconData {
         }
     }
 }
-
-
 
 public protocol Fontloadable {
     static var url: URL { get }
