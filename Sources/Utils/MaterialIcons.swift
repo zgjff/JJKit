@@ -17,6 +17,7 @@ public final class Material: Fontloadable {
     public static let familyName = "Material Icons"
 }
 
+/// https://material.io/tools/icons/?style=baseline
 public struct MaterialIcons: IconData {
     public typealias Font = Material
     public let codePoint: UInt16
@@ -24,6 +25,7 @@ public struct MaterialIcons: IconData {
         self.codePoint = codePoint
     }
 }
+
 // MARK: - 图标列表 https://github.com/google/material-design-icons/blob/master/iconfont/codepoints
 
 // MARK: - Action https://github.com/google/material-design-icons/tree/master/action/ios
@@ -629,27 +631,225 @@ extension MaterialIcons {
 
 // MARK: - device https://github.com/google/material-design-icons/tree/master/device/ios
 extension MaterialIcons {
-    
+    /// 飞机模式激活
+    public static var airplanemode_active = MaterialIcons(codePoint: 0xe195)
+    /// 飞机模式无效
+    public static var airplanemode_inactive = MaterialIcons(codePoint: 0xe194)
+    /// 电池警报
+    public static var battery_alert = MaterialIcons(codePoint: 0xe19c)
+    /// 电池充满电
+    public static var battery_charging_full = MaterialIcons(codePoint: 0xe1a3)
+    /// 电池充满
+    public static var battery_full = MaterialIcons(codePoint: 0xe1a4)
+    /// 电池标准
+    public static var battery_std = MaterialIcons(codePoint: 0xe1a5)
+    /// 电池未知
+    public static var battery_unknown = MaterialIcons(codePoint: 0xe1a6)
+    /// 蓝牙
+    public static var bluetooth = MaterialIcons(codePoint: 0xe1a7)
+    /// 蓝牙连接
+    public static var bluetooth_connected = MaterialIcons(codePoint: 0xe1a8)
+    /// 蓝牙禁用
+    public static var bluetooth_disabled = MaterialIcons(codePoint: 0xe1a9)
+    /// 蓝牙搜索
+    public static var bluetooth_searching = MaterialIcons(codePoint: 0xe1aa)
+    /// 中间A四周三角
+    public static var brightness_auto = MaterialIcons(codePoint: 0xe1ab)
+    /// 中间圆点四周三角
+    public static var brightness_high = MaterialIcons(codePoint: 0xe1ac)
+    /// 中间空白四周三角
+    public static var brightness_low = MaterialIcons(codePoint: 0xe1ad)
+    /// 中间半圆四周三角
+    public static var brightness_medium = MaterialIcons(codePoint: 0xe1ae)
+    public static var data_usage = MaterialIcons(codePoint: 0xe1af)
+    public static var developer_mode = MaterialIcons(codePoint: 0xe1b0)
+    public static var devices = MaterialIcons(codePoint: 0xe1b1)
+    public static var dvr = MaterialIcons(codePoint: 0xe1b2)
+    /// 定位中
+    public static var gps_fixed = MaterialIcons(codePoint: 0xe1b3)
+    /// 未定位
+    public static var gps_not_fixed = MaterialIcons(codePoint: 0xe1b4)
+    /// 定位失败
+    public static var gps_off = MaterialIcons(codePoint: 0xe1b5)
+    public static var graphic_eq = MaterialIcons(codePoint: 0xe1b8)
+    /// 未失败
+    public static var location_disabled = MaterialIcons(codePoint: 0xe1b6)
+    /// 未定位
+    public static var location_searching = MaterialIcons(codePoint: 0xe1b7)
+    public static var nfc = MaterialIcons(codePoint: 0xe1bb)
+    /// 横屏锁屏
+    public static var screen_lock_landscape = MaterialIcons(codePoint: 0xe1be)
+    /// 竖屏锁屏
+    public static var screen_lock_portrait = MaterialIcons(codePoint: 0xe1bf)
+    /// 屏幕翻转锁屏
+    public static var screen_lock_rotation = MaterialIcons(codePoint: 0xe1c0)
+    /// 屏幕翻转
+    public static var screen_rotation = MaterialIcons(codePoint: 0xe1c1)
+    /// 内存卡
+    public static var sd_storage = MaterialIcons(codePoint: 0xe1c2)
+    public static var settings_system_daydream = MaterialIcons(codePoint: 0xe1c3)
+    /// 网络信号1
+    public static var network_cell = MaterialIcons(codePoint: 0xe1b9)
+    /// 网络信号2
+    public static var signal_cellular_4_bar = MaterialIcons(codePoint: 0xe1c8)
+    /// 网络信号无
+    public static var signal_cellular_connected_no_internet_4_bar = MaterialIcons(codePoint: 0xe1cd)
+    /// 无sim卡
+    public static var signal_cellular_no_sim = MaterialIcons(codePoint: 0xe1ce)
+    public static var signal_cellular_null = MaterialIcons(codePoint: 0xe1cf)
+    public static var signal_cellular_off = MaterialIcons(codePoint: 0xe1d0)
+    /// wifi信号
+    public static var network_wifi = MaterialIcons(codePoint: 0xe1ba)
+    /// wifi满
+    public static var signal_wifi_4_bar = MaterialIcons(codePoint: 0xe1d8)
+    /// wifi满 锁
+    public static var signal_wifi_4_bar_lock = MaterialIcons(codePoint: 0xe1d9)
+    /// wifi满 锁
+    public static var wifi_lock = MaterialIcons(codePoint: 0xe1e1)
+    /// wifi无
+    public static var signal_wifi_off = MaterialIcons(codePoint: 0xe1da)
+    /// 存储
+    public static var storage = MaterialIcons(codePoint: 0xe1db)
+    /// usb
+    public static var usb = MaterialIcons(codePoint: 0xe1e0)
+    /// 墙纸
+    public static var wallpaper = MaterialIcons(codePoint: 0xe1bc)
+    public static var widgets = MaterialIcons(codePoint: 0xe1bd)
+    /// wifi共享
+    public static var wifi_tethering = MaterialIcons(codePoint: 0xe1e2)
 }
 
+// MARK: - navigation: https://github.com/google/material-design-icons/tree/master/navigation/ios
 extension MaterialIcons {
-    
+    /// 应用
+    public static var apps = MaterialIcons(codePoint: 0xe5c3)
+    /// 向后箭头
+    public static var arrow_back = MaterialIcons(codePoint: 0xe5c4)
+    /// 箭头向下
+    public static var arrow_downward = MaterialIcons(codePoint: 0xe5db)
+    /// 箭头下拉
+    public static var arrow_drop_down = MaterialIcons(codePoint: 0xe5c5)
+    /// 箭头下拉圈
+    public static var arrow_drop_down_circle = MaterialIcons(codePoint: 0xe5c6)
+    /// 箭头下降
+    public static var arrow_drop_up = MaterialIcons(codePoint: 0xe5c7)
+    /// 向前箭头
+    public static var arrow_forward = MaterialIcons(codePoint: 0xe5c8)
+    /// 向上箭头
+    public static var arrow_upward = MaterialIcons(codePoint: 0xe5d8)
+    /// x 圆圈实心
+    public static var cancel = MaterialIcons(codePoint: 0xe5c9)
+    /// 对号
+    public static var check = MaterialIcons(codePoint: 0xe5ca)
+    /// <
+    public static var chevron_left = MaterialIcons(codePoint: 0xe5cb)
+    /// >
+    public static var chevron_right = MaterialIcons(codePoint: 0xe5cc)
+    /// x
+    public static var close = MaterialIcons(codePoint: 0xe5cd)
+    /// ^
+    public static var expand_less = MaterialIcons(codePoint: 0xe5ce)
+    /// v
+    public static var expand_more = MaterialIcons(codePoint: 0xe5cf)
+    public static var first_page = MaterialIcons(codePoint: 0xe5dc)
+    public static var fullscreen = MaterialIcons(codePoint: 0xe5d0)
+    public static var fullscreen_exit = MaterialIcons(codePoint: 0xe5d1)
+    public static var last_page = MaterialIcons(codePoint: 0xe5dd)
+    /// 菜单
+    public static var menu = MaterialIcons(codePoint: 0xe5d2)
+    /// ...
+    public static var more_horiz = MaterialIcons(codePoint: 0xe5d3)
+    public static var more_vert = MaterialIcons(codePoint: 0xe5d4)
+    public static var refresh = MaterialIcons(codePoint: 0xe5d5)
+    public static var subdirectory_arrow_left = MaterialIcons(codePoint: 0xe5d9)
+    public static var subdirectory_arrow_right = MaterialIcons(codePoint: 0xe5da)
+    public static var unfold_less = MaterialIcons(codePoint: 0xe5d6)
+    public static var unfold_more = MaterialIcons(codePoint: 0xe5d7)
+}
+
+
+// MARK: - toggle  https://github.com/google/material-design-icons/tree/master/toggle/ios
+extension MaterialIcons {
+    /// check  实心正方形
+    public static var check_box = MaterialIcons(codePoint: 0xe834)
+    public static var indeterminate_check_box = MaterialIcons(codePoint: 0xe909)
+    public static var radio_button_checked = MaterialIcons(codePoint: 0xe837)
+    /// 圆圈⭕️
+    public static var radio_button_unchecked = MaterialIcons(codePoint: 0xe836)
+    /// star ★
+    public static var star = MaterialIcons(codePoint: 0xe838)
+    /// star 半实半空
+    public static var star_half = MaterialIcons(codePoint: 0xe839)
+    /// star ☆
+    public static var star_border = MaterialIcons(codePoint: 0xe83a)
+}
+
+// MARK: - social: https://github.com/google/material-design-icons/tree/master/social/ios
+extension MaterialIcons {
+    /// 蛋糕
+    public static var cake = MaterialIcons(codePoint: 0xe7e9)
+    public static var domain = MaterialIcons(codePoint: 0xe7ee)
+    /// 联系人组
+    public static var group = MaterialIcons(codePoint: 0xe7ef)
+    /// 联系人 +
+    public static var group_add = MaterialIcons(codePoint: 0xe7f0)
+    public static var location_city = MaterialIcons(codePoint: 0xe7f1)
+    public static var notifications = MaterialIcons(codePoint: 0xe7f4)
+    public static var notifications_active = MaterialIcons(codePoint: 0xe7f7)
+    public static var notifications_none = MaterialIcons(codePoint: 0xe7f5)
+    public static var notifications_off = MaterialIcons(codePoint: 0xe7f6)
+    public static var notifications_paused = MaterialIcons(codePoint: 0xe7f8)
+    public static var pages = MaterialIcons(codePoint: 0xe7f9)
+    public static var party_mode = MaterialIcons(codePoint: 0xe7fa)
+    public static var people = MaterialIcons(codePoint: 0xe7fb)
+    public static var people_outline = MaterialIcons(codePoint: 0xe7fc)
+    /// 联系人
+    public static var person = MaterialIcons(codePoint: 0xe7fd)
+    /// 添加联系人
+    public static var person_add = MaterialIcons(codePoint: 0xe7fe)
+    public static var person_outline = MaterialIcons(codePoint: 0xe7ff)
+    public static var person_pin = MaterialIcons(codePoint: 0xe55a)
+    /// +1
+    public static var plus_one = MaterialIcons(codePoint: 0xe800)
+    public static var poll = MaterialIcons(codePoint: 0xe801)
+    /// 全球
+    public static var `public` = MaterialIcons(codePoint: 0xe80b)
+    public static var school = MaterialIcons(codePoint: 0xe80c)
+    /// 笑脸
+    public static var mood = MaterialIcons(codePoint: 0xe7f2)
+    /// 失望的脸色
+    public static var mood_bad = MaterialIcons(codePoint: 0xe7f3)
+    /// 哭脸
+    public static var sentiment_dissatisfied = MaterialIcons(codePoint: 0xe811)
+    public static var sentiment_neutral = MaterialIcons(codePoint: 0xe812)
+    /// 笑脸
+    public static var sentiment_satisfied = MaterialIcons(codePoint: 0xe813)
+    public static var sentiment_very_dissatisfied = MaterialIcons(codePoint: 0xe814)
+    /// 大笑
+    public static var sentiment_very_satisfied = MaterialIcons(codePoint: 0xe815)
+    /// 设置
+    public static var settings = MaterialIcons(codePoint: 0xe8b8)
+    /// 分享
+    public static var share = MaterialIcons(codePoint: 0xe80d)
+    public static var whatshot = MaterialIcons(codePoint: 0xe80e)
+    /// 点赞
+    public static var thumb_up = MaterialIcons(codePoint: 0xe8dc)
+    public static var thumb_down = MaterialIcons(codePoint: 0xe8db)
+    public static var thumbs_up_down = MaterialIcons(codePoint: 0xe8dd)
+}
+
+// MARK: - 其它:  若有漏写,请结合 https://material.io/tools/icons/?style=baseline 以及
+// https://github.com/google/material-design-icons/blob/master/iconfont/codepoints
+// MaterialIcons(codePoint: xxxxx)
+extension MaterialIcons {
     /// 雪花
     public static var ac_unit = MaterialIcons(codePoint: 0xeb3b)
-    
-    
-    
     /// adb
     public static var adb = MaterialIcons(codePoint: 0xe60e)
-    
     /// 照相机
     public static var add_a_photo = MaterialIcons(codePoint: 0xe439)
-    
-    
-    
     /// 定位1
     public static var add_location = MaterialIcons(codePoint: 0xe567)
-    
     /// ➕ 相册
     public static var add_to_photos = MaterialIcons(codePoint: 0xe39d)
     /// 调整
@@ -670,38 +870,10 @@ extension MaterialIcons {
     public static var airline_seat_recline_extra = MaterialIcons(codePoint: 0xe636)
     /// 航空公司座位倾斜正常
     public static var airline_seat_recline_normal = MaterialIcons(codePoint: 0xe637)
-    /// 飞机模式激活
-    public static var airplanemode_active = MaterialIcons(codePoint: 0xe195)
-    /// 飞机模式无效
-    public static var airplanemode_inactive = MaterialIcons(codePoint: 0xe194)
-    
     /// 班车
     public static var airport_shuttle = MaterialIcons(codePoint: 0xeb3c)
-    
     /// 无限 符号 ∞
     public static var all_inclusive = MaterialIcons(codePoint: 0xeb3d)
-    /// 应用
-    public static var apps = MaterialIcons(codePoint: 0xe5c3)
-    
-    /// 向后箭头
-    public static var arrow_back = MaterialIcons(codePoint: 0xe5c4)
-    /// 箭头向下
-    public static var arrow_downward = MaterialIcons(codePoint: 0xe5db)
-    /// 箭头下拉
-    public static var arrow_drop_down = MaterialIcons(codePoint: 0xe5c5)
-    /// 箭头下拉圈
-    public static var arrow_drop_down_circle = MaterialIcons(codePoint: 0xe5c6)
-    /// 箭头下降
-    public static var arrow_drop_up = MaterialIcons(codePoint: 0xe5c7)
-    /// 向前箭头
-    public static var arrow_forward = MaterialIcons(codePoint: 0xe5c8)
-    /// 向上箭头
-    public static var arrow_upward = MaterialIcons(codePoint: 0xe5d8)
-    
-    
-    
-    
-    
     /// 旗子标记
     public static var assistant_photo = MaterialIcons(codePoint: 0xe3a0)
     /// 附加文件 纵向
@@ -712,35 +884,12 @@ extension MaterialIcons {
     public static var attachment = MaterialIcons(codePoint: 0xe2bc)
     /// 音轨
     public static var audiotrack = MaterialIcons(codePoint: 0xe3a1)
-    
-    
-    
-    
-    /// 电池警报
-    public static var battery_alert = MaterialIcons(codePoint: 0xe19c)
-    /// 电池充满电
-    public static var battery_charging_full = MaterialIcons(codePoint: 0xe1a3)
-    /// 电池充满
-    public static var battery_full = MaterialIcons(codePoint: 0xe1a4)
-    /// 电池标准
-    public static var battery_std = MaterialIcons(codePoint: 0xe1a5)
-    /// 电池未知
-    public static var battery_unknown = MaterialIcons(codePoint: 0xe1a6)
     /// 海滩伞
     public static var beach_access = MaterialIcons(codePoint: 0xeb3e)
     /// 旗帜对号
     public static var beenhere = MaterialIcons(codePoint: 0xe52d)
-    
-    /// 蓝牙
-    public static var bluetooth = MaterialIcons(codePoint: 0xe1a7)
     /// 蓝牙音频
     public static var bluetooth_audio = MaterialIcons(codePoint: 0xe60f)
-    /// 蓝牙连接
-    public static var bluetooth_connected = MaterialIcons(codePoint: 0xe1a8)
-    /// 蓝牙禁用
-    public static var bluetooth_disabled = MaterialIcons(codePoint: 0xe1a9)
-    /// 蓝牙搜索
-    public static var bluetooth_searching = MaterialIcons(codePoint: 0xe1aa)
     /// 模糊圆形
     public static var blur_circular = MaterialIcons(codePoint: 0xe3a2)
     /// 模糊线性
@@ -749,7 +898,6 @@ extension MaterialIcons {
     public static var blur_off = MaterialIcons(codePoint: 0xe3a4)
     /// 模糊
     public static var blur_on = MaterialIcons(codePoint: 0xe3a5)
-    
     /// 田
     public static var border_all = MaterialIcons(codePoint: 0xe228)
     /// 田--底部清晰
@@ -774,7 +922,6 @@ extension MaterialIcons {
     public static var border_top = MaterialIcons(codePoint: 0xe232)
     /// 田-中间竖清晰
     public static var border_vertical = MaterialIcons(codePoint: 0xe233)
-    
     /// 黑色圆点
     public static var brightness_1 = MaterialIcons(codePoint: 0xe3a6)
     /// 月牙1
@@ -789,35 +936,14 @@ extension MaterialIcons {
     public static var brightness_6 = MaterialIcons(codePoint: 0xe3ab)
     /// 中间圆点四周三角
     public static var brightness_7 = MaterialIcons(codePoint: 0xe3ac)
-    /// 中间A四周三角
-    public static var brightness_auto = MaterialIcons(codePoint: 0xe1ab)
-    /// 中间圆点四周三角
-    public static var brightness_high = MaterialIcons(codePoint: 0xe1ac)
-    /// 中间空白四周三角
-    public static var brightness_low = MaterialIcons(codePoint: 0xe1ad)
-    /// 中间半圆四周三角
-    public static var brightness_medium = MaterialIcons(codePoint: 0xe1ae)
     /// 破碎的图像
     public static var broken_image = MaterialIcons(codePoint: 0xe3ad)
     /// 毛刷
     public static var brush = MaterialIcons(codePoint: 0xe3ae)
     /// 3个大小不一的气泡
     public static var bubble_chart = MaterialIcons(codePoint: 0xe6dd)
-    
     /// 突发模式
     public static var burst_mode = MaterialIcons(codePoint: 0xe43c)
-    
     /// 医药箱
     public static var business_center = MaterialIcons(codePoint: 0xeb3f)
-    
-    /// 蛋糕
-    public static var cake = MaterialIcons(codePoint: 0xe7e9)
-    
-    
-    
-    
 }
-
-
-
-
