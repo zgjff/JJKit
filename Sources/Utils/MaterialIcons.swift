@@ -4,7 +4,7 @@ import Foundation
 public final class Material: Fontloadable {
     public static var url: URL {
         let bundle = Bundle(for: self)
-        guard let bu = bundle.url(forResource: "JJLibrary", withExtension: "bundle") else {
+        guard let bu = bundle.url(forResource: "JJKit", withExtension: "bundle") else {
             fatalError("bundle 不存在")
         }
         let inbundle = Bundle(url: bu)
