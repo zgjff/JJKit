@@ -12,42 +12,101 @@ extension IconData {
         let radix16 = String(codePoint, radix: 16, uppercase: true)
         return "\(m)" + " U+{0x" + radix16 + "}"
     }
+    /// IconData转换为字符串
+    ///
+    /// - Returns: 字符串IconData
     public func toString() -> String? {
         guard let scalar = Unicode.Scalar.init(codePoint) else {
             return nil
         }
         return String(scalar)
     }
-    public func toAttributeString(size: CGFloat, tintColor: UIColor = .black, backgroundColor: UIColor = .clear) -> NSAttributedString? {
-        guard let string = toString() else { return nil }
-        let s = size >= 3 ? size : 3
-        guard let font = UIFont(custom: Font.self, size: s) else { return nil }
-        let attributes: [NSAttributedStringKey: Any] = [
-            .font: font,
-            .foregroundColor: tintColor,
-            .backgroundColor: backgroundColor
-        ]
-        return NSAttributedString(string: string, attributes: attributes)
+    /// 生成对应的IconDataMaker,可以链式为iconData增加各种NSAttributedStringKey来调试Icon,
+    /// 最后需要调用image()/attributeString(),来生成image/attributeString,
+    /// - Parameter size: Icon的大小--此为协议,默认CGSize/CGFloat实现了此协议,默认为CGSize(width: 30, height: 30)
+    /// - Returns: IconDataMaker
+    public func size(_ size: IconSizeable = CGSize(width: 30, height: 30)) -> IconDataMaker<Self>? {
+        guard let _ = UIFont(custom: Font.self, size: size.fontSize()) else {
+            return nil
+        }
+        return IconDataMaker(icon: self, size: size)
     }
-    public func toImage(size: CGSize = CGSize(width: 30, height: 30), tintColor: UIColor = .black, backgroundColor: UIColor = .clear) -> UIImage? {
-        guard let string = toString() else { return nil }
-        var newSize = size
-        newSize.width = (size.width >= 3) ? size.width : 3
-        newSize.height = (size.height >= 3) ? size.height : 3
-        let s = min(newSize.width, newSize.height)
-        guard let font = UIFont(custom: Font.self, size: s) else { return nil }
+}
+
+/// 为IconData增加各种样式,最后组合成image/attributeString,默认提供了tintColor/backgroundColor,
+/// 您也可以增加extension,来扩展样式,比如超链接/描边等等
+public final class IconDataMaker<Icon: IconData> {
+    private let icon: Icon
+    private let size: IconSizeable
+    private var attributes: [NSAttributedStringKey: Any]
+    
+    public init(icon: Icon, size: IconSizeable) {
+        self.icon = icon
+        self.size = size
+        let font = UIFont(custom: Icon.Font.self, size: size.fontSize())!
+        attributes = [.font: font]
+    }
+    /// 为IconData增加tintColor
+    ///
+    /// - Parameter color: tintColor
+    /// - Returns: IconDataMaker
+    public func tintColor(_ color: UIColor = .black) -> Self {
+        attributes.updateValue(color, forKey: .foregroundColor)
+        return self
+    }
+    /// 为IconData增加backgroundColor
+    ///
+    /// - Parameter color: backgroundColor
+    /// - Returns: IconDataMaker
+    public func backgroundColor(_ color: UIColor = .clear) -> Self {
+        attributes.updateValue(color, forKey: .backgroundColor)
+        return self
+    }
+    public func image() -> UIImage? {
+        guard let string = icon.toString() else { return nil }
         let par = NSMutableParagraphStyle()
         par.alignment = .center
-        let attributes: [NSAttributedStringKey: Any] = [
-            .font: font,
-            .paragraphStyle: par,
-            .foregroundColor: tintColor,
-            .backgroundColor: backgroundColor
-        ]
+        attributes.updateValue(par, forKey: .paragraphStyle)
         let attributedString = NSAttributedString(string: string, attributes: attributes)
-        return UIImage(size: size) { context in
-            attributedString.draw(in: CGRect(origin: .zero, size: newSize))
-        }
+        let s = size.imageSize()
+        return UIImage(size: s) { context in
+            attributedString.draw(in: CGRect(origin: .zero, size: s))
+            }?.withRenderingMode(.alwaysOriginal)
+    }
+    public func attributeString() -> NSAttributedString? {
+        guard let string = icon.toString() else { return nil }
+        return NSAttributedString(string: string, attributes: attributes)
+    }
+}
+
+/// Icon 的大小,已经默认实现了CGSize/CGFloat
+public protocol IconSizeable {
+    func fontSize() -> CGFloat
+    func imageSize() -> CGSize
+}
+
+extension CGSize: IconSizeable {
+    public func fontSize() -> CGFloat {
+        var newSize = self
+        newSize.width = (width >= 3) ? width : 3
+        newSize.height = (height >= 3) ? height : 3
+        return min(newSize.width, newSize.height)
+    }
+    public func imageSize() -> CGSize {
+        var newSize = self
+        newSize.width = (width >= 3) ? width : 3
+        newSize.height = (height >= 3) ? height : 3
+        return newSize
+    }
+}
+
+extension CGFloat: IconSizeable {
+    public func fontSize() -> CGFloat {
+        return self > 3 ? self : 3
+    }
+    public func imageSize() -> CGSize {
+        let wh = self > 3 ? self : 3
+        return CGSize(width: wh, height: wh)
     }
 }
 

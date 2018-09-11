@@ -8,7 +8,6 @@ public struct StoreValueManager {
         objc_setAssociatedObject(base, key, associated, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         return associated
     }
-    
     public static func set<ValueType: Any>(
         for base: Any,
         key: UnsafeRawPointer,

@@ -17,7 +17,7 @@ public final class Material: Fontloadable {
     public static let familyName = "Material Icons"
 }
 
-/// https://material.io/tools/icons/?style=baseline
+/// 谷歌MaterialIcons----https://material.io/tools/icons/?style=baseline
 public struct MaterialIcons: IconData {
     public typealias Font = Material
     public let codePoint: UInt16

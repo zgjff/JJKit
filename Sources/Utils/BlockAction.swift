@@ -1,3 +1,14 @@
+// Block 方式来使用UIControl
+/*
+ let b = UIButton()
+ b.jj.handle { [unowned self] _ in //注意此处,一定要使用[unowned self] 或者 [weak sekf],防止循环应用,推荐[unowned self]
+   self.dismiss(animated: true, completion: nil)
+ }
+ navigationItem.rightBarButtonItem = UIBarButtonItem(image: MaterialIcons.close.toImage(), style: .done, block: {
+    [unowned self] _ in //注意此处,一定要使用[unowned self] 或者 [weak sekf],防止循环应用,推荐[unowned self]
+     self.dis()
+ })
+ */
 import UIKit
 
 extension JJ where Original: UIControl {
@@ -74,7 +85,6 @@ extension StoreBlockTargetsable where Self: UIControl {
         })
     }
 }
-
 
 extension UIGestureRecognizer: StoreBlockTargetsable {}
 

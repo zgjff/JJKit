@@ -1,6 +1,4 @@
 import UIKit
-
-
 public final class AttributMaker {
     private var dic: [NSRange: AttributMakerExtendable] = [:]
     

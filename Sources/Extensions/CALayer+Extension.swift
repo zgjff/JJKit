@@ -12,7 +12,6 @@ public extension JJ where Original: CALayer {
     func addLayers(_ layers: CALayer...) {
         layers.forEach { original.addSublayer($0) }
     }
-    
     func removeAll() {
         original.sublayers?
         .forEach { $0.removeFromSuperlayer() }
