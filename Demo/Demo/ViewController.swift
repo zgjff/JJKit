@@ -22,9 +22,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction private func c(_ sender: UIButton) {
-        label.attributedText = MaterialIcons.border_color.toAttributeString(size: 24)
-        let i = MaterialIcons.border_horizontal.toImage()
-        sender.setImage(i, for: [])
+        
     }
 }
 

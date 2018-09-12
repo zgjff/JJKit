@@ -1,5 +1,25 @@
-import UIKit
+// IconData unicode 协议
+// 使用方法：
+// string:
+//  let font = UIFont(custom: Material.self, size: 24)
+//  label.font = font
+//  label.text = MaterialIcons.ac_unit.string()
+//
+// NSAttributedString:
+// let att = MaterialIcons.adjust.attributeStringWith { maker in
+//    maker.tintColor(.cyan).backgroundColor(.orange)
+// }
+// label.attributedText = att
+//
+// image:
+// let close = MaterialIcons.close.imageWith { maker in
+//    maker.tintColor(.cyan)
+//  }
+// navigationItem.rightBarButtonItem = UIBarButtonItem(image: close, style: .done,  block: { [unowned self] _ in
+//     self.dis()
+// })
 
+import UIKit
 public protocol IconData: CustomStringConvertible {
     associatedtype Font: Fontloadable
     var codePoint: UInt16 { get }
@@ -15,21 +35,33 @@ extension IconData {
     /// IconData转换为字符串
     ///
     /// - Returns: 字符串IconData
-    public func toString() -> String? {
+    public func string() -> String? {
         guard let scalar = Unicode.Scalar.init(codePoint) else {
             return nil
         }
         return String(scalar)
     }
-    /// 生成对应的IconDataMaker,可以链式为iconData增加各种NSAttributedStringKey来调试Icon,
-    /// 最后需要调用image()/attributeString(),来生成image/attributeString,
-    /// - Parameter size: Icon的大小--此为协议,默认CGSize/CGFloat实现了此协议,默认为CGSize(width: 30, height: 30)
-    /// - Returns: IconDataMaker
-    public func size(_ size: IconSizeable = CGSize(width: 30, height: 30)) -> IconDataMaker<Self>? {
-        guard let _ = UIFont(custom: Font.self, size: size.fontSize()) else {
-            return nil
-        }
-        return IconDataMaker(icon: self, size: size)
+    /// IconData转换为UIImage
+    ///
+    /// - Parameters:
+    ///   - size: Icon的大小,默认CGSize(width: 30, height: 30)
+    ///   - transform: block为icon增加各种样式
+    /// - Returns: UIImage
+    public func imageWith(size: CGSize = CGSize(width: 30, height: 30), transform: ((IconDataMaker<Self>) -> ())?) -> UIImage? {
+        guard let maker = IconDataMaker(icon: self, size: size) else { return nil }
+        transform?(maker)
+        return maker.image()
+    }
+    /// IconData转换为NSAttributedString
+    ///
+    /// - Parameters:
+    ///   - size: Icon的大小,默认24
+    ///   - transform: block为icon增加各种样式
+    /// - Returns: NSAttributedString
+    public func attributeStringWith(size: CGFloat = 24, transform: ((IconDataMaker<Self>) -> ())?) -> NSAttributedString? {
+        guard let maker = IconDataMaker(icon: self, size: size) else { return nil }
+        transform?(maker)
+        return maker.attributeString()
     }
 }
 
@@ -39,31 +71,37 @@ public final class IconDataMaker<Icon: IconData> {
     private let icon: Icon
     private let size: IconSizeable
     private var attributes: [NSAttributedStringKey: Any]
-    
-    public init(icon: Icon, size: IconSizeable) {
+    init?(icon: Icon, size: IconSizeable) {
+        guard let font = UIFont(custom: Icon.Font.self, size: size.fontSize()) else {
+            return nil
+        }
+        print(size.fontSize())
         self.icon = icon
         self.size = size
-        let font = UIFont(custom: Icon.Font.self, size: size.fontSize())!
         attributes = [.font: font]
     }
+    
     /// 为IconData增加tintColor
     ///
     /// - Parameter color: tintColor
-    /// - Returns: IconDataMaker
+    /// - Returns: IconDataMaker,方便链式调用
+    @discardableResult
     public func tintColor(_ color: UIColor = .black) -> Self {
         attributes.updateValue(color, forKey: .foregroundColor)
         return self
     }
+    
     /// 为IconData增加backgroundColor
     ///
     /// - Parameter color: backgroundColor
-    /// - Returns: IconDataMaker
+    /// - Returns: IconDataMaker,方便链式调用
+    @discardableResult
     public func backgroundColor(_ color: UIColor = .clear) -> Self {
         attributes.updateValue(color, forKey: .backgroundColor)
         return self
     }
-    public func image() -> UIImage? {
-        guard let string = icon.toString() else { return nil }
+    fileprivate func image() -> UIImage? {
+        guard let string = icon.string() else { return nil }
         let par = NSMutableParagraphStyle()
         par.alignment = .center
         attributes.updateValue(par, forKey: .paragraphStyle)
@@ -73,13 +111,13 @@ public final class IconDataMaker<Icon: IconData> {
             attributedString.draw(in: CGRect(origin: .zero, size: s))
             }?.withRenderingMode(.alwaysOriginal)
     }
-    public func attributeString() -> NSAttributedString? {
-        guard let string = icon.toString() else { return nil }
+    
+    fileprivate func attributeString() -> NSAttributedString? {
+        guard let string = icon.string() else { return nil }
         return NSAttributedString(string: string, attributes: attributes)
     }
 }
-
-/// Icon 的大小,已经默认实现了CGSize/CGFloat
+/// IconData的大小,CGSize/CGFloat已经实现了此协议
 public protocol IconSizeable {
     func fontSize() -> CGFloat
     func imageSize() -> CGSize
@@ -110,6 +148,7 @@ extension CGFloat: IconSizeable {
     }
 }
 
+/// Unicode 的协议
 public protocol Fontloadable {
     static var url: URL { get }
     static var familyName: String { get }
