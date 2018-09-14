@@ -75,7 +75,6 @@ public final class IconDataMaker<Icon: IconData> {
         guard let font = UIFont(custom: Icon.Font.self, size: size.fontSize()) else {
             return nil
         }
-        print(size.fontSize())
         self.icon = icon
         self.size = size
         attributes = [.font: font]
