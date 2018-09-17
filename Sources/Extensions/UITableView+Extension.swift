@@ -64,10 +64,6 @@ extension JJ where Original: UITableView {
 }
 
 public final class TableViewDelegateManager {
-    deinit {
-        print("TableViewDelegateManager  deinit")
-    }
-    
     private unowned let tableView: UITableView
     private var delegate: TableViewDataDelegate?
     init?(tableView: UITableView, delegate: TableViewDataDelegate = TableViewDataDelegate()) {
@@ -262,16 +258,18 @@ extension TableViewDelegateManager {
 
 // MARK: - UITableViewDataSourcePrefetching
 extension TableViewDelegateManager {
-    @available(iOS 10.0, *)
     @discardableResult
     public func prefetchRows(_ block: @escaping (_ tableView: UITableView, _ indexPaths: [IndexPath]) -> ()) -> Self {
-        delegate?.prefetchRows = block
+        if #available(iOS 10.0, *) {
+            delegate?.prefetchRows = block
+        }
         return self
     }
-    @available(iOS 10.0, *)
     @discardableResult
     public func cancelPrefetchingForRows(_ block: @escaping (_ tableView: UITableView, _ indexPaths: [IndexPath]) -> ()) -> Self {
-        delegate?.cancelPrefetchingForRows = block
+        if #available(iOS 10.0, *) {
+            delegate?.cancelPrefetchingForRows = block
+        }
         return self
     }
 }
