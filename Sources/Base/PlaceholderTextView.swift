@@ -37,12 +37,12 @@ final public class PlaceholderTextView: UITextView {
     
     public init() {
         super.init(frame: .zero, textContainer: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: NSNotification.Name.UITextViewTextDidChange, object: self)
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: UITextView.textDidChangeNotification, object: self)
     }
     
     public init(frame: CGRect) {
         super.init(frame: frame, textContainer: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: NSNotification.Name.UITextViewTextDidChange, object: self)
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: UITextView.textDidChangeNotification, object: self)
     }
     
     override public func layoutSubviews() {
@@ -55,8 +55,8 @@ final public class PlaceholderTextView: UITextView {
         guard let placeholder = placeholder else { return }
         let newRect = CGRect(x: 5, y: 8, width: rect.width - 10, height: rect.height)
         (placeholder as NSString).draw(in: newRect, withAttributes: [
-            NSAttributedStringKey.foregroundColor: placeholderColor,
-            NSAttributedStringKey.font: placeholderFont
+            NSAttributedString.Key.foregroundColor: placeholderColor,
+            NSAttributedString.Key.font: placeholderFont
             ])
     }
     

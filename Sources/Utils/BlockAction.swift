@@ -12,10 +12,10 @@
 import UIKit
 
 extension JJ where Original: UIControl {
-    public func handle(state: UIControlEvents? = nil, _ block: @escaping (Original) -> ()) {
+    public func handle(state: UIControl.Event? = nil, _ block: @escaping (Original) -> ()) {
         original.handle(block, for: state)
     }
-    public func removeAllBlocksForEvents(_ state: UIControlEvents) {
+    public func removeAllBlocksForEvents(_ state: UIControl.Event) {
         original.removeAllBlocksForEvents(state)
     }
 }
@@ -32,8 +32,8 @@ extension JJ where Original: UIGestureRecognizer {
 extension UIControl: StoreBlockTargetsable {}
 
 extension StoreBlockTargetsable where Self: UIControl {
-    func handle(_ block: @escaping (Self) -> (), for state: UIControlEvents?) {
-        var events: UIControlEvents?
+    func handle(_ block: @escaping (Self) -> (), for state: UIControl.Event?) {
+        var events: UIControl.Event?
         if let state = state {
             events = state
         } else {
@@ -59,7 +59,7 @@ extension StoreBlockTargetsable where Self: UIControl {
         addTarget(target, action: #selector(target.invoke), for: es)
         targets.append(target)
     }
-    func removeAllBlocksForEvents(_ state: UIControlEvents) {
+    func removeAllBlocksForEvents(_ state: UIControl.Event) {
         guard !targets.isEmpty else {
             return
         }
@@ -71,7 +71,7 @@ extension StoreBlockTargetsable where Self: UIControl {
                 removeTarget(target, action: #selector(target.invoke), for: target.events!)
                 needRemoved.append(target)
             } else {
-                let newEvents = UIControlEvents(rawValue: tRaw & (~stateRaw))
+                let newEvents = UIControl.Event(rawValue: tRaw & (~stateRaw))
                 removeTarget(target, action: #selector(target.invoke), for: target.events!)
                 target.events = newEvents
                 addTarget(target, action: #selector(target.invoke), for: newEvents)
@@ -110,21 +110,21 @@ extension StoreBlockTargetsable where Self: UIGestureRecognizer {
 }
 
 extension UIBarButtonItem: StoreBlockTargetsable {
-    public convenience init(title: String?, style: UIBarButtonItemStyle, block: @escaping (UIBarButtonItem) -> ()) {
+    public convenience init(title: String?, style: UIBarButtonItem.Style, block: @escaping (UIBarButtonItem) -> ()) {
         self.init(title: title, style: style, target: nil, action: nil)
         let t = BlockTargetInvoke(self, block)
         target = t
         action = #selector(t.invoke)
         targets.append(t)
     }
-    public convenience init(image: UIImage?, style: UIBarButtonItemStyle, block: @escaping (UIBarButtonItem) -> ()) {
+    public convenience init(image: UIImage?, style: UIBarButtonItem.Style, block: @escaping (UIBarButtonItem) -> ()) {
         self.init(image: image, style: style, target: nil, action: nil)
         let t = BlockTargetInvoke(self, block)
         target = t
         action = #selector(t.invoke)
         targets.append(t)
     }
-    public convenience init(barButtonSystemItem systemItem: UIBarButtonSystemItem, block: @escaping (UIBarButtonItem) -> ()) {
+    public convenience init(barButtonSystemItem systemItem: UIBarButtonItem.SystemItem, block: @escaping (UIBarButtonItem) -> ()) {
         self.init(barButtonSystemItem: systemItem, target: nil, action: nil)
         let t = BlockTargetInvoke(self, block)
         target = t
@@ -154,7 +154,7 @@ extension StoreBlockTargetsable {
 public final class BlockTargetInvoke<T: AnyObject>: NSObject {
     private weak var sender: T?
     private let block: (T) -> ()
-    fileprivate var events: UIControlEvents?
+    fileprivate var events: UIControl.Event?
     init(_ sender: T, _ block: @escaping (T) -> ()) {
         self.sender = sender
         self.block = block

@@ -20,11 +20,11 @@ extension JJ where Original == String {
     public func sizeForFont(_ font: UIFont, size: CGSize, lineBreakMode mode: NSLineBreakMode) -> CGSize {
         
         let text = original as NSString
-        var atts: [NSAttributedStringKey: Any]? = nil
+        var atts: [NSAttributedString.Key: Any]? = nil
         if mode != .byWordWrapping {
             let par = NSMutableParagraphStyle()
             par.lineBreakMode = mode
-            atts = [NSAttributedStringKey.paragraphStyle: par]
+            atts = [NSAttributedString.Key.paragraphStyle: par]
         }
         return text.boundingRect(with: size, options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: atts, context: nil).size
     }

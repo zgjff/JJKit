@@ -175,7 +175,7 @@ extension TableViewDelegateManager {
         return self
     }
     @discardableResult
-    public func editingStyleForRow(_ block: @escaping (_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCellEditingStyle) -> Self {
+    public func editingStyleForRow(_ block: @escaping (_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell.EditingStyle) -> Self {
         delegate?.editingStyleForRow = block
         return self
     }
@@ -240,7 +240,7 @@ extension TableViewDelegateManager {
         return self
     }
     @discardableResult
-    public func commit(_ block: @escaping (_ editingStyle: UITableViewCellEditingStyle, _ indexPath: IndexPath) -> ()) -> Self {
+    public func commit(_ block: @escaping (_ editingStyle: UITableViewCell.EditingStyle, _ indexPath: IndexPath) -> ()) -> Self {
         delegate?.commit = block
         return self
     }
@@ -282,7 +282,7 @@ final class TableViewDataDelegate: NSObject {
     var titleForHeader: ((_ section: Int) -> String?)?
     var titleForFooter: ((_ section: Int) -> String?)?
     var canEditRow: ((_ indexPath: IndexPath) -> Bool)?
-    var commit: ((_ editingStyle: UITableViewCellEditingStyle, _ indexPath: IndexPath) -> ())?
+    var commit: ((_ editingStyle: UITableViewCell.EditingStyle, _ indexPath: IndexPath) -> ())?
     var canMove: ((_ indexPath: IndexPath) -> Bool)?
     var moveRow: ((_ source: IndexPath, _ destination: IndexPath) -> ())?
     
@@ -303,7 +303,7 @@ final class TableViewDataDelegate: NSObject {
     var didSelectRow: ((_ tableView: UITableView, _ indexPath: IndexPath) -> ())?
     var willDeselectRow: ((_ tableView: UITableView, _ indexPath: IndexPath) -> IndexPath?)?
     var didDeselectRow: ((_ tableView: UITableView, _ indexPath: IndexPath) -> ())?
-    var editingStyleForRow: ((_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCellEditingStyle)?
+    var editingStyleForRow: ((_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell.EditingStyle)?
     var editActionsForRow: ((_ tableView: UITableView, _ indexPath: IndexPath) -> [UITableViewRowAction])?
     var accessoryButtonTapped: ((_ indexPath: IndexPath) -> ())?
     // UITableViewDataSourcePrefetching
@@ -341,7 +341,7 @@ final class TableViewDataDelegate: NSObject {
 }
 
 extension TableViewDataDelegate {
-    open override func responds(to aSelector: Selector!) -> Bool {
+    public override func responds(to aSelector: Selector!) -> Bool {
         if #available(iOS 11, *) {
             switch aSelector {
             case #selector(TableViewDataDelegate.tableView(_:leadingSwipeActionsConfigurationForRowAt:)):
@@ -472,7 +472,7 @@ extension TableViewDataDelegate: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         didDeselectRow?(tableView, indexPath)
     }
-    public func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    public func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return editingStyleForRow?(tableView, indexPath) ?? .delete
     }
     public func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -515,7 +515,7 @@ extension TableViewDataDelegate: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return canEditRow?(indexPath) ?? true
     }
-    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         commit?(editingStyle, indexPath)
     }
     public func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {

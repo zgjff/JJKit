@@ -14,7 +14,7 @@ extension ReusableViewable where Self: UIView {
 extension UITableViewCell: ReusableViewable {}
 
 extension UITableView {
-    public func dequeueReusableCell<T>(style: UITableViewCellStyle = .default) -> T where T: UITableViewCell {
+    public func dequeueReusableCell<T>(style: UITableViewCell.CellStyle = .default) -> T where T: UITableViewCell {
         let cell = dequeueReusableCell(withIdentifier: T.defaultReuseIdentifier) as? T ?? T(style: style, reuseIdentifier: T.defaultReuseIdentifier)
         return cell
     }

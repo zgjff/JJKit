@@ -232,52 +232,57 @@ public extension JJ where Original: CALayer {
         return self
     }
     
-    var contentMode: UIViewContentMode {
+    var contentMode: UIView.ContentMode {
         get {
-            switch original.contentsGravity {
-            case kCAGravityResizeAspect: return .scaleAspectFit
-            case kCAGravityResizeAspectFill: return .scaleAspectFill
-            case kCAGravityCenter: return .center
-            case kCAGravityTop: return .top
-            case kCAGravityBottom: return .bottom
-            case kCAGravityLeft: return .left
-            case kCAGravityRight: return .right
-            case kCAGravityTopLeft: return .topLeft
-            case kCAGravityTopRight: return .topRight
-            case kCAGravityBottomLeft: return .bottomLeft
-            case kCAGravityBottomRight: return .bottomRight
+            switch convertFromCALayerContentsGravity(original.contentsGravity) {
+            case convertFromCALayerContentsGravity(CALayerContentsGravity.resizeAspect): return .scaleAspectFit
+            case convertFromCALayerContentsGravity(CALayerContentsGravity.resizeAspectFill): return .scaleAspectFill
+            case convertFromCALayerContentsGravity(CALayerContentsGravity.center): return .center
+            case convertFromCALayerContentsGravity(CALayerContentsGravity.top): return .top
+            case convertFromCALayerContentsGravity(CALayerContentsGravity.bottom): return .bottom
+            case convertFromCALayerContentsGravity(CALayerContentsGravity.left): return .left
+            case convertFromCALayerContentsGravity(CALayerContentsGravity.right): return .right
+            case convertFromCALayerContentsGravity(CALayerContentsGravity.topLeft): return .topLeft
+            case convertFromCALayerContentsGravity(CALayerContentsGravity.topRight): return .topRight
+            case convertFromCALayerContentsGravity(CALayerContentsGravity.bottomLeft): return .bottomLeft
+            case convertFromCALayerContentsGravity(CALayerContentsGravity.bottomRight): return .bottomRight
             default: return .scaleToFill
             }
         }
         set {
             switch newValue {
             case .scaleToFill, .redraw:
-                original.contentsGravity = kCAGravityResize
+                original.contentsGravity = CALayerContentsGravity.resize
             case .scaleAspectFit:
-                original.contentsGravity = kCAGravityResizeAspect
+                original.contentsGravity = CALayerContentsGravity.resizeAspect
             case .scaleAspectFill:
-                original.contentsGravity = kCAGravityResizeAspectFill
+                original.contentsGravity = CALayerContentsGravity.resizeAspectFill
             case .center:
-                original.contentsGravity = kCAGravityCenter
+                original.contentsGravity = CALayerContentsGravity.center
             case .top:
-                original.contentsGravity = kCAGravityTop
+                original.contentsGravity = CALayerContentsGravity.top
             case .bottom:
-                original.contentsGravity = kCAGravityBottom
+                original.contentsGravity = CALayerContentsGravity.bottom
             case .left:
-                original.contentsGravity = kCAGravityLeft
+                original.contentsGravity = CALayerContentsGravity.left
             case .right:
-                original.contentsGravity = kCAGravityRight
+                original.contentsGravity = CALayerContentsGravity.right
             case .topLeft:
-                original.contentsGravity = kCAGravityTopLeft
+                original.contentsGravity = CALayerContentsGravity.topLeft
             case .topRight:
-                original.contentsGravity = kCAGravityTopRight
+                original.contentsGravity = CALayerContentsGravity.topRight
             case .bottomLeft:
-                original.contentsGravity = kCAGravityBottomLeft
+                original.contentsGravity = CALayerContentsGravity.bottomLeft
             case .bottomRight:
-                original.contentsGravity = kCAGravityBottomRight
+                original.contentsGravity = CALayerContentsGravity.bottomRight
             }
         }
     }
 }
 
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromCALayerContentsGravity(_ input: CALayerContentsGravity) -> String {
+	return input.rawValue
+}

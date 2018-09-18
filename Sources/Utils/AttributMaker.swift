@@ -29,8 +29,8 @@ public final class AttributMaker {
 }
 
 public final class AttributMakerExtendable {
-    fileprivate var attrs: [NSAttributedStringKey: Any] {
-        let initial: [NSAttributedStringKey: Any] = [:]
+    fileprivate var attrs: [NSAttributedString.Key: Any] {
+        let initial: [NSAttributedString.Key: Any] = [:]
         return styles.reduce(initial) { result, style in
             var temp = result
             temp.updateValue(style.value, forKey: style.key)
@@ -199,9 +199,9 @@ fileprivate struct Attribute: Hashable, Equatable {
         return lhs.key == rhs.key
     }
     
-    private(set) var key: NSAttributedStringKey
+    private(set) var key: NSAttributedString.Key
     private(set) var value: Any
-    init(key: NSAttributedStringKey, value: Any) {
+    init(key: NSAttributedString.Key, value: Any) {
         self.key = key
         self.value = value
     }

@@ -28,7 +28,7 @@ public class JJCycleView: UIView {
     public var pageControlCurrentColor = UIColor.white {
         didSet { pageControl.currentPageIndicatorTintColor = pageControlCurrentColor }
     }
-    public var imageContentMode: UIViewContentMode = .scaleAspectFill {
+    public var imageContentMode: UIView.ContentMode = .scaleAspectFill {
         didSet {
             leftImageView.contentMode = imageContentMode
             midImageView.contentMode = imageContentMode

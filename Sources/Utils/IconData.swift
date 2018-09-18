@@ -70,7 +70,7 @@ extension IconData {
 public final class IconDataMaker<Icon: IconData> {
     private let icon: Icon
     private let size: IconSizeable
-    private var attributes: [NSAttributedStringKey: Any]
+    private var attributes: [NSAttributedString.Key: Any]
     init?(icon: Icon, size: IconSizeable) {
         guard let font = UIFont(custom: Icon.Font.self, size: size.fontSize()) else {
             return nil
