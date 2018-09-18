@@ -55,8 +55,8 @@ final public class PlaceholderTextView: UITextView {
         guard let placeholder = placeholder else { return }
         let newRect = CGRect(x: 5, y: 8, width: rect.width - 10, height: rect.height)
         (placeholder as NSString).draw(in: newRect, withAttributes: [
-            NSAttributedString.Key.foregroundColor: placeholderColor,
-            NSAttributedString.Key.font: placeholderFont
+            .foregroundColor: placeholderColor,
+            .font: placeholderFont
             ])
     }
     
