@@ -285,16 +285,29 @@ extension CollectionViewDataDelegate: UICollectionViewDelegate {
 public enum UICollectionElementKind {
     case header, footer
     init(string: String) {
+        #if swift(>=4.2)
         switch string {
         case UICollectionView.elementKindSectionHeader: self = .header
         case UICollectionView.elementKindSectionFooter: self = .footer
         default: self = .header
         }
+        #else
+        switch string {
+        case UICollectionElementKindSectionHeader: self = .header
+        case UICollectionElementKindSectionFooter: self = .footer
+        default: self = .header
+        }
+        #endif
     }
     public var kind: String {
         switch self {
+        #if swift(>=4.2)
         case .header: return UICollectionView.elementKindSectionHeader
         case .footer: return UICollectionView.elementKindSectionFooter
+        #else
+        case .header: return UICollectionElementKindSectionHeader
+        case .footer: return UICollectionElementKindSectionFooter
+        #endif
         }
     }
 }
