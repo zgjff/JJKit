@@ -1,15 +1,18 @@
 import UIKit
 
-private var colleDelegateKey: Void?
+private var colleDelegateManagerKey: Void?
 extension JJ where Original: UICollectionView {
     public weak var dataSourceDelegate: CollectionViewDelegateManager? {
         get {
-            return StoreValueManager.get(from: original, key: &colleDelegateKey, initialiser: {
-                return CollectionViewDelegateManager(collectionView: original)
-            })
+            if let manager = objc_getAssociatedObject(original, &colleDelegateManagerKey) as? CollectionViewDelegateManager {
+                return manager
+            }
+            let manager = CollectionViewDelegateManager(collectionView: original)
+            objc_setAssociatedObject(original, &colleDelegateManagerKey, manager, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            return manager
         }
         set {
-            StoreValueManager.set(for: original, key: &colleDelegateKey, value: newValue)
+            objc_setAssociatedObject(original, &colleDelegateManagerKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
 }

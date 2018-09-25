@@ -49,16 +49,19 @@
 // }
 import UIKit
 
-private var tableViewKey: Void?
+private var tabDelegateManagerKey: Void?
 extension JJ where Original: UITableView {
     public weak var dataSourceDelegate: TableViewDelegateManager? {
         get {
-            return StoreValueManager.get(from: original, key: &tableViewKey, initialiser: {
-                return TableViewDelegateManager(tableView: original)
-            })
+            if let manager = objc_getAssociatedObject(original, &tabDelegateManagerKey) as? TableViewDelegateManager {
+                return manager
+            }
+            let manager = TableViewDelegateManager(tableView: original)
+            objc_setAssociatedObject(original, &tabDelegateManagerKey, manager, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            return manager
         }
         set {
-            StoreValueManager.set(for: original, key: &tableViewKey, value: newValue)
+            objc_setAssociatedObject(original, &tabDelegateManagerKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
 }
