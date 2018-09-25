@@ -304,13 +304,13 @@ public enum UICollectionElementKind {
     }
     public var kind: String {
         switch self {
-        #if swift(>=4.2)
+            #if swift(>=4.2)
         case .header: return UICollectionView.elementKindSectionHeader
         case .footer: return UICollectionView.elementKindSectionFooter
-        #else
-        case .header: return UICollectionElementKindSectionHeader
-        case .footer: return UICollectionElementKindSectionFooter
-        #endif
+            #else
+            case .header: return UICollectionElementKindSectionHeader
+            case .footer: return UICollectionElementKindSectionFooter
+            #endif
         }
     }
 }

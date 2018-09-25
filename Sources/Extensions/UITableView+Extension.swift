@@ -248,8 +248,8 @@ extension TableViewDelegateManager {
         return self
     }
     @discardableResult
-    public func canMove(_ block: @escaping (_ indexPath: IndexPath) -> Bool) -> Self {
-        delegate?.canMove = block
+    public func canMoveRow(_ block: @escaping (_ indexPath: IndexPath) -> Bool) -> Self {
+        delegate?.canMoveRow = block
         return self
     }
     @discardableResult
@@ -286,7 +286,7 @@ final class TableViewDataDelegate: NSObject {
     var titleForFooter: ((_ section: Int) -> String?)?
     var canEditRow: ((_ indexPath: IndexPath) -> Bool)?
     var commit: ((_ editingStyle: UITableViewCell.EditingStyle, _ indexPath: IndexPath) -> ())?
-    var canMove: ((_ indexPath: IndexPath) -> Bool)?
+    var canMoveRow: ((_ indexPath: IndexPath) -> Bool)?
     var moveRow: ((_ source: IndexPath, _ destination: IndexPath) -> ())?
     
     // UITableViewDelegate
@@ -371,7 +371,7 @@ extension TableViewDataDelegate {
         case #selector(TableViewDataDelegate.tableView(_:commit:forRowAt:)):
             return commit != nil
         case #selector(TableViewDataDelegate.tableView(_:canMoveRowAt:)):
-            return canMove != nil
+            return canMoveRow != nil
         case #selector(TableViewDataDelegate.tableView(_:moveRowAt:to:)):
             return moveRow != nil
         // UITableViewDelegate
@@ -522,7 +522,7 @@ extension TableViewDataDelegate: UITableViewDataSource {
         commit?(editingStyle, indexPath)
     }
     public func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        return canMove?(indexPath) ?? false
+        return canMoveRow?(indexPath) ?? false
     }
     public func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         moveRow?(sourceIndexPath, destinationIndexPath)
