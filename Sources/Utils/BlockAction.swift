@@ -110,14 +110,14 @@ extension StoreBlockTargetsable where Self: UIGestureRecognizer {
 }
 
 extension UIBarButtonItem: StoreBlockTargetsable {
-    public convenience init(title: String?, style: UIBarButtonItem.Style, block: @escaping (UIBarButtonItem) -> ()) {
+    public convenience init(title: String?, style: UIBarButtonItem.Style = .plain, block: @escaping (UIBarButtonItem) -> ()) {
         self.init(title: title, style: style, target: nil, action: nil)
         let t = BlockTargetInvoke(self, block)
         target = t
         action = #selector(t.invoke)
         targets.append(t)
     }
-    public convenience init(image: UIImage?, style: UIBarButtonItem.Style, block: @escaping (UIBarButtonItem) -> ()) {
+    public convenience init(image: UIImage?, style: UIBarButtonItem.Style = .plain, block: @escaping (UIBarButtonItem) -> ()) {
         self.init(image: image, style: style, target: nil, action: nil)
         let t = BlockTargetInvoke(self, block)
         target = t
