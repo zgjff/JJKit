@@ -35,22 +35,14 @@ final public class PlaceholderTextView: UITextView {
         }
     }
     
-    private var textChangeNofiName: NSNotification.Name {
-        #if swift(>=4.2)
-        return UITextView.textDidChangeNotification
-        #else
-        return NSNotification.Name.UITextViewTextDidChange
-        #endif
-    }
-    
     public init() {
         super.init(frame: .zero, textContainer: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: textChangeNofiName, object: self)
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: UITextView.textDidChangeNotification, object: self)
     }
     
     public init(frame: CGRect) {
         super.init(frame: frame, textContainer: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: textChangeNofiName, object: self)
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: UITextView.textDidChangeNotification, object: self)
     }
     
     override public func layoutSubviews() {

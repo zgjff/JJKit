@@ -28,6 +28,7 @@
 		9D4B42172140F82C00568229 /* IconData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4B42162140F82C00568229 /* IconData.swift */; };
 		9D4B42192140F85200568229 /* MaterialIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4B42182140F85200568229 /* MaterialIcons.swift */; };
 		9D4B422721412C2F00568229 /* MaterialIcons-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9D4B422621412C2F00568229 /* MaterialIcons-Regular.ttf */; };
+		9D6EB951216B5D1300487973 /* CATextLayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6EB950216B5D1300487973 /* CATextLayer+Extension.swift */; };
 		9D96BFE0210AC47D0015F18B /* JJCycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D96BFDF210AC47D0015F18B /* JJCycleView.swift */; };
 		9D96BFE2210AC6220015F18B /* CALayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D96BFE1210AC6220015F18B /* CALayer+Extension.swift */; };
 		9DA13B12214F483E00C256CA /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA13B11214F483E00C256CA /* UICollectionView+Extension.swift */; };
@@ -61,6 +62,7 @@
 		9D4B42162140F82C00568229 /* IconData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconData.swift; sourceTree = "<group>"; };
 		9D4B42182140F85200568229 /* MaterialIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialIcons.swift; sourceTree = "<group>"; };
 		9D4B422621412C2F00568229 /* MaterialIcons-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaterialIcons-Regular.ttf"; sourceTree = "<group>"; };
+		9D6EB950216B5D1300487973 /* CATextLayer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CATextLayer+Extension.swift"; sourceTree = "<group>"; };
 		9D96BFDF210AC47D0015F18B /* JJCycleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJCycleView.swift; sourceTree = "<group>"; };
 		9D96BFE1210AC6220015F18B /* CALayer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extension.swift"; sourceTree = "<group>"; };
 		9DA13B11214F483E00C256CA /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				9D16B64C20E5FE05008AE489 /* UIApplication+Extension.swift */,
 				9D16B64E20E5FF03008AE489 /* UIView+Extension.swift */,
 				9D96BFE1210AC6220015F18B /* CALayer+Extension.swift */,
+				9D6EB950216B5D1300487973 /* CATextLayer+Extension.swift */,
 				9D16B65020E60B13008AE489 /* Date+Extensions.swift */,
 				9D16B65420E631EC008AE489 /* String+Extension.swift */,
 				9DAB83042137CB1400528DBB /* UIButton+Extension.swift */,
@@ -269,6 +272,7 @@
 				9DB52A50213903BF00D9D771 /* BlockAction.swift in Sources */,
 				9D48369E20F321600086F323 /* AttributMaker.swift in Sources */,
 				5EA4607820A191040005AAA5 /* GCDTimer.swift in Sources */,
+				9D6EB951216B5D1300487973 /* CATextLayer+Extension.swift in Sources */,
 				9DAB82E52137A0EE00528DBB /* GenericPresentationController.swift in Sources */,
 				5E74076820AC06CA00A46657 /* UIImage+Extension.swift in Sources */,
 				9D16B64920E5FDA8008AE489 /* ReusableViewable.swift in Sources */,
