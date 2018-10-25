@@ -1,6 +1,6 @@
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, SwipePresentDelegate {
     
     private lazy var imageView = UIImageView()
     private lazy var label = UILabel()
@@ -22,7 +22,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction private func c(_ sender: UIButton) {
-        
+        swipePresentDelegate.targetEdge = .right
+        present(UINavigationController(rootViewController: SecondViewController()), animated: true, completion: nil)
     }
 }
 

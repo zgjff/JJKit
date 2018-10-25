@@ -13,7 +13,7 @@ import UIKit
 
 extension JJ where Original: UIControl {
     public func handle(state: UIControl.Event? = nil, _ block: @escaping (Original) -> ()) {
-        original.handle(block, for: state)
+        original.handle(state: state, block)
     }
     public func removeAllBlocksForEvents(_ state: UIControl.Event) {
         original.removeAllBlocksForEvents(state)
@@ -32,7 +32,7 @@ extension JJ where Original: UIGestureRecognizer {
 extension UIControl: StoreBlockTargetsable {}
 
 extension StoreBlockTargetsable where Self: UIControl {
-    func handle(_ block: @escaping (Self) -> (), for state: UIControl.Event?) {
+    func handle(state: UIControl.Event?, _ block: @escaping (Self) -> ()) {
         var events: UIControl.Event?
         if let state = state {
             events = state

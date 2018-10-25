@@ -31,17 +31,6 @@ public extension JJ where Original == Date {
             return components.year
         }
     }
-    /// 几刻钟，也就是15分钟。范围为1-4
-    var quarter: Int {
-        return Calendar.current.component(.quarter, from: original)
-    }
-    var isLeapMonth: Bool? {
-        return Calendar.current.dateComponents([.quarter], from: original).isLeapMonth
-    }
-    var isLeapYear: Bool {
-        guard let year = component(.year) else { return false }
-        return (year % 400 == 0) || ((year % 100 != 0) && (year % 4 == 0))
-    }
     var isToday: Bool {
         guard let day = component(.day) else { return false }
         if fabs(original.timeIntervalSinceNow) >= 60 * 60 * 24 { return false }
@@ -125,15 +114,15 @@ public extension Date {
 
 extension Date {
     public enum DateFormatterStyle {
-        /// "yyyy" i.e. 1997
+        /// "yyyy"
         case year
-        /// "yyyy-MM" i.e. 1997-07
+        /// "yyyy-MM"
         case yearMonth
-        /// "MM-dd" i.e. 07-06
+        /// "MM-dd"
         case monthDay
-        /// "yyyy-MM-dd" i.e. 1997-07-16
+        /// "yyyy-MM-dd"
         case date
-        /// "HH:mm:ss" i.e. 12:23:23
+        /// "HH:mm:ss"
         case hms
         /// "yyyy-MM-dd HH:mm:ss" i.e. 1997-07-16 12:23:23
         case ymdhms

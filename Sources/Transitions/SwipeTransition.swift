@@ -1,5 +1,58 @@
 import UIKit
 
+public protocol SwipePresentDelegate: NSObjectProtocol {
+    var swipePresentDelegate: SwipeTransitionDelegate { get }
+}
+private var swipePresentDelegateKey: Void?
+extension SwipePresentDelegate where Self: UIViewController {
+    /// 记得在present之前要更改其 targetEdge= .right
+    var swipePresentDelegate: SwipeTransitionDelegate {
+        get {
+            return StoreValueManager.get(from: self, key: &swipePresentDelegateKey, initialiser: { () -> SwipeTransitionDelegate in
+                return SwipeTransitionDelegate()
+            })
+        }
+        set {
+            StoreValueManager.set(for: self, key: &swipePresentDelegateKey, value: newValue)
+        }
+    }
+    public func swipePresent(to vc: UIViewController, gesture withGesture: UIScreenEdgePanGestureRecognizer? = nil) {
+        swipePresentDelegate.targetEdge = .right
+        swipePresentDelegate.gestureRecognizer = withGesture
+        present(vc, animated: true, completion: nil)
+    }
+}
+
+extension UIViewController: JJCompatible {}
+extension JJ where Original: UIViewController {
+    public func swipeDismiss(with gesture: UIScreenEdgePanGestureRecognizer? = nil) {
+        if let navit = original.navigationController?.transitioningDelegate as? SwipeTransitionDelegate {
+            navit.targetEdge = .left
+            navit.gestureRecognizer = gesture
+            original.navigationController?.dismiss(animated: true, completion: nil)
+            return
+        }
+        if let t = original.transitioningDelegate as? SwipeTransitionDelegate {
+            t.targetEdge = .left
+            t.gestureRecognizer = gesture
+            original.dismiss(animated: true, completion: nil)
+            return
+        }
+        original.dismiss(animated: true, completion: nil)
+    }
+    public func addLeftSwipeDismiss() {
+        let ep = UIScreenEdgePanGestureRecognizer { [unowned self] sender in
+            guard case .began = sender.state else {
+                return
+            }
+            self.swipeDismiss()
+        }
+        ep.edges = .left
+        original.view.addGestureRecognizer(ep)
+    }
+}
+
+
 public class SwipeTransitionDelegate: NSObject {
     public var gestureRecognizer: UIScreenEdgePanGestureRecognizer?
     public var targetEdge: UIRectEdge = .right

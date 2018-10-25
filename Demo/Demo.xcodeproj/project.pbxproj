@@ -24,6 +24,7 @@
 		9D16B65320E60C44008AE489 /* StoreValueManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D16B65220E60C44008AE489 /* StoreValueManager.swift */; };
 		9D16B65520E631EC008AE489 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D16B65420E631EC008AE489 /* String+Extension.swift */; };
 		9D1D2ACD2112B56000DDFC43 /* SwipeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1D2ACC2112B56000DDFC43 /* SwipeTransition.swift */; };
+		9D368A6321742D2500DDA565 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D368A6221742D2500DDA565 /* SecondViewController.swift */; };
 		9D48369E20F321600086F323 /* AttributMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D48369D20F321600086F323 /* AttributMaker.swift */; };
 		9D4B42172140F82C00568229 /* IconData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4B42162140F82C00568229 /* IconData.swift */; };
 		9D4B42192140F85200568229 /* MaterialIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4B42182140F85200568229 /* MaterialIcons.swift */; };
@@ -58,6 +59,7 @@
 		9D16B65220E60C44008AE489 /* StoreValueManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreValueManager.swift; sourceTree = "<group>"; };
 		9D16B65420E631EC008AE489 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		9D1D2ACC2112B56000DDFC43 /* SwipeTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTransition.swift; sourceTree = "<group>"; };
+		9D368A6221742D2500DDA565 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		9D48369D20F321600086F323 /* AttributMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributMaker.swift; sourceTree = "<group>"; };
 		9D4B42162140F82C00568229 /* IconData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconData.swift; sourceTree = "<group>"; };
 		9D4B42182140F85200568229 /* MaterialIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialIcons.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			children = (
 				5EA4606120A18DA20005AAA5 /* AppDelegate.swift */,
 				5EA4606320A18DA20005AAA5 /* ViewController.swift */,
+				9D368A6221742D2500DDA565 /* SecondViewController.swift */,
 				5EA4606820A18DAC0005AAA5 /* Assets.xcassets */,
 				5EA4606A20A18DAC0005AAA5 /* LaunchScreen.storyboard */,
 				5EA4606D20A18DAC0005AAA5 /* Info.plist */,
@@ -287,6 +290,7 @@
 				9DAB83052137CB1400528DBB /* UIButton+Extension.swift in Sources */,
 				9D16B64620E5FCE0008AE489 /* JJCompatible.swift in Sources */,
 				9D16B64B20E5FDDF008AE489 /* Configable.swift in Sources */,
+				9D368A6321742D2500DDA565 /* SecondViewController.swift in Sources */,
 				5EA4606220A18DA20005AAA5 /* AppDelegate.swift in Sources */,
 				9D16B64D20E5FE05008AE489 /* UIApplication+Extension.swift in Sources */,
 				9D96BFE0210AC47D0015F18B /* JJCycleView.swift in Sources */,

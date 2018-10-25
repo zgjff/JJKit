@@ -53,12 +53,12 @@ extension CollectionViewDelegateManager {
         return self
     }
     @discardableResult
-    public func numberOfRowsInSection(_ block: @escaping (_ section: Int) -> Int) -> Self {
-        delegate?.numberOfRows = block
+    public func numberOfItemsInSection(_ block: @escaping (_ section: Int) -> Int) -> Self {
+        delegate?.numberOfItems = block
         return self
     }
     @discardableResult
-    public func cellForRow(_ block: @escaping (_ tableView: UICollectionView,_ indexPath: IndexPath) -> UICollectionViewCell) -> Self {
+    public func cellForItem(_ block: @escaping (_ tableView: UICollectionView,_ indexPath: IndexPath) -> UICollectionViewCell) -> Self {
         delegate?.cellForRow = block
         return self
     }
@@ -167,7 +167,7 @@ extension CollectionViewDelegateManager {
 final class CollectionViewDataDelegate: NSObject {
     // UICollectionViewDataSource
     var numberOfSections: (() -> Int)?
-    var numberOfRows: ((_ section: Int) -> Int)?
+    var numberOfItems: ((_ section: Int) -> Int)?
     var cellForRow: ((_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell)?
     var viewForSupplementaryElement: ((_ collectionView: UICollectionView, _ kind: UICollectionElementKind, _ indexPath: IndexPath) -> UICollectionReusableView?)?
     var canMoveItem: ((_ indexPath: IndexPath) -> Bool)?
@@ -205,7 +205,7 @@ extension CollectionViewDataDelegate {
         case #selector(CollectionViewDataDelegate.numberOfSections(in:)):
             return numberOfSections != nil
         case #selector(CollectionViewDataDelegate.collectionView(_:numberOfItemsInSection:)):
-            return numberOfRows != nil
+            return numberOfItems != nil
         case #selector(CollectionViewDataDelegate.collectionView(_:cellForItemAt:)):
             return cellForRow != nil
         case #selector(CollectionViewDataDelegate.collectionView(_:viewForSupplementaryElementOfKind:at:)):
@@ -308,7 +308,7 @@ extension CollectionViewDataDelegate: UICollectionViewDataSource {
         return numberOfSections?() ?? 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return numberOfRows?(section) ?? 0
+        return numberOfItems?(section) ?? 0
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return cellForRow?(collectionView, indexPath) ?? UICollectionViewCell()
