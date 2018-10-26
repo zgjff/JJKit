@@ -46,6 +46,9 @@ extension UIViewController {
         view.addGestureRecognizer(ep)
     }
     @objc private func disSwipe(_ sender: UIScreenEdgePanGestureRecognizer) {
+        guard case .began = sender.state else {
+            return
+        }
         swipeDismiss(with: sender)
     }
 }
