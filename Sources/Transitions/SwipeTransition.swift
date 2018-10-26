@@ -19,6 +19,7 @@ extension SwipePresentDelegate where Self: UIViewController {
     public func swipePresent(to vc: UIViewController, gesture withGesture: UIScreenEdgePanGestureRecognizer? = nil) {
         swipePresentDelegate.targetEdge = .right
         swipePresentDelegate.gestureRecognizer = withGesture
+        vc.transitioningDelegate = swipePresentDelegate
         present(vc, animated: true, completion: nil)
     }
 }
