@@ -22,8 +22,9 @@ class ViewController: UIViewController, SwipePresentDelegate {
     }
     
     @IBAction private func c(_ sender: UIButton) {
-        swipePresentDelegate.targetEdge = .right
-        present(UINavigationController(rootViewController: SecondViewController()), animated: true, completion: nil)
+//        swipePresentDelegate.targetEdge = .right
+//        present(UINavigationController(rootViewController: SecondViewController()), animated: true, completion: nil)
+        swipePresent(to: UINavigationController(rootViewController: SecondViewController()))
     }
 }
 

@@ -23,7 +23,12 @@ class SecondViewController: UIViewController, SwipePresentDelegate {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
         collectionView.frame = view.bounds
+        addLeftSwipeDismiss()
         view.addSubview(collectionView)
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "back", block: { i in
+            self.swipeDismiss()
+        })
         
         collectionView.registerCell(Cell.self)
         collectionView.registerSupplementaryView(Re.self, forkind: .header)

@@ -24,35 +24,31 @@ extension SwipePresentDelegate where Self: UIViewController {
     }
 }
 
-extension UIViewController: JJCompatible {}
-extension JJ where Original: UIViewController {
+extension UIViewController {
     public func swipeDismiss(with gesture: UIScreenEdgePanGestureRecognizer? = nil) {
-        if let navit = original.navigationController?.transitioningDelegate as? SwipeTransitionDelegate {
+        if let navit = navigationController?.transitioningDelegate as? SwipeTransitionDelegate {
             navit.targetEdge = .left
             navit.gestureRecognizer = gesture
-            original.navigationController?.dismiss(animated: true, completion: nil)
+            navigationController?.dismiss(animated: true, completion: nil)
             return
         }
-        if let t = original.transitioningDelegate as? SwipeTransitionDelegate {
+        if let t = transitioningDelegate as? SwipeTransitionDelegate {
             t.targetEdge = .left
             t.gestureRecognizer = gesture
-            original.dismiss(animated: true, completion: nil)
+            dismiss(animated: true, completion: nil)
             return
         }
-        original.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     public func addLeftSwipeDismiss() {
-        let ep = UIScreenEdgePanGestureRecognizer { [unowned self] sender in
-            guard case .began = sender.state else {
-                return
-            }
-            self.swipeDismiss()
-        }
+        let ep = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(disSwipe(_:)))
         ep.edges = .left
-        original.view.addGestureRecognizer(ep)
+        view.addGestureRecognizer(ep)
+    }
+    @objc private func disSwipe(_ sender: UIScreenEdgePanGestureRecognizer) {
+        swipeDismiss(with: sender)
     }
 }
-
 
 public class SwipeTransitionDelegate: NSObject {
     public var gestureRecognizer: UIScreenEdgePanGestureRecognizer?
