@@ -6,7 +6,7 @@ public protocol SwipePresentDelegate: NSObjectProtocol {
 private var swipePresentDelegateKey: Void?
 extension SwipePresentDelegate where Self: UIViewController {
     /// 记得在present之前要更改其 targetEdge= .right
-    var swipePresentDelegate: SwipeTransitionDelegate {
+    public var swipePresentDelegate: SwipeTransitionDelegate {
         get {
             return StoreValueManager.get(from: self, key: &swipePresentDelegateKey, initialiser: { () -> SwipeTransitionDelegate in
                 return SwipeTransitionDelegate()

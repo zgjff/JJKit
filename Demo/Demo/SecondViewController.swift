@@ -45,7 +45,7 @@ class SecondViewController: UIViewController, SwipePresentDelegate {
             })
             .viewForSupplementaryElement({ (c, k, ip) -> UICollectionReusableView? in
                 if ip.section == 0 {
-                    return UICollectionReusableView()
+                    return nil
                 }
                 let cv: Re = c.dequeueSupplementaryView(for: k, indexPath: ip)
                 return cv
