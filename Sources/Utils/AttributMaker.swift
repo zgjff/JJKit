@@ -1,45 +1,57 @@
 import UIKit
+extension String {
+    public func attributeMake(_ make: (AttributMaker) -> ()) -> NSAttributedString {
+        let maker = AttributMaker(string: self)
+        make(maker)
+        return maker.build()
+    }
+}
+
 public final class AttributMaker {
-    private var dic: [NSRange: AttributMakerExtendable] = [:]
-    
     private let string: String
-    public init(string: String) {
+    init(string: String) {
         self.string = string
     }
-    
-    public func `for`(_ ranges: Rangeable...) -> AttributMakerExtendable {
-        let rs = ranges.map { $0.rangeFrom(parent: string) }
-        let e = AttributMakerExtendable()
-        rs.forEach { dic.updateValue(e, forKey: $0) }
+    fileprivate var dic: [NSRange: AttributMakerExtendable] = [:]
+}
+
+extension AttributMaker {
+    public func `for`(_ ranges: Rangeable...) -> AttributMakerExtendable? {
+        let rs = ranges.map { $0.rangeFrom(parent: string) }.filter { !$0.isEmpty }
+        if rs.isEmpty {
+            return nil
+        }
+        let e = AttributMakerExtendable(sort: dic.count)
+        rs.forEach { $0.filter { $0.length > 0 }.forEach { dic.updateValue(e, forKey: $0) } }
         return e
     }
-    
-    public func build() -> NSAttributedString {
+    func build() -> NSAttributedString {
         if (string.isEmpty || string.count == 0) {
             return NSAttributedString(string: "")
         }
         let att = NSMutableAttributedString(string: string)
-        for (_, e) in dic.enumerated() {
-            if e.key.length > 0 {
-                att.addAttributes(e.value.attrs, range: e.key)
-            }
-        }
+        dic.sorted(by: { $0.value.sort < $1.value.sort })
+            .forEach { att.setAttributes($0.value.attrs, range: $0.key) }
         return att
     }
 }
 
+
 public final class AttributMakerExtendable {
+    fileprivate let sort: Int
+    init(sort: Int) {
+        self.sort = sort
+    }
+    private var styles: Set<Attribute> = []
+    
     fileprivate var attrs: [NSAttributedString.Key: Any] {
         let initial: [NSAttributedString.Key: Any] = [:]
-        return styles.reduce(initial) { result, style in
+        return styles.reduce(initial, { (result, style) in
             var temp = result
             temp.updateValue(style.value, forKey: style.key)
             return temp
-        }
+        })
     }
-    
-    private var styles: Set<Attribute> = []
-    
     private func setNewAttribute(_ attribute: Attribute) -> Self {
         if styles.contains(attribute) {
             styles.update(with: attribute)
@@ -50,8 +62,8 @@ public final class AttributMakerExtendable {
     }
 }
 
+
 extension AttributMakerExtendable {
-    
     /// 设置字体
     ///
     /// - Parameter font: 字体
@@ -160,7 +172,6 @@ extension AttributMakerExtendable {
         return setNewAttribute(Attribute(key: .shadow, value: shadow))
     }
     
-    
     /// 设置基础偏移量
     ///
     /// - Parameter offset: 偏移值: 正值向上偏移,负值向下偏移,默认0(不偏移)
@@ -179,7 +190,6 @@ extension AttributMakerExtendable {
         return setNewAttribute(Attribute(key: .obliqueness, value: oblique))
     }
     
-    
     /// 设置文本扁平化(横向拉伸)
     ///
     /// - Parameter oblique: 正值横向拉伸,负值横向压缩,默认0(无扁平效果)
@@ -190,13 +200,9 @@ extension AttributMakerExtendable {
     }
 }
 
-fileprivate struct Attribute: Hashable, Equatable {
+struct Attribute: Hashable, Equatable {
     var hashValue: Int {
         return key.hashValue
-    }
-    
-    static func == (lhs: Attribute, rhs: Attribute) -> Bool {
-        return lhs.key == rhs.key
     }
     
     private(set) var key: NSAttributedString.Key
@@ -205,69 +211,125 @@ fileprivate struct Attribute: Hashable, Equatable {
         self.key = key
         self.value = value
     }
+    
+    static func == (lhs: Attribute, rhs: Attribute) -> Bool {
+        return lhs.key == rhs.key
+    }
 }
 
-
 public protocol Rangeable {
-    func rangeFrom(parent: String) -> NSRange
+    func rangeFrom(parent: String) -> Set<NSRange>
 }
 
 extension String: Rangeable {
-    public func rangeFrom(parent: String) -> NSRange {
-        return (parent as NSString).range(of: self)
+    public func rangeFrom(parent: String) -> Set<NSRange> {
+        guard !isEmpty && count > 0 else {
+            return []
+        }
+        guard !parent.isEmpty && parent.count > 0 else {
+            return []
+        }
+        guard let regex = try? NSRegularExpression(pattern: self, options: .caseInsensitive) else {
+            return []
+        }
+        let cs = regex.matches(in: parent, options: [], range: NSRange(location: 0, length: parent.count))
+        let initi: Set<NSRange> = []
+        return cs.reduce(initi) { (re, result) in
+            var temp = re
+            temp.insert(result.range)
+            return temp
+        }
     }
 }
 
 extension Int: Rangeable {
-    public func rangeFrom(parent: String) -> NSRange {
-        guard self - 1 < parent.count, self >= 0 else {
-            return NSMakeRange(0, 0)
+    public func rangeFrom(parent: String) -> Set<NSRange> {
+        guard !parent.isEmpty && parent.count > 0 else {
+            return []
         }
-        return NSMakeRange(self - 1, 1)
+        guard self < parent.count, self >= 0 else {
+            return []
+        }
+        return [NSMakeRange(self, 1)]
     }
 }
 
 extension NSRange: Rangeable {
-    public func rangeFrom(parent: String) -> NSRange {
+    public func rangeFrom(parent: String) -> Set<NSRange> {
+        guard !parent.isEmpty && parent.count > 0 else {
+            return []
+        }
         let low = lowerBound
         let up = upperBound
         let count = parent.count
         guard low <= (count - 1) && up > 0 else {
-            return NSMakeRange(0, 0)
+            return []
         }
         if up > count - 1 {
-            return NSMakeRange(low, count - low)
+            return [NSMakeRange(low, count - low)]
         }
-        return self
+        return [self]
     }
 }
 
 extension CountableRange: Rangeable where Element == Int {
-    public func rangeFrom(parent: String) -> NSRange {
-        let low = lowerBound - 1
+    public func rangeFrom(parent: String) -> Set<NSRange> {
+        guard !parent.isEmpty && parent.count > 0 else {
+            return []
+        }
+        let low = lowerBound >= 0 ? lowerBound : 0
         let up = upperBound
         let count = parent.count
-        guard low <= (count - 1) && up > 0 else {
-            return NSMakeRange(0, 0)
+        guard low <= count && up > 0 else {
+            return [NSMakeRange(0, 0)]
         }
         if up > count {
-            return NSMakeRange(low, count - low)
+            return [NSMakeRange(low, count - low)]
         }
-        return NSMakeRange(low, self.count)
+        return [NSMakeRange(low, self.count)]
     }
 }
 
 extension CountableClosedRange: Rangeable where Element == Int {
-    public func rangeFrom(parent: String) -> NSRange {
-        let low = lowerBound - 1
+    public func rangeFrom(parent: String) -> Set<NSRange> {
+        guard !parent.isEmpty && parent.count > 0 else {
+            return []
+        }
+        let low = lowerBound >= 0 ? lowerBound : 0
         let up = upperBound
         let count = parent.count
-        guard low <= (count - 1) && up > 0 else {
-            return NSMakeRange(0, 0)
+        guard low <= count && up > 0 else {
+            return [NSMakeRange(0, 0)]
         }
         if up > count {
-            return NSMakeRange(low, count - low)
+            return [NSMakeRange(low, count - low)]
         }
-        return NSMakeRange(low, self.count)
+        return [NSMakeRange(low, self.count)]
+    }
+}
+
+public struct Regexp {
+    private let regular: NSRegularExpression
+    private let matching: NSRegularExpression.MatchingOptions
+    private let stopCondition: ((Set<NSRange>, NSTextCheckingResult) -> Bool)?
+    public init?(pattern: String, options: NSRegularExpression.Options = [], matching: NSRegularExpression.MatchingOptions = .reportCompletion, stopCondition: ((Set<NSRange>, NSTextCheckingResult) -> Bool)? = nil) {
+        guard let regular = try? NSRegularExpression(pattern: pattern, options: options) else { return nil }
+        self.matching = matching
+        self.regular = regular
+        self.stopCondition = stopCondition
+    }
+}
+
+extension Regexp: Rangeable {
+    public func rangeFrom(parent: String) -> Set<NSRange> {
+        var result: Set<NSRange> = []
+        regular.enumerateMatches(in: parent, options: matching, range: NSRange(location: 0, length: parent.count)) { (match, _, stopPointer) in
+            guard let match = match else { return }
+            result.insert(match.range)
+            if let sc = stopCondition {
+                stopPointer.pointee = ObjCBool(sc(result, match))
+            }
+        }
+        return result
     }
 }

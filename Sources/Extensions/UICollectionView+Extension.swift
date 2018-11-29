@@ -58,8 +58,8 @@ extension CollectionViewDelegateManager {
         return self
     }
     @discardableResult
-    public func cellForItem(_ block: @escaping (_ tableView: UICollectionView,_ indexPath: IndexPath) -> UICollectionViewCell) -> Self {
-        delegate?.cellForRow = block
+    public func cellForItem(_ block: @escaping (_ collectionView: UICollectionView,_ indexPath: IndexPath) -> UICollectionViewCell) -> Self {
+        delegate?.cellForItem = block
         return self
     }
     @discardableResult
@@ -168,7 +168,7 @@ final class CollectionViewDataDelegate: NSObject {
     // UICollectionViewDataSource
     var numberOfSections: (() -> Int)?
     var numberOfItems: ((_ section: Int) -> Int)?
-    var cellForRow: ((_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell)?
+    var cellForItem: ((_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell)?
     var viewForSupplementaryElement: ((_ collectionView: UICollectionView, _ kind: UICollectionElementKind, _ indexPath: IndexPath) -> UICollectionReusableView?)?
     var canMoveItem: ((_ indexPath: IndexPath) -> Bool)?
     var moveItem: ((_ source: IndexPath, _ destination: IndexPath) -> ())?
@@ -207,7 +207,7 @@ extension CollectionViewDataDelegate {
         case #selector(CollectionViewDataDelegate.collectionView(_:numberOfItemsInSection:)):
             return numberOfItems != nil
         case #selector(CollectionViewDataDelegate.collectionView(_:cellForItemAt:)):
-            return cellForRow != nil
+            return cellForItem != nil
         case #selector(CollectionViewDataDelegate.collectionView(_:viewForSupplementaryElementOfKind:at:)):
             return viewForSupplementaryElement != nil
         case #selector(CollectionViewDataDelegate.collectionView(_:canMoveItemAt:)):
@@ -311,7 +311,7 @@ extension CollectionViewDataDelegate: UICollectionViewDataSource {
         return numberOfItems?(section) ?? 0
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return cellForRow?(collectionView, indexPath) ?? UICollectionViewCell()
+        return cellForItem?(collectionView, indexPath) ?? UICollectionViewCell()
     }
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let k = UICollectionElementKind(string: kind)

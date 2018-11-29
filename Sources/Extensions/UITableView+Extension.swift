@@ -148,12 +148,12 @@ extension TableViewDelegateManager {
         return self
     }
     @discardableResult
-    public func viewForHeader(_ block: @escaping (_ section: Int) -> UIView?) -> Self {
+    public func viewForHeader(_ block: @escaping (_ tableView: UITableView, _ section: Int) -> UIView?) -> Self {
         delegate?.viewForHeader = block
         return self
     }
     @discardableResult
-    public func viewForFooter(_ block: @escaping (_ section: Int) -> UIView?) -> Self {
+    public func viewForFooter(_ block: @escaping (_ tableView: UITableView, _ section: Int) -> UIView?) -> Self {
         delegate?.viewForFooter = block
         return self
     }
@@ -300,8 +300,8 @@ final class TableViewDataDelegate: NSObject {
     var estimatedHeightForRow: ((_ indexPath: IndexPath) -> CGFloat)?
     var estimatedHeightForHeader: ((_ section: Int) -> CGFloat)?
     var estimatedHeightForFooter: ((_ section: Int) -> CGFloat)?
-    var viewForHeader: ((_ section: Int) -> UIView?)?
-    var viewForFooter: ((_ section: Int) -> UIView?)?
+    var viewForHeader: ((_ tableView: UITableView, _ section: Int) -> UIView?)?
+    var viewForFooter: ((_ tableView: UITableView, _ section: Int) -> UIView?)?
     var willSelectRow: ((_ tableView: UITableView, _ indexPath: IndexPath) -> IndexPath?)?
     var didSelectRow: ((_ tableView: UITableView, _ indexPath: IndexPath) -> ())?
     var willDeselectRow: ((_ tableView: UITableView, _ indexPath: IndexPath) -> IndexPath?)?
@@ -458,10 +458,10 @@ extension TableViewDataDelegate: UITableViewDelegate {
         return estimatedHeightForFooter?(section) ?? 0.01
     }
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return viewForHeader?(section)
+        return viewForHeader?(tableView, section)
     }
     public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return viewForFooter?(section)
+        return viewForFooter?(tableView, section)
     }
     public func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         return willSelectRow?(tableView, indexPath)

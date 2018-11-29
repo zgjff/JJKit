@@ -40,17 +40,6 @@ extension UIViewController {
         }
         dismiss(animated: true, completion: nil)
     }
-    public func addLeftSwipeDismiss() {
-        let ep = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(disSwipe(_:)))
-        ep.edges = .left
-        view.addGestureRecognizer(ep)
-    }
-    @objc private func disSwipe(_ sender: UIScreenEdgePanGestureRecognizer) {
-        guard case .began = sender.state else {
-            return
-        }
-        swipeDismiss(with: sender)
-    }
 }
 
 public class SwipeTransitionDelegate: NSObject {
