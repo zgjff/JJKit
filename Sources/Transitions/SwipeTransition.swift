@@ -25,20 +25,20 @@ extension SwipePresentDelegate where Self: UIViewController {
 }
 
 extension UIViewController {
-    public func swipeDismiss(with gesture: UIScreenEdgePanGestureRecognizer? = nil) {
+    public func swipeDismiss(with gesture: UIScreenEdgePanGestureRecognizer? = nil, completion: (()-> ())?) {
         if let navit = navigationController?.transitioningDelegate as? SwipeTransitionDelegate {
             navit.targetEdge = .left
             navit.gestureRecognizer = gesture
-            navigationController?.dismiss(animated: true, completion: nil)
+            navigationController?.dismiss(animated: true, completion: completion)
             return
         }
         if let t = transitioningDelegate as? SwipeTransitionDelegate {
             t.targetEdge = .left
             t.gestureRecognizer = gesture
-            dismiss(animated: true, completion: nil)
+            dismiss(animated: true, completion: completion)
             return
         }
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: completion)
     }
 }
 

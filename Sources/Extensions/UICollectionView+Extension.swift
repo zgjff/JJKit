@@ -83,17 +83,17 @@ extension CollectionViewDelegateManager {
         return self
     }
     @discardableResult
-    public func didSelectItem(_ block: @escaping (_ indexPath: IndexPath) -> ()) -> Self {
+    public func didSelectItem(_ block: @escaping (_ collectionView: UICollectionView, _ indexPath: IndexPath) -> ()) -> Self {
         delegate?.didSelectItem = block
         return self
     }
     @discardableResult
-    public func shouldDeselectItem(_ block: @escaping (_ indexPath: IndexPath) -> Bool) -> Self {
+    public func shouldDeselectItem(_ block: @escaping (_ collectionView: UICollectionView, _ indexPath: IndexPath) -> Bool) -> Self {
         delegate?.shouldDeselectItem = block
         return self
     }
     @discardableResult
-    public func didDeselectItem(_ block: @escaping (_ indexPath: IndexPath) -> ()) -> Self {
+    public func didDeselectItem(_ block: @escaping (_ collectionView: UICollectionView, _ indexPath: IndexPath) -> ()) -> Self {
         delegate?.didDeselectItem = block
         return self
     }
@@ -174,9 +174,9 @@ final class CollectionViewDataDelegate: NSObject {
     var moveItem: ((_ source: IndexPath, _ destination: IndexPath) -> ())?
     // UICollectionViewDelegate
     var shouldSelectItem: ((_ indexPath: IndexPath) -> Bool)?
-    var didSelectItem: ((_ indexPath: IndexPath) -> ())?
-    var shouldDeselectItem: ((_ indexPath: IndexPath) -> Bool)?
-    var didDeselectItem: ((_ indexPath: IndexPath) -> ())?
+    var didSelectItem: ((_ collectionView: UICollectionView, _ indexPath: IndexPath) -> ())?
+    var shouldDeselectItem: ((_ collectionView: UICollectionView, _ indexPath: IndexPath) -> Bool)?
+    var didDeselectItem: ((_ collectionView: UICollectionView, _ indexPath: IndexPath) -> ())?
     var willDisplayCell: ((_ cell: UICollectionViewCell, _ indexPath: IndexPath) -> ())?
     var didEndDisplayCell: ((_ cell: UICollectionViewCell, _ indexPath: IndexPath) -> ())?
     var willDisplaySupplementaryView: ((_ view: UICollectionReusableView, _ kind: UICollectionElementKind, _ indexPath: IndexPath) -> ())?
@@ -261,13 +261,13 @@ extension CollectionViewDataDelegate: UICollectionViewDelegate {
         return shouldSelectItem?(indexPath) ?? true
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        didSelectItem?(indexPath)
+        didSelectItem?(collectionView, indexPath)
     }
     func collectionView(_ collectionView: UICollectionView, shouldDeselectItemAt indexPath: IndexPath) -> Bool {
-        return shouldDeselectItem?(indexPath) ?? true
+        return shouldDeselectItem?(collectionView, indexPath) ?? true
     }
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        didDeselectItem?(indexPath)
+        didDeselectItem?(collectionView, indexPath)
     }
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         willDisplayCell?(cell, indexPath)

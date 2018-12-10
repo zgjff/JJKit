@@ -26,7 +26,7 @@ class SecondViewController: UIViewController, SwipePresentDelegate {
         view.addSubview(collectionView)
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "back", block: { i in
-            self.swipeDismiss()
+            self.swipeDismiss(completion: nil)
         })
         
         collectionView.registerCell(Cell.self)
