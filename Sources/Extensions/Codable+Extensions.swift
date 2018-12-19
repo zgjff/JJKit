@@ -5,219 +5,204 @@
 //  Created by 123 on 2018/11/29.
 //  Copyright © 2018 郑桂杰. All rights reserved.
 //
-
-/** eg:
- 
- struct Model {
-    let app: String
-    let quota: Double
-    let rate: String
-    let time: String
-    let id: Int
-    let icon: URL?
-    let url: URL? // 这个字段可能为空
- }
- 
- extension Model: Codable {
-    enum ModelCodingKey: String, CodingKey {
-        case app   = "name"
-        case quota = "amount"
-        case rate  = "interest"
-        case time  = "term"
-        case id
-        case icon  = "logoUrl"
-        case url = "linkeUrl"
- }
- 
- init(from decoder: Decoder) throws {
-        let c = try decoder.container(keyedBy: ModelCodingKey.self)
-        app = try c[.app, String.self]()
-        rate = try c[.rate, String.self]()
-        time = try c[.time, String.self]()
-        icon = c[.icon, URL.self] // 因为某些带中文的url无法解析,so。。。。。(蛋疼...)
-        id = c[.id, Int.self] ?? 0
-        quota = c[.quota, Double.self] ?? 0
-        url = c[.url, URL.self, nil]
-    }
- }
- */
-
+// 用法详见: https://github.com/zgjff/CodableHelper/blob/master/README.md
 
 import Foundation
 extension KeyedDecodingContainer {
     /// decode value from key
-    ///
     /// - Parameters:
     ///   - key: CodingKey
-    ///   - type: 要解析的数据类型
-    /// - Returns: 类型为type的value
-    public subscript<T>(key: KeyedDecodingContainer<K>.Key, type: T.Type) -> () throws -> T where T: Decodable {
-        return { try self.decode(type, forKey: key) }
+    ///   - sourceType: 要解析的原始数据类型
+    /// - Returns: 类型为T的value
+    public subscript<T>(key: KeyedDecodingContainer<K>.Key, sourceType: T.Type) -> () throws -> T where T: Decodable {
+        return { try self.decode(sourceType, forKey: key) }
     }
     
-    /// 解析String类型的值,并尝试将值转化为type类型
-    ///
+    /// decode value from key
+    /// 把字符串类型转换成对应的类型
     /// - Parameters:
     ///   - key: CodingKey
-    ///   - type: 要转化的类型
-    /// - Returns: 类型为type?的value
-    public subscript<T>(key: KeyedDecodingContainer<K>.Key, type: T.Type) -> T? where T: Decodable & ConvertFromString {
-        if let v = try? self.decode(String.self, forKey: key) {
-            return type.init(s: v)
+    /// - Returns: (要转换的类型) -> 对象  闭包
+    public subscript<T>(key: KeyedDecodingContainer<K>.Key) -> (T.Type) throws -> T where T: Decodable & ConvertFromString {
+        return { targetType in
+            let value = try self.decode(String.self, forKey: key)
+            return try targetType.init(s: value)
         }
-        return nil
     }
     
     /// decodeIfPresent value from key
     ///
     /// - Parameters:
     ///   - key: CodingKey
-    ///   - type: 要解析的数据类型
+    ///   - type: 要解析的原始数据类型
     ///   - defaultValue: 默认value
-    /// - Returns: 类型为type?的value
-    public subscript<T>(key: KeyedDecodingContainer<K>.Key, type: T.Type, defaultValue: T?) -> T? where T: Decodable {
-        if let v = try? decodeIfPresent(type, forKey: key) {
-            return v
-        } else {
+    /// - Returns: 类型为T?的value
+    public subscript<T>(key: KeyedDecodingContainer<K>.Key, sourceType: T.Type, defaultValue: T?) -> T? where T: Decodable {
+        guard let value = try? self.decodeIfPresent(sourceType, forKey: key) else {
             return defaultValue
+        }
+        return value
+    }
+    
+    /// decodeIfPresent value from key
+    /// 把字符串类型转换成对应的类型
+    /// - Parameters:
+    ///   - key: CodingKey
+    ///   - defaultValue: 默认value
+    /// - Returns: (T.type) -> 对象?  闭包
+    public subscript<T>(key: KeyedDecodingContainer<K>.Key, defaultValue: T?) -> (T.Type) ->  T? where T: Decodable & ConvertFromString {
+        return { targetType in
+            guard let value = try? self.decodeIfPresent(String.self, forKey: key) else {
+                return defaultValue
+            }
+            guard let v = value else { return defaultValue }
+            guard let t = try? targetType.init(s: v) else { return defaultValue }
+            return t
         }
     }
 }
 
 
 public protocol ConvertFromString {
-    init?(s: String)
+    init(s: String) throws
+}
+
+public struct ConvertFromStringError: Error, CustomStringConvertible, CustomDebugStringConvertible {
+    
+    public var description: String {
+        return "can not covert value from String"
+    }
+    
+    public var debugDescription: String {
+        return "can not covert value from String"
+    }
 }
 
 extension Double: ConvertFromString {
-    public init?(s: String) {
+    public init(s: String) throws {
         guard let d = Double(s) else {
-            return nil
+            throw ConvertFromStringError()
         }
         self = d
     }
 }
 
 extension Float: ConvertFromString {
-    public init?(s: String) {
+    public init(s: String) throws {
         guard let f = Float(s) else {
-            return nil
+            throw ConvertFromStringError()
         }
         self = f
     }
 }
 
 extension Int: ConvertFromString {
-    public init?(s: String) {
+    public init(s: String) throws {
         guard let i = Int(s) else {
-            return nil
+            throw ConvertFromStringError()
         }
         self = i
     }
 }
 
 extension Int8: ConvertFromString {
-    public init?(s: String) {
+    public init(s: String) throws {
         guard let i = Int8(s) else {
-            return nil
+            throw ConvertFromStringError()
         }
         self = i
     }
 }
 
 extension Int16: ConvertFromString {
-    public init?(s: String) {
+    public init(s: String) throws {
         guard let i = Int16(s) else {
-            return nil
+            throw ConvertFromStringError()
         }
         self = i
     }
 }
 
 extension Int32: ConvertFromString {
-    public init?(s: String) {
+    public init(s: String) throws {
         guard let i = Int32(s) else {
-            return nil
+            throw ConvertFromStringError()
         }
         self = i
     }
 }
 
 extension Int64: ConvertFromString {
-    public init?(s: String) {
+    public init(s: String) throws {
         guard let i = Int64(s) else {
-            return nil
+            throw ConvertFromStringError()
         }
         self = i
     }
 }
 
 extension UInt: ConvertFromString {
-    public init?(s: String) {
+    public init(s: String) throws {
         guard let i = UInt(s) else {
-            return nil
+            throw ConvertFromStringError()
         }
         self = i
     }
 }
 
 extension UInt8: ConvertFromString {
-    public init?(s: String) {
+    public init(s: String) throws {
         guard let i = UInt8(s) else {
-            return nil
+            throw ConvertFromStringError()
         }
         self = i
     }
 }
 
 extension UInt16: ConvertFromString {
-    public init?(s: String) {
+    public init(s: String) throws {
         guard let i = UInt16(s) else {
-            return nil
+            throw ConvertFromStringError()
         }
         self = i
     }
 }
 
 extension UInt32: ConvertFromString {
-    public init?(s: String) {
+    public init(s: String) throws {
         guard let i = UInt32(s) else {
-            return nil
+            throw ConvertFromStringError()
         }
         self = i
     }
 }
 
 extension UInt64: ConvertFromString {
-    public init?(s: String) {
+    public init(s: String) throws {
         guard let i = UInt64(s) else {
-            return nil
+            throw ConvertFromStringError()
         }
         self = i
     }
 }
 
 extension Bool: ConvertFromString {
-    public init?(s: String) {
+    public init(s: String) throws {
         switch s {
-        case "0":
+        case "0", "false", "False", "FALSE":
             self = false
-        case "1":
+        case "1", "true", "True", "TRUE":
             self = true
-        case "true":
-            self = true
-        case "false":
-            self = false
         default:
-            return nil
+            throw ConvertFromStringError()
         }
     }
 }
 
 extension URL: ConvertFromString {
-    public init?(s: String) {
+    public init(s: String) throws {
         guard let u = URL(string: s) else {
-            return nil
+            throw ConvertFromStringError()
         }
         self = u
     }
