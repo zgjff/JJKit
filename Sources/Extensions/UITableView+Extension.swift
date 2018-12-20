@@ -50,18 +50,18 @@
 import UIKit
 
 private var tabDelegateManagerKey: Void?
-extension JJ where Original: UITableView {
+extension JJ where Object: UITableView {
     public weak var dataSourceDelegate: TableViewDelegateManager? {
         get {
-            if let manager = objc_getAssociatedObject(original, &tabDelegateManagerKey) as? TableViewDelegateManager {
+            if let manager = objc_getAssociatedObject(object, &tabDelegateManagerKey) as? TableViewDelegateManager {
                 return manager
             }
-            let manager = TableViewDelegateManager(tableView: original)
-            objc_setAssociatedObject(original, &tabDelegateManagerKey, manager, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            let manager = TableViewDelegateManager(tableView: object)
+            objc_setAssociatedObject(object, &tabDelegateManagerKey, manager, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             return manager
         }
         set {
-            objc_setAssociatedObject(original, &tabDelegateManagerKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(object, &tabDelegateManagerKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
 }

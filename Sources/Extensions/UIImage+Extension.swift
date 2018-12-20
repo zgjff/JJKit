@@ -155,17 +155,17 @@ extension UIImage {
 
 extension UIImage: JJCompatible {}
 
-extension JJ where Original: UIImage {
+extension JJ where Object: UIImage {
     /// 改变图像的颜色
     ///
     /// - Parameter tintColor: 要变的颜色
     /// - Returns: 结果
     public func applyTintColor(_ tintColor: UIColor) -> UIImage? {
-        let size = original.size
+        let size = object.size
         return UIImage(size: size, action: { context in
             tintColor.setFill()
             UIRectFill(CGRect(origin: .zero, size: size))
-            self.original.draw(in: CGRect(origin: .zero, size: size), blendMode: .destinationIn, alpha: 1.0)
+            self.object.draw(in: CGRect(origin: .zero, size: size), blendMode: .destinationIn, alpha: 1.0)
         })
     }
     /// 创建圆角图片
@@ -177,9 +177,9 @@ extension JJ where Original: UIImage {
     ///   - color: 边框颜色
     /// - Returns: 圆角图片
     public func apply(radius: CGFloat, corners: UIRectCorner = .allCorners, border: CGFloat = 0, color: UIColor? = nil) -> UIImage? {
-        let size = original.size
+        let size = object.size
         return UIImage(size: size, action: { context in
-            guard let cgImg = self.original.cgImage else { return }
+            guard let cgImg = self.object.cgImage else { return }
             let rect = CGRect(origin: .zero, size: size)
             context.scaleBy(x: 1, y: -1)
             context.translateBy(x: 0, y: -rect.size.height)
@@ -193,9 +193,9 @@ extension JJ where Original: UIImage {
                 context.restoreGState()
             }
             if let borderColor = color, border > 0, border < minSize / 2 {
-                let strokeInset = (floor(border * self.original.scale) + 0.5) / self.original.scale
+                let strokeInset = (floor(border * self.object.scale) + 0.5) / self.object.scale
                 let strokeRect = rect.insetBy(dx: strokeInset, dy: strokeInset)
-                let strokeRadius = radius > self.original.scale / 2 ? radius - self.original.scale / 2 : 0
+                let strokeRadius = radius > self.object.scale / 2 ? radius - self.object.scale / 2 : 0
                 let path = UIBezierPath(roundedRect: strokeRect, byRoundingCorners: corners, cornerRadii: CGSize(width: strokeRadius, height: border))
                 path.close()
                 path.lineWidth = border
@@ -211,15 +211,15 @@ extension JJ where Original: UIImage {
     ///   - filter: (CIImage) -> CIImage
     ///   - result: 主线程回掉滤镜结果
     public func applyFilter(_ filter: (CIImage) -> CIImage, result: @escaping (UIImage) -> ()) {
-        guard let inputImage = CIImage(image: original) else {
-            result(original)
+        guard let inputImage = CIImage(image: object) else {
+            result(object)
             return
         }
         let out = filter(inputImage)
         filterQueue.async {
-            var img: UIImage = self.original
+            var img: UIImage = self.object
             if let cg = context.createCGImage(out, from: inputImage.extent) {
-                img = UIImage(cgImage: cg, scale: self.original.scale, orientation: self.original.imageOrientation)
+                img = UIImage(cgImage: cg, scale: self.object.scale, orientation: self.object.imageOrientation)
             }
             DispatchQueue.main.async {
                 result(img)

@@ -24,9 +24,15 @@ extension KeyedDecodingContainer {
     ///   - key: CodingKey
     /// - Returns: (要转换的类型) -> 对象  闭包
     public subscript<T>(key: KeyedDecodingContainer<K>.Key) -> (T.Type) throws -> T where T: Decodable & ConvertFromString {
+        func covertValueFromString(_ str: String, to targetType: T.Type) throws -> T {
+            if let v = targetType.init(s: str) {
+                return v
+            }
+            throw ConvertFromStringError.default
+        }
         return { targetType in
             let value = try self.decode(String.self, forKey: key)
-            return try targetType.init(s: value)
+            return try covertValueFromString(value, to: targetType)
         }
     }
     
@@ -35,11 +41,10 @@ extension KeyedDecodingContainer {
     /// - Parameters:
     ///   - key: CodingKey
     ///   - type: 要解析的原始数据类型
-    ///   - defaultValue: 默认value
     /// - Returns: 类型为T?的value
-    public subscript<T>(key: KeyedDecodingContainer<K>.Key, sourceType: T.Type, defaultValue: T?) -> T? where T: Decodable {
+    public subscript<T>(key: KeyedDecodingContainer<K>.Key, sourceType: T.Type) -> T? where T: Decodable {
         guard let value = try? self.decodeIfPresent(sourceType, forKey: key) else {
-            return defaultValue
+            return nil
         }
         return value
     }
@@ -50,24 +55,25 @@ extension KeyedDecodingContainer {
     ///   - key: CodingKey
     ///   - defaultValue: 默认value
     /// - Returns: (T.type) -> 对象?  闭包
-    public subscript<T>(key: KeyedDecodingContainer<K>.Key, defaultValue: T?) -> (T.Type) ->  T? where T: Decodable & ConvertFromString {
+    public subscript<T>(key: KeyedDecodingContainer<K>.Key) -> (T.Type) ->  T? where T: Decodable & ConvertFromString {
         return { targetType in
             guard let value = try? self.decodeIfPresent(String.self, forKey: key) else {
-                return defaultValue
+                return nil
             }
-            guard let v = value else { return defaultValue }
-            guard let t = try? targetType.init(s: v) else { return defaultValue }
-            return t
+            guard let v = value else { return nil }
+            return targetType.init(s: v)
         }
     }
 }
 
 
 public protocol ConvertFromString {
-    init(s: String) throws
+    init?(s: String)
 }
 
 public struct ConvertFromStringError: Error, CustomStringConvertible, CustomDebugStringConvertible {
+    
+    public static var `default` = ConvertFromStringError()
     
     public var description: String {
         return "can not covert value from String"
@@ -79,130 +85,130 @@ public struct ConvertFromStringError: Error, CustomStringConvertible, CustomDebu
 }
 
 extension Double: ConvertFromString {
-    public init(s: String) throws {
+    public init?(s: String) {
         guard let d = Double(s) else {
-            throw ConvertFromStringError()
+            return nil
         }
         self = d
     }
 }
 
 extension Float: ConvertFromString {
-    public init(s: String) throws {
+    public init?(s: String) {
         guard let f = Float(s) else {
-            throw ConvertFromStringError()
+            return nil
         }
         self = f
     }
 }
 
 extension Int: ConvertFromString {
-    public init(s: String) throws {
+    public init?(s: String) {
         guard let i = Int(s) else {
-            throw ConvertFromStringError()
+            return nil
         }
         self = i
     }
 }
 
 extension Int8: ConvertFromString {
-    public init(s: String) throws {
+    public init?(s: String) {
         guard let i = Int8(s) else {
-            throw ConvertFromStringError()
+            return nil
         }
         self = i
     }
 }
 
 extension Int16: ConvertFromString {
-    public init(s: String) throws {
+    public init?(s: String) {
         guard let i = Int16(s) else {
-            throw ConvertFromStringError()
+            return nil
         }
         self = i
     }
 }
 
 extension Int32: ConvertFromString {
-    public init(s: String) throws {
+    public init?(s: String) {
         guard let i = Int32(s) else {
-            throw ConvertFromStringError()
+            return nil
         }
         self = i
     }
 }
 
 extension Int64: ConvertFromString {
-    public init(s: String) throws {
+    public init?(s: String) {
         guard let i = Int64(s) else {
-            throw ConvertFromStringError()
+            return nil
         }
         self = i
     }
 }
 
 extension UInt: ConvertFromString {
-    public init(s: String) throws {
+    public init?(s: String) {
         guard let i = UInt(s) else {
-            throw ConvertFromStringError()
+            return nil
         }
         self = i
     }
 }
 
 extension UInt8: ConvertFromString {
-    public init(s: String) throws {
+    public init?(s: String) {
         guard let i = UInt8(s) else {
-            throw ConvertFromStringError()
+            return nil
         }
         self = i
     }
 }
 
 extension UInt16: ConvertFromString {
-    public init(s: String) throws {
+    public init?(s: String) {
         guard let i = UInt16(s) else {
-            throw ConvertFromStringError()
+            return nil
         }
         self = i
     }
 }
 
 extension UInt32: ConvertFromString {
-    public init(s: String) throws {
+    public init?(s: String) {
         guard let i = UInt32(s) else {
-            throw ConvertFromStringError()
+            return nil
         }
         self = i
     }
 }
 
 extension UInt64: ConvertFromString {
-    public init(s: String) throws {
+    public init?(s: String) {
         guard let i = UInt64(s) else {
-            throw ConvertFromStringError()
+            return nil
         }
         self = i
     }
 }
 
 extension Bool: ConvertFromString {
-    public init(s: String) throws {
+    public init?(s: String) {
         switch s {
         case "0", "false", "False", "FALSE":
             self = false
         case "1", "true", "True", "TRUE":
             self = true
         default:
-            throw ConvertFromStringError()
+            return nil
         }
     }
 }
 
 extension URL: ConvertFromString {
-    public init(s: String) throws {
+    public init?(s: String) {
         guard let u = URL(string: s) else {
-            throw ConvertFromStringError()
+            return nil
         }
         self = u
     }

@@ -1,6 +1,6 @@
 import UIKit
 
-extension JJ where Original: UIButton {
+extension JJ where Object: UIButton {
     public func setBackgroundColor(_ color: UIColor, radius: CGFloat = 0, for state: UIControl.State) {
         var img: UIImage?
         if radius <= 1 {
@@ -8,6 +8,6 @@ extension JJ where Original: UIButton {
         } else {
             img = UIImage(color: color, size: size)?.jj.apply(radius: radius)
         }
-        original.setBackgroundImage(img, for: state)
+        object.setBackgroundImage(img, for: state)
     }
 }

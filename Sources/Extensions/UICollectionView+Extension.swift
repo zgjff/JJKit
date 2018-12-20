@@ -1,18 +1,18 @@
 import UIKit
 
 private var colleDelegateManagerKey: Void?
-extension JJ where Original: UICollectionView {
+extension JJ where Object: UICollectionView {
     public weak var dataSourceDelegate: CollectionViewDelegateManager? {
         get {
-            if let manager = objc_getAssociatedObject(original, &colleDelegateManagerKey) as? CollectionViewDelegateManager {
+            if let manager = objc_getAssociatedObject(object, &colleDelegateManagerKey) as? CollectionViewDelegateManager {
                 return manager
             }
-            let manager = CollectionViewDelegateManager(collectionView: original)
-            objc_setAssociatedObject(original, &colleDelegateManagerKey, manager, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            let manager = CollectionViewDelegateManager(collectionView: object)
+            objc_setAssociatedObject(object, &colleDelegateManagerKey, manager, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             return manager
         }
         set {
-            objc_setAssociatedObject(original, &colleDelegateManagerKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(object, &colleDelegateManagerKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
 }

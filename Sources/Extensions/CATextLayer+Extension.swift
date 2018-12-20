@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension JJ where Original: CATextLayer {
+extension JJ where Object: CATextLayer {
     public var font: UIFont? {
         get {
             // 暂时不知道如何转换
@@ -17,20 +17,20 @@ extension JJ where Original: CATextLayer {
         set {
             guard let font = newValue else { return }
             let f = CGFont(font.fontName as CFString)
-            original.font = f
-            original.fontSize = font.pointSize
+            object.font = f
+            object.fontSize = font.pointSize
         }
     }
     public var textColor: UIColor? {
         get {
-            if let c = original.foregroundColor {
+            if let c = object.foregroundColor {
                 return UIColor(cgColor: c)
             } else {
                 return nil
             }
         }
         set {
-            original.foregroundColor = newValue?.cgColor
+            object.foregroundColor = newValue?.cgColor
         }
     }
 }

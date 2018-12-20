@@ -2,7 +2,7 @@ import UIKit
 
 extension UIApplication: JJCompatible {}
 
-extension JJ where Original: UIApplication {
+extension JJ where Object: UIApplication {
     public func topViewController(_ top: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
         if let nav = top as? UINavigationController {
             return topViewController(nav.visibleViewController)

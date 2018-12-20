@@ -8,35 +8,35 @@ extension CALayer {
 
 extension CALayer: JJCompatible {}
 
-public extension JJ where Original: CALayer {
+public extension JJ where Object: CALayer {
     func addLayers(_ layers: CALayer...) {
-        layers.forEach { original.addSublayer($0) }
+        layers.forEach { object.addSublayer($0) }
     }
     func removeAll() {
-        original.sublayers?
+        object.sublayers?
         .forEach { $0.removeFromSuperlayer() }
     }
     func setShadow(color: UIColor = .black, offset: CGSize = CGSize(width: 1, height: 1), radius: CGFloat = 3) {
-        original.shadowColor = color.cgColor
-        original.shadowOffset = offset
-        original.shadowRadius = radius
-        original.shadowOpacity = 1
-        original.shouldRasterize = true
-        original.rasterizationScale = UIScreen.main.scale
+        object.shadowColor = color.cgColor
+        object.shadowOffset = offset
+        object.shadowRadius = radius
+        object.shadowOpacity = 1
+        object.shouldRasterize = true
+        object.rasterizationScale = UIScreen.main.scale
     }
 }
 
-public extension JJ where Original: CALayer {
+public extension JJ where Object: CALayer {
     /**
      * get for frame.origin.y
      * set frame.origin.y = top
      */
     var top: CGFloat {
-        get { return original.frame.origin.y }
+        get { return object.frame.origin.y }
         set {
-            var newFrame = original.frame
+            var newFrame = object.frame
             newFrame.origin.y = newValue
-            original.frame = newFrame
+            object.frame = newFrame
         }
     }
     @discardableResult
@@ -49,11 +49,11 @@ public extension JJ where Original: CALayer {
      * set frame.origin.y = bottom - frame.size.height
      */
     var bottom: CGFloat {
-        get { return original.frame.origin.y + original.frame.size.height }
+        get { return object.frame.origin.y + object.frame.size.height }
         set {
-            var newFrame = original.frame
-            newFrame.origin.y = newValue - original.frame.size.height
-            original.frame = newFrame
+            var newFrame = object.frame
+            newFrame.origin.y = newValue - object.frame.size.height
+            object.frame = newFrame
         }
     }
     @discardableResult
@@ -66,11 +66,11 @@ public extension JJ where Original: CALayer {
      * set frame.origin.x = left
      */
     var left: CGFloat {
-        get { return original.frame.origin.x }
+        get { return object.frame.origin.x }
         set {
-            var newFrame = original.frame
+            var newFrame = object.frame
             newFrame.origin.x = newValue
-            original.frame = newFrame
+            object.frame = newFrame
         }
     }
     @discardableResult
@@ -83,11 +83,11 @@ public extension JJ where Original: CALayer {
      * set frame.origin.x = right - frame.size.width
      */
     var right: CGFloat {
-        get { return original.frame.origin.x + original.frame.size.width }
+        get { return object.frame.origin.x + object.frame.size.width }
         set {
-            var newFrame = original.frame
-            newFrame.origin.x = newValue - original.frame.size.width
-            original.frame = newFrame
+            var newFrame = object.frame
+            newFrame.origin.x = newValue - object.frame.size.width
+            object.frame = newFrame
         }
     }
     @discardableResult
@@ -100,11 +100,11 @@ public extension JJ where Original: CALayer {
      * Sets center.x = centerX
      */
     var centerX: CGFloat {
-        get { return original.frame.origin.x + original.frame.size.width * 0.5 }
+        get { return object.frame.origin.x + object.frame.size.width * 0.5 }
         set {
-            var newFrame = original.frame
+            var newFrame = object.frame
             newFrame.origin.x = newValue - newFrame.size.width * 0.5
-            original.frame = newFrame
+            object.frame = newFrame
         }
     }
     @discardableResult
@@ -117,11 +117,11 @@ public extension JJ where Original: CALayer {
      * Sets center.y = centerY
      */
     var centerY: CGFloat {
-        get { return original.frame.origin.y + original.frame.size.height * 0.5 }
+        get { return object.frame.origin.y + object.frame.size.height * 0.5 }
         set {
-            var newFrame = original.frame
+            var newFrame = object.frame
             newFrame.origin.y = newValue - newFrame.size.height * 0.5
-            original.frame = newFrame
+            object.frame = newFrame
         }
     }
     @discardableResult
@@ -134,11 +134,11 @@ public extension JJ where Original: CALayer {
      * set frame.size.width = width
      */
     var width: CGFloat {
-        get { return original.frame.size.width }
+        get { return object.frame.size.width }
         set {
-            var newFrame = original.frame
+            var newFrame = object.frame
             newFrame.size.width = newValue
-            original.frame = newFrame
+            object.frame = newFrame
         }
     }
     @discardableResult
@@ -151,11 +151,11 @@ public extension JJ where Original: CALayer {
      * set frame.size.height = height
      */
     var height: CGFloat {
-        get { return original.frame.size.height }
+        get { return object.frame.size.height }
         set {
-            var newFrame = original.frame
+            var newFrame = object.frame
             newFrame.size.height = newValue
-            original.frame = newFrame
+            object.frame = newFrame
         }
     }
     @discardableResult
@@ -168,11 +168,11 @@ public extension JJ where Original: CALayer {
      * set frame.origin = origin
      */
     var origin: CGPoint {
-        get { return original.frame.origin }
+        get { return object.frame.origin }
         set {
-            var newFrame = original.frame
+            var newFrame = object.frame
             newFrame.origin = newValue
-            original.frame = newFrame
+            object.frame = newFrame
         }
     }
     @discardableResult
@@ -185,11 +185,11 @@ public extension JJ where Original: CALayer {
      * set frame.size = size
      */
     var size: CGSize {
-        get { return original.frame.size }
+        get { return object.frame.size }
         set {
-            var newFrame = original.frame
+            var newFrame = object.frame
             newFrame.size = newValue
-            original.frame = newFrame
+            object.frame = newFrame
         }
     }
     @discardableResult
@@ -198,8 +198,8 @@ public extension JJ where Original: CALayer {
         return self
     }
     var frame: CGRect {
-        get { return original.frame }
-        set { original.frame = newValue }
+        get { return object.frame }
+        set { object.frame = newValue }
     }
     @discardableResult
     func frame(is frame: CGRect) -> Self {
@@ -207,8 +207,8 @@ public extension JJ where Original: CALayer {
         return self
     }
     var bounds: CGRect {
-        get { return original.bounds }
-        set { original.bounds = newValue }
+        get { return object.bounds }
+        set { object.bounds = newValue }
     }
     @discardableResult
     func bounds(is bounds: CGRect) -> Self {
@@ -216,14 +216,14 @@ public extension JJ where Original: CALayer {
         return self
     }
     var center: CGPoint {
-        get { return CGPoint(x: original.frame.origin.x + original.frame.size.width * 0.5,
-                             y: original.frame.origin.y + original.frame.size.height * 0.5)
+        get { return CGPoint(x: object.frame.origin.x + object.frame.size.width * 0.5,
+                             y: object.frame.origin.y + object.frame.size.height * 0.5)
         }
         set {
-            var newFrame = original.frame
+            var newFrame = object.frame
             newFrame.origin.x = newValue.x - newFrame.size.width * 0.5
             newFrame.origin.y = newValue.y - newFrame.size.height * 0.5
-            original.frame = newFrame
+            object.frame = newFrame
         }
     }
     @discardableResult

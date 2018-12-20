@@ -1,10 +1,10 @@
 import Foundation
 
-extension JJ where Original: AnyObject {
+extension JJ where Object: AnyObject {
     @discardableResult
-    public func config(_ block: (_ object: Original) -> Void) -> Original {
-        block(original)
-        return original
+    public func config(_ block: (_ object: Object) -> Void) -> Object {
+        block(object)
+        return object
     }
 }
 

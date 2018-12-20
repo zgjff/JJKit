@@ -7,9 +7,9 @@ extension Date {
     }
 }
 
-public extension JJ where Original == Date {
+public extension JJ where Object == Date {
     func component(_ component:Date.DateComponentType) -> Int? {
-        let components = Calendar.current.dateComponents([.year, .month, .day, .weekOfYear, .hour, .minute, .second, .weekday, .weekdayOrdinal, .weekOfYear], from: original)
+        let components = Calendar.current.dateComponents([.year, .month, .day, .weekOfYear, .hour, .minute, .second, .weekday, .weekdayOrdinal, .weekOfYear], from: object)
         switch component {
         case .second:
             return components.second
@@ -33,7 +33,7 @@ public extension JJ where Original == Date {
     }
     var isToday: Bool {
         guard let day = component(.day) else { return false }
-        if fabs(original.timeIntervalSinceNow) >= 60 * 60 * 24 { return false }
+        if fabs(object.timeIntervalSinceNow) >= 60 * 60 * 24 { return false }
         return day == Date().jj.component(.day)
     }
     var isYesterday: Bool {
@@ -61,21 +61,21 @@ public extension JJ where Original == Date {
         case .year:
             dateComp.year = offset
         }
-        return Calendar.current.date(byAdding: dateComp, to: original)!
+        return Calendar.current.date(byAdding: dateComp, to: object)!
     }
     func string(with format: String, timeZone: TimeZone = TimeZone.current, locale: Locale = Locale.current) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = format
         formatter.timeZone = timeZone
         formatter.locale = locale
-        return formatter.string(from: original)
+        return formatter.string(from: object)
     }
     func string(for formatterStyle: Date.DateFormatterStyle) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = formatterStyle.stringFormat
         formatter.timeZone = .current
         formatter.locale = .current
-        return formatter.string(from: original)
+        return formatter.string(from: object)
     }
 }
 

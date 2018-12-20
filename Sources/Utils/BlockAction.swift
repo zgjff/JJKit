@@ -11,21 +11,21 @@
  */
 import UIKit
 
-extension JJ where Original: UIControl {
-    public func handle(state: UIControl.Event? = nil, _ block: @escaping (Original) -> ()) {
-        original.handle(state: state, block)
+extension JJ where Object: UIControl {
+    public func handle(state: UIControl.Event? = nil, _ block: @escaping (Object) -> ()) {
+        object.handle(state: state, block)
     }
     public func removeAllBlocksForEvents(_ state: UIControl.Event) {
-        original.removeAllBlocksForEvents(state)
+        object.removeAllBlocksForEvents(state)
     }
 }
 
-extension JJ where Original: UIGestureRecognizer {
-    public func handle(block: @escaping (Original) -> ()) {
-        original.handle(block: block)
+extension JJ where Object: UIGestureRecognizer {
+    public func handle(block: @escaping (Object) -> ()) {
+        object.handle(block: block)
     }
     public func removeAllBlocks() {
-        original.removeAllBlocks()
+        object.removeAllBlocks()
     }
 }
 
