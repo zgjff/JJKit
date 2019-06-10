@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.license      = "MIT"
   s.author             = { "zgj" => "zguijie1005@qq.com" }
   s.platform     = :ios, "9.0"
-  s.source       = { :git => "https://github.com/zgjff/JJKit.git", :tag => "0.0.170" }
+  s.source       = { :git => "https://github.com/zgjff/JJKit.git", :tag => "0.0.171" }
   s.source_files  = "Sources/**/*.{swift}"
   s.resource_bundles = {
     'JJKit' => ['Resources/*.{ttf}']
