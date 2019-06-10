@@ -55,13 +55,12 @@ extension KeyedDecodingContainer {
     ///   - key: CodingKey
     ///   - defaultValue: 默认value
     /// - Returns: (T.type) -> 对象?  闭包
-    public subscript<T>(key: KeyedDecodingContainer<K>.Key) -> (T.Type) ->  T? where T: Decodable & ConvertFromString {
+    public subscript<T>(key: KeyedDecodingContainer<K>.Key) -> (T.Type) -> T? where T: Decodable & ConvertFromString {
         return { targetType in
             guard let value = try? self.decodeIfPresent(String.self, forKey: key) else {
                 return nil
             }
-            guard let v = value else { return nil }
-            return targetType.init(s: v)
+            return targetType.init(s: value)
         }
     }
 }

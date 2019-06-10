@@ -8,10 +8,10 @@ extension UIColor {
     public convenience init?(hexString: String) {
         var hex = hexString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).uppercased()
         if hex.hasPrefix("#") {
-            let h = hex.suffix(from: String.Index.init(encodedOffset: 1))
+            let h = hex.suffix(from: String.Index(utf16Offset: 1, in: hex))
             hex = String(h)
         } else if hex.hasPrefix("0X") {
-            let h = hex.suffix(from: String.Index.init(encodedOffset: 2))
+            let h = hex.suffix(from: String.Index(utf16Offset: 2, in: hex))
             hex = String(h)
         }
         guard let c = Int(hex, radix: 16) else { return nil }

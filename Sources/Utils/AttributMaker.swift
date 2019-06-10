@@ -201,8 +201,9 @@ extension AttributMakerExtendable {
 }
 
 struct Attribute: Hashable, Equatable {
-    var hashValue: Int {
-        return key.hashValue
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(key.hashValue)
     }
     
     private(set) var key: NSAttributedString.Key
