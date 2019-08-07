@@ -1,10 +1,3 @@
-//
-//  Codable+Extensions.swift
-//  Demo
-//
-//  Created by 123 on 2018/11/29.
-//  Copyright © 2018 郑桂杰. All rights reserved.
-//
 // 用法详见: https://github.com/zgjff/CodableHelper/blob/master/README.md
 
 import Foundation

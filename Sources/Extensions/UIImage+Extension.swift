@@ -8,8 +8,9 @@ extension UIImage {
     /// - Parameters:
     ///   - size: 图像画布大小
     ///   - actions: 操作画布---block(CGContext)
-    public convenience init?(size: CGSize, scale: CGFloat = UIScreen.main.scale, action: @escaping (CGContext) -> ()) {
+    public convenience init?(size: CGSize, action: @escaping (CGContext) -> ()) {
         var img: UIImage?
+        let scale = UIScreen.main.scale
         if #available(iOS 10.0, *) {
             let f = UIGraphicsImageRendererFormat.default()
             f.scale = scale

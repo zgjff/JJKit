@@ -15,4 +15,3 @@ public struct StoreValueManager {
         objc_setAssociatedObject(base, key, value, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
 }
-

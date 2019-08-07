@@ -6,26 +6,16 @@ class ViewController: UIViewController, SwipePresentDelegate {
     private lazy var label = UILabel()
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
-        imageView.center = view.center
-        view.addSubview(imageView)
-        
-        label.frame = CGRect(x: 50, y: 100, width: view.bounds.width - 100, height: 50)
-        label.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
-        view.addSubview(label)
-        
+        view.backgroundColor = .white
         let b = UIButton()
-        b.frame = CGRect(x: 50, y: view.bounds.height - 80, width: view.bounds.width - 100, height: 50)
-        b.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
-        view.addSubview(b)
+        b.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
+        b.frame = CGRect(x: 0, y: 0, width: view.jj.width - 100, height: 40)
+        b.center = view.center
         b.addTarget(self, action: #selector(c(_:)), for: .primaryActionTriggered)
+        view.addSubview(b)
     }
     
     @IBAction private func c(_ sender: UIButton) {
-//        swipePresentDelegate.targetEdge = .right
-//        present(UINavigationController(rootViewController: SecondViewController()), animated: true, completion: nil)
-        swipePresent(to: UINavigationController(rootViewController: SecondViewController()))
+        navigationController?.pushViewController(SecondController(), animated: true)
     }
 }
-
-

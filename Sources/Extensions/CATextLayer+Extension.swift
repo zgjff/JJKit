@@ -1,11 +1,3 @@
-//
-//  CATextLayer+Extension.swift
-//  Demo
-//
-//  Created by 123 on 2018/10/8.
-//  Copyright © 2018 郑桂杰. All rights reserved.
-//
-
 import UIKit
 
 extension JJ where Object: CATextLayer {

@@ -124,7 +124,7 @@ extension Date {
         case date
         /// "HH:mm:ss"
         case hms
-        /// "yyyy-MM-dd HH:mm:ss" i.e. 1997-07-16 12:23:23
+        /// "yyyy-MM-dd HH:mm:ss"
         case ymdhms
         /// A custom date format string
         case custom(String)

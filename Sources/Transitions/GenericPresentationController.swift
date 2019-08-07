@@ -234,7 +234,7 @@ public enum TransitionType {
 }
 
 public protocol AnimateTransitioning {
-    /// 转场动画持续时间,默认为0.5s
+    /// 转场动画持续时间,默认为0.35s
     static var transitionDuration: TimeInterval { get }
     /// presentedViewController view的最终frame
     ///
@@ -254,7 +254,7 @@ public protocol AnimateTransitioning {
 }
 
 extension AnimateTransitioning {
-    public static var transitionDuration: TimeInterval { return 0.5 }
+    public static var transitionDuration: TimeInterval { return 0.35 }
 }
 /*****************AnimatedTransitioning*******************/
 

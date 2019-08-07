@@ -18,4 +18,3 @@ extension JJ where Object: UIApplication {
         return top
     }
 }
-

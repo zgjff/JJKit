@@ -7,4 +7,3 @@ extension JJ where Object: AnyObject {
         return object
     }
 }
-
