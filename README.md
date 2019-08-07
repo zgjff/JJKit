@@ -52,4 +52,35 @@ extension String: CycleViewImageSource {
     }
 }
 ```
-## 5. 各种其他extension....
+## 5. AttributMaker
+> 方便快捷的将`String`转换成`NSAttributedString`
+```swift
+let str = "JJkit之AttributMaker"
+let l = UILabel()
+l.attributedText = str.jj.attributeMake({ make in
+    make.for("JJkit")?.foregroundColor(.red).font(UIFont.boldSystemFont(ofSize: 23))
+    make.for(6..<10)?.foregroundColor(.orange).link(URL(string: "www.baidu.com")!)
+    make.for(5)?.strikethroughStyle(.single)
+})
+```
+## 6. MaterialIcons
+> 方便的将google icons转换成`UIImage`/`NSAttributedString`.
+- 图标列表 https://github.com/google/material-design-icons/blob/master/iconfont/codepoints
+```swift
+let l = UILabel() 
+l.attributedText = MaterialIcons.settings.attributeStringWith(size: 20, transform: { make in
+    make.tintColor(.red)
+    make.backgroundColor(.blue)
+})
+
+let b = UIButton()
+let norImg = MaterialIcons.radio_button_unchecked.imageWith(size: CGSize(width: 30, height: 30)) { make in
+    make.tintColor(.red)
+}
+let disImg = MaterialIcons.radio_button_unchecked.imageWith(size: CGSize(width: 30, height: 30)) { make in
+    make.tintColor(.gray)
+}
+b.setImage(norImg, for: .normal)
+b.setImage(disImg, for: .disabled)
+```
+## 7. 其它extension及组件
