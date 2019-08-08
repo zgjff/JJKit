@@ -65,7 +65,7 @@ l.attributedText = str.jj.attributeMake({ make in
 ```
 ## 6. MaterialIcons
 > 方便的将google icons转换成`UIImage`/`NSAttributedString`.
-- 图标列表 https://github.com/google/material-design-icons/blob/master/iconfont/codepoints
+- 图标列表 https://material.io/tools/icons/?style=baseline
 ```swift
 let l = UILabel() 
 l.attributedText = MaterialIcons.settings.attributeStringWith(size: 20, transform: { make in
