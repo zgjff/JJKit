@@ -2,11 +2,11 @@
 > Layout框架/快速设定UITableView,UICollectionView,UIScrollView代理/extension等.
 
 ## 1. Layout
-> 链式设置UIView/CALayer的frame
+> 链式设置`UIView`/`CALayer`的`frame`
 
-- 支持UIView以及CAlayer
-- 通过设定UIView/CALayer的frame而非使用Autolayout
-- 设定left/top/right/bottom/centerX/centerY/height/width/center/size/edges
+- 支持`UIView`以及`CAlayer`
+- 通过设定`UIView`/`CALayer`的`frame`而非使用`Autolayout`
+- 设定`left`/`top`/`right`/`bottom`/`centerX`/`centerY`/`height`/`width`/`center`/`size`/`edges`
 
 ```swift
 let v = UITableView()
