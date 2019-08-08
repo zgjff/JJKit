@@ -122,10 +122,12 @@ public extension CollectionViewBuilder {
 public extension CollectionViewBuilder {
     @available(iOS 10.0, *)
     func prefetchItems(_ block: @escaping (_ collectionView: UICollectionView, _ indexPaths: [IndexPath]) -> ()) {
+        isConfigDataSourcePrefetching = true
         _manager.prefetchItems = block
     }
     @available(iOS 10.0, *)
     func cancelPrefetchingForItems(_ block: @escaping (_ collectionView: UICollectionView, _ indexPaths: [IndexPath]) -> ()) {
+        isConfigDataSourcePrefetching = true
         _manager.cancelPrefetchingForItems = block
     }
 }

@@ -168,7 +168,7 @@
 		5EA4607320A18E420005AAA5 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				FD7E022B22F93D60005E178F /* DataDelegate */,
+				FD7E022B22F93D60005E178F /* ScrollDelegate */,
 				FD415E8622EFE795000DCFED /* Layout */,
 				9D1D2ACB2112B4DA00DDFC43 /* Transitions */,
 				9D16B64720E5FD9C008AE489 /* Protocols */,
@@ -247,7 +247,7 @@
 			path = Layout;
 			sourceTree = "<group>";
 		};
-		FD7E022B22F93D60005E178F /* DataDelegate */ = {
+		FD7E022B22F93D60005E178F /* ScrollDelegate */ = {
 			isa = PBXGroup;
 			children = (
 				FD7E022E22F93DAD005E178F /* ScrollDataDelegate.swift */,
@@ -258,7 +258,7 @@
 				FD99B80E22FA5E2900CEC17C /* CollectionViewBuilder.swift */,
 				FD99B81022FA5E9500CEC17C /* CollectionDataDelegate.swift */,
 			);
-			path = DataDelegate;
+			path = ScrollDelegate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
