@@ -51,8 +51,11 @@
 		FD7E023522F9575F005E178F /* TableViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7E023422F9575F005E178F /* TableViewBuilder.swift */; };
 		FD7E023722F957B2005E178F /* TableDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7E023622F957B2005E178F /* TableDataDelegate.swift */; };
 		FD8189FB22F270A9009FAE2F /* LayoutResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8189FA22F270A9009FAE2F /* LayoutResult.swift */; };
+		FD8DBC112301027000C981D9 /* EasingAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8DBC102301027000C981D9 /* EasingAnimator.swift */; };
 		FD99B80F22FA5E2900CEC17C /* CollectionViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD99B80E22FA5E2900CEC17C /* CollectionViewBuilder.swift */; };
 		FD99B81122FA5E9500CEC17C /* CollectionDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD99B81022FA5E9500CEC17C /* CollectionDataDelegate.swift */; };
+		FDBD4E0222FD0636007B2ECF /* PlaceholderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBD4E0122FD0636007B2ECF /* PlaceholderAnimator.swift */; };
+		FDBD4E0422FD0652007B2ECF /* Easings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBD4E0322FD0652007B2ECF /* Easings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,8 +105,11 @@
 		FD7E023422F9575F005E178F /* TableViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewBuilder.swift; sourceTree = "<group>"; };
 		FD7E023622F957B2005E178F /* TableDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDataDelegate.swift; sourceTree = "<group>"; };
 		FD8189FA22F270A9009FAE2F /* LayoutResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutResult.swift; sourceTree = "<group>"; };
+		FD8DBC102301027000C981D9 /* EasingAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasingAnimator.swift; sourceTree = "<group>"; };
 		FD99B80E22FA5E2900CEC17C /* CollectionViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewBuilder.swift; sourceTree = "<group>"; };
 		FD99B81022FA5E9500CEC17C /* CollectionDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDataDelegate.swift; sourceTree = "<group>"; };
+		FDBD4E0122FD0636007B2ECF /* PlaceholderAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderAnimator.swift; sourceTree = "<group>"; };
+		FDBD4E0322FD0652007B2ECF /* Easings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Easings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +174,7 @@
 		5EA4607320A18E420005AAA5 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				FDBD4E0022FD0533007B2ECF /* Animator */,
 				FD7E022B22F93D60005E178F /* ScrollDelegate */,
 				FD415E8622EFE795000DCFED /* Layout */,
 				9D1D2ACB2112B4DA00DDFC43 /* Transitions */,
@@ -261,6 +268,16 @@
 			path = ScrollDelegate;
 			sourceTree = "<group>";
 		};
+		FDBD4E0022FD0533007B2ECF /* Animator */ = {
+			isa = PBXGroup;
+			children = (
+				FDBD4E0122FD0636007B2ECF /* PlaceholderAnimator.swift */,
+				FD8DBC102301027000C981D9 /* EasingAnimator.swift */,
+				FDBD4E0322FD0652007B2ECF /* Easings.swift */,
+			);
+			path = Animator;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -335,6 +352,7 @@
 			files = (
 				9D16B64F20E5FF03008AE489 /* UIView+Extension.swift in Sources */,
 				9D1D2ACD2112B56000DDFC43 /* SwipeTransition.swift in Sources */,
+				FDBD4E0422FD0652007B2ECF /* Easings.swift in Sources */,
 				FD7D621122F0181C00D1891B /* LayoutItem.swift in Sources */,
 				5EA4606420A18DA20005AAA5 /* ViewController.swift in Sources */,
 				9DB52A50213903BF00D9D771 /* BlockAction.swift in Sources */,
@@ -343,6 +361,7 @@
 				9D6EB951216B5D1300487973 /* CATextLayer+Extension.swift in Sources */,
 				9DAB82E52137A0EE00528DBB /* GenericPresentationController.swift in Sources */,
 				FD7E023322F94781005E178F /* ScrollDelegateManager.swift in Sources */,
+				FDBD4E0222FD0636007B2ECF /* PlaceholderAnimator.swift in Sources */,
 				5E74076820AC06CA00A46657 /* UIImage+Extension.swift in Sources */,
 				FD7D620F22F0163F00D1891B /* SecondController.swift in Sources */,
 				FD7E023122F93E52005E178F /* ScrollViewBuilder.swift in Sources */,
@@ -356,6 +375,7 @@
 				FD8189FB22F270A9009FAE2F /* LayoutResult.swift in Sources */,
 				9D16B65520E631EC008AE489 /* String+Extension.swift in Sources */,
 				FD7E023722F957B2005E178F /* TableDataDelegate.swift in Sources */,
+				FD8DBC112301027000C981D9 /* EasingAnimator.swift in Sources */,
 				9D96BFE2210AC6220015F18B /* CALayer+Extension.swift in Sources */,
 				FD5BDB4C22F2822800FA2325 /* LayoutTargetable.swift in Sources */,
 				9D4B42192140F85200568229 /* MaterialIcons.swift in Sources */,
@@ -512,14 +532,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6FYFRZ77UC;
+				DEVELOPMENT_TEAM = 9S4BSS66U6;
 				INFOPLIST_FILE = Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.zgjsss.JJKitDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zgjJJKitDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -531,14 +551,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6FYFRZ77UC;
+				DEVELOPMENT_TEAM = 9S4BSS66U6;
 				INFOPLIST_FILE = Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.zgjsss.JJKitDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zgjJJKitDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

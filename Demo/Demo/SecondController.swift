@@ -34,6 +34,5 @@ class SecondController: UIViewController {
                 return 100
             })
         }
-        
     }
 }
