@@ -1,6 +1,11 @@
 # JJKit
 > Layout框架/快速设定UITableView,UICollectionView,UIScrollView代理/extension等.
 
+## CocoaPods安装
+```
+pod 'JJKit'
+```
+------
 ## 1. Layout
 > 链式设置`UIView`/`CALayer`的`frame`
 
