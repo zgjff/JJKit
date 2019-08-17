@@ -125,7 +125,6 @@ extension StoreBlockTargetsable {
     }
 }
 
-
 public final class BlockTargetInvoke<T: AnyObject>: NSObject {
     private weak var sender: T?
     private let block: (T) -> ()

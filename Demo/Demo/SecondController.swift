@@ -29,9 +29,10 @@ class SecondController: UIViewController {
                 let cell = tb.dequeueReusableCell()
                 cell.textLabel?.text = "\(ip.section)---\(ip.row)"
                 return cell
-            })
-            make.numberOfRows({ _, _ -> Int in
+            }).numberOfRows({ _, _ in
                 return 100
+            }).heightForRow({ _, ip in
+                return ip.row < 50 ? 44 : 64
             })
         }
     }

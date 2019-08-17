@@ -30,6 +30,7 @@
 import Foundation
 
 internal struct Easings {
+    typealias Funtion = (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float
     struct Quad {
         private init() {}
     }
@@ -66,21 +67,21 @@ internal struct Easings {
 }
 
 extension Easings.Quad {
-    static var easeIn: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var easeIn: Easings.Funtion {
         return { t, b, c, d in
             let x = t / d //x值
             let y = powf(x, 2) // y值
             return c * y + b //套入最初的公式
         }
     }
-    static var easeOut: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var easeOut: Easings.Funtion {
         return { t, b, c, d in
             let x = t / d //x值
             let y = -powf(x, 2) + 2 * x //y值
             return c * y + b //套入最初的公式
         }
     }
-    static var easeInOut: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var easeInOut: Easings.Funtion {
         return { t, b, c, d in
             var x = t / (d * 0.5)
             if x < 1 {
@@ -93,17 +94,17 @@ extension Easings.Quad {
 }
 
 extension Easings.Sine {
-    static var easeIn: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var easeIn: Easings.Funtion {
         return { t, b, c, d in
             return -c * cos(.pi * 0.5 * t / d) + c + b
         }
     }
-    static var easeOut: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var easeOut: Easings.Funtion {
         return { t, b, c, d in
             return c * sin(.pi * 0.5 * t / d) + b
         }
     }
-    static var easeInOut: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var easeInOut: Easings.Funtion {
         return { t, b, c, d in
             return -c * 0.5 * (cos(.pi * t / d) - 1) + b
         }
@@ -111,19 +112,19 @@ extension Easings.Sine {
 }
 
 extension Easings.Cubic {
-    static var easeIn: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var easeIn: Easings.Funtion {
         return { t, b, c, d in
             let x = t / d
             return c * powf(x, 3) + b
         }
     }
-    static var easeOut: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var easeOut: Easings.Funtion {
         return { t, b, c, d in
             let x = t / d - 1
             return c * (powf(x, 3) + 1) + b
         }
     }
-    static var easeInOut: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var easeInOut: Easings.Funtion {
         return { t, b, c, d in
             var x = t / (d * 0.5)
             if x < 1 {
@@ -136,19 +137,19 @@ extension Easings.Cubic {
 }
 
 extension Easings.Quart {
-    static var easeIn: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var easeIn: Easings.Funtion {
         return { t, b, c, d in
             let x = t / d
             return c * powf(x, 4) + b
         }
     }
-    static var easeOut: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var easeOut: Easings.Funtion {
         return { t, b, c, d in
             let x = t / d - 1
             return -c * (powf(x, 4) - 1) + b
         }
     }
-    static var easeInOut: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var easeInOut: Easings.Funtion {
         return { t, b, c, d in
             var x = t / (d * 0.5)
             if x < 1 {
@@ -161,19 +162,19 @@ extension Easings.Quart {
 }
 
 extension Easings.Quint {
-    static var easeIn: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var easeIn: Easings.Funtion {
         return { t, b, c, d in
             let x = t / d
             return c * powf(x, 5) + b
         }
     }
-    static var easeOut: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var easeOut: Easings.Funtion {
         return { t, b, c, d in
             let x = t / d - 1
             return c * (powf(x, 5) + 1) + b
         }
     }
-    static var easeInOut: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var easeInOut: Easings.Funtion {
         return { t, b, c, d in
             var x = t / (d * 0.5)
             if x < 1 {
@@ -186,19 +187,19 @@ extension Easings.Quint {
 }
 
 extension Easings.Circ {
-    static var easeIn: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var easeIn: Easings.Funtion {
         return { t, b, c, d in
             let x = t / d
             return -c * (sqrtf(1 - powf(x, 2)) - 1) + b
         }
     }
-    static var easeOut: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var easeOut: Easings.Funtion {
         return { t, b, c, d in
             let x = t / d - 1
             return c * sqrtf(1 - powf(x, 2)) + b
         }
     }
-    static var easeInOut: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var easeInOut: Easings.Funtion {
         return { t, b, c, d in
             var x = t / (d * 0.5)
             if x < 1 {
@@ -211,17 +212,17 @@ extension Easings.Circ {
 }
 
 extension Easings.Expo {
-    static var easeIn: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var easeIn: Easings.Funtion {
         return { t, b, c, d in
             return t == 0 ? b : (c * powf(2, 10 * (t / d - 1)) + b)
         }
     }
-    static var easeOut: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var easeOut: Easings.Funtion {
         return { t, b, c, d in
             return t == d ? (b + c) : (c * (1 - powf(2, -10 * (t / d))) + b)
         }
     }
-    static var easeInOut: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var easeInOut: Easings.Funtion {
         return { t, b, c, d in
             if t == 0 { return b }
             if t == d { return b + c }
@@ -236,7 +237,7 @@ extension Easings.Expo {
 }
 
 extension Easings.Elastic {
-    static var easeIn: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var easeIn: Easings.Funtion {
         return { t, b, c, d in
             if t == 0 { return b }
             if t == d { return b + c }
@@ -247,7 +248,7 @@ extension Easings.Elastic {
             return b - postFix * sinf(.pi * 2 * (x * d - s) / p)
         }
     }
-    static var easeOut: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var easeOut: Easings.Funtion {
         return { t, b, c, d in
             if t == 0 { return b }
             if t == d { return b + c }
@@ -257,7 +258,7 @@ extension Easings.Elastic {
             return c * powf(2, -10 * x) * sinf(.pi * 2 * (x * d - s) / p) + b + c
         }
     }
-    static var easeInOut: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var easeInOut: Easings.Funtion {
         return { t, b, c, d in
             if t == 0 { return b }
             var x = t / (d * 0.5)
@@ -277,7 +278,7 @@ extension Easings.Elastic {
 }
 
 extension Easings.Back {
-    static var easeIn: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var easeIn: Easings.Funtion {
         return { t, b, c, d in
             let s: Float = 1.70158
             let x = t / d
@@ -285,7 +286,7 @@ extension Easings.Back {
             return c * powf(x, 2) * sx + b
         }
     }
-    static var easeOut: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var easeOut: Easings.Funtion {
         return { t, b, c, d in
             let s: Float = 1.70158
             let x = t / d - 1
@@ -293,7 +294,7 @@ extension Easings.Back {
             return c * (pow(x, 2) * sx + 1) + b
         }
     }
-    static var easeInOut: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var easeInOut: Easings.Funtion {
         return { t, b, c, d in
             let s: Float = 1.70158 * 1.525;
             var x = t / (d * 0.5)
@@ -309,12 +310,12 @@ extension Easings.Back {
 }
 
 extension Easings.Bounce {
-    static var easeIn: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var easeIn: Easings.Funtion {
         return { t, b, c, d in
             return c - Easings.Bounce.easeOut(d - t, 0, c, d) + b
         }
     }
-    static var easeOut: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var easeOut: Easings.Funtion {
         return { t, b, c, d in
             let x = t / d
             let t0: Float = 2.75
@@ -334,7 +335,7 @@ extension Easings.Bounce {
             return c * (x0 * powf(fx, 2) + 0.984375) + b
         }
     }
-    static var easeInOut: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var easeInOut: Easings.Funtion {
         return { t, b, c, d in
             if (t < (d * 0.5)) {
                 return Easings.Bounce.easeIn(t * 2, 0, c, d) * 0.5 + b
@@ -345,7 +346,7 @@ extension Easings.Bounce {
 }
 
 extension Easings.Linear {
-    static var `default`: (_ t: Float, _ b: Float, _ c: Float, _ d: Float) -> Float {
+    static var `default`: Easings.Funtion {
         return { t, b, c, d in
             return c * t / d + b
         }

@@ -12,47 +12,75 @@ public class ScrollViewBuilder {
 }
 
 public extension ScrollViewBuilder {
-    func didScroll(_ block: @escaping (_ scrollView: UIScrollView) -> ()) {
+    @discardableResult
+    func didScroll(_ block: @escaping (_ scrollView: UIScrollView) -> ()) -> Self {
         manager?.didScroll = block
+        return self
     }
-    func didZoom(_ block: @escaping (_ scrollView: UIScrollView) -> ()) {
+    @discardableResult
+    func didZoom(_ block: @escaping (_ scrollView: UIScrollView) -> ()) -> Self {
         manager?.didZoom = block
+        return self
     }
-    func willBeginDragging(_ block: @escaping (_ scrollView: UIScrollView) -> ()) {
+    @discardableResult
+    func willBeginDragging(_ block: @escaping (_ scrollView: UIScrollView) -> ()) -> Self {
         manager?.willBeginDragging = block
+        return self
     }
-    func willEndDragging(_ block: @escaping (_ scrollView: UIScrollView, _ velocity: CGPoint, _ targetContentOffset: UnsafeMutablePointer<CGPoint>) -> ()) {
+    @discardableResult
+    func willEndDragging(_ block: @escaping (_ scrollView: UIScrollView, _ velocity: CGPoint, _ targetContentOffset: UnsafeMutablePointer<CGPoint>) -> ()) -> Self {
         manager?.willEndDragging = block
+        return self
     }
-    func didEndDragging(_ block: @escaping (_ scrollView: UIScrollView, _ decelerate: Bool) -> ()) {
+    @discardableResult
+    func didEndDragging(_ block: @escaping (_ scrollView: UIScrollView, _ decelerate: Bool) -> ()) -> Self {
         manager?.didEndDragging = block
+        return self
     }
-    func willBeginDecelerating(_ block: @escaping (_ scrollView: UIScrollView) -> ()) {
+    @discardableResult
+    func willBeginDecelerating(_ block: @escaping (_ scrollView: UIScrollView) -> ()) -> Self {
         manager?.willBeginDecelerating = block
+        return self
     }
-    func didEndDecelerating(_ block: @escaping (_ scrollView: UIScrollView) -> ()) {
+    @discardableResult
+    func didEndDecelerating(_ block: @escaping (_ scrollView: UIScrollView) -> ()) -> Self {
         manager?.didEndDecelerating = block
+        return self
     }
-    func didEndScrollingAnimation(_ block: @escaping (_ scrollView: UIScrollView) -> ()) {
+    @discardableResult
+    func didEndScrollingAnimation(_ block: @escaping (_ scrollView: UIScrollView) -> ()) -> Self {
         manager?.didEndScrollingAnimation = block
+        return self
     }
-    func viewForZooming(_ block: @escaping (_ scrollView: UIScrollView) -> UIView?) {
+    @discardableResult
+    func viewForZooming(_ block: @escaping (_ scrollView: UIScrollView) -> UIView?) -> Self {
         manager?.viewForZooming = block
+        return self
     }
-    func willBeginZooming(_ block: @escaping (_ scrollView: UIScrollView, _ view: UIView?) -> ()) {
+    @discardableResult
+    func willBeginZooming(_ block: @escaping (_ scrollView: UIScrollView, _ view: UIView?) -> ()) -> Self {
         manager?.willBeginZooming = block
+        return self
     }
-    func didEndZooming(_ block: @escaping (_ scrollView: UIScrollView, _ view: UIView?, _ scale: CGFloat) -> ()) {
+    @discardableResult
+    func didEndZooming(_ block: @escaping (_ scrollView: UIScrollView, _ view: UIView?, _ scale: CGFloat) -> ()) -> Self {
         manager?.didEndZooming = block
+        return self
     }
-    func shouldScrollToTop(_ block: @escaping (_ scrollView: UIScrollView) -> Bool) {
+    @discardableResult
+    func shouldScrollToTop(_ block: @escaping (_ scrollView: UIScrollView) -> Bool) -> Self {
         manager?.shouldScrollToTop = block
+        return self
     }
-    func didScrollToTop(_ block: @escaping (_ scrollView: UIScrollView) -> ()) {
+    @discardableResult
+    func didScrollToTop(_ block: @escaping (_ scrollView: UIScrollView) -> ()) -> Self {
         manager?.didScrollToTop = block
+        return self
     }
     @available(iOS 11, *)
-    func didChangeAdjustedContentInset(_ block: @escaping (_ scrollView: UIScrollView) -> ()) {
+    @discardableResult
+    func didChangeAdjustedContentInset(_ block: @escaping (_ scrollView: UIScrollView) -> ()) -> Self {
         manager?.didChangeAdjustedContentInset = block
+        return self
     }
 }

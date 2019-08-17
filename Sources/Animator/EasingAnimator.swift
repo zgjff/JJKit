@@ -1,37 +1,47 @@
 import QuartzCore
 
-public struct EasingAnimator {
-    
-}
-
 extension CAKeyframeAnimation {
-    func setValues(from: CGFloat, to: CGFloat, using easingFuncName: EasingAnimatorFunctionName) {
-        let count = 60
-        var values = Array<Float>.init(repeating: 0, count: count)
-        let duration = Float(1000)
-        let preTime = duration / Float(count - 1)
-        for i in 0..<count {
-            let value = easingFuncName.function(preTime * Float(i), Float(from), Float(to - from), duration)
-            values[i] = value
-        }
-        self.values = values
-    }
-    
-    func setValues(from: CGPoint, to: CGPoint, using easingFuncName: EasingAnimatorFunctionName) {
-        let count = 60
-        var values = Array<CGPoint>.init(repeating: .zero, count: count)
-        let duration = Float(1000)
-        let preTime = duration / Float(count - 1)
+    public func setValues<T>(from source: T, to destination: T, using easingFuncName: EasingAnimatorFunctionName) where T: KeyFrameValueable {
+        let count = 60 // 1秒60帧
+        var kvalues = Array<T>()
+        kvalues.reserveCapacity(count)
+        let time = Float(1000) // 1000毫秒
+        let avgTime = time / Float(count - 1)
         let f = easingFuncName.function
         for i in 0..<count {
-            let x = f(preTime * Float(i), Float(from.x), Float(to.x - from.x), duration)
-            let y = f(preTime * Float(i), Float(from.y), Float(to.y - from.y), duration)
-            values[i] = CGPoint(x: CGFloat(x), y: CGFloat(y))
+            let keyTime = avgTime * Float(i)
+            let value = T.getKeyFrameValue(keyTime: keyTime, from: source, to: destination, duration: time, using: f)
+            kvalues.append(value)
         }
-        self.values = values
+        self.values = kvalues
     }
 }
 
+public protocol KeyFrameValueable {}
+
+extension KeyFrameValueable {
+    fileprivate static func getKeyFrameValue(keyTime: Float, from source: Self, to destination: Self, duration time: Float, using easingFunction: Easings.Funtion) -> Self {
+        if let f = source as? CGFloat, let t = destination as? CGFloat {
+            let v = easingFunction(keyTime, Float(f), Float(t - f), time)
+            return CGFloat(v) as! Self
+        }
+        if let f = source as? CGPoint, let t = destination as? CGPoint {
+            let x = easingFunction(keyTime, Float(f.x), Float(t.x - f.x), time)
+            let y = easingFunction(keyTime, Float(f.y), Float(t.y - f.y), time)
+            return CGPoint(x: CGFloat(x), y: CGFloat(y)) as! Self
+        }
+        if let f = source as? CGSize, let t = destination as? CGSize {
+            let w = easingFunction(keyTime, Float(f.width), Float(t.width - f.width), time)
+            let h = easingFunction(keyTime, Float(f.height), Float(t.height - f.height), time)
+            return CGSize(width: CGFloat(w), height: CGFloat(h)) as! Self
+        }
+        return destination
+    }
+}
+
+extension CGFloat: KeyFrameValueable {}
+extension CGPoint: KeyFrameValueable {}
+extension CGSize: KeyFrameValueable {}
 
 /// 缓动函数动画名称
 ///
@@ -44,7 +54,7 @@ public struct EasingAnimatorFunctionName: Hashable, Equatable, RawRepresentable 
 }
 
 extension EasingAnimatorFunctionName {
-    internal var function: (Float, Float, Float, Float) -> Float {
+    internal var function: Easings.Funtion {
         switch self {
         case .linear:                         return Easings.Linear.default
             

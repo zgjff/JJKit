@@ -21,135 +21,211 @@ public class CollectionViewBuilder: ScrollViewBuilder {
 
 // MARK: - UICollectionViewDelegate
 public extension CollectionViewBuilder {
-    func shouldHighlightItem(_ block: @escaping (_ collectionView: UICollectionView, _ indexPath: IndexPath) -> Bool) {
+    @discardableResult
+    func shouldHighlightItem(_ block: @escaping (_ collectionView: UICollectionView, _ indexPath: IndexPath) -> Bool) -> Self {
         _manager.shouldHighlightItem = block
+        return self
     }
-    func didHighlightItem(_ block: @escaping (_ collectionView: UICollectionView, _ indexPath: IndexPath) -> ()) {
+    @discardableResult
+    func didHighlightItem(_ block: @escaping (_ collectionView: UICollectionView, _ indexPath: IndexPath) -> ()) -> Self {
         _manager.didHighlightItem = block
+        return self
     }
-    func didUnhighlightItem(_ block: @escaping (_ collectionView: UICollectionView, _ indexPath: IndexPath) -> ()) {
+    @discardableResult
+    func didUnhighlightItem(_ block: @escaping (_ collectionView: UICollectionView, _ indexPath: IndexPath) -> ()) -> Self {
         _manager.didUnhighlightItem = block
+        return self
     }
-    func shouldSelectItem(_ block: @escaping (_ collectionView: UICollectionView, _ indexPath: IndexPath) -> Bool) {
+    @discardableResult
+    func shouldSelectItem(_ block: @escaping (_ collectionView: UICollectionView, _ indexPath: IndexPath) -> Bool) -> Self {
         _manager.shouldSelectItem = block
+        return self
     }
-    func shouldDeselectItem(_ block: @escaping (_ collectionView: UICollectionView, _ indexPath: IndexPath) -> Bool) {
+    @discardableResult
+    func shouldDeselectItem(_ block: @escaping (_ collectionView: UICollectionView, _ indexPath: IndexPath) -> Bool) -> Self {
         _manager.shouldDeselectItem = block
+        return self
     }
-    func didSelectItem(_ block: @escaping (_ collectionView: UICollectionView, _ indexPath: IndexPath) -> ()) {
+    @discardableResult
+    func didSelectItem(_ block: @escaping (_ collectionView: UICollectionView, _ indexPath: IndexPath) -> ()) -> Self {
         _manager.didSelectItem = block
+        return self
     }
-    func didDeselectItem(_ block: @escaping (_ collectionView: UICollectionView, _ indexPath: IndexPath) -> ()) {
+    @discardableResult
+    func didDeselectItem(_ block: @escaping (_ collectionView: UICollectionView, _ indexPath: IndexPath) -> ()) -> Self {
         _manager.didDeselectItem = block
+        return self
     }
-    func willDisplayCell(_ block: @escaping (_ collectionView: UICollectionView, _ cell: UICollectionViewCell, _ indexPath: IndexPath) -> ()) {
+    @discardableResult
+    func willDisplayCell(_ block: @escaping (_ collectionView: UICollectionView, _ cell: UICollectionViewCell, _ indexPath: IndexPath) -> ()) -> Self {
         _manager.willDisplayCell = block
+        return self
     }
-    func willDisplaySupplementaryView(_ block: @escaping (_ collectionView: UICollectionView, _ view: UICollectionReusableView, _ kind: UICollectionElementKind, _ indexPath: IndexPath) -> ()) {
+    @discardableResult
+    func willDisplaySupplementaryView(_ block: @escaping (_ collectionView: UICollectionView, _ view: UICollectionReusableView, _ kind: UICollectionElementKind, _ indexPath: IndexPath) -> ()) -> Self {
         _manager.willDisplaySupplementaryView = block
+        return self
     }
-    func didEndDisplayingCell(_ block: @escaping (_ collectionView: UICollectionView, _ cell: UICollectionViewCell, _ indexPath: IndexPath) -> ()) {
+    @discardableResult
+    func didEndDisplayingCell(_ block: @escaping (_ collectionView: UICollectionView, _ cell: UICollectionViewCell, _ indexPath: IndexPath) -> ()) -> Self {
         _manager.didEndDisplayingCell = block
+        return self
     }
-    func didEndDisplayingSupplementaryView(_ block: @escaping (_ collectionView: UICollectionView, _ view: UICollectionReusableView, _ kind: UICollectionElementKind, _ indexPath: IndexPath) -> ()) {
+    @discardableResult
+    func didEndDisplayingSupplementaryView(_ block: @escaping (_ collectionView: UICollectionView, _ view: UICollectionReusableView, _ kind: UICollectionElementKind, _ indexPath: IndexPath) -> ()) -> Self {
         _manager.didEndDisplayingSupplementaryView = block
+        return self
     }
-    func shouldShowMenuForItem(_ block: @escaping (_ collectionView: UICollectionView, _ indexPath: IndexPath) -> Bool) {
+    @discardableResult
+    func shouldShowMenuForItem(_ block: @escaping (_ collectionView: UICollectionView, _ indexPath: IndexPath) -> Bool) -> Self {
         _manager.shouldShowMenuForItem = block
+        return self
     }
-    func canPerformAction(_ block: @escaping (_ collectionView: UICollectionView, _ action: Selector, _ indexPath: IndexPath, _ sender: Any?) -> Bool) {
+    @discardableResult
+    func canPerformAction(_ block: @escaping (_ collectionView: UICollectionView, _ action: Selector, _ indexPath: IndexPath, _ sender: Any?) -> Bool) -> Self {
         _manager.canPerformAction = block
+        return self
     }
-    func performAction(_ block: @escaping (_ collectionView: UICollectionView, _ action: Selector, _ indexPath: IndexPath, _ sender: Any?) -> ()) {
+    @discardableResult
+    func performAction(_ block: @escaping (_ collectionView: UICollectionView, _ action: Selector, _ indexPath: IndexPath, _ sender: Any?) -> ()) -> Self {
         _manager.performAction = block
+        return self
     }
-    func transitionLayout(_ block: @escaping (_ collectionView: UICollectionView, _ fromLayout: UICollectionViewLayout, _ newLayout: UICollectionViewLayout) -> UICollectionViewTransitionLayout) {
+    @discardableResult
+    func transitionLayout(_ block: @escaping (_ collectionView: UICollectionView, _ fromLayout: UICollectionViewLayout, _ newLayout: UICollectionViewLayout) -> UICollectionViewTransitionLayout) -> Self {
         _manager.transitionLayout = block
+        return self
     }
-    func canFocusItem(_ block: @escaping (_ collectionView: UICollectionView, _ indexPath: IndexPath) -> Bool) {
+    @discardableResult
+    func canFocusItem(_ block: @escaping (_ collectionView: UICollectionView, _ indexPath: IndexPath) -> Bool) -> Self {
         _manager.canFocusItem = block
+        return self
     }
-    func shouldUpdateFocus(_ block: @escaping (_ collectionView: UICollectionView, _ context: UICollectionViewFocusUpdateContext) -> Bool) {
+    @discardableResult
+    func shouldUpdateFocus(_ block: @escaping (_ collectionView: UICollectionView, _ context: UICollectionViewFocusUpdateContext) -> Bool) -> Self {
         _manager.shouldUpdateFocus = block
+        return self
     }
-    func didUpdateFocus(_ block: @escaping (_ collectionView: UICollectionView, _ context: UICollectionViewFocusUpdateContext, _ coordinator: UIFocusAnimationCoordinator) -> ()) {
+    @discardableResult
+    func didUpdateFocus(_ block: @escaping (_ collectionView: UICollectionView, _ context: UICollectionViewFocusUpdateContext, _ coordinator: UIFocusAnimationCoordinator) -> ()) -> Self {
         _manager.didUpdateFocus = block
+        return self
     }
-    func indexPathForPreferredFocusedView(_ block: @escaping (_ collectionView: UICollectionView) -> IndexPath?) {
+    @discardableResult
+    func indexPathForPreferredFocusedView(_ block: @escaping (_ collectionView: UICollectionView) -> IndexPath?) -> Self {
         _manager.indexPathForPreferredFocusedView = block
+        return self
     }
-    func targetContentOffset(_ block: @escaping (_ collectionView: UICollectionView, _ proposedContentOffset: CGPoint) -> CGPoint) {
+    @discardableResult
+    func targetContentOffset(_ block: @escaping (_ collectionView: UICollectionView, _ proposedContentOffset: CGPoint) -> CGPoint) -> Self {
         _manager.targetContentOffset = block
+        return self
     }
-    func targetIndexPathForMove(_ block: @escaping (_ collectionView: UICollectionView, _ originalIndexPath: IndexPath, _ proposedIndexPath: IndexPath) -> IndexPath) {
+    @discardableResult
+    func targetIndexPathForMove(_ block: @escaping (_ collectionView: UICollectionView, _ originalIndexPath: IndexPath, _ proposedIndexPath: IndexPath) -> IndexPath) -> Self {
         _manager.targetIndexPathForMove = block
+        return self
     }
     @available(iOS 11.0, *)
-    func shouldSpringLoadItem(_ block: @escaping (_ collectionView: UICollectionView, _ indexPath: IndexPath, _ context: UISpringLoadedInteractionContext) -> Bool) {
+    @discardableResult
+    func shouldSpringLoadItem(_ block: @escaping (_ collectionView: UICollectionView, _ indexPath: IndexPath, _ context: UISpringLoadedInteractionContext) -> Bool) -> Self {
         _manager.shouldSpringLoadItem = block
+        return self
     }
 }
 
 // MARK: - UICollectionViewDataSource
 public extension CollectionViewBuilder {
-    func numberOfItems(_ block: @escaping (_ collectionView: UICollectionView, _ section: Int) -> Int) {
+    @discardableResult
+    func numberOfItems(_ block: @escaping (_ collectionView: UICollectionView, _ section: Int) -> Int) -> Self {
         _manager.numberOfItems = block
+        return self
     }
-    func numberOfSections(_ block: @escaping (_ collectionView: UICollectionView) -> Int) {
+    @discardableResult
+    func numberOfSections(_ block: @escaping (_ collectionView: UICollectionView) -> Int) -> Self {
         _manager.numberOfSections = block
+        return self
     }
-    func cellForItem(_ block: @escaping (_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell) {
+    @discardableResult
+    func cellForItem(_ block: @escaping (_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell) -> Self {
         _manager.cellForItem = block
+        return self
     }
-    func viewForSupplementaryElement(_ block: @escaping (_ collectionView: UICollectionView, _ kind: UICollectionElementKind, _ indexPath: IndexPath) -> UICollectionViewCell) {
+    @discardableResult
+    func viewForSupplementaryElement(_ block: @escaping (_ collectionView: UICollectionView, _ kind: UICollectionElementKind, _ indexPath: IndexPath) -> UICollectionViewCell) -> Self {
         _manager.viewForSupplementaryElement = block
+        return self
     }
-    func canMoveItem(_ block: @escaping (_ collectionView: UICollectionView, _ indexPath: IndexPath) -> Bool) {
+    @discardableResult
+    func canMoveItem(_ block: @escaping (_ collectionView: UICollectionView, _ indexPath: IndexPath) -> Bool) -> Self {
         _manager.canMoveItem = block
+        return self
     }
-    func moveItem(_ block: @escaping (_ collectionView: UICollectionView, _ sourceIndexPath: IndexPath, _ destinationIndexPath: IndexPath) -> ()) {
+    @discardableResult
+    func moveItem(_ block: @escaping (_ collectionView: UICollectionView, _ sourceIndexPath: IndexPath, _ destinationIndexPath: IndexPath) -> ()) -> Self {
         _manager.moveItem = block
+        return self
     }
-    func indexTitles(_ block: @escaping (_ collectionView: UICollectionView) -> [String]?) {
+    @discardableResult
+    func indexTitles(_ block: @escaping (_ collectionView: UICollectionView) -> [String]?) -> Self {
         _manager.indexTitles = block
+        return self
     }
-    func indexPathForIndexTitle(_ block: @escaping (_ collectionView: UICollectionView, _ title: String, _ index: Int) -> IndexPath) {
+    @discardableResult
+    func indexPathForIndexTitle(_ block: @escaping (_ collectionView: UICollectionView, _ title: String, _ index: Int) -> IndexPath) -> Self {
         _manager.indexPathForIndexTitle = block
+        return self
     }
 }
 
 // MARK: - UICollectionViewDataSourcePrefetching
 public extension CollectionViewBuilder {
     @available(iOS 10.0, *)
-    func prefetchItems(_ block: @escaping (_ collectionView: UICollectionView, _ indexPaths: [IndexPath]) -> ()) {
+    @discardableResult
+    func prefetchItems(_ block: @escaping (_ collectionView: UICollectionView, _ indexPaths: [IndexPath]) -> ()) -> Self {
         isConfigDataSourcePrefetching = true
         _manager.prefetchItems = block
+        return self
     }
     @available(iOS 10.0, *)
-    func cancelPrefetchingForItems(_ block: @escaping (_ collectionView: UICollectionView, _ indexPaths: [IndexPath]) -> ()) {
+    @discardableResult
+    func cancelPrefetchingForItems(_ block: @escaping (_ collectionView: UICollectionView, _ indexPaths: [IndexPath]) -> ()) -> Self {
         isConfigDataSourcePrefetching = true
         _manager.cancelPrefetchingForItems = block
+        return self
     }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
 public extension CollectionViewBuilder {
-    func sizeForItem(_ block: @escaping (_ collectionView: UICollectionView, _ layout: UICollectionViewLayout, _ indexPath: IndexPath) -> CGSize) {
+    @discardableResult
+    func sizeForItem(_ block: @escaping (_ collectionView: UICollectionView, _ layout: UICollectionViewLayout, _ indexPath: IndexPath) -> CGSize) -> Self {
         _manager.sizeForItem = block
+        return self
     }
-    func insetForSection(_ block: @escaping (_ collectionView: UICollectionView, _ layout: UICollectionViewLayout, _ section: Int) -> UIEdgeInsets) {
+    @discardableResult
+    func insetForSection(_ block: @escaping (_ collectionView: UICollectionView, _ layout: UICollectionViewLayout, _ section: Int) -> UIEdgeInsets) -> Self {
         _manager.insetForSection = block
+        return self
     }
-    func minimumLineSpacingForSection(_ block: @escaping (_ collectionView: UICollectionView, _ layout: UICollectionViewLayout, _ section: Int) -> CGFloat) {
+    @discardableResult
+    func minimumLineSpacingForSection(_ block: @escaping (_ collectionView: UICollectionView, _ layout: UICollectionViewLayout, _ section: Int) -> CGFloat) -> Self {
         _manager.minimumLineSpacingForSection = block
+        return self
     }
-    func minimumInteritemSpacingForSection(_ block: @escaping (_ collectionView: UICollectionView, _ layout: UICollectionViewLayout, _ section: Int) -> CGFloat) {
+    @discardableResult
+    func minimumInteritemSpacingForSection(_ block: @escaping (_ collectionView: UICollectionView, _ layout: UICollectionViewLayout, _ section: Int) -> CGFloat) -> Self {
         _manager.minimumInteritemSpacingForSection = block
+        return self
     }
-    func referenceSizeForHeaderInSection(_ block: @escaping (_ collectionView: UICollectionView, _ layout: UICollectionViewLayout, _ section: Int) -> CGSize) {
+    @discardableResult
+    func referenceSizeForHeaderInSection(_ block: @escaping (_ collectionView: UICollectionView, _ layout: UICollectionViewLayout, _ section: Int) -> CGSize) -> Self {
         _manager.referenceSizeForHeader = block
+        return self
     }
-    func referenceSizeForFooterInSection(_ block: @escaping (_ collectionView: UICollectionView, _ layout: UICollectionViewLayout, _ section: Int) -> CGSize) {
+    @discardableResult
+    func referenceSizeForFooterInSection(_ block: @escaping (_ collectionView: UICollectionView, _ layout: UICollectionViewLayout, _ section: Int) -> CGSize) -> Self {
         _manager.referenceSizeForFooter = block
+        return self
     }
 }

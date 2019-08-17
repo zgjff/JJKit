@@ -106,9 +106,11 @@ extension JJ where Object: UICollectionView {
 }
 
 extension JJ where Object: UIScrollView {
-    /// 无需设定UIScrollView的代理,直接通过闭包设定UIScrollViewDelegate
+    /// 无需设定UIScrollView的代理,直接通过闭包设定UIScrollViewDelegate,
+    /// 适用与UIScrollView以及只想观察UIScrollViewDelegate代理而非UITableViewDelegate/UICollectionViewDelegate
     ///
-    /// 单独设定UIScrollViewDelegate代理函数,比如UITableView/UICollectionView调用此函数则会使用UIScrollViewDelegate的代理，而无法设定对应的delegate/dataSource
+    /// 单独设定UIScrollViewDelegate代理函数,比如UITableView/UICollectionView调用此函数则会使用UIScrollViewDelegate的代理
+    /// ，而无法设定对应的delegate/dataSource
     ///
     /// - Parameter build: 设置UIScrollView代理的各种函数
     public func bindOnlyScrollDelegate(_ build: (ScrollViewBuilder) -> ()) {

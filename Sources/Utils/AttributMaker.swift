@@ -9,7 +9,7 @@ extension String {
 
 public final class AttributMaker {
     private let string: String
-    init(string: String) {
+    internal init(string: String) {
         self.string = string
     }
     fileprivate var dic: [NSRange: AttributMakerExtendable] = [:]
@@ -25,7 +25,7 @@ extension AttributMaker {
         rs.forEach { $0.filter { $0.length > 0 }.forEach { dic.updateValue(e, forKey: $0) } }
         return e
     }
-    func build() -> NSAttributedString {
+    internal func build() -> NSAttributedString {
         if (string.isEmpty || string.count == 0) {
             return NSAttributedString(string: "")
         }
