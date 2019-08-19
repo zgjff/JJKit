@@ -32,18 +32,18 @@ extension LayoutResultExtendable {
         case .none:
             return
         case .point(let pt):
-            configWithPointTarget(pt, releation: desc.releation)
+            configWithPointTarget(source: desc.source, target: pt, releation: desc.releation)
         case .size(let st):
             configWithSizeTarget(st, releation: desc.releation)
         case .frame(let ft):
             configWithRectTarget(source: desc.source, target: ft, releation: desc.releation)
         case .float(let ft):
-            configWithCGFloat(for: desc.items, target: ft, releation: desc.releation)
+            configWithCGFloat(for: desc.items, source: desc.source, target: ft, releation: desc.releation)
         }
     }
     
-    private mutating  func configWithPointTarget(_ target: LayoutPointTargetable, releation: LayoutTargetRelation.Style) {
-        let point = target.value(.center)
+    private mutating  func configWithPointTarget(source: LayoutViewStyle, target: LayoutPointTargetable, releation: LayoutTargetRelation.Style) {
+        let point = target.value(.center, source)
         var x = point.x
         var y = point.y
         switch releation {
@@ -99,27 +99,27 @@ extension LayoutResultExtendable {
         height = .value(h)
     }
     
-    private mutating  func configWithCGFloat(for items: Set<LayoutItem>, target: LayoutCGFloatTargetable, releation: LayoutTargetRelation.Style) {
+    private mutating  func configWithCGFloat(for items: Set<LayoutItem>, source: LayoutViewStyle, target: LayoutCGFloatTargetable, releation: LayoutTargetRelation.Style) {
         if items.contains(.left) {
-            minX = .value(changeItemValue(target.value(.left), with: releation))
+            minX = .value(changeItemValue(target.value(.left, source), with: releation))
         }
         if items.contains(.right) {
-            maxX = .value(changeItemValue(target.value(.right), with: releation))
+            maxX = .value(changeItemValue(target.value(.right, source), with: releation))
         }
         if items.contains(.centerX) {
-            centerX = .value(changeItemValue(target.value(.centerX), with: releation))
+            centerX = .value(changeItemValue(target.value(.centerX, source), with: releation))
         }
         if items.contains(.top) {
-            minY = .value(changeItemValue(target.value(.top), with: releation))
+            minY = .value(changeItemValue(target.value(.top, source), with: releation))
         }
         if items.contains(.bottom) {
-            maxY = .value(changeItemValue(target.value(.bottom), with: releation))
+            maxY = .value(changeItemValue(target.value(.bottom, source), with: releation))
         }
         if items.contains(.centerY) {
-            centerY = .value(changeItemValue(target.value(.centerY), with: releation))
+            centerY = .value(changeItemValue(target.value(.centerY, source), with: releation))
         }
         if items.contains(.width) {
-            let w = changeItemValue(target.value(.width), with: releation)
+            let w = changeItemValue(target.value(.width, source), with: releation)
             if w < 0 {
                 fatalError("👿👿👿: width不能小于0")
             } else {
@@ -127,7 +127,7 @@ extension LayoutResultExtendable {
             }
         }
         if items.contains(.height) {
-            let h = changeItemValue(target.value(.height), with: releation)
+            let h = changeItemValue(target.value(.height, source), with: releation)
             if h < 0 {
                 fatalError("👿👿👿: height不能小于0")
             } else {

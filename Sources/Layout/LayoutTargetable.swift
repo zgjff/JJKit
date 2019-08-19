@@ -6,8 +6,8 @@ public protocol LayoutTargetable {}
 public protocol LayoutCGFloatTargetable: LayoutTargetable {}
 
 extension LayoutCGFloatTargetable {
-    internal var value: (LayoutItem) -> (CGFloat) {
-        return { item in
+    internal var value: (LayoutItem, LayoutViewStyle) -> (CGFloat) {
+        return { item, source in
             if let value = self as? CGFloat {
                 return value
             }
@@ -47,8 +47,32 @@ extension LayoutCGFloatTargetable {
                 case .left: return value.jj.left
                 case .right: return value.jj.right
                 case .bottom: return value.jj.bottom
-                case .centerX: return value.jj.centerX
-                case .centerY: return value.jj.centerY
+                case .centerX:
+                    if let value = self as? UIView {
+                        if case let .view(v) = source, v.superview === value {
+                            return value.jj.width * 0.5
+                        }
+                        return value.jj.centerX
+                    }
+                    if let value = self as? CALayer {
+                        if case let .layer(v) = source, v.superlayer === value {
+                            return value.jj.width * 0.5
+                        }
+                        return value.jj.centerX
+                    }
+                case .centerY:
+                    if let value = self as? UIView {
+                        if case let .view(v) = source, v.superview === value {
+                            return value.jj.height * 0.5
+                        }
+                        return value.jj.centerY
+                    }
+                    if let value = self as? CALayer {
+                        if case let .layer(v) = source, v.superlayer === value {
+                            return value.jj.height * 0.5
+                        }
+                        return value.jj.centerY
+                    }
                 default: return 0
                 }
             }
@@ -71,15 +95,21 @@ extension Int: LayoutCGFloatTargetable {}
 public protocol LayoutPointTargetable: LayoutTargetable {}
 
 extension LayoutPointTargetable {
-    internal var value: (LayoutItem) -> (CGPoint) {
-        return { item in
+    internal var value: (LayoutItem, LayoutViewStyle) -> (CGPoint) {
+        return { item , source in
             guard case .center = item else {
                 return .zero
             }
             if let value = self as? UIView {
+                if case let .view(v) = source, v.superview === value {
+                    return CGPoint(x: value.jj.width * 0.5, y: value.jj.height * 0.5)
+                }
                 return value.jj.center
             }
             if let value = self as? CALayer {
+                if case let .layer(v) = source, v.superlayer === value {
+                    return CGPoint(x: value.jj.width * 0.5, y: value.jj.height * 0.5)
+                }
                 return value.jj.center
             }
             if let value = self as? CGPoint {
