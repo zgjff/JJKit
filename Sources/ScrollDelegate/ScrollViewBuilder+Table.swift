@@ -1,26 +1,28 @@
 import UIKit
 
-public class TableViewBuilder: ScrollViewBuilder {
-    private unowned var _manager: TableDataDelegate! {
-        return manager as? TableDataDelegate
-    }
-    /// 是否设定了prefetchDataSource代理,默认是false
-    private var isConfigDataSourcePrefetching = false
-    internal func build(for tableView: UITableView) {
-        tableView.delegate = nil
-        tableView.dataSource = nil
-        tableView.delegate = _manager
-        tableView.dataSource = _manager
-        if #available(iOS 10.0, *) {
-            if isConfigDataSourcePrefetching {
-                tableView.prefetchDataSource = _manager
+extension ScrollViewBuilder {
+    public class Table: ScrollViewBuilder {
+        private unowned var _manager: ScrollViewBuilder.Table.TabManager! {
+            return manager as? ScrollViewBuilder.Table.TabManager
+        }
+        /// 是否设定了prefetchDataSource代理,默认是false
+        private var isConfigDataSourcePrefetching = false
+        internal func build(for tableView: UITableView) {
+            tableView.delegate = nil
+            tableView.dataSource = nil
+            tableView.delegate = _manager
+            tableView.dataSource = _manager
+            if #available(iOS 10.0, *) {
+                if isConfigDataSourcePrefetching {
+                    tableView.prefetchDataSource = _manager
+                }
             }
         }
     }
 }
 
 // MARK: - UITableViewDelegate
-public extension TableViewBuilder {
+public extension ScrollViewBuilder.Table {
     @discardableResult
     func willDisplayCell(_ block: @escaping (_ tableView: UITableView, _ cell: UITableViewCell, _ indexPath: IndexPath) -> ()) -> Self {
         _manager.willDisplayCell = block
@@ -227,7 +229,7 @@ public extension TableViewBuilder {
 }
 
 // MARK: - UITableViewDataSource
-public extension TableViewBuilder {
+public extension ScrollViewBuilder.Table {
     @discardableResult
     func numberOfRows(_ block: @escaping (_ tableView: UITableView, _ section: Int) -> Int) -> Self {
         _manager.numberOfRows = block
@@ -281,7 +283,7 @@ public extension TableViewBuilder {
 }
 
 // MARK: - UITableViewDataSourcePrefetching
-public extension TableViewBuilder {
+public extension ScrollViewBuilder.Table {
     @available(iOS 10.0, *)
     @discardableResult
     func prefetchRows(_ block: @escaping (_ tableView: UITableView, _ indexPaths: [IndexPath]) -> ()) -> Self {

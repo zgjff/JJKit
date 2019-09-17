@@ -11,29 +11,23 @@ import UIKit
 class SecondController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .cyan
-        let v = UITableView()
+        view.backgroundColor = .white
+        let v = UIView()
+        v.backgroundColor = .cyan
         v.jj.layout { make in
-            make.width.equalTo(view).offsetBy(-50)
+            make.width.equalTo(view).offsetBy(-100)
+            make.height.equalTo(200)
             make.center.equalTo(view)
-            make.height.equalTo(view).offsetBy(-150)
         }
-        v.contentSize = CGSize(width: v.jj.width, height: v.jj.height * 2)
-        v.backgroundColor = .orange
+        v.clipsToBounds = true
         view.addSubview(v)
-        v.jj.bind { make in
-            make.didScroll({ sc in
-                print(sc.contentOffset.y)
-            })
-            make.cellForRow({ tb, ip  in
-                let cell = tb.dequeueReusableCell()
-                cell.textLabel?.text = "\(ip.section)---\(ip.row)"
-                return cell
-            }).numberOfRows({ _, _ in
-                return 100
-            }).heightForRow({ _, ip in
-                return ip.row < 50 ? 44 : 64
-            })
+        let iv = UIImageView()
+        iv.backgroundColor = .green
+        v.addSubview(iv)
+        iv.jj.layout { make in
+            make.edges.equalTo(v)
         }
+        iv.contentMode = .scaleAspectFill
+        iv.image = UIImage(color: .red, size: CGSize(width: iv.jj.width + 200, height: iv.jj.height + 100))
     }
 }

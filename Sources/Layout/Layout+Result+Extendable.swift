@@ -1,33 +1,30 @@
 import CoreGraphics
 
-internal struct LayoutResultExtendable {
-    private var minX = Result.none
-    private var maxX = Result.none
-    private var centerX = Result.none
-    private var width = Result.none
-    
-    private var minY = Result.none
-    private var maxY = Result.none
-    private var centerY = Result.none
-    private var height = Result.none
+extension JJLayout.Result {
+    internal struct Extendable {
+        private var minX = JJLayout.Result.Result.none
+        private var maxX = JJLayout.Result.Result.none
+        private var centerX = JJLayout.Result.Result.none
+        private var width = JJLayout.Result.Result.none
+        
+        private var minY = JJLayout.Result.Result.none
+        private var maxY = JJLayout.Result.Result.none
+        private var centerY = JJLayout.Result.Result.none
+        private var height = JJLayout.Result.Result.none
+    }
 }
 
-private extension LayoutResultExtendable {
-    enum Result {
-        case none
-        case value(CGFloat)
-    }
-    
+private extension JJLayout.Result.Extendable {    
     enum ResultError: Error {
         case reason(String)
     }
 }
 
-extension LayoutResultExtendable {
+extension JJLayout.Result.Extendable {
     /// 根据LayoutBuilderDescribe来设置LayoutResultExtendable对应的值
     ///
     /// - Parameter desc: 界面元素的相关描述
-    mutating func setValue(with desc: LayoutBuilderDescribe) {
+    mutating func setValue(with desc: JJLayout.Builder.Describe) {
         switch desc.target {
         case .none:
             return
@@ -42,7 +39,7 @@ extension LayoutResultExtendable {
         }
     }
     
-    private mutating  func configWithPointTarget(source: LayoutViewStyle, target: LayoutPointTargetable, releation: LayoutTargetRelation.Style) {
+    private mutating  func configWithPointTarget(source: JJLayout.ViewStyle, target: LayoutPointTargetable, releation: JJLayout.TargetRelation.Style) {
         let point = target.value(.center, source)
         var x = point.x
         var y = point.y
@@ -60,7 +57,7 @@ extension LayoutResultExtendable {
         centerY = .value(y)
     }
     
-    private mutating  func configWithSizeTarget(_ target: LayoutSizeTargetable, releation: LayoutTargetRelation.Style) {
+    private mutating  func configWithSizeTarget(_ target: LayoutSizeTargetable, releation: JJLayout.TargetRelation.Style) {
         let size = target.value(.size)
         var w = size.width
         var h = size.height
@@ -78,7 +75,7 @@ extension LayoutResultExtendable {
         height = .value(h)
     }
     
-    private mutating  func configWithRectTarget(source: LayoutViewStyle, target: LayoutRectTargetable, releation: LayoutTargetRelation.Style) {
+    private mutating  func configWithRectTarget(source: JJLayout.ViewStyle, target: LayoutRectTargetable, releation: JJLayout.TargetRelation.Style) {
         let frame = target.value(.frame, source)
         var x = frame.minX
         var y = frame.minY
@@ -99,7 +96,7 @@ extension LayoutResultExtendable {
         height = .value(h)
     }
     
-    private mutating  func configWithCGFloat(for items: Set<LayoutItem>, source: LayoutViewStyle, target: LayoutCGFloatTargetable, releation: LayoutTargetRelation.Style) {
+    private mutating  func configWithCGFloat(for items: Set<JJLayout.Item>, source: JJLayout.ViewStyle, target: LayoutCGFloatTargetable, releation: JJLayout.TargetRelation.Style) {
         if items.contains(.left) {
             minX = .value(changeItemValue(target.value(.left, source), with: releation))
         }
@@ -136,7 +133,7 @@ extension LayoutResultExtendable {
         }
     }
     
-    private func changeItemValue(_ value: CGFloat, with releation: LayoutTargetRelation.Style) -> CGFloat {
+    private func changeItemValue(_ value: CGFloat, with releation: JJLayout.TargetRelation.Style) -> CGFloat {
         switch releation {
         case .equal:
             return value
@@ -148,7 +145,7 @@ extension LayoutResultExtendable {
     }
 }
 
-extension LayoutResultExtendable {
+extension JJLayout.Result.Extendable {
     /// 构建LayoutResult
     ///
     /// - Parameters:
@@ -158,8 +155,8 @@ extension LayoutResultExtendable {
     ///   - 再比如:设置有关y和height方便时,只设定bottom或者centerY,无法确定最终的frame,需要借助于原始size
     ///
     ///   - callFrom: 最初调用到此函数所在的文件及类型----调用layout(builder: )所在位置
-    mutating func frameResultWith(originalSize: CGSize, from callFrom: (String, Int)) -> LayoutResult {
-        var result = LayoutResult()
+    mutating func frameResultWith(originalSize: CGSize, from callFrom: (String, Int)) -> JJLayout.Result {
+        var result = JJLayout.Result()
         do {
             try determineXAndWidth(with: originalSize, for: &result)
             try determineYAndHeight(with: originalSize, for: &result)
@@ -170,7 +167,7 @@ extension LayoutResultExtendable {
         return result
     }
     
-    private mutating func determineXAndWidth(with originalSize: CGSize, for result: inout LayoutResult) throws {
+    private mutating func determineXAndWidth(with originalSize: CGSize, for result: inout JJLayout.Result) throws {
         switch (minX, centerX, maxX, width) {
         case (.none, .none, .none, .none):
             return
@@ -249,7 +246,7 @@ extension LayoutResultExtendable {
         }
     }
     
-    private mutating func determineYAndHeight(with originalSize: CGSize, for result: inout LayoutResult) throws {
+    private mutating func determineYAndHeight(with originalSize: CGSize, for result: inout JJLayout.Result) throws {
         switch (minY, centerY, maxY, height) {
         case (.none, .none, .none, .none):
             return

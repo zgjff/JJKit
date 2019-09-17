@@ -1,26 +1,27 @@
 import UIKit
-
-public class CollectionViewBuilder: ScrollViewBuilder {
-    private unowned var _manager: CollectionDataDelegate! {
-        return manager as? CollectionDataDelegate
-    }
-    /// 是否设定了prefetchDataSource代理,默认是false
-    private var isConfigDataSourcePrefetching = false
-    internal func build(for collectionView: UICollectionView) {
-        collectionView.delegate = nil
-        collectionView.dataSource = nil
-        collectionView.delegate = _manager
-        collectionView.dataSource = _manager
-        if #available(iOS 10.0, *) {
-            if isConfigDataSourcePrefetching {
-                collectionView.prefetchDataSource = _manager
+extension ScrollViewBuilder {
+    public class Collection: ScrollViewBuilder {
+        private unowned var _manager: ScrollViewBuilder.Collection.ColManager! {
+            return manager as? ScrollViewBuilder.Collection.ColManager
+        }
+        /// 是否设定了prefetchDataSource代理,默认是false
+        private var isConfigDataSourcePrefetching = false
+        internal func build(for collectionView: UICollectionView) {
+            collectionView.delegate = nil
+            collectionView.dataSource = nil
+            collectionView.delegate = _manager
+            collectionView.dataSource = _manager
+            if #available(iOS 10.0, *) {
+                if isConfigDataSourcePrefetching {
+                    collectionView.prefetchDataSource = _manager
+                }
             }
         }
     }
 }
 
 // MARK: - UICollectionViewDelegate
-public extension CollectionViewBuilder {
+public extension ScrollViewBuilder.Collection {
     @discardableResult
     func shouldHighlightItem(_ block: @escaping (_ collectionView: UICollectionView, _ indexPath: IndexPath) -> Bool) -> Self {
         _manager.shouldHighlightItem = block
@@ -135,7 +136,7 @@ public extension CollectionViewBuilder {
 }
 
 // MARK: - UICollectionViewDataSource
-public extension CollectionViewBuilder {
+public extension ScrollViewBuilder.Collection {
     @discardableResult
     func numberOfItems(_ block: @escaping (_ collectionView: UICollectionView, _ section: Int) -> Int) -> Self {
         _manager.numberOfItems = block
@@ -152,7 +153,7 @@ public extension CollectionViewBuilder {
         return self
     }
     @discardableResult
-    func viewForSupplementaryElement(_ block: @escaping (_ collectionView: UICollectionView, _ kind: UICollectionElementKind, _ indexPath: IndexPath) -> UICollectionViewCell) -> Self {
+    func viewForSupplementaryElement(_ block: @escaping (_ collectionView: UICollectionView, _ kind: UICollectionElementKind, _ indexPath: IndexPath) -> UICollectionReusableView) -> Self {
         _manager.viewForSupplementaryElement = block
         return self
     }
@@ -179,7 +180,7 @@ public extension CollectionViewBuilder {
 }
 
 // MARK: - UICollectionViewDataSourcePrefetching
-public extension CollectionViewBuilder {
+public extension ScrollViewBuilder.Collection {
     @available(iOS 10.0, *)
     @discardableResult
     func prefetchItems(_ block: @escaping (_ collectionView: UICollectionView, _ indexPaths: [IndexPath]) -> ()) -> Self {
@@ -197,7 +198,7 @@ public extension CollectionViewBuilder {
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
-public extension CollectionViewBuilder {
+public extension ScrollViewBuilder.Collection {
     @discardableResult
     func sizeForItem(_ block: @escaping (_ collectionView: UICollectionView, _ layout: UICollectionViewLayout, _ indexPath: IndexPath) -> CGSize) -> Self {
         _manager.sizeForItem = block

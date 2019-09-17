@@ -69,12 +69,12 @@ extension JJ where Object: UITableView {
     /// ⚠️注意1:调用此方法会将之前设定的delegate/dataSource/prefetchDataSource无效
     ///
     /// ⚠️注意2:设置build对应代理闭包的时候要谨防循环引用------请查看最上方说明
-    public func bind(_ build: (TableViewBuilder) -> ()) {
-        let builder: TableViewBuilder
-        if let b = objc_getAssociatedObject(object, &JJ_ScrollView_Builder) as? TableViewBuilder {
+    public func bind(_ build: (ScrollViewBuilder.Table) -> ()) {
+        let builder: ScrollViewBuilder.Table
+        if let b = objc_getAssociatedObject(object, &JJ_ScrollView_Builder) as? ScrollViewBuilder.Table {
             builder = b
         } else {
-            let b = TableViewBuilder(manager: TableDataDelegate())
+            let b = ScrollViewBuilder.Table(manager: ScrollViewBuilder.Table.TabManager())
             objc_setAssociatedObject(object, &JJ_ScrollView_Builder, b, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             builder = b
         }
@@ -91,12 +91,12 @@ extension JJ where Object: UICollectionView {
     /// ⚠️注意1:调用此方法会将之前设定的delegate/dataSource/prefetchDataSource/CollectionDataDelegate无效
     ///
     /// ⚠️注意2:设置build对应代理闭包的时候要谨防循环引用------请查看最上方说明
-    public func bind(_ build: (CollectionViewBuilder) -> ()) {
-        let builder: CollectionViewBuilder
-        if let b = objc_getAssociatedObject(object, &JJ_ScrollView_Builder) as? CollectionViewBuilder {
+    public func bind(_ build: (ScrollViewBuilder.Collection) -> ()) {
+        let builder: ScrollViewBuilder.Collection
+        if let b = objc_getAssociatedObject(object, &JJ_ScrollView_Builder) as? ScrollViewBuilder.Collection {
             builder = b
         } else {
-            let b = CollectionViewBuilder(manager: CollectionDataDelegate())
+            let b = ScrollViewBuilder.Collection(manager: ScrollViewBuilder.Collection.ColManager())
             objc_setAssociatedObject(object, &JJ_ScrollView_Builder, b, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             builder = b
         }
@@ -118,7 +118,7 @@ extension JJ where Object: UIScrollView {
         if let b = objc_getAssociatedObject(object, &JJ_ScrollView_Builder) as? ScrollViewBuilder {
             builder = b
         } else {
-            let b = ScrollViewBuilder(manager: ScrollDelegateManager())
+            let b = ScrollViewBuilder(manager: ScrollViewBuilder.Manager())
             objc_setAssociatedObject(object, &JJ_ScrollView_Builder, b, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             builder = b
         }

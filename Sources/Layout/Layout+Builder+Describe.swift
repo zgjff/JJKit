@@ -1,35 +1,36 @@
 import UIKit
 
-/// 设置view/layer的目标类型
-internal class LayoutBuilderDescribe {
-    /// 源目标
-    let source: LayoutViewStyle
-    /// 要设定的item集合
-    private(set) var items: Set<LayoutItem> = []
-    /// 目标
-    private(set) var target: TargetStyle = .none
-    /// 关系
-    private(set) var releation: LayoutTargetRelation.Style = .equal
-    
-    init(source: LayoutViewStyle) {
-        self.source = source
-    }
-
-    enum TargetStyle {
-        case none
-        case float(LayoutCGFloatTargetable)
-        case point(LayoutPointTargetable)
-        case size(LayoutSizeTargetable)
-        case frame(LayoutRectTargetable)
-    }
-    
-    enum ItemsError: Error {
-        case reason(String)
+extension JJLayout.Builder {
+    internal class Describe {
+        /// 源目标
+        let source: JJLayout.ViewStyle
+        /// 要设定的item集合
+        private(set) var items: Set<JJLayout.Item> = []
+        /// 目标
+        private(set) var target: TargetStyle = .none
+        /// 关系
+        private(set) var releation: JJLayout.TargetRelation.Style = .equal
+        
+        init(source: JJLayout.ViewStyle) {
+            self.source = source
+        }
+        
+        enum TargetStyle {
+            case none
+            case float(LayoutCGFloatTargetable)
+            case point(LayoutPointTargetable)
+            case size(LayoutSizeTargetable)
+            case frame(LayoutRectTargetable)
+        }
+        
+        enum ItemsError: Error {
+            case reason(String)
+        }
     }
 }
 
-internal extension LayoutBuilderDescribe {
-    func append(_ item: LayoutItem) {
+internal extension JJLayout.Builder.Describe {
+    func append(_ item: JJLayout.Item) {
         items.insert(item)
     }
     
@@ -41,18 +42,16 @@ internal extension LayoutBuilderDescribe {
         do {
             try check(with: t)
             self.target = target
-        } catch LayoutBuilderDescribe.ItemsError.reason(let err) {
+        } catch JJLayout.Builder.Describe.ItemsError.reason(let err) {
             let filestr = callFrom.0.split(separator: "/").last ?? ""
             fatalError("👿👿👿👿👿\(filestr):\(callFrom.1)👿👿👿👿👿 \(err) 👿👿👿👿👿")
         } catch {}
     }
     
-    func setNewRelation(_ releation: LayoutTargetRelation.Style) {
+    func setNewRelation(_ releation: JJLayout.TargetRelation.Style) {
         self.releation = releation
     }
-}
-
-internal extension LayoutBuilderDescribe {
+    
     /// 检查所设置的属性是否合法
     ///
     /// - Parameter target: 设置界面元素item的参照物
@@ -71,22 +70,22 @@ internal extension LayoutBuilderDescribe {
         if t is UIView || t is CALayer {
             return
         }
-        if LayoutItem.lrw_Disharmony.isSubset(of: items) {
+        if JJLayout.Item.lrw_Disharmony.isSubset(of: items) {
             throw ItemsError.reason("[.left, .right, .width] 不能同时设置为同一数值")
         }
-        if LayoutItem.lcxw_Disharmony.isSubset(of: items) {
+        if JJLayout.Item.lcxw_Disharmony.isSubset(of: items) {
             throw ItemsError.reason("[.right, .centerX, .width] 不能同时设置为同一数值")
         }
-        if LayoutItem.rcxw_Disharmony.isSubset(of: items) {
+        if JJLayout.Item.rcxw_Disharmony.isSubset(of: items) {
             throw ItemsError.reason("[.right, .centerX, .width] 不能同时设置为同一数值")
         }
-        if LayoutItem.tbh_Disharmony.isSubset(of: items) {
+        if JJLayout.Item.tbh_Disharmony.isSubset(of: items) {
             throw ItemsError.reason("[.top, .bottom, .height] 不能同时设置为同一数值")
         }
-        if LayoutItem.tbh_Disharmony.isSubset(of: items) {
+        if JJLayout.Item.tbh_Disharmony.isSubset(of: items) {
             throw ItemsError.reason("[.top, .centerY, .height] 不能同时设置为同一数值")
         }
-        if LayoutItem.tbh_Disharmony.isSubset(of: items) {
+        if JJLayout.Item.tbh_Disharmony.isSubset(of: items) {
             throw ItemsError.reason("[.bottom, .centerY, .height] 不能同时设置为同一数值")
         }
     }

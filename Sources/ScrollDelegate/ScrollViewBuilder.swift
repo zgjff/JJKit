@@ -1,8 +1,8 @@
 import UIKit
 
 public class ScrollViewBuilder {
-    internal var manager: ScrollDelegateManager?
-    internal required init(manager: ScrollDelegateManager) {
+    internal var manager: ScrollViewBuilder.Manager?
+    internal required init(manager: ScrollViewBuilder.Manager) {
         self.manager = manager
     }
     internal func build(for scrollView: UIScrollView) {

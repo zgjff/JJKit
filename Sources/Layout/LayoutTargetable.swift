@@ -6,7 +6,7 @@ public protocol LayoutTargetable {}
 public protocol LayoutCGFloatTargetable: LayoutTargetable {}
 
 extension LayoutCGFloatTargetable {
-    internal var value: (LayoutItem, LayoutViewStyle) -> (CGFloat) {
+    internal var value: (JJLayout.Item, JJLayout.ViewStyle) -> (CGFloat) {
         return { item, source in
             if let target = self as? CGFloat {
                 return target
@@ -143,7 +143,7 @@ extension Int: LayoutCGFloatTargetable {}
 public protocol LayoutPointTargetable: LayoutTargetable {}
 
 extension LayoutPointTargetable {
-    internal var value: (LayoutItem, LayoutViewStyle) -> (CGPoint) {
+    internal var value: (JJLayout.Item, JJLayout.ViewStyle) -> (CGPoint) {
         return { item , source in
             guard case .center = item else {
                 return .zero
@@ -182,7 +182,7 @@ extension CGPoint: LayoutPointTargetable {}
 public protocol LayoutSizeTargetable: LayoutTargetable {}
 
 extension LayoutSizeTargetable {
-    internal var value: (LayoutItem) -> (CGSize) {
+    internal var value: (JJLayout.Item) -> (CGSize) {
         return { item in
             guard case .size = item else {
                 return .zero
@@ -211,7 +211,7 @@ extension CGSize: LayoutSizeTargetable {}
 public protocol LayoutRectTargetable: LayoutTargetable {}
 
 extension LayoutRectTargetable {
-    internal var value: (LayoutItem, LayoutViewStyle) -> (CGRect) {
+    internal var value: (JJLayout.Item, JJLayout.ViewStyle) -> (CGRect) {
         return { item, source in
             guard case .frame = item else {
                 return .zero

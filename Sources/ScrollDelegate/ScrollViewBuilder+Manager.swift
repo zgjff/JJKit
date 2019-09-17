@@ -1,23 +1,25 @@
 import UIKit
 
-internal class ScrollDelegateManager: NSObject {    
-    internal var didScroll: ((UIScrollView) -> ())?
-    internal var didZoom: ((UIScrollView) -> ())?
-    internal var willBeginDragging: ((UIScrollView) -> ())?
-    internal var willEndDragging: ((UIScrollView, CGPoint, UnsafeMutablePointer<CGPoint>) -> ())?
-    internal var didEndDragging: ((UIScrollView, Bool) -> ())?
-    internal var willBeginDecelerating: ((UIScrollView) -> ())?
-    internal var didEndDecelerating: ((UIScrollView) -> ())?
-    internal var didEndScrollingAnimation: ((UIScrollView) -> ())?
-    internal var viewForZooming: ((UIScrollView) -> UIView?)?
-    internal var willBeginZooming: ((UIScrollView, UIView?) -> ())?
-    internal var didEndZooming: ((UIScrollView, UIView?, CGFloat) -> ())?
-    internal var shouldScrollToTop: ((UIScrollView) -> Bool)?
-    internal var didScrollToTop: ((UIScrollView) -> ())?
-    internal var didChangeAdjustedContentInset: ((UIScrollView) -> ())?
+extension ScrollViewBuilder {
+    internal class Manager: NSObject {
+        internal var didScroll: ((UIScrollView) -> ())?
+        internal var didZoom: ((UIScrollView) -> ())?
+        internal var willBeginDragging: ((UIScrollView) -> ())?
+        internal var willEndDragging: ((UIScrollView, CGPoint, UnsafeMutablePointer<CGPoint>) -> ())?
+        internal var didEndDragging: ((UIScrollView, Bool) -> ())?
+        internal var willBeginDecelerating: ((UIScrollView) -> ())?
+        internal var didEndDecelerating: ((UIScrollView) -> ())?
+        internal var didEndScrollingAnimation: ((UIScrollView) -> ())?
+        internal var viewForZooming: ((UIScrollView) -> UIView?)?
+        internal var willBeginZooming: ((UIScrollView, UIView?) -> ())?
+        internal var didEndZooming: ((UIScrollView, UIView?, CGFloat) -> ())?
+        internal var shouldScrollToTop: ((UIScrollView) -> Bool)?
+        internal var didScrollToTop: ((UIScrollView) -> ())?
+        internal var didChangeAdjustedContentInset: ((UIScrollView) -> ())?
+    }
 }
 
-extension ScrollDelegateManager: UIScrollViewDelegate {
+extension ScrollViewBuilder.Manager: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         didScroll?(scrollView)
     }

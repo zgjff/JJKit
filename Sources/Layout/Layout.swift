@@ -21,8 +21,8 @@ extension JJ where Object: UIView {
     ///         make.height.equalTo(view).multipliedBy(0.5)
     ///     }
     ///
-    public func layout(file: String = #file, line: Int = #line, build: (LayoutBuilder) -> ()) {
-        let builder = LayoutBuilder(style: .view(object))
+    public func layout(file: String = #file, line: Int = #line, build: (JJLayout.Builder) -> ()) {
+        let builder = JJLayout.Builder(style: .view(object))
         build(builder)
         builder.build(from: (file, line))
     }
@@ -49,26 +49,32 @@ extension JJ where Object: CALayer {
     ///         make.height.equalTo(view).multipliedBy(0.5)
     ///     }
     ///
-    public func layout(file: String = #file, line: Int = #line, build: (LayoutBuilder) -> ()) {
-        let builder = LayoutBuilder(style: .layer(object))
+    public func layout(file: String = #file, line: Int = #line, build: (JJLayout.Builder) -> ()) {
+        let builder = JJLayout.Builder(style: .layer(object))
         build(builder)
         builder.build(from: (file, line))
     }
 }
 
+/// 命名空间Layout
+public struct JJLayout {
+    private init() {}
+}
 
-/// 布局元素的类型
-///
-/// - view: UIView及其子类
-/// - layer: CALayer及其子类
-internal enum LayoutViewStyle {
-    case view(UIView)
-    case layer(CALayer)
-    
-    var size: CGSize {
-        switch self {
-        case .view(let v): return v.jj.size
-        case .layer(let l): return l.jj.size
+extension JJLayout {
+    /// 布局元素的类型
+    ///
+    /// - view: UIView及其子类
+    /// - layer: CALayer及其子类
+    internal enum ViewStyle {
+        case view(UIView)
+        case layer(CALayer)
+        
+        var size: CGSize {
+            switch self {
+            case .view(let v): return v.jj.size
+            case .layer(let l): return l.jj.size
+            }
         }
     }
 }

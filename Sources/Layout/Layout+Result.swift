@@ -1,27 +1,30 @@
 import CoreGraphics
 
-/// 布局元素的结果
-///
-/// 与CGRext的构造函数元素相似
-/// - x: 枚举类型: 未设置/value
-/// - y: 枚举类型: 未设置/value
-/// - width: 枚举类型: 未设置/value
-/// - height: 枚举类型: 未设置/value
-internal struct LayoutResult {
-    private var x = Result.none
-    private var y = Result.none
-    private var width = Result.none
-    private var height = Result.none
+extension JJLayout {
+    /// 布局元素的结果
+    ///
+    /// 与CGRext的构造函数元素相似
+    /// - x: 枚举类型: 未设置/value
+    /// - y: 枚举类型: 未设置/value
+    /// - width: 枚举类型: 未设置/value
+    /// - height: 枚举类型: 未设置/value
+    internal struct Result {
+        private var x = Result.none
+        private var y = Result.none
+        private var width = Result.none
+        private var height = Result.none
+    }
 }
 
-extension LayoutResult {
+extension JJLayout.Result {
     enum Result {
         case none
         case value(CGFloat)
     }
 }
 
-internal extension LayoutResult {
+
+internal extension JJLayout.Result {
     /// 设置frame的x值
     mutating func setX(_ value: CGFloat) {
         x = .value(value)
@@ -41,7 +44,7 @@ internal extension LayoutResult {
     /// 计算界面元素的最终frame
     ///
     /// - Parameter view: 要布局的界面元素(view/calyer)
-    func calculateFrame(for view: LayoutViewStyle) {
+    func calculateFrame(for view: JJLayout.ViewStyle) {
         var fx, fy, fw, fh: CGFloat
         switch view {
         case .view(let v):

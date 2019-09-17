@@ -15,7 +15,7 @@ final public class GCDTimer {
     
     private var state: State = .suspended
     private var timer: DispatchSourceTimer?
-    private let timeQueue = DispatchQueue(label: "com.DispatchSource.timer", attributes: .concurrent)
+    private let timeQueue = DispatchQueue(label: "com.DispatchSource.JJGCDTimer", attributes: .concurrent)
     
     deinit {
         cancel()
@@ -33,7 +33,15 @@ extension GCDTimer {
     public func resume(after seconds: TimeInterval = 0) {
         guard timer != nil else { return }
         guard state != .resumed else { return }
+        if seconds == 0 {
+            timer?.resume()
+            state = .resumed
+            return
+        }
         DispatchQueue.main.asyncAfter(deadline: .now() + seconds) { [weak self] in
+            if self?.timer == nil || self?.state == .resumed { // 为了防止在等待seconds期间,timer被提前释放
+                return
+            }
             self?.timer?.resume()
             self?.state = .resumed
         }

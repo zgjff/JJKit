@@ -1,64 +1,65 @@
 import UIKit
 
-internal class CollectionDataDelegate: ScrollDelegateManager {
-    // MARK: - UICollectionViewDelegate
-    internal var shouldHighlightItem: ((UICollectionView, IndexPath) -> Bool)?
-    internal var didHighlightItem: ((UICollectionView, IndexPath) -> ())?
-    internal var didUnhighlightItem: ((UICollectionView, IndexPath) -> ())?
-    internal var shouldSelectItem: ((UICollectionView, IndexPath) -> Bool)?
-    internal var shouldDeselectItem: ((UICollectionView, IndexPath) -> Bool)?
-    internal var didSelectItem: ((UICollectionView, IndexPath) -> ())?
-    internal var didDeselectItem: ((UICollectionView, IndexPath) -> ())?
-    internal var willDisplayCell: ((UICollectionView, UICollectionViewCell, IndexPath) -> ())?
-    internal var willDisplaySupplementaryView: ((UICollectionView, UICollectionReusableView, UICollectionElementKind, IndexPath) -> ())?
-    internal var didEndDisplayingCell: ((UICollectionView, UICollectionViewCell, IndexPath) -> ())?
-    internal var didEndDisplayingSupplementaryView: ((UICollectionView, UICollectionReusableView, UICollectionElementKind, IndexPath) -> ())?
-    internal var shouldShowMenuForItem: ((UICollectionView, IndexPath) -> Bool)?
-    internal var canPerformAction: ((UICollectionView, Selector, IndexPath, Any?) -> Bool)?
-    internal var performAction: ((UICollectionView, Selector, IndexPath, Any?) -> ())?
-    internal var transitionLayout: ((UICollectionView, UICollectionViewLayout, UICollectionViewLayout) -> UICollectionViewTransitionLayout)?
-    internal var canFocusItem: ((UICollectionView, IndexPath) -> Bool)?
-    internal var shouldUpdateFocus: ((UICollectionView, UICollectionViewFocusUpdateContext) -> Bool)?
-    internal var didUpdateFocus: ((UICollectionView, UICollectionViewFocusUpdateContext, UIFocusAnimationCoordinator) -> ())?
-    internal var indexPathForPreferredFocusedView: ((UICollectionView) -> IndexPath?)?
-    internal var targetContentOffset: ((UICollectionView, CGPoint) -> CGPoint)?
-    internal var targetIndexPathForMove: ((UICollectionView, IndexPath, IndexPath) -> IndexPath)?
-    private var _shouldSpringLoadItem: Any?
-    @available(iOS 11, *)
-    internal var shouldSpringLoadItem: ((UICollectionView, IndexPath, UISpringLoadedInteractionContext) -> Bool)? {
-        get {
-            return _shouldSpringLoadItem as? (UICollectionView, IndexPath, UISpringLoadedInteractionContext) -> Bool
+extension ScrollViewBuilder.Collection {
+    internal class ColManager: ScrollViewBuilder.Manager {
+        // MARK: - UICollectionViewDelegate
+        internal var shouldHighlightItem: ((UICollectionView, IndexPath) -> Bool)?
+        internal var didHighlightItem: ((UICollectionView, IndexPath) -> ())?
+        internal var didUnhighlightItem: ((UICollectionView, IndexPath) -> ())?
+        internal var shouldSelectItem: ((UICollectionView, IndexPath) -> Bool)?
+        internal var shouldDeselectItem: ((UICollectionView, IndexPath) -> Bool)?
+        internal var didSelectItem: ((UICollectionView, IndexPath) -> ())?
+        internal var didDeselectItem: ((UICollectionView, IndexPath) -> ())?
+        internal var willDisplayCell: ((UICollectionView, UICollectionViewCell, IndexPath) -> ())?
+        internal var willDisplaySupplementaryView: ((UICollectionView, UICollectionReusableView, UICollectionElementKind, IndexPath) -> ())?
+        internal var didEndDisplayingCell: ((UICollectionView, UICollectionViewCell, IndexPath) -> ())?
+        internal var didEndDisplayingSupplementaryView: ((UICollectionView, UICollectionReusableView, UICollectionElementKind, IndexPath) -> ())?
+        internal var shouldShowMenuForItem: ((UICollectionView, IndexPath) -> Bool)?
+        internal var canPerformAction: ((UICollectionView, Selector, IndexPath, Any?) -> Bool)?
+        internal var performAction: ((UICollectionView, Selector, IndexPath, Any?) -> ())?
+        internal var transitionLayout: ((UICollectionView, UICollectionViewLayout, UICollectionViewLayout) -> UICollectionViewTransitionLayout)?
+        internal var canFocusItem: ((UICollectionView, IndexPath) -> Bool)?
+        internal var shouldUpdateFocus: ((UICollectionView, UICollectionViewFocusUpdateContext) -> Bool)?
+        internal var didUpdateFocus: ((UICollectionView, UICollectionViewFocusUpdateContext, UIFocusAnimationCoordinator) -> ())?
+        internal var indexPathForPreferredFocusedView: ((UICollectionView) -> IndexPath?)?
+        internal var targetContentOffset: ((UICollectionView, CGPoint) -> CGPoint)?
+        internal var targetIndexPathForMove: ((UICollectionView, IndexPath, IndexPath) -> IndexPath)?
+        private var _shouldSpringLoadItem: Any?
+        @available(iOS 11, *)
+        internal var shouldSpringLoadItem: ((UICollectionView, IndexPath, UISpringLoadedInteractionContext) -> Bool)? {
+            get {
+                return _shouldSpringLoadItem as? (UICollectionView, IndexPath, UISpringLoadedInteractionContext) -> Bool
+            }
+            set {
+                _shouldSpringLoadItem = newValue
+            }
         }
-        set {
-            _shouldSpringLoadItem = newValue
-        }
+        // MARK: - UICollectionViewDataSource
+        internal var numberOfItems: ((UICollectionView, Int) -> Int)?
+        internal var numberOfSections: ((UICollectionView) -> Int)?
+        internal var cellForItem: ((UICollectionView, IndexPath) -> UICollectionViewCell)?
+        internal var viewForSupplementaryElement: ((UICollectionView, UICollectionElementKind, IndexPath) -> UICollectionReusableView)?
+        internal var canMoveItem: ((UICollectionView, IndexPath) -> Bool)?
+        internal var moveItem: ((UICollectionView, IndexPath, IndexPath) -> ())?
+        internal var indexTitles: ((UICollectionView) -> [String]?)?
+        internal var indexPathForIndexTitle: ((UICollectionView, String, Int) -> IndexPath)?
+        
+        // MARK: - UICollectionViewDataSourcePrefetching
+        internal var prefetchItems: ((UICollectionView, [IndexPath]) -> ())?
+        internal var cancelPrefetchingForItems: ((UICollectionView, [IndexPath]) -> ())?
+        
+        // MARK: - UICollectionViewDelegateFlowLayout
+        internal var sizeForItem: ((UICollectionView, UICollectionViewLayout, IndexPath) -> CGSize)?
+        internal var insetForSection: ((UICollectionView, UICollectionViewLayout, Int) -> UIEdgeInsets)?
+        internal var minimumLineSpacingForSection: ((UICollectionView, UICollectionViewLayout, Int) -> CGFloat)?
+        internal var minimumInteritemSpacingForSection: ((UICollectionView, UICollectionViewLayout, Int) -> CGFloat)?
+        internal var referenceSizeForHeader: ((UICollectionView, UICollectionViewLayout, Int) -> CGSize)?
+        internal var referenceSizeForFooter: ((UICollectionView, UICollectionViewLayout, Int) -> CGSize)?
     }
-    
-    // MARK: - UICollectionViewDataSource
-    internal var numberOfItems: ((UICollectionView, Int) -> Int)?
-    internal var numberOfSections: ((UICollectionView) -> Int)?
-    internal var cellForItem: ((UICollectionView, IndexPath) -> UICollectionViewCell)?
-    internal var viewForSupplementaryElement: ((UICollectionView, UICollectionElementKind, IndexPath) -> UICollectionReusableView)?
-    internal var canMoveItem: ((UICollectionView, IndexPath) -> Bool)?
-    internal var moveItem: ((UICollectionView, IndexPath, IndexPath) -> ())?
-    internal var indexTitles: ((UICollectionView) -> [String]?)?
-    internal var indexPathForIndexTitle: ((UICollectionView, String, Int) -> IndexPath)?
-    
-    // MARK: - UICollectionViewDataSourcePrefetching
-    internal var prefetchItems: ((UICollectionView, [IndexPath]) -> ())?
-    internal var cancelPrefetchingForItems: ((UICollectionView, [IndexPath]) -> ())?
-    
-    // MARK: - UICollectionViewDelegateFlowLayout
-    internal var sizeForItem: ((UICollectionView, UICollectionViewLayout, IndexPath) -> CGSize)?
-    internal var insetForSection: ((UICollectionView, UICollectionViewLayout, Int) -> UIEdgeInsets)?
-    internal var minimumLineSpacingForSection: ((UICollectionView, UICollectionViewLayout, Int) -> CGFloat)?
-    internal var minimumInteritemSpacingForSection: ((UICollectionView, UICollectionViewLayout, Int) -> CGFloat)?
-    internal var referenceSizeForHeader: ((UICollectionView, UICollectionViewLayout, Int) -> CGSize)?
-    internal var referenceSizeForFooter: ((UICollectionView, UICollectionViewLayout, Int) -> CGSize)?
 }
 
 // MARK: - UICollectionViewDelegate
-extension CollectionDataDelegate: UICollectionViewDelegate {
+extension ScrollViewBuilder.Collection.ColManager: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
         return shouldHighlightItem?(collectionView, indexPath) ?? true
     }
@@ -131,7 +132,7 @@ extension CollectionDataDelegate: UICollectionViewDelegate {
 }
 
 // MARK: - UICollectionViewDataSource
-extension CollectionDataDelegate: UICollectionViewDataSource {
+extension ScrollViewBuilder.Collection.ColManager: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return numberOfItems?(collectionView, section) ?? 0
     }
@@ -159,7 +160,7 @@ extension CollectionDataDelegate: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDataSourcePrefetching
-extension CollectionDataDelegate: UICollectionViewDataSourcePrefetching {
+extension ScrollViewBuilder.Collection.ColManager: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         prefetchItems?(collectionView, indexPaths)
     }
@@ -169,7 +170,7 @@ extension CollectionDataDelegate: UICollectionViewDataSourcePrefetching {
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
-extension CollectionDataDelegate: UICollectionViewDelegateFlowLayout {
+extension ScrollViewBuilder.Collection.ColManager: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if let sfi = sizeForItem {
             return sfi(collectionView, collectionViewLayout, indexPath)

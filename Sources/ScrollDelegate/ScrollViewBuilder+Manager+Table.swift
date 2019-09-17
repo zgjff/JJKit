@@ -1,94 +1,96 @@
 import UIKit
 
-internal class TableDataDelegate: ScrollDelegateManager {
-    // MARK: - UITableViewDelegate
-    internal var willDisplayCell: ((UITableView, UITableViewCell, IndexPath) -> ())?
-    internal var willDisplayHeaderView: ((UITableView, UIView, Int) -> ())?
-    internal var willDisplayFooterView: ((UITableView, UIView, Int) -> ())?
-    internal var didEndDisplayingCell: ((UITableView, UITableViewCell, IndexPath) -> ())?
-    internal var didEndDisplayingHeaderView: ((UITableView, UIView, Int) -> ())?
-    internal var didEndDisplayingFooterView: ((UITableView, UIView, Int) -> ())?
-    internal var heightForRow: ((UITableView, IndexPath) -> CGFloat)?
-    internal var heightForHeader: ((UITableView, Int) -> CGFloat)?
-    internal var heightForFooter: ((UITableView, Int) -> CGFloat)?
-    internal var estimatedHeightForRow: ((UITableView, IndexPath) -> CGFloat)?
-    internal var estimatedHeightForHeader: ((UITableView, Int) -> CGFloat)?
-    internal var estimatedHeightForFooter: ((UITableView, Int) -> CGFloat)?
-    internal var viewForHeader: ((UITableView, Int) -> UIView?)?
-    internal var viewForFooter: ((UITableView, Int) -> UIView?)?
-    internal var accessoryButtonTappedForRow: ((UITableView, IndexPath) -> ())?
-    internal var shouldHighlightRow: ((UITableView, IndexPath) -> Bool)?
-    internal var didHighlightRow: ((UITableView, IndexPath) -> ())?
-    internal var didUnhighlightRow: ((UITableView, IndexPath) -> ())?
-    internal var willSelectRow: ((UITableView, IndexPath) -> IndexPath?)?
-    internal var willDeselectRow: ((UITableView, IndexPath) -> IndexPath?)?
-    internal var didSelectRow: ((UITableView, IndexPath) -> ())?
-    internal var didDeselectRow: ((UITableView, IndexPath) -> ())?
-    internal var editingStyleForRow: ((UITableView, IndexPath) -> UITableViewCell.EditingStyle)?
-    internal var titleForDeleteConfirmationButtonForRow: ((UITableView, IndexPath) -> String?)?
-    internal var editActionsForRow: ((UITableView, IndexPath) -> [UITableViewRowAction]?)?
-    private var _leadingSwipeActionsConfigurationForRow: Any?
-    @available(iOS 11, *)
-    internal var leadingSwipeActionsConfigurationForRow: ((UITableView, IndexPath) -> UISwipeActionsConfiguration?)? {
-        get {
-            return _leadingSwipeActionsConfigurationForRow as? (UITableView, IndexPath) -> UISwipeActionsConfiguration?
+extension ScrollViewBuilder.Table {
+    internal class TabManager: ScrollViewBuilder.Manager {
+        // MARK: - UITableViewDelegate
+        internal var willDisplayCell: ((UITableView, UITableViewCell, IndexPath) -> ())?
+        internal var willDisplayHeaderView: ((UITableView, UIView, Int) -> ())?
+        internal var willDisplayFooterView: ((UITableView, UIView, Int) -> ())?
+        internal var didEndDisplayingCell: ((UITableView, UITableViewCell, IndexPath) -> ())?
+        internal var didEndDisplayingHeaderView: ((UITableView, UIView, Int) -> ())?
+        internal var didEndDisplayingFooterView: ((UITableView, UIView, Int) -> ())?
+        internal var heightForRow: ((UITableView, IndexPath) -> CGFloat)?
+        internal var heightForHeader: ((UITableView, Int) -> CGFloat)?
+        internal var heightForFooter: ((UITableView, Int) -> CGFloat)?
+        internal var estimatedHeightForRow: ((UITableView, IndexPath) -> CGFloat)?
+        internal var estimatedHeightForHeader: ((UITableView, Int) -> CGFloat)?
+        internal var estimatedHeightForFooter: ((UITableView, Int) -> CGFloat)?
+        internal var viewForHeader: ((UITableView, Int) -> UIView?)?
+        internal var viewForFooter: ((UITableView, Int) -> UIView?)?
+        internal var accessoryButtonTappedForRow: ((UITableView, IndexPath) -> ())?
+        internal var shouldHighlightRow: ((UITableView, IndexPath) -> Bool)?
+        internal var didHighlightRow: ((UITableView, IndexPath) -> ())?
+        internal var didUnhighlightRow: ((UITableView, IndexPath) -> ())?
+        internal var willSelectRow: ((UITableView, IndexPath) -> IndexPath?)?
+        internal var willDeselectRow: ((UITableView, IndexPath) -> IndexPath?)?
+        internal var didSelectRow: ((UITableView, IndexPath) -> ())?
+        internal var didDeselectRow: ((UITableView, IndexPath) -> ())?
+        internal var editingStyleForRow: ((UITableView, IndexPath) -> UITableViewCell.EditingStyle)?
+        internal var titleForDeleteConfirmationButtonForRow: ((UITableView, IndexPath) -> String?)?
+        internal var editActionsForRow: ((UITableView, IndexPath) -> [UITableViewRowAction]?)?
+        private var _leadingSwipeActionsConfigurationForRow: Any?
+        @available(iOS 11, *)
+        internal var leadingSwipeActionsConfigurationForRow: ((UITableView, IndexPath) -> UISwipeActionsConfiguration?)? {
+            get {
+                return _leadingSwipeActionsConfigurationForRow as? (UITableView, IndexPath) -> UISwipeActionsConfiguration?
+            }
+            set {
+                _leadingSwipeActionsConfigurationForRow = newValue
+            }
         }
-        set {
-            _leadingSwipeActionsConfigurationForRow = newValue
+        private var _trailingSwipeActionsConfigurationForRow: Any?
+        @available(iOS 11, *)
+        internal var trailingSwipeActionsConfigurationForRow: ((UITableView, IndexPath) -> UISwipeActionsConfiguration?)? {
+            get {
+                return _trailingSwipeActionsConfigurationForRow as? (UITableView, IndexPath) -> UISwipeActionsConfiguration?
+            }
+            set {
+                _trailingSwipeActionsConfigurationForRow = newValue
+            }
         }
+        internal var shouldIndentWhileEditingRow: ((UITableView, IndexPath) -> Bool)?
+        internal var willBeginEditingRow: ((UITableView, IndexPath) -> ())?
+        internal var didEndEditingRow: ((UITableView, IndexPath?) -> ())?
+        internal var indexPathForMoveFromRow: ((UITableView, IndexPath, IndexPath) -> IndexPath)?
+        internal var indentationLevelForRow: ((UITableView, IndexPath) -> Int)?
+        internal var shouldShowMenuForRow: ((UITableView, IndexPath) -> Bool)?
+        internal var canPerformAction: ((UITableView, Selector, IndexPath, Any?) -> Bool)?
+        internal var performAction: ((UITableView, Selector, IndexPath, Any?) -> ())?
+        internal var canFocusRow: ((UITableView, IndexPath) -> Bool)?
+        internal var shouldUpdateFocus: ((UITableView, UITableViewFocusUpdateContext) -> Bool)?
+        internal var didUpdateFocus: ((UITableView, UITableViewFocusUpdateContext, UIFocusAnimationCoordinator) -> ())?
+        internal var indexPathForPreferredFocusedView: ((UITableView) -> IndexPath?)?
+        private var _shouldSpringLoadRow: Any?
+        @available(iOS 11, *)
+        internal var shouldSpringLoadRow: ((UITableView, IndexPath, UISpringLoadedInteractionContext) -> Bool)? {
+            get {
+                return _shouldSpringLoadRow as? (UITableView, IndexPath, UISpringLoadedInteractionContext) -> Bool
+            }
+            set {
+                _shouldSpringLoadRow = newValue
+            }
+        }
+        
+        // MARK: - UITableViewDataSource
+        internal var numberOfRows: ((UITableView, Int) -> Int)?
+        internal var cellForRow: ((UITableView, IndexPath) -> UITableViewCell)?
+        internal var numberOfSections: ((UITableView) -> Int)?
+        internal var titleForHeader: ((UITableView, Int) -> String)?
+        internal var titleForFooter: ((UITableView, Int) -> String)?
+        internal var canEditRow: ((UITableView, IndexPath) -> Bool)?
+        internal var canMoveRow: ((UITableView, IndexPath) -> Bool)?
+        internal var sectionForSectionIndexTitle: ((UITableView, String, Int) -> Int)?
+        internal var commit: ((UITableView, UITableViewCell.EditingStyle, IndexPath) -> ())?
+        internal var moveRow: ((UITableView, IndexPath, IndexPath) -> ())?
+        
+        // MARK: - UITableViewDataSourcePrefetching
+        internal var prefetchRows: ((UITableView, [IndexPath]) -> ())?
+        internal var cancelPrefetchingForRows: ((UITableView, [IndexPath]) -> ())?
     }
-    private var _trailingSwipeActionsConfigurationForRow: Any?
-    @available(iOS 11, *)
-    internal var trailingSwipeActionsConfigurationForRow: ((UITableView, IndexPath) -> UISwipeActionsConfiguration?)? {
-        get {
-            return _trailingSwipeActionsConfigurationForRow as? (UITableView, IndexPath) -> UISwipeActionsConfiguration?
-        }
-        set {
-            _trailingSwipeActionsConfigurationForRow = newValue
-        }
-    }
-    internal var shouldIndentWhileEditingRow: ((UITableView, IndexPath) -> Bool)?
-    internal var willBeginEditingRow: ((UITableView, IndexPath) -> ())?
-    internal var didEndEditingRow: ((UITableView, IndexPath?) -> ())?
-    internal var indexPathForMoveFromRow: ((UITableView, IndexPath, IndexPath) -> IndexPath)?
-    internal var indentationLevelForRow: ((UITableView, IndexPath) -> Int)?
-    internal var shouldShowMenuForRow: ((UITableView, IndexPath) -> Bool)?
-    internal var canPerformAction: ((UITableView, Selector, IndexPath, Any?) -> Bool)?
-    internal var performAction: ((UITableView, Selector, IndexPath, Any?) -> ())?
-    internal var canFocusRow: ((UITableView, IndexPath) -> Bool)?
-    internal var shouldUpdateFocus: ((UITableView, UITableViewFocusUpdateContext) -> Bool)?
-    internal var didUpdateFocus: ((UITableView, UITableViewFocusUpdateContext, UIFocusAnimationCoordinator) -> ())?
-    internal var indexPathForPreferredFocusedView: ((UITableView) -> IndexPath?)?
-    private var _shouldSpringLoadRow: Any?
-    @available(iOS 11, *)
-    internal var shouldSpringLoadRow: ((UITableView, IndexPath, UISpringLoadedInteractionContext) -> Bool)? {
-        get {
-            return _shouldSpringLoadRow as? (UITableView, IndexPath, UISpringLoadedInteractionContext) -> Bool
-        }
-        set {
-            _shouldSpringLoadRow = newValue
-        }
-    }
-    
-    // MARK: - UITableViewDataSource
-    internal var numberOfRows: ((UITableView, Int) -> Int)?
-    internal var cellForRow: ((UITableView, IndexPath) -> UITableViewCell)?
-    internal var numberOfSections: ((UITableView) -> Int)?
-    internal var titleForHeader: ((UITableView, Int) -> String)?
-    internal var titleForFooter: ((UITableView, Int) -> String)?
-    internal var canEditRow: ((UITableView, IndexPath) -> Bool)?
-    internal var canMoveRow: ((UITableView, IndexPath) -> Bool)?
-    internal var sectionForSectionIndexTitle: ((UITableView, String, Int) -> Int)?
-    internal var commit: ((UITableView, UITableViewCell.EditingStyle, IndexPath) -> ())?
-    internal var moveRow: ((UITableView, IndexPath, IndexPath) -> ())?
-    
-    // MARK: - UITableViewDataSourcePrefetching
-    internal var prefetchRows: ((UITableView, [IndexPath]) -> ())?
-    internal var cancelPrefetchingForRows: ((UITableView, [IndexPath]) -> ())?
 }
 
 // MARK: - UITableViewDelegate
-extension TableDataDelegate: UITableViewDelegate {
+extension ScrollViewBuilder.Table.TabManager: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         willDisplayCell?(tableView, cell, indexPath)
     }
@@ -215,7 +217,7 @@ extension TableDataDelegate: UITableViewDelegate {
 }
 
 // MARK: - UITableViewDataSource
-extension TableDataDelegate: UITableViewDataSource {
+extension ScrollViewBuilder.Table.TabManager: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return numberOfRows?(tableView, section) ?? 0
     }
@@ -249,7 +251,7 @@ extension TableDataDelegate: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDataSourcePrefetching
-extension TableDataDelegate: UITableViewDataSourcePrefetching {
+extension ScrollViewBuilder.Table.TabManager: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         prefetchRows?(tableView, indexPaths)
     }
