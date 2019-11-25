@@ -1,10 +1,6 @@
 import UIKit
 
 extension UIColor {
-    public static var canvas = UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1.0)
-}
-
-extension UIColor {
     public convenience init?(hexString: String) {
         var hex = hexString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).uppercased()
         if hex.hasPrefix("#") {

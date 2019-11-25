@@ -9,25 +9,46 @@
 import UIKit
 
 class SecondController: UIViewController {
+    private lazy var imageView = UIImageView()
+    private let originalImage = UIImage(named: "tower1.jpg")!
+    deinit {
+        print("SecondController  deinit")
+    }
+}
+
+extension SecondController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        let v = UIView()
-        v.backgroundColor = .cyan
-        v.jj.layout { make in
+        imageView.jj.layout { make in
             make.width.equalTo(view).offsetBy(-100)
             make.height.equalTo(200)
-            make.center.equalTo(view)
+            make.centerX.equalTo(view)
+            make.top.equalTo(100)
         }
-        v.clipsToBounds = true
-        view.addSubview(v)
-        let iv = UIImageView()
-        iv.backgroundColor = .green
-        v.addSubview(iv)
-        iv.jj.layout { make in
-            make.edges.equalTo(v)
+        imageView.contentMode = .scaleAspectFit
+        imageView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        imageView.image = originalImage
+        view.addSubview(imageView)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, handler: { [unowned self] _ in
+            self.imageView.image = self.originalImage
+        })
+        let b = UIButton()
+        b.jj.setBackgroundColor(UIColor.cyan, for: [])
+        b.jj.layout { make in
+            make.width.equalTo(60)
+            make.height.equalTo(30)
+            make.left.equalTo(imageView)
+            make.top.equalTo(imageView.jj.bottom).offsetBy(30)
         }
-        iv.contentMode = .scaleAspectFill
-        iv.image = UIImage(color: .red, size: CGSize(width: iv.jj.width + 200, height: iv.jj.height + 100))
+        b.jj.addBlockHandler(for: .primaryActionTriggered) { [unowned self] _ in
+//            self.imageView.image = self.originalImage.jj.applyFilter(Filter.boxBlur(10))
+        }
+        view.addSubview(b)
+        
+        view.addGestureRecognizer(UITapGestureRecognizer(handler: { [unowned self] _ in
+            self.view.endEditing(true)
+        }))
     }
 }

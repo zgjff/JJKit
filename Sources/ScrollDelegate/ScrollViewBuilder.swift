@@ -6,7 +6,6 @@ public class ScrollViewBuilder {
         self.manager = manager
     }
     internal func build(for scrollView: UIScrollView) {
-        scrollView.delegate = nil
         scrollView.delegate = manager
     }
 }

@@ -1,21 +1,27 @@
 import UIKit
 
 extension UIView {
-    public static func +(lhs: UIView, rhs: UIView) {
+    @discardableResult
+    public static func +(lhs: UIView, rhs: UIView) -> UIView {
         lhs.addSubview(rhs)
+        return lhs
     }
 }
 
 extension UIView: JJCompatible {}
 
 extension JJ where Object: UIView {
-    public func addViews(_ views: UIView...) {
+    @discardableResult
+    public func addViews(_ views: UIView...) -> Object {
         views.forEach { object.addSubview($0) }
+        return object
     }
     
-    public func removeAll() {
+    @discardableResult
+    public func removeAll() -> Object {
         object.subviews
         .forEach { $0.removeFromSuperview() }
+        return object
     }
 }
 

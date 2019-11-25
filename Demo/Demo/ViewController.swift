@@ -29,10 +29,11 @@ class ViewController: UIViewController, SwipePresentDelegate {
     }
     
     @IBAction private func c(_ sender: UIBarButtonItem) {
-        navigationController?.pushViewController(SecondController(), animated: true)
+        self.navigationController?.pushViewController(SecondController(), animated: true)
     }
     
     @IBAction private func bp(_ sender: UIButton) {
-
+        let filter = CIFilter(name: "CIColorInvert")!
+        print(filter.attributes)
     }
 }

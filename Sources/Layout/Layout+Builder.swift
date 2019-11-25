@@ -47,14 +47,14 @@ public extension JJLayout.Builder {
 }
 
 extension JJLayout.Builder {
-    internal func build(from callFrom: (String, Int)) {
+    internal func build() {
         guard !describes.isEmpty else { return }
         var resultex = JJLayout.Result.Extendable()
         var iter = describes.makeIterator()
         while let desc = iter.next() {
             resultex.setValue(with: desc)
         }
-        let result = resultex.frameResultWith(originalSize: view.size, from: callFrom)
+        let result = resultex.frameResultWith(originalSize: view.size)
         result.calculateFrame(for: view)
     }
     

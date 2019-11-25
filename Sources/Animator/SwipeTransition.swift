@@ -152,8 +152,9 @@ extension SwipeTransitionAnimator: UIViewControllerAnimatedTransitioning {
         let containerView = transitionContext.containerView
         var fromView, toView: UIView
         if transitionContext.responds(to: #selector(transitionContext.view(forKey:))) {
-            fromView = transitionContext.view(forKey: .from)!
-            toView = transitionContext.view(forKey: .to)!
+            //TODO: 适配iOS13
+            fromView = transitionContext.view(forKey: .from) ?? fromVC.view!
+            toView = transitionContext.view(forKey: .to) ?? toVC.view!
         } else {
             fromView = fromVC.view
             toView = toVC.view

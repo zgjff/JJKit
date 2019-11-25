@@ -1,6 +1,4 @@
 import UIKit
-private let context = CIContext(options: nil)
-private let filterQueue = DispatchQueue(label: "filterImageQueue.JJKit", attributes: [.concurrent])
 
 extension UIImage {
     /// 在size大小CGContext画布中，根据modiy闭包来操作画布
@@ -206,27 +204,6 @@ extension JJ where Object: UIImage {
             }
         })
     }
-    /// 根据滤镜配方创建滤镜图片
-    ///
-    /// - Parameters:
-    ///   - filter: (CIImage) -> CIImage
-    ///   - result: 主线程回掉滤镜结果
-    public func applyFilter(_ filter: (CIImage) -> CIImage, result: @escaping (UIImage) -> ()) {
-        guard let inputImage = CIImage(image: object) else {
-            result(object)
-            return
-        }
-        let out = filter(inputImage)
-        filterQueue.async {
-            var img: UIImage = self.object
-            if let cg = context.createCGImage(out, from: inputImage.extent) {
-                img = UIImage(cgImage: cg, scale: self.object.scale, orientation: self.object.imageOrientation)
-            }
-            DispatchQueue.main.async {
-                result(img)
-            }
-        }
-    }
 }
 
 
@@ -237,7 +214,15 @@ private struct UIColorImageCache {
         var description: String {
             let width = size.width
             let height = size.height
-            return "\(color.hashValue ^ width.hashValue ^ height.hashValue &* 16777619)"
+            var r: CGFloat = 0
+            var g: CGFloat = 0
+            var b: CGFloat = 0
+            var a: CGFloat = 0
+            if color.getRed(&r, green: &g, blue: &b, alpha: &a) {
+                return "red:\(r) green:\(g) blue:\(b) alpha:\(a) width:\(width) height:\(height)"
+            } else {
+                return "\(color.hashValue ^ width.hashValue ^ height.hashValue &* 16777619)"
+            }
         }
         let color: UIColor
         let size: CGSize

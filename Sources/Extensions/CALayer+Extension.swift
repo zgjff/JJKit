@@ -1,20 +1,26 @@
 import UIKit
 
 extension CALayer {
-    public static func +(lhs: CALayer, rhs: CALayer) {
+    @discardableResult
+    public static func +(lhs: CALayer, rhs: CALayer) -> CALayer {
         lhs.addSublayer(rhs)
+        return lhs
     }
 }
 
 extension CALayer: JJCompatible {}
 
 public extension JJ where Object: CALayer {
-    func addLayers(_ layers: CALayer...) {
+    @discardableResult
+    func addLayers(_ layers: CALayer...) -> Object {
         layers.forEach { object.addSublayer($0) }
+        return object
     }
-    func removeAll() {
+    @discardableResult
+    func removeAll() -> Object {
         object.sublayers?
         .forEach { $0.removeFromSuperlayer() }
+        return object
     }
     func setShadow(color: UIColor = .black, offset: CGSize = CGSize(width: 1, height: 1), radius: CGFloat = 3) {
         object.shadowColor = color.cgColor

@@ -153,16 +153,13 @@ extension JJLayout.Result.Extendable {
     ///
     ///   - 比如:设置有关x和width方便时,只设定right或者centerX,无法确定最终的frame,需要借助于原始size
     ///   - 再比如:设置有关y和height方便时,只设定bottom或者centerY,无法确定最终的frame,需要借助于原始size
-    ///
-    ///   - callFrom: 最初调用到此函数所在的文件及类型----调用layout(builder: )所在位置
-    mutating func frameResultWith(originalSize: CGSize, from callFrom: (String, Int)) -> JJLayout.Result {
+    mutating func frameResultWith(originalSize: CGSize) -> JJLayout.Result {
         var result = JJLayout.Result()
         do {
             try determineXAndWidth(with: originalSize, for: &result)
             try determineYAndHeight(with: originalSize, for: &result)
         } catch ResultError.reason(let err) {
-            let filestr = callFrom.0.split(separator: "/").last ?? ""
-            fatalError("👿👿👿👿👿\(filestr):\(callFrom.1)👿👿👿👿👿 \(err)👿👿👿👿👿")
+            fatalError("👿👿👿👿👿\(err)👿👿👿👿👿")
         } catch {}
         return result
     }
@@ -189,7 +186,7 @@ extension JJLayout.Result.Extendable {
             result.setX(cx - originalSize.width * 0.5)
         case let (.none, .value(cx), .value(ax), .none):
             if ax < cx {
-                throw ResultError.reason("同时设定【right, centerX]时right不能小于centerX")
+                throw ResultError.reason("同时设定[right, centerX]时right不能小于centerX")
             }
             result.setWidth((ax - cx) * 2)
             result.setX(cx * 2 - ax)

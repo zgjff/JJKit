@@ -26,8 +26,8 @@ extension JJLayout.Builder.Extendable {
     /// 设置view/layer的center的layoutBuilder
     public class Point: JJLayout.Builder.Extendable {
         @discardableResult
-        public func equalTo(_ target: LayoutPointTargetable, file: String = #file, line: Int = #line) -> JJLayout.TargetRelation.Point {
-            describe.addTarget(.point(target), from: (file, line))
+        public func equalTo(_ target: LayoutPointTargetable) -> JJLayout.TargetRelation.Point {
+            describe.addTarget(.point(target))
             return configTargetAndReturnRelation(target: target)
         }
     }
@@ -37,8 +37,8 @@ extension JJLayout.Builder.Extendable {
     /// 设置view/layer的size的layoutBuilder
     public class Size: JJLayout.Builder.Extendable {
         @discardableResult
-        public func equalTo(_ target: LayoutSizeTargetable, file: String = #file, line: Int = #line) -> JJLayout.TargetRelation.Size {
-            describe.addTarget(.size(target), from: (file, line))
+        public func equalTo(_ target: LayoutSizeTargetable) -> JJLayout.TargetRelation.Size {
+            describe.addTarget(.size(target))
             return configTargetAndReturnRelation(target: target)
         }
     }
@@ -76,8 +76,8 @@ extension JJLayout.Builder.Extendable {
         ///   - line: 调用此函数所在的的行数---方便调试
         /// - Returns: 设置CGRect的后续方法对象
         @discardableResult
-        public func equalTo(_ target: LayoutRectTargetable, file: String = #file, line: Int = #line) -> JJLayout.TargetRelation.Rect {
-            describe.addTarget(.frame(target), from: (file, line))
+        public func equalTo(_ target: LayoutRectTargetable) -> JJLayout.TargetRelation.Rect {
+            describe.addTarget(.frame(target))
             return configTargetAndReturnRelation(target: target)
         }
     }
@@ -119,8 +119,8 @@ extension JJLayout.Builder.Extendable {
             return self
         }
         @discardableResult
-        public func equalTo(_ target: LayoutCGFloatTargetable, file: String = #file, line: Int = #line) -> JJLayout.TargetRelation.TFloat {
-            describe.addTarget(.float(target), from: (file, line))
+        public func equalTo(_ target: LayoutCGFloatTargetable) -> JJLayout.TargetRelation.TFloat {
+            describe.addTarget(.float(target))
             return configTargetAndReturnRelation(target: target)
         }
     }

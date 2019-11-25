@@ -34,7 +34,7 @@ internal extension JJLayout.Builder.Describe {
         items.insert(item)
     }
     
-    func addTarget(_ target: TargetStyle, from callFrom: (String, Int)) {
+    func addTarget(_ target: TargetStyle) {
         guard case let .float(t) = target  else {
             self.target = target
             return
@@ -43,8 +43,7 @@ internal extension JJLayout.Builder.Describe {
             try check(with: t)
             self.target = target
         } catch JJLayout.Builder.Describe.ItemsError.reason(let err) {
-            let filestr = callFrom.0.split(separator: "/").last ?? ""
-            fatalError("👿👿👿👿👿\(filestr):\(callFrom.1)👿👿👿👿👿 \(err) 👿👿👿👿👿")
+            fatalError("👿👿👿👿👿\(err) 👿👿👿👿👿")
         } catch {}
     }
     
