@@ -43,7 +43,8 @@ extension SecondController {
             make.top.equalTo(imageView.jj.bottom).offsetBy(30)
         }
         b.jj.addBlockHandler(for: .primaryActionTriggered) { [unowned self] _ in
-//            self.imageView.image = self.originalImage.jj.applyFilter(Filter.boxBlur(10))
+            let data = "123".data(using: .utf8)!
+            self.imageView.image = self.originalImage.jj.applyFilter(Filter.qrGenerator(data)(CGSize(width: 400, height: 400)))
         }
         view.addSubview(b)
         

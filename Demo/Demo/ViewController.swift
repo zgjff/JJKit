@@ -33,7 +33,7 @@ class ViewController: UIViewController, SwipePresentDelegate {
     }
     
     @IBAction private func bp(_ sender: UIButton) {
-        let filter = CIFilter(name: "CIColorInvert")!
+        let filter = CIFilter(name: "CIStripesGenerator")!
         print(filter.attributes)
     }
 }
