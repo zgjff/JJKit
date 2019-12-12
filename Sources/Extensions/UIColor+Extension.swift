@@ -2,6 +2,9 @@ import UIKit
 
 extension UIColor {
     public convenience init?(hexString: String) {
+        if hexString.count < 3 {
+            return nil
+        }
         var hex = hexString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).uppercased()
         if hex.hasPrefix("#") {
             let h = hex.suffix(from: String.Index(utf16Offset: 1, in: hex))

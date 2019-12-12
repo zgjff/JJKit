@@ -43,13 +43,8 @@ extension SecondController {
             make.top.equalTo(imageView.jj.bottom).offsetBy(30)
         }
         b.jj.addBlockHandler(for: .primaryActionTriggered) { [unowned self] _ in
-            let data = "123".data(using: .utf8)!
-            self.imageView.image = self.originalImage.jj.applyFilter(Filter.qrGenerator(data)(CGSize(width: 400, height: 400)))
+            self.imageView.image = self.originalImage.jj.resized(maxSize: self.imageView.jj.width)
         }
         view.addSubview(b)
-        
-        view.addGestureRecognizer(UITapGestureRecognizer(handler: { [unowned self] _ in
-            self.view.endEditing(true)
-        }))
     }
 }

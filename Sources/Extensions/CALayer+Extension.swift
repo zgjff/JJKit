@@ -16,19 +16,42 @@ public extension JJ where Object: CALayer {
         layers.forEach { object.addSublayer($0) }
         return object
     }
+    
     @discardableResult
-    func removeAll() -> Object {
+    func removeAllSublayers() -> Object {
         object.sublayers?
         .forEach { $0.removeFromSuperlayer() }
         return object
     }
-    func setShadow(color: UIColor = .black, offset: CGSize = CGSize(width: 1, height: 1), radius: CGFloat = 3) {
-        object.shadowColor = color.cgColor
-        object.shadowOffset = offset
-        object.shadowRadius = radius
-        object.shadowOpacity = 1
-        object.shouldRasterize = true
-        object.rasterizationScale = UIScreen.main.scale
+    
+    func setCornerRadius(_ radius: CGFloat, corner: UIRectCorner) {
+        if #available(iOS 11.0, *) {
+            object.cornerRadius = radius
+            if corner.contains(.allCorners) {
+                object.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+                return
+            }
+            var maskedCorners: CACornerMask = []
+            if corner.contains(.topLeft) {
+                maskedCorners.insert(.layerMinXMinYCorner)
+            }
+            if corner.contains(.topRight) {
+                maskedCorners.insert(.layerMaxXMinYCorner)
+            }
+            if corner.contains(.bottomLeft) {
+                maskedCorners.insert(.layerMinXMaxYCorner)
+            }
+            if corner.contains(.bottomRight) {
+                maskedCorners.insert(.layerMaxXMaxYCorner)
+            }
+            object.maskedCorners = maskedCorners
+        } else {
+            let path = UIBezierPath(roundedRect: object.bounds, byRoundingCorners: corner, cornerRadii: CGSize(width: radius, height: radius))
+            let maskLayer = CAShapeLayer()
+            maskLayer.frame = object.bounds
+            maskLayer.path = path.cgPath
+            object.mask = maskLayer
+        }
     }
 }
 

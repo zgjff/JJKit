@@ -72,17 +72,93 @@ extension JJ where Object: UIControl {
     private func privateAddBlockHandler(event: UIControl.Event, handler: @escaping (Object) -> Void, key: UnsafePointer<Int>) {
         let ch: ControlHandler
         if let getch = objc_getAssociatedObject(object, key) as? ControlHandler {
-            object.removeTarget(getch, action: nil, for: event)
+            object.removeTarget(getch, action: #selector(getch.invoke), for: event)
             ch = getch
         } else {
             ch = ControlHandler(target: object, event: event)
             objc_setAssociatedObject(object, key, ch, .OBJC_ASSOCIATION_RETAIN)
         }
         ch.handler = { c in
-            let cb = c as! Object
-            handler(cb)
+            handler(c as! Object)
         }
         object.addTarget(ch, action: #selector(ch.invoke), for: event)
+    }
+    
+    public func removeBlockHandler(for event: UIControl.Event) {
+        switch event {
+        case .touchDown:
+            privateremoveBlockHandler(for: event, key: &touchDown_JJBlockKey)
+        case .touchDownRepeat:
+            privateremoveBlockHandler(for: event, key: &touchDownRepeat_JJBlockKey)
+        case .touchDragInside:
+            privateremoveBlockHandler(for: event, key: &touchDragInside_JJBlockKey)
+        case .touchDragOutside:
+            privateremoveBlockHandler(for: event, key: &touchDragOutside_JJBlockKey)
+        case .touchDragEnter:
+            privateremoveBlockHandler(for: event, key: &touchDragEnter_JJBlockKey)
+        case .touchDragExit:
+            privateremoveBlockHandler(for: event, key: &touchDragExit_JJBlockKey)
+        case .touchUpInside:
+            privateremoveBlockHandler(for: event, key: &touchUpInside_JJBlockKey)
+        case .touchUpOutside:
+            privateremoveBlockHandler(for: event, key: &touchUpOutside_JJBlockKey)
+        case .touchCancel:
+            privateremoveBlockHandler(for: event, key: &touchCancel_JJBlockKey)
+        case .valueChanged:
+            privateremoveBlockHandler(for: event, key: &valueChanged_JJBlockKey)
+        case .primaryActionTriggered:
+            privateremoveBlockHandler(for: event, key: &primaryActionTriggered_JJBlockKey)
+        case .editingDidBegin:
+            privateremoveBlockHandler(for: event, key: &editingDidBegin_JJBlockKey)
+        case .editingChanged:
+            privateremoveBlockHandler(for: event, key: &editingChanged_JJBlockKey)
+        case .editingDidEnd:
+            privateremoveBlockHandler(for: event, key: &editingDidEnd_JJBlockKey)
+        case .editingDidEndOnExit:
+            privateremoveBlockHandler(for: event, key: &editingDidEndOnExit_JJBlockKey)
+        case .allTouchEvents:
+            privateremoveBlockHandler(for: event, key: &allTouchEvents_JJBlockKey)
+        case .allEditingEvents:
+            privateremoveBlockHandler(for: event, key: &allEditingEvents_JJBlockKey)
+        case .applicationReserved:
+            privateremoveBlockHandler(for: event, key: &applicationReserved_JJBlockKey)
+        case .systemReserved:
+            privateremoveBlockHandler(for: event, key: &systemReserved_JJBlockKey)
+        case .allEvents:
+            privateremoveBlockHandler(for: event, key: &allEvents_JJBlockKey)
+        default:
+            return
+        }
+    }
+    
+    public func removeAllEventBlockHandler() {
+        privateremoveBlockHandler(for: .touchDown, key: &touchDown_JJBlockKey)
+        privateremoveBlockHandler(for: .touchDownRepeat, key: &touchDownRepeat_JJBlockKey)
+        privateremoveBlockHandler(for: .touchDragInside, key: &touchDragInside_JJBlockKey)
+        privateremoveBlockHandler(for: .touchDragOutside, key: &touchDragOutside_JJBlockKey)
+        privateremoveBlockHandler(for: .touchDragEnter, key: &touchDragEnter_JJBlockKey)
+        privateremoveBlockHandler(for: .touchDragExit, key: &touchDragExit_JJBlockKey)
+        privateremoveBlockHandler(for: .touchUpInside, key: &touchUpInside_JJBlockKey)
+        privateremoveBlockHandler(for: .touchUpOutside, key: &touchUpOutside_JJBlockKey)
+        privateremoveBlockHandler(for: .touchCancel, key: &touchCancel_JJBlockKey)
+        privateremoveBlockHandler(for: .valueChanged, key: &valueChanged_JJBlockKey)
+        privateremoveBlockHandler(for: .primaryActionTriggered, key: &primaryActionTriggered_JJBlockKey)
+        privateremoveBlockHandler(for: .editingDidBegin, key: &editingDidBegin_JJBlockKey)
+        privateremoveBlockHandler(for: .editingChanged, key: &editingChanged_JJBlockKey)
+        privateremoveBlockHandler(for: .editingDidEnd, key: &editingDidEnd_JJBlockKey)
+        privateremoveBlockHandler(for: .editingDidEndOnExit, key: &editingDidEndOnExit_JJBlockKey)
+        privateremoveBlockHandler(for: .allTouchEvents, key: &allTouchEvents_JJBlockKey)
+        privateremoveBlockHandler(for: .allEditingEvents, key: &allEditingEvents_JJBlockKey)
+        privateremoveBlockHandler(for: .applicationReserved, key: &applicationReserved_JJBlockKey)
+        privateremoveBlockHandler(for: .systemReserved, key: &systemReserved_JJBlockKey)
+        privateremoveBlockHandler(for: .allEvents, key: &allEvents_JJBlockKey)
+    }
+    
+    private func privateremoveBlockHandler(for event: UIControl.Event, key: UnsafePointer<Int>) {
+        if let getch = objc_getAssociatedObject(object, key) as? ControlHandler {
+            object.removeTarget(getch, action: #selector(getch.invoke), for: event)
+            objc_setAssociatedObject(object, key, nil, .OBJC_ASSOCIATION_RETAIN)
+        }
     }
 }
 

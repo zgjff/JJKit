@@ -40,7 +40,7 @@ public class JJCycleView: UIView {
         willSet {
             timer?.cancel()
             timer = nil
-            scrollView.jj.removeAll()
+            scrollView.jj.removeAllSubviews()
             currentIndex = 0
         }
         didSet {

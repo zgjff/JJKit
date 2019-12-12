@@ -10,18 +10,30 @@ extension UIView {
 
 extension UIView: JJCompatible {}
 
-extension JJ where Object: UIView {
+public extension JJ where Object: UIView {
     @discardableResult
-    public func addViews(_ views: UIView...) -> Object {
+    func addViews(_ views: UIView...) -> Object {
         views.forEach { object.addSubview($0) }
         return object
     }
     
     @discardableResult
-    public func removeAll() -> Object {
+    func removeAllSubviews() -> Object {
         object.subviews
         .forEach { $0.removeFromSuperview() }
         return object
+    }
+    
+    func setCornerRadius(_ radius: CGFloat, corner: UIRectCorner) {
+        object.layer.jj.setCornerRadius(radius, corner: corner)
+    }
+    
+    var safeAreaInsets: UIEdgeInsets {
+        if #available(iOS 11.0, *) {
+            return object.safeAreaInsets
+        } else {
+            return .zero
+        }
     }
 }
 

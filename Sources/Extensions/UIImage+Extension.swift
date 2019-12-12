@@ -12,6 +12,11 @@ extension UIImage {
         if #available(iOS 10.0, *) {
             let f = UIGraphicsImageRendererFormat.default()
             f.scale = scale
+            if #available(iOS 12.0, *) {
+                f.preferredRange = .extended
+            } else {
+                f.prefersExtendedRange = true
+            }
             let render = UIGraphicsImageRenderer(size: size, format: f)
             img = render.image(actions: { c in
                 action(c.cgContext)
@@ -204,8 +209,26 @@ extension JJ where Object: UIImage {
             }
         })
     }
+    
+    /// 调整图像大小
+    /// - Parameter maxSize: 根据图像原始宽高比与指定的最大尺寸maxSize来缩放图像
+    public func resized(maxSize: CGFloat) -> UIImage? {
+        guard let data = object.pngData() else { return nil }
+        guard let imageSource = CGImageSourceCreateWithData(data as CFData, nil) else {
+            return nil
+        }
+        let options: [CFString: Any] = [
+            kCGImageSourceCreateThumbnailFromImageIfAbsent: true,
+            kCGImageSourceCreateThumbnailWithTransform: true,
+            kCGImageSourceShouldCacheImmediately: true,
+            kCGImageSourceThumbnailMaxPixelSize: maxSize
+        ]
+        guard let img = CGImageSourceCreateThumbnailAtIndex(imageSource, 0, options as CFDictionary) else {
+            return nil
+        }
+        return UIImage(cgImage: img)
+    }
 }
-
 
 /**************************private*****************************/
 /// 纯色图像缓存
