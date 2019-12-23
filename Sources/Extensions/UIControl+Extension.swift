@@ -22,7 +22,7 @@ private var systemReserved_JJBlockKey = 0
 private var allEvents_JJBlockKey = 0
 
 extension JJ where Object: UIControl {
-    public func addBlockHandler(for event: UIControl.Event, handler: @escaping (Object) -> Void) {
+    public func addBlockHandler(_ handler: @escaping (Object) -> Void, for event: UIControl.Event) {
         switch event {
         case .touchDown:
             privateAddBlockHandler(event: event, handler: handler, key: &touchDown_JJBlockKey)

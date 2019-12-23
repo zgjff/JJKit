@@ -6,7 +6,7 @@ extension UIImage {
     /// - Parameters:
     ///   - size: 图像画布大小
     ///   - actions: 操作画布---block(CGContext)
-    public convenience init?(size: CGSize, action: @escaping (CGContext) -> ()) {
+    public convenience init?(size: CGSize, actions: @escaping (CGContext) -> ()) {
         var img: UIImage?
         let scale = UIScreen.main.scale
         if #available(iOS 10.0, *) {
@@ -19,7 +19,7 @@ extension UIImage {
             }
             let render = UIGraphicsImageRenderer(size: size, format: f)
             img = render.image(actions: { c in
-                action(c.cgContext)
+                actions(c.cgContext)
             })
         } else {
             UIGraphicsBeginImageContextWithOptions(size, false, scale)
@@ -27,9 +27,7 @@ extension UIImage {
                 UIGraphicsEndImageContext()
             }
             if let c = UIGraphicsGetCurrentContext() {
-                c.saveGState()
-                action(c)
-                c.restoreGState()
+                actions(c)
             }
             img = UIGraphicsGetImageFromCurrentImageContext()
         }
@@ -44,18 +42,26 @@ extension UIImage {
     /// - Parameters:
     ///   - color: 颜色
     ///   - size: 大小 默认 CGSize(width: 1, height: 1)
-    public convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
-        let colorSize = UIColorImageCache.ColorSize(color: color, size: size)
+    ///   - cornerRadius: 图片圆角大小
+    public convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1), cornerRadius: CGFloat = 0) {
+        let colorSize = UIColorImageCache.ColorSize(color: color, size: size, cornerRadius: cornerRadius)
         let cacheImg = UIColorImageCache.shared.imageFor(colorSize: colorSize)
         guard cacheImg == nil else {
             self.init(cgImage: cacheImg!.cgImage!, scale: cacheImg!.scale, orientation: cacheImg!.imageOrientation)
             return
         }
+        let rect = CGRect(origin: .zero, size: size)
         let build: (CGContext) -> () = { context in
-            color.set()
-            context.fill(CGRect(origin: .zero, size: size))
+            context.setFillColor(color.cgColor)
+            if cornerRadius > 0 {
+                let path = UIBezierPath(roundedRect: rect, cornerRadius: cornerRadius)
+                path.addClip()
+                path.fill()
+            } else {
+                context.fill(rect)
+            }
         }
-        if let img = UIImage(size: size, action: build), let cg = img.cgImage {
+        if let img = UIImage(size: size, actions: build), let cg = img.cgImage {
             UIColorImageCache.shared.setImage(img, for: colorSize)
             self.init(cgImage: cg, scale: img.scale, orientation: img.imageOrientation)
         } else {
@@ -103,7 +109,7 @@ extension UIImage {
                 context.drawLinearGradient(gradient, start: s, end: e, options: .drawsAfterEndLocation)
             }
         }
-        guard let img = UIImage(size: size, action: build),
+        guard let img = UIImage(size: size, actions: build),
             let cg = img.cgImage else {
                 return nil
         }
@@ -149,7 +155,7 @@ extension UIImage {
                 context.drawRadialGradient(gradient, startCenter: aCenter, startRadius: 0, endCenter: aCenter, endRadius: radius, options: .drawsAfterEndLocation)
             }
         }
-        guard let img = UIImage(size: size, action: build),
+        guard let img = UIImage(size: size, actions: build),
             let cg = img.cgImage else {
                 return nil
         }
@@ -165,48 +171,18 @@ extension JJ where Object: UIImage {
     /// - Parameter tintColor: 要变的颜色
     /// - Returns: 结果
     public func applyTintColor(_ tintColor: UIColor) -> UIImage? {
+        guard let cgImage = object.cgImage else {
+            return nil
+        }
         let size = object.size
-        return UIImage(size: size, action: { context in
-            tintColor.setFill()
-            UIRectFill(CGRect(origin: .zero, size: size))
-            self.object.draw(in: CGRect(origin: .zero, size: size), blendMode: .destinationIn, alpha: 1.0)
-        })
-    }
-    /// 创建圆角图片
-    ///
-    /// - Parameters:
-    ///   - radius: 圆角大小
-    ///   - corners: UIRectCorner
-    ///   - border: 边框宽度
-    ///   - color: 边框颜色
-    /// - Returns: 圆角图片
-    public func apply(radius: CGFloat, corners: UIRectCorner = .allCorners, border: CGFloat = 0, color: UIColor? = nil) -> UIImage? {
-        let size = object.size
-        return UIImage(size: size, action: { context in
-            guard let cgImg = self.object.cgImage else { return }
-            let rect = CGRect(origin: .zero, size: size)
+        let rect = CGRect(origin: .zero, size: size)
+        return UIImage(size: size, actions: { context in
+            context.translateBy(x: 0, y: size.height)
             context.scaleBy(x: 1, y: -1)
-            context.translateBy(x: 0, y: -rect.size.height)
-            let minSize = min(size.width, size.height)
-            if border < minSize / 2 {
-                let path = UIBezierPath(roundedRect: rect.insetBy(dx: border, dy: border), byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: border))
-                path.close()
-                context.saveGState()
-                path.addClip()
-                context.draw(cgImg, in: rect)
-                context.restoreGState()
-            }
-            if let borderColor = color, border > 0, border < minSize / 2 {
-                let strokeInset = (floor(border * self.object.scale) + 0.5) / self.object.scale
-                let strokeRect = rect.insetBy(dx: strokeInset, dy: strokeInset)
-                let strokeRadius = radius > self.object.scale / 2 ? radius - self.object.scale / 2 : 0
-                let path = UIBezierPath(roundedRect: strokeRect, byRoundingCorners: corners, cornerRadii: CGSize(width: strokeRadius, height: border))
-                path.close()
-                path.lineWidth = border
-                path.lineJoinStyle = .miter
-                borderColor.setStroke()
-                path.stroke()
-            }
+            context.setBlendMode(.normal)
+            context.clip(to: rect, mask: cgImage)
+            context.setFillColor(tintColor.cgColor)
+            context.fill(rect)
         })
     }
     
@@ -237,21 +213,15 @@ private struct UIColorImageCache {
         var description: String {
             let width = size.width
             let height = size.height
-            var r: CGFloat = 0
-            var g: CGFloat = 0
-            var b: CGFloat = 0
-            var a: CGFloat = 0
-            if color.getRed(&r, green: &g, blue: &b, alpha: &a) {
-                return "red:\(r) green:\(g) blue:\(b) alpha:\(a) width:\(width) height:\(height)"
-            } else {
-                return "\(color.hashValue ^ width.hashValue ^ height.hashValue &* 16777619)"
-            }
+            return "color:\(color) width:\(width) height:\(height) cornerRadius:\(cornerRadius)"
         }
         let color: UIColor
         let size: CGSize
-        init(color: UIColor, size: CGSize) {
+        let cornerRadius: CGFloat
+        init(color: UIColor, size: CGSize, cornerRadius: CGFloat) {
             self.color = color
             self.size = size
+            self.cornerRadius = cornerRadius
         }
     }
     static let shared = UIColorImageCache()

@@ -33,6 +33,7 @@
 		9D96BFE2210AC6220015F18B /* CALayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D96BFE1210AC6220015F18B /* CALayer+Extension.swift */; };
 		9DAB83052137CB1400528DBB /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAB83042137CB1400528DBB /* UIButton+Extension.swift */; };
 		FD15868E22F3C16800AEC405 /* Layout+Result+Extendable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD15868D22F3C16800AEC405 /* Layout+Result+Extendable.swift */; };
+		FD1F071E23A71F61003BC1DB /* UIImage+Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1F071D23A71F61003BC1DB /* UIImage+Shape.swift */; };
 		FD5BDB4C22F2822800FA2325 /* LayoutTargetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5BDB4B22F2822800FA2325 /* LayoutTargetable.swift */; };
 		FD5BDB5822F2B51900FA2325 /* LayoutRelationValueable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5BDB5722F2B51900FA2325 /* LayoutRelationValueable.swift */; };
 		FD7A95DB22F184A0004E8CC8 /* Layout+Builder+Describe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7A95DA22F184A0004E8CC8 /* Layout+Builder+Describe.swift */; };
@@ -58,8 +59,6 @@
 		FDBB65E12307DF54002D4E11 /* SwipeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBB65E02307DF54002D4E11 /* SwipeTransition.swift */; };
 		FDBD4E0422FD0652007B2ECF /* Easings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBD4E0322FD0652007B2ECF /* Easings.swift */; };
 		FDC6D2DE230657C200F3206E /* AlertPresentationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC6D2DD230657C200F3206E /* AlertPresentationContext.swift */; };
-		FDE0C3B923865DC3009C6967 /* tower1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FDE0C3B723865DC3009C6967 /* tower1.jpg */; };
-		FDE0C3BA23865DC3009C6967 /* tower2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FDE0C3B823865DC3009C6967 /* tower2.jpg */; };
 		FDE0C3BC238660AB009C6967 /* UIControl+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE0C3BB238660AB009C6967 /* UIControl+Extension.swift */; };
 		FDEDB0892304F68B00B8196C /* AlertPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEDB0882304F68B00B8196C /* AlertPresentationController.swift */; };
 /* End PBXBuildFile section */
@@ -93,6 +92,7 @@
 		9D96BFE1210AC6220015F18B /* CALayer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extension.swift"; sourceTree = "<group>"; };
 		9DAB83042137CB1400528DBB /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		FD15868D22F3C16800AEC405 /* Layout+Result+Extendable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Layout+Result+Extendable.swift"; sourceTree = "<group>"; };
+		FD1F071D23A71F61003BC1DB /* UIImage+Shape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Shape.swift"; sourceTree = "<group>"; };
 		FD5BDB4B22F2822800FA2325 /* LayoutTargetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutTargetable.swift; sourceTree = "<group>"; };
 		FD5BDB5722F2B51900FA2325 /* LayoutRelationValueable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutRelationValueable.swift; sourceTree = "<group>"; };
 		FD7A95DA22F184A0004E8CC8 /* Layout+Builder+Describe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Layout+Builder+Describe.swift"; sourceTree = "<group>"; };
@@ -119,8 +119,6 @@
 		FDBB65E02307DF54002D4E11 /* SwipeTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTransition.swift; sourceTree = "<group>"; };
 		FDBD4E0322FD0652007B2ECF /* Easings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Easings.swift; sourceTree = "<group>"; };
 		FDC6D2DD230657C200F3206E /* AlertPresentationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresentationContext.swift; sourceTree = "<group>"; };
-		FDE0C3B723865DC3009C6967 /* tower1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tower1.jpg; sourceTree = "<group>"; };
-		FDE0C3B823865DC3009C6967 /* tower2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tower2.jpg; sourceTree = "<group>"; };
 		FDE0C3BB238660AB009C6967 /* UIControl+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Extension.swift"; sourceTree = "<group>"; };
 		FDEDB0882304F68B00B8196C /* AlertPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresentationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -141,6 +139,7 @@
 			children = (
 				5E74076720AC06CA00A46657 /* UIImage+Extension.swift */,
 				FDB3F5D2238BAB8900B5C237 /* UIImage+Filter.swift */,
+				FD1F071D23A71F61003BC1DB /* UIImage+Shape.swift */,
 				9D16B64220E5FC9C008AE489 /* UIColor+Extension.swift */,
 				9D16B64C20E5FE05008AE489 /* UIApplication+Extension.swift */,
 				9D16B64E20E5FF03008AE489 /* UIView+Extension.swift */,
@@ -179,8 +178,6 @@
 			isa = PBXGroup;
 			children = (
 				5EA4606120A18DA20005AAA5 /* AppDelegate.swift */,
-				FDE0C3B723865DC3009C6967 /* tower1.jpg */,
-				FDE0C3B823865DC3009C6967 /* tower2.jpg */,
 				5EA4606320A18DA20005AAA5 /* ViewController.swift */,
 				FD7D620E22F0163F00D1891B /* SecondController.swift */,
 				5EA4606820A18DAC0005AAA5 /* Assets.xcassets */,
@@ -352,8 +349,6 @@
 				5EA4606C20A18DAC0005AAA5 /* LaunchScreen.storyboard in Resources */,
 				9D4B422721412C2F00568229 /* MaterialIcons-Regular.ttf in Resources */,
 				5EA4606920A18DAC0005AAA5 /* Assets.xcassets in Resources */,
-				FDE0C3B923865DC3009C6967 /* tower1.jpg in Resources */,
-				FDE0C3BA23865DC3009C6967 /* tower2.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,6 +365,7 @@
 				FD7D621122F0181C00D1891B /* Layout+Item.swift in Sources */,
 				5EA4606420A18DA20005AAA5 /* ViewController.swift in Sources */,
 				9D48369E20F321600086F323 /* AttributMaker.swift in Sources */,
+				FD1F071E23A71F61003BC1DB /* UIImage+Shape.swift in Sources */,
 				5EA4607820A191040005AAA5 /* GCDTimer.swift in Sources */,
 				9D6EB951216B5D1300487973 /* CATextLayer+Extension.swift in Sources */,
 				FD7E023322F94781005E178F /* ScrollViewBuilder+Manager.swift in Sources */,
