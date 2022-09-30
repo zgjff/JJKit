@@ -1,8 +1,18 @@
+//
+//  UIImage+Filter.swift
+//  JJKit
+//
+//  Created by 郑桂杰 on 2022/9/30.
+//
+
 import UIKit
 
-extension JJ where Object: UIImage {
+extension JJBox where Base: UIImage {
+    /// 使用CoreImage给图片添加滤镜
+    /// - Parameter filter: 滤镜配方
+    /// - Returns: 滤镜之后的UIImage
     public func applyFilter(_ filter: UIImage.Filter) -> UIImage? {
-        guard let inputImage = CIImage(image: object) else { return nil }
+        guard let inputImage = CIImage(image: base) else { return nil }
         let outputImage = filter(inputImage)
         guard let cgImage = UIImage.ciContext.createCGImage(outputImage, from: outputImage.extent) else {
             return nil
@@ -12,33 +22,43 @@ extension JJ where Object: UIImage {
 }
 
 extension UIImage {
-    public typealias Filter = (CIImage) -> CIImage
+    /// 滤镜配方
+    public typealias Filter = (_ inputImage: CIImage) -> CIImage
     static var ciContext = CIContext(options: nil)
 }
 
 /// 滤镜配方
 public struct Filter {
     private init() {}
+    
+    
+    /// 滤镜生成的二维码容错等级
+    public enum QRCorrectionLevel: String {
+        case l = "L"
+        case m = "M"
+        case q = "Q"
+        case h = "H"
+    }
 }
 
 // CICategoryBlur
 public extension Filter {
     /// 均值模糊
-    static var boxBlur: (Double) -> UIImage.Filter {
+    static var boxBlur: (_ inputRadius: Double) -> UIImage.Filter {
         return transformRadiusFilter(name: "CIBoxBlur") { inputRadius in
             return inputRadius > 100 ? 100 : (inputRadius < 1) ? 1 : inputRadius
         }
     }
     
     /// 环形卷积模糊
-    static var discBlur: (Double) -> UIImage.Filter {
+    static var discBlur: (_ inputRadius: Double) -> UIImage.Filter {
         return transformRadiusFilter(name: "CIDiscBlur") { inputRadius in
             return inputRadius > 100 ? 100 : (inputRadius < 0) ? 0 : inputRadius
         }
     }
     
     /// 高斯模糊
-    static var gaussianBlur: (Double) -> UIImage.Filter {
+    static var gaussianBlur: (_ inputRadius: Double) -> UIImage.Filter {
         return transformRadiusFilter(name: "CIGaussianBlur") { inputRadius in
             return inputRadius > 100 ? 100 : (inputRadius < 0) ? 0 : inputRadius
         }
@@ -68,7 +88,7 @@ public extension Filter {
         return colorEffect(name: "CIPhotoEffectChrome")
     }
     
-    static var colorPosterize: (Double) -> UIImage.Filter {
+    static var colorPosterize: (_ inputLevle: Double) -> UIImage.Filter {
         return { inputLevle in
             guard let filter = CIFilter(name: "CIColorPosterize") else { fatalError() }
             let level = inputLevle > 30 ? 30 : (inputLevle < 2) ? 2 : inputLevle
@@ -130,7 +150,7 @@ public extension Filter {
 // CICategoryGenerator
 public extension Filter {
     /// 颜色生成器
-    static var colorGenerator: (UIColor) -> (CGSize) -> UIImage.Filter {
+    static var colorGenerator: (_ inputColor: UIColor) -> (_ size: CGSize) -> UIImage.Filter {
         return { inputColor in
             guard let filter = CIFilter(name: "CIConstantColorGenerator") else { fatalError() }
             filter.setValue(CIColor(cgColor: inputColor.cgColor), forKey: kCIInputColorKey)
@@ -144,13 +164,14 @@ public extension Filter {
             }
         }
     }
+    
     /// 二维码生成器
-    static var qrGenerator: (Data) -> (CGSize) -> UIImage.Filter {
+    static var qrGenerator: (_ inputMessage: Data) -> (_ level: QRCorrectionLevel, _ size: CGSize) -> UIImage.Filter {
         return { inputMessage in
             guard let filter = CIFilter(name: "CIQRCodeGenerator") else { fatalError() }
             filter.setValue(inputMessage, forKey: "inputMessage")
-            filter.setValue("H", forKey: "inputCorrectionLevel")
-            return { size in
+            return { level, size in
+                filter.setValue(level.rawValue, forKey: "inputCorrectionLevel")
                 guard let outputImage = filter.outputImage else { fatalError() }
                 let f = outputImage.extent
                 let sx = size.width / f.width

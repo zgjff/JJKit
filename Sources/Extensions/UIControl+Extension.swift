@@ -1,3 +1,10 @@
+//
+//  UIControl+Extension.swift
+//  JJKit
+//
+//  Created by 郑桂杰 on 2022/9/30.
+//
+
 import UIKit
 
 private var touchDown_JJBlockKey = 0
@@ -21,8 +28,12 @@ private var applicationReserved_JJBlockKey = 0
 private var systemReserved_JJBlockKey = 0
 private var allEvents_JJBlockKey = 0
 
-extension JJ where Object: UIControl {
-    public func addBlockHandler(_ handler: @escaping (Object) -> Void, for event: UIControl.Event) {
+extension JJBox where Base: UIControl {
+    /// 添加block事件回调(⚠️: 注意循环引用问题)
+    /// - Parameters:
+    ///   - handler: block回调(⚠️: 注意循环引用问题)
+    ///   - event: 事件
+    public func handler(_ handler: @escaping (_ control:Base) -> Void, for event: UIControl.Event) {
         switch event {
         case .touchDown:
             privateAddBlockHandler(event: event, handler: handler, key: &touchDown_JJBlockKey)
@@ -69,19 +80,19 @@ extension JJ where Object: UIControl {
         }
     }
     
-    private func privateAddBlockHandler(event: UIControl.Event, handler: @escaping (Object) -> Void, key: UnsafePointer<Int>) {
+    private func privateAddBlockHandler(event: UIControl.Event, handler: @escaping (_ control: Base) -> Void, key: UnsafePointer<Int>) {
         let ch: ControlHandler
-        if let getch = objc_getAssociatedObject(object, key) as? ControlHandler {
-            object.removeTarget(getch, action: #selector(getch.invoke), for: event)
+        if let getch = objc_getAssociatedObject(base, key) as? ControlHandler {
+            base.removeTarget(getch, action: #selector(getch.invoke), for: event)
             ch = getch
         } else {
-            ch = ControlHandler(target: object, event: event)
-            objc_setAssociatedObject(object, key, ch, .OBJC_ASSOCIATION_RETAIN)
+            ch = ControlHandler(target: base, event: event)
+            objc_setAssociatedObject(base, key, ch, .OBJC_ASSOCIATION_RETAIN)
         }
         ch.handler = { c in
-            handler(c as! Object)
+            handler(c as! Base)
         }
-        object.addTarget(ch, action: #selector(ch.invoke), for: event)
+        base.addTarget(ch, action: #selector(ch.invoke), for: event)
     }
     
     public func removeBlockHandler(for event: UIControl.Event) {
@@ -155,9 +166,9 @@ extension JJ where Object: UIControl {
     }
     
     private func privateremoveBlockHandler(for event: UIControl.Event, key: UnsafePointer<Int>) {
-        if let getch = objc_getAssociatedObject(object, key) as? ControlHandler {
-            object.removeTarget(getch, action: #selector(getch.invoke), for: event)
-            objc_setAssociatedObject(object, key, nil, .OBJC_ASSOCIATION_RETAIN)
+        if let getch = objc_getAssociatedObject(base, key) as? ControlHandler {
+            base.removeTarget(getch, action: #selector(getch.invoke), for: event)
+            objc_setAssociatedObject(base, key, nil, .OBJC_ASSOCIATION_RETAIN)
         }
     }
 }

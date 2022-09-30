@@ -1,9 +1,44 @@
+//
+//  UIApplication+Extension.swift
+//  JJKit
+//
+//  Created by 郑桂杰 on 2022/9/30.
+//
+
 import UIKit
 
 extension UIApplication: JJCompatible {}
 
-extension JJ where Object: UIApplication {
-    public func topViewController(_ top: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+extension JJBox where Base: UIApplication {
+    /// 根据系统版本获取`UIApplication`的`keyWindow`
+    ///
+    /// 低于13.0版本直接获取`keyWindow`
+    ///
+    /// 高于或等于13.0版本,从`connectedScenes`中获取
+    public var keyWindow: UIWindow? {
+        if #available(iOS 13.0, *) {
+            let windows = base.connectedScenes.compactMap { screen -> UIWindow? in
+                guard let wc = screen as? UIWindowScene, wc.activationState == .foregroundActive else {
+                    return nil
+                }
+                if #available(iOS 15.0, *) {
+                    return wc.keyWindow
+                }
+                if let s = wc.delegate as? UIWindowSceneDelegate, let sw = s.window, let ssw = sw {
+                    return ssw
+                }
+                return wc.windows.filter { $0.isKeyWindow }.first
+            }
+            return windows.first
+        } else {
+            return base.keyWindow
+        }
+    }
+    
+    /// 获取栈顶的控制器
+    /// - Parameter top: 对应控制器
+    /// - Returns: 结果
+    public func topViewController(_ top: UIViewController?) -> UIViewController? {
         if let nav = top as? UINavigationController {
             return topViewController(nav.visibleViewController)
         }

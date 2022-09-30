@@ -1,12 +1,19 @@
+//
+//  UIImage+Extension.swift
+//  JJKit
+//
+//  Created by 郑桂杰 on 2022/9/30.
+//
+
 import UIKit
 
 extension UIImage {
-    /// 在size大小CGContext画布中，根据modiy闭包来操作画布
+    /// 在size大小CGContext画布中，根据actions闭包来操作画布
     ///
     /// - Parameters:
     ///   - size: 图像画布大小
-    ///   - actions: 操作画布---block(CGContext)
-    public convenience init?(size: CGSize, actions: @escaping (CGContext) -> ()) {
+    ///   - actions: 操作画布---(CGContext)
+    public convenience init?(size: CGSize, actions: @escaping (_ ctx: CGContext) -> ()) {
         var img: UIImage?
         let scale = UIScreen.main.scale
         if #available(iOS 10.0, *) {
@@ -37,6 +44,7 @@ extension UIImage {
             return nil
         }
     }
+    
     /// 颜色 -> 纯色图像
     ///
     /// - Parameters:
@@ -68,6 +76,7 @@ extension UIImage {
             return nil
         }
     }
+    
     /// 线性颜色渐变图像
     ///
     /// - Parameters:
@@ -115,6 +124,7 @@ extension UIImage {
         }
         self.init(cgImage: cg, scale: img.scale, orientation: img.imageOrientation)
     }
+    
     /// 径向颜色渐变图像
     ///
     /// - Parameters:
@@ -163,48 +173,6 @@ extension UIImage {
     }
 }
 
-extension UIImage: JJCompatible {}
-
-extension JJ where Object: UIImage {
-    /// 改变图像的颜色
-    ///
-    /// - Parameter tintColor: 要变的颜色
-    /// - Returns: 结果
-    public func applyTintColor(_ tintColor: UIColor) -> UIImage? {
-        guard let cgImage = object.cgImage else {
-            return nil
-        }
-        let size = object.size
-        let rect = CGRect(origin: .zero, size: size)
-        return UIImage(size: size, actions: { context in
-            context.translateBy(x: 0, y: size.height)
-            context.scaleBy(x: 1, y: -1)
-            context.setBlendMode(.normal)
-            context.clip(to: rect, mask: cgImage)
-            context.setFillColor(tintColor.cgColor)
-            context.fill(rect)
-        })
-    }
-    
-    /// 调整图像大小
-    /// - Parameter maxSize: 根据图像原始宽高比与指定的最大尺寸maxSize来缩放图像
-    public func resized(maxSize: CGFloat) -> UIImage? {
-        guard let data = object.pngData() else { return nil }
-        guard let imageSource = CGImageSourceCreateWithData(data as CFData, nil) else {
-            return nil
-        }
-        let options: [CFString: Any] = [
-            kCGImageSourceCreateThumbnailFromImageIfAbsent: true,
-            kCGImageSourceCreateThumbnailWithTransform: true,
-            kCGImageSourceShouldCacheImmediately: true,
-            kCGImageSourceThumbnailMaxPixelSize: maxSize
-        ]
-        guard let img = CGImageSourceCreateThumbnailAtIndex(imageSource, 0, options as CFDictionary) else {
-            return nil
-        }
-        return UIImage(cgImage: img)
-    }
-}
 
 /**************************private*****************************/
 /// 纯色图像缓存

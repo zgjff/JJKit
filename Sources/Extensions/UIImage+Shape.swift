@@ -1,7 +1,20 @@
+//
+//  UIImage+Shape.swift
+//  JJKit
+//
+//  Created by 郑桂杰 on 2022/9/30.
+//
+
 import UIKit
 
 extension UIImage {
-    public static func imageWithShape(_ shape: UIImage.Shape, size: CGFloat, tintColor: UIColor = .white) -> UIImage? {
+    /// 绘制特定形状的图片
+    /// - Parameters:
+    ///   - shape: 要绘制的形状
+    ///   - size: 大小
+    ///   - tintColor: 颜色
+    /// - Returns: 绘制之后的图片
+    public static func shape(_ shape: UIImage.Shape, size: CGFloat, tintColor: UIColor = .white) -> UIImage? {
         return UIImage(size: CGSize(width: size, height: size)) { ctx in
             shape.draw(ctx: ctx, size: size, tintColor: tintColor)
         }
@@ -9,10 +22,15 @@ extension UIImage {
 }
 
 extension UIImage {
+    /// 纯线条形状
     public typealias LineShape = (_ lineWidth: CGFloat) -> UIImage.Shape
+    /// 特定颜色的线条形状
     public typealias LineWithColorShape = (_ lineWidth: CGFloat, _ lineColor: UIColor) -> UIImage.Shape
+    
+    /// 要绘制的图片形状
     public struct Shape {
-        public let actions: ((CGContext, CGFloat, UIColor) -> Void)
+        /// 具体绘制图片的方式
+        public let actions: ((_ ctx: CGContext, _ size: CGFloat, _ tintColor: UIColor) -> Void)
         
         fileprivate func draw(ctx: CGContext, size: CGFloat, tintColor: UIColor) {
             actions(ctx, size, tintColor)
@@ -21,7 +39,7 @@ extension UIImage {
 }
 
 extension UIImage.Shape {
-    /// 空心圆  lineWidth:线条宽
+    /// 绘制固定宽度的空心圆
     public static var circle: UIImage.LineShape = { lw in
          return UIImage.Shape { (ctx, size, tintColor) in
             ctx.setStrokeColor(tintColor.cgColor)
@@ -29,13 +47,13 @@ extension UIImage.Shape {
         }
     }
 
-    /// 实心圆
+    /// 绘制实心圆
     public static var circleFill = UIImage.Shape { (ctx, size, tintColor) in
         ctx.setFillColor(tintColor.cgColor)
         UIImage.Shapes.circle(UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: size, height: size), cornerRadius: size * 0.5))(.fill)
     }
     
-    /// +号    lineWidth:线条宽
+    /// 绘制+号
     public static var plus: UIImage.LineShape = { lw in
         return UIImage.Shape { (ctx, size, tintColor) in
             ctx.setStrokeColor(tintColor.cgColor)

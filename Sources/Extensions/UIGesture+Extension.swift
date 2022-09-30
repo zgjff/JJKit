@@ -1,8 +1,15 @@
+//
+//  UIGesture+Extension.swift
+//  JJKit
+//
+//  Created by 郑桂杰 on 2022/9/30.
+//
+
 import UIKit
 
 private var tapGestureRecognizerBlockKey = 0
 extension UITapGestureRecognizer {
-    public convenience init(handler: @escaping (UITapGestureRecognizer) -> Void) {
+    public convenience init(handler: @escaping (_ tapGesture: UITapGestureRecognizer) -> Void) {
         self.init(target: nil, action: nil)
         objc_setAssociatedObject(self, &tapGestureRecognizerBlockKey, handler, .OBJC_ASSOCIATION_COPY)
         addTarget(self, action: #selector(handlerAction(_:)))
@@ -17,7 +24,7 @@ extension UITapGestureRecognizer {
 
 private var longPressGestureRecognizerBlockKey = 0
 extension UILongPressGestureRecognizer {
-    public convenience init(handler: @escaping (UILongPressGestureRecognizer) -> Void) {
+    public convenience init(handler: @escaping (_ longPressGesture: UILongPressGestureRecognizer) -> Void) {
         self.init(target: nil, action: nil)
         objc_setAssociatedObject(self, &longPressGestureRecognizerBlockKey, handler, .OBJC_ASSOCIATION_COPY)
         addTarget(self, action: #selector(handlerAction(_:)))
@@ -32,7 +39,7 @@ extension UILongPressGestureRecognizer {
 
 private var swipeGestureRecognizerBlockKey = 0
 extension UISwipeGestureRecognizer {
-    public convenience init(handler: @escaping (UISwipeGestureRecognizer) -> Void) {
+    public convenience init(handler: @escaping (_ swipeGesture: UISwipeGestureRecognizer) -> Void) {
         self.init(target: nil, action: nil)
         objc_setAssociatedObject(self, &swipeGestureRecognizerBlockKey, handler, .OBJC_ASSOCIATION_COPY)
         addTarget(self, action: #selector(handlerAction(_:)))
@@ -47,7 +54,7 @@ extension UISwipeGestureRecognizer {
 
 private var rotationGestureRecognizerBlockKey = 0
 extension UIRotationGestureRecognizer {
-    public convenience init(handler: @escaping (UIRotationGestureRecognizer) -> Void) {
+    public convenience init(handler: @escaping (_ rotationGesture: UIRotationGestureRecognizer) -> Void) {
         self.init(target: nil, action: nil)
         objc_setAssociatedObject(self, &rotationGestureRecognizerBlockKey, handler, .OBJC_ASSOCIATION_COPY)
         addTarget(self, action: #selector(handlerAction(_:)))
@@ -62,7 +69,7 @@ extension UIRotationGestureRecognizer {
 
 private var panGestureRecognizerBlockKey = 0
 extension UIPanGestureRecognizer {
-    public convenience init(handler: @escaping (UIPanGestureRecognizer) -> Void) {
+    public convenience init(handler: @escaping (_ panGesture: UIPanGestureRecognizer) -> Void) {
         self.init(target: nil, action: nil)
         objc_setAssociatedObject(self, &panGestureRecognizerBlockKey, handler, .OBJC_ASSOCIATION_COPY)
         addTarget(self, action: #selector(handlerAction(_:)))
@@ -77,7 +84,7 @@ extension UIPanGestureRecognizer {
 
 private var pinchGestureRecognizerBlockKey = 0
 extension UIPinchGestureRecognizer {
-    public convenience init(handler: @escaping (UIPinchGestureRecognizer) -> Void) {
+    public convenience init(handler: @escaping (_ pinchGesture: UIPinchGestureRecognizer) -> Void) {
         self.init(target: nil, action: nil)
         objc_setAssociatedObject(self, &pinchGestureRecognizerBlockKey, handler, .OBJC_ASSOCIATION_COPY)
         addTarget(self, action: #selector(handlerAction(_:)))
