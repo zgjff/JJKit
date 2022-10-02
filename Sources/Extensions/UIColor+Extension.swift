@@ -53,7 +53,7 @@ extension UIColor {
     
     /// 随机颜色
     public static func jRandom() -> UIColor {
-        return UIColor(hue: CGFloat(arc4random() % 256) / 256.0, saturation: CGFloat(arc4random() % 128) / 256.0 + 0.5, brightness: CGFloat(arc4random() % 128) / 256.0 + 0.5, alpha: 1)
+        return UIColor(hue: .random(in: 0...1), saturation: .random(in: 0.5...1), brightness: .random(in: 0.5...1), alpha: 1)
     }
 }
 

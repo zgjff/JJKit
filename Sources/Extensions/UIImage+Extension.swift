@@ -52,8 +52,8 @@ extension UIImage {
     ///   - size: 大小 默认 CGSize(width: 1, height: 1)
     ///   - cornerRadius: 图片圆角大小
     public convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1), cornerRadius: CGFloat = 0) {
-        let colorSize = UIColorImageCache.ColorSize(color: color, size: size, cornerRadius: cornerRadius)
-        let cacheImg = UIColorImageCache.shared.imageFor(colorSize: colorSize)
+        let cacheInfo = UIImage.UIColorImageCache(color: color, size: size, cornerRadius: cornerRadius)
+        let cacheImg = UIImage.MemoryCache.shared.image(for: cacheInfo)
         guard cacheImg == nil else {
             self.init(cgImage: cacheImg!.cgImage!, scale: cacheImg!.scale, orientation: cacheImg!.imageOrientation)
             return
@@ -70,7 +70,7 @@ extension UIImage {
             }
         }
         if let img = UIImage(size: size, actions: build), let cg = img.cgImage {
-            UIColorImageCache.shared.setImage(img, for: colorSize)
+            UIImage.MemoryCache.shared.setImage(img, for: cacheInfo)
             self.init(cgImage: cg, scale: img.scale, orientation: img.imageOrientation)
         } else {
             return nil
@@ -173,34 +173,15 @@ extension UIImage {
     }
 }
 
-
-/**************************private*****************************/
-/// 纯色图像缓存
-private struct UIColorImageCache {
-    struct ColorSize: CustomStringConvertible {
+extension UIImage {
+    struct UIColorImageCache: CustomStringConvertible {
         var description: String {
             let width = size.width
             let height = size.height
-            return "color:\(color) width:\(width) height:\(height) cornerRadius:\(cornerRadius)"
+            return "UIImage.Color color:\(color) width:\(width) height:\(height) cornerRadius:\(cornerRadius)"
         }
         let color: UIColor
         let size: CGSize
         let cornerRadius: CGFloat
-        init(color: UIColor, size: CGSize, cornerRadius: CGFloat) {
-            self.color = color
-            self.size = size
-            self.cornerRadius = cornerRadius
-        }
-    }
-    static let shared = UIColorImageCache()
-    private let cache: NSCache<NSString, UIImage>
-    private init() {
-        cache = NSCache()
-    }
-    func imageFor(colorSize: ColorSize) -> UIImage? {
-        return cache.object(forKey: colorSize.description as NSString)
-    }
-    func setImage(_ image: UIImage, for colorSize: ColorSize) {
-        cache.setObject(image, forKey: colorSize.description as NSString)
     }
 }

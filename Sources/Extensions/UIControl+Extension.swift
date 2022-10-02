@@ -26,6 +26,7 @@ private var allTouchEvents_JJBlockKey = 0
 private var allEditingEvents_JJBlockKey = 0
 private var applicationReserved_JJBlockKey = 0
 private var systemReserved_JJBlockKey = 0
+private var menuActionTriggered_JJBlockKey = 0
 private var allEvents_JJBlockKey = 0
 
 extension JJBox where Base: UIControl {
@@ -34,6 +35,12 @@ extension JJBox where Base: UIControl {
     ///   - handler: block回调(⚠️: 注意循环引用问题)
     ///   - event: 事件
     public func handler(_ handler: @escaping (_ control:Base) -> Void, for event: UIControl.Event) {
+        if #available(iOS 14.0, *) {
+            if case .menuActionTriggered = event {
+                privateAddBlockHandler(event: event, handler: handler, key: &menuActionTriggered_JJBlockKey)
+                return
+            }
+        }
         switch event {
         case .touchDown:
             privateAddBlockHandler(event: event, handler: handler, key: &touchDown_JJBlockKey)
@@ -96,6 +103,12 @@ extension JJBox where Base: UIControl {
     }
     
     public func removeBlockHandler(for event: UIControl.Event) {
+        if #available(iOS 14.0, *) {
+            if case .menuActionTriggered = event {
+                privateremoveBlockHandler(for: event, key: &menuActionTriggered_JJBlockKey)
+                return
+            }
+        }
         switch event {
         case .touchDown:
             privateremoveBlockHandler(for: event, key: &touchDown_JJBlockKey)
@@ -163,6 +176,9 @@ extension JJBox where Base: UIControl {
         privateremoveBlockHandler(for: .applicationReserved, key: &applicationReserved_JJBlockKey)
         privateremoveBlockHandler(for: .systemReserved, key: &systemReserved_JJBlockKey)
         privateremoveBlockHandler(for: .allEvents, key: &allEvents_JJBlockKey)
+        if #available(iOS 14.0, *) {
+            privateremoveBlockHandler(for: .menuActionTriggered, key: &menuActionTriggered_JJBlockKey)
+        }
     }
     
     private func privateremoveBlockHandler(for event: UIControl.Event, key: UnsafePointer<Int>) {
@@ -174,7 +190,7 @@ extension JJBox where Base: UIControl {
 }
 
 fileprivate class ControlHandler {
-    let target: UIControl
+    weak var target: UIControl?
     let event: UIControl.Event
     var handler: ((UIControl) -> Void)?
     init(target: UIControl, event: UIControl.Event) {
@@ -183,6 +199,8 @@ fileprivate class ControlHandler {
     }
     
     @objc func invoke() {
-        handler?(target)
+        if let target {
+            handler?(target)
+        }
     }
 }

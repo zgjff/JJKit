@@ -11,17 +11,20 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .jRandom()
+        let a = UINavigationController()
+        let iv1 = UIImageView()
+        iv1.backgroundColor = .jRandom()
+        iv1.frame = CGRect(x: 50, y: 100, width: 200, height: 200)
+        view.addSubview(iv1)
+        let img1 = UIImage.shape(.plus(10), size: 200)
+        iv1.image = img1
         
-        let b = UIButton()
-        b.backgroundColor = .jRandom()
-        b.jj.handler({ control in
-            let v = FirstController()
-            v.transitioningDelegate = v.pushPopStylePresentDelegate
-//            v.modalPresentationStyle = .custom
-            self.present(v, animated: true)
-        }, for: .primaryActionTriggered)
-        b.frame = CGRect(x: 0, y: 0, width: 300, height: 50)
-        b.center = view.center
-        view.addSubview(b)
+        let iv = UIImageView()
+        iv.backgroundColor = .jRandom()
+        iv.frame = CGRect(x: 50, y: 400, width: 200, height: 200)
+        view.addSubview(iv)
+        let img = UIImage.shape(.plus(10), size: 200)
+        iv.image = img
     }
 }

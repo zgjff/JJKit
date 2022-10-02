@@ -15,9 +15,18 @@ extension UIImage {
     ///   - tintColor: 颜色
     /// - Returns: 绘制之后的图片
     public static func shape(_ shape: UIImage.Shape, size: CGFloat, tintColor: UIColor = .white) -> UIImage? {
-        return UIImage(size: CGSize(width: size, height: size)) { ctx in
+        let shapeInfo = UIImage.Shape.CacheInfo(key: shape.cacheKey, size: size, tintColor: tintColor)
+        if let cacheImg = UIImage.MemoryCache.shared.image(for: shapeInfo) {
+            return cacheImg
+        }
+        let img = UIImage(size: CGSize(width: size, height: size)) { ctx in
             shape.draw(ctx: ctx, size: size, tintColor: tintColor)
         }
+        if let img {
+            UIImage.MemoryCache.shared.setImage(img, for: shapeInfo)
+            return img
+        }
+        return nil
     }
 }
 
@@ -31,6 +40,11 @@ extension UIImage {
     public struct Shape {
         /// 具体绘制图片的方式
         public let actions: ((_ ctx: CGContext, _ size: CGFloat, _ tintColor: UIColor) -> Void)
+        fileprivate let cacheKey: String
+        public init(cacheKey: String, actions: @escaping (_ ctx: CGContext, _ size: CGFloat, _ tintColor: UIColor) -> Void) {
+            self.cacheKey = cacheKey
+            self.actions = actions
+        }
         
         fileprivate func draw(ctx: CGContext, size: CGFloat, tintColor: UIColor) {
             actions(ctx, size, tintColor)
@@ -41,21 +55,21 @@ extension UIImage {
 extension UIImage.Shape {
     /// 绘制固定宽度的空心圆
     public static var circle: UIImage.LineShape = { lw in
-         return UIImage.Shape { (ctx, size, tintColor) in
+        return UIImage.Shape(cacheKey: "UIImage.Shape.circle: lineWidth=\(lw)") { (ctx, size, tintColor) in
             ctx.setStrokeColor(tintColor.cgColor)
             UIImage.Shapes.circle(UIBezierPath(arcCenter: CGPoint(x: size * 0.5, y: size * 0.5), radius: (size - lw) * 0.5, startAngle: 0, endAngle: .pi * 2, clockwise: true))(.stroke(lineWidth: lw))
         }
     }
 
     /// 绘制实心圆
-    public static var circleFill = UIImage.Shape { (ctx, size, tintColor) in
+    public static var circleFill = UIImage.Shape(cacheKey: "UIImage.Shape.circleFill") { (ctx, size, tintColor) in
         ctx.setFillColor(tintColor.cgColor)
         UIImage.Shapes.circle(UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: size, height: size), cornerRadius: size * 0.5))(.fill)
     }
     
     /// 绘制+号
     public static var plus: UIImage.LineShape = { lw in
-        return UIImage.Shape { (ctx, size, tintColor) in
+        return UIImage.Shape(cacheKey: "UIImage.Shape.plus: lineWidth=\(lw)") { (ctx, size, tintColor) in
             ctx.setStrokeColor(tintColor.cgColor)
             UIImage.Shapes.plus(UIBezierPath())(CGRect(x: lw, y: lw, width: size - lw * 2, height: size - lw * 2))(lw)
         }
@@ -63,7 +77,7 @@ extension UIImage.Shape {
     
     /// 空心+号    lineWidth:线条宽
     public static var plusCircle: UIImage.LineShape = { lw in
-        return UIImage.Shape { (ctx, size, tintColor) in
+        return UIImage.Shape(cacheKey: "UIImage.Shape.plusCircle: lineWidth=\(lw)") { (ctx, size, tintColor) in
             ctx.setStrokeColor(tintColor.cgColor)
             let path = UIBezierPath(arcCenter: CGPoint(x: size * 0.5, y: size * 0.5), radius: (size - lw) * 0.5, startAngle: 0, endAngle: .pi * 2, clockwise: true)
             UIImage.Shapes.plus(path)(CGRect(x: size * 0.28, y: size * 0.28, width: size * 0.44, height: size * 0.44))(lw)
@@ -72,7 +86,7 @@ extension UIImage.Shape {
     
     /// 实心+  lineWidth:线条宽  lineColor:线条颜色
     public static var plusCircleFill: UIImage.LineWithColorShape = { lw, lc in
-        return UIImage.Shape { (ctx, size, tintColor) in
+        return UIImage.Shape(cacheKey: "UIImage.Shape.plusCircleFill: lineWidth=\(lw) lineColor:=\(lc)") { (ctx, size, tintColor) in
             ctx.setFillColor(tintColor.cgColor)
             UIImage.Shapes.circle(UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: size, height: size), cornerRadius: size * 0.5))(.fill)
             ctx.setStrokeColor(lc.cgColor)
@@ -82,7 +96,7 @@ extension UIImage.Shape {
     
     /// -号    lineWidth:线条宽
     public static var minus: UIImage.LineShape = { lw in
-        return UIImage.Shape { (ctx, size, tintColor) in
+        return UIImage.Shape(cacheKey: "UIImage.Shape.minus: lineWidth=\(lw)") { (ctx, size, tintColor) in
             ctx.setStrokeColor(tintColor.cgColor)
             UIImage.Shapes.line(UIBezierPath())(CGRect(x: lw, y: 0, width: size - lw * 2, height: size))(lw)
         }
@@ -90,7 +104,7 @@ extension UIImage.Shape {
     
     /// 空心-号    lineWidth:线条宽
     public static var minusCircle: UIImage.LineShape = { lw in
-        return UIImage.Shape { (ctx, size, tintColor) in
+        return UIImage.Shape(cacheKey: "UIImage.Shape.minusCircle: lineWidth=\(lw)") { (ctx, size, tintColor) in
             ctx.setStrokeColor(tintColor.cgColor)
             let path = UIBezierPath(arcCenter: CGPoint(x: size * 0.5, y: size * 0.5), radius: (size - lw) * 0.5, startAngle: 0, endAngle: .pi * 2, clockwise: true)
             UIImage.Shapes.circle(path)(.stroke(lineWidth: lw))
@@ -100,7 +114,7 @@ extension UIImage.Shape {
     
     /// 实心-  lineWidth:线条宽  lineColor:线条颜色
     public static var minusCircleFill: UIImage.LineWithColorShape = { lw, lc in
-        return UIImage.Shape { (ctx, size, tintColor) in
+        return UIImage.Shape(cacheKey: "UIImage.Shape.minusCircleFill: lineWidth=\(lw) lineColor:=\(lc)") { (ctx, size, tintColor) in
             ctx.setFillColor(tintColor.cgColor)
             UIImage.Shapes.circle(UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: size, height: size), cornerRadius: size * 0.5))(.fill)
             ctx.setStrokeColor(lc.cgColor)
@@ -110,7 +124,7 @@ extension UIImage.Shape {
     
     /// x号    lineWidth:线条宽
     public static var multiply: UIImage.LineShape = { lw in
-        return UIImage.Shape { (ctx, size, tintColor) in
+        return UIImage.Shape(cacheKey: "UIImage.Shape.multiply: lineWidth=\(lw)") { (ctx, size, tintColor) in
             ctx.setStrokeColor(tintColor.cgColor)
             UIImage.Shapes.multiply(UIBezierPath())(CGRect(x: lw, y: lw, width: size - lw * 2, height: size - lw * 2))(lw)
         }
@@ -118,7 +132,7 @@ extension UIImage.Shape {
     
     /// 空心x号    lineWidth:线条宽
     public static var multiplyCircle: UIImage.LineShape = { lw in
-        return UIImage.Shape { (ctx, size, tintColor) in
+        return UIImage.Shape(cacheKey: "UIImage.Shape.multiplyCircle: lineWidth=\(lw)") { (ctx, size, tintColor) in
             ctx.setStrokeColor(tintColor.cgColor)
             let path = UIBezierPath(arcCenter: CGPoint(x: size * 0.5, y: size * 0.5), radius: (size - lw) * 0.5, startAngle: 0, endAngle: .pi * 2, clockwise: true)
             UIImage.Shapes.circle(path)(.stroke(lineWidth: lw))
@@ -129,7 +143,7 @@ extension UIImage.Shape {
     
     /// 实心x  lineWidth:线条宽  lineColor:线条颜色
     public static var multiplyCircleFill: UIImage.LineWithColorShape = { lw, lc in
-        return UIImage.Shape { (ctx, size, tintColor) in
+        return UIImage.Shape(cacheKey: "UIImage.Shape.multiplyCircleFill: lineWidth=\(lw) lineColor=\(lc)") { (ctx, size, tintColor) in
             ctx.setFillColor(tintColor.cgColor)
             UIImage.Shapes.circle(UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: size, height: size), cornerRadius: size * 0.5))(.fill)
             ctx.setStrokeColor(lc.cgColor)
@@ -140,7 +154,7 @@ extension UIImage.Shape {
     
     /// =号    lineWidth:线条宽
     public static var equal: UIImage.LineShape = { lw in
-        return UIImage.Shape { (ctx, size, tintColor) in
+        return UIImage.Shape(cacheKey: "UIImage.Shape.equal: lineWidth=\(lw)") { (ctx, size, tintColor) in
             ctx.setStrokeColor(tintColor.cgColor)
             let path = UIBezierPath()
             let space: CGFloat = 6
@@ -152,7 +166,7 @@ extension UIImage.Shape {
     
     /// 空心=   lineWidth:线条宽
     public static var equalCircle: UIImage.LineShape = { lw in
-        return UIImage.Shape { (ctx, size, tintColor) in
+        return UIImage.Shape(cacheKey: "UIImage.Shape.equalCircle: lineWidth=\(lw)") { (ctx, size, tintColor) in
             ctx.setStrokeColor(tintColor.cgColor)
             let path = UIBezierPath(arcCenter: CGPoint(x: size * 0.5, y: size * 0.5), radius: (size - lw) * 0.5, startAngle: 0, endAngle: .pi * 2, clockwise: true)
             UIImage.Shapes.circle(path)(.stroke(lineWidth: lw))
@@ -165,7 +179,7 @@ extension UIImage.Shape {
     
     /// 实心=  lineWidth:线条宽  lineColor:线条颜色
     public static var equalCircleFill: UIImage.LineWithColorShape = { lw, lc in
-        return UIImage.Shape { (ctx, size, tintColor) in
+        return UIImage.Shape(cacheKey: "UIImage.Shape.equalCircleFill: lineWidth=\(lw) lineColor=\(lc)") { (ctx, size, tintColor) in
             ctx.setFillColor(tintColor.cgColor)
             UIImage.Shapes.circle(UIBezierPath(arcCenter: CGPoint(x: size * 0.5, y: size * 0.5), radius: (size - lw) * 0.5, startAngle: 0, endAngle: .pi * 2, clockwise: true))(.fill)
             let space: CGFloat = 6
@@ -177,7 +191,6 @@ extension UIImage.Shape {
         }
     }
 }
-
 
 extension UIImage {
     fileprivate struct Shapes {
@@ -237,5 +250,16 @@ extension UIImage {
                 }
             }
         }
+    }
+}
+
+extension UIImage.Shape {
+    struct CacheInfo: CustomStringConvertible {
+        var description: String {
+            return "key=\(key) size=\(size) tintColor=\(tintColor)"
+        }
+        let key: String
+        let size: CGFloat
+        let tintColor: UIColor
     }
 }

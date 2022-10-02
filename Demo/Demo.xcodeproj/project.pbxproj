@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5ECDF51228E827D7007BF43F /* UIImage+MemoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECDF51128E827D7007BF43F /* UIImage+MemoryCache.swift */; };
 		9D073B0F28E6883100D7B42A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D073B0E28E6883100D7B42A /* AppDelegate.swift */; };
 		9D073B1328E6883100D7B42A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D073B1228E6883100D7B42A /* ViewController.swift */; };
 		9D073B1828E6883200D7B42A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D073B1728E6883200D7B42A /* Assets.xcassets */; };
@@ -41,7 +42,6 @@
 		9D073B6428E6BB1E00D7B42A /* JJPushPopStylePresentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D073B6328E6BB1E00D7B42A /* JJPushPopStylePresentDelegate.swift */; };
 		9D073B6628E6BB6700D7B42A /* JJPushPopPresentTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D073B6528E6BB6700D7B42A /* JJPushPopPresentTransitionDelegate.swift */; };
 		9D073B6828E6BBB100D7B42A /* JJPushPopPresentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D073B6728E6BBB100D7B42A /* JJPushPopPresentAnimator.swift */; };
-		9D073B6A28E6BDF200D7B42A /* FirstController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D073B6928E6BDF200D7B42A /* FirstController.swift */; };
 		9D073B6C28E6BE7D00D7B42A /* UIControl+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D073B6B28E6BE7D00D7B42A /* UIControl+Extension.swift */; };
 		9D073B6E28E6BFA400D7B42A /* UIGesture+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D073B6D28E6BFA400D7B42A /* UIGesture+Extension.swift */; };
 		9D073B7028E6C09B00D7B42A /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D073B6F28E6C09B00D7B42A /* UIBarButtonItem+Extension.swift */; };
@@ -67,6 +67,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5ECDF51128E827D7007BF43F /* UIImage+MemoryCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+MemoryCache.swift"; sourceTree = "<group>"; };
 		9D073B0B28E6883100D7B42A /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D073B0E28E6883100D7B42A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9D073B1228E6883100D7B42A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -103,7 +104,6 @@
 		9D073B6328E6BB1E00D7B42A /* JJPushPopStylePresentDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJPushPopStylePresentDelegate.swift; sourceTree = "<group>"; };
 		9D073B6528E6BB6700D7B42A /* JJPushPopPresentTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJPushPopPresentTransitionDelegate.swift; sourceTree = "<group>"; };
 		9D073B6728E6BBB100D7B42A /* JJPushPopPresentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJPushPopPresentAnimator.swift; sourceTree = "<group>"; };
-		9D073B6928E6BDF200D7B42A /* FirstController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstController.swift; sourceTree = "<group>"; };
 		9D073B6B28E6BE7D00D7B42A /* UIControl+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Extension.swift"; sourceTree = "<group>"; };
 		9D073B6D28E6BFA400D7B42A /* UIGesture+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIGesture+Extension.swift"; sourceTree = "<group>"; };
 		9D073B6F28E6C09B00D7B42A /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
@@ -161,7 +161,6 @@
 			children = (
 				9D073B0E28E6883100D7B42A /* AppDelegate.swift */,
 				9D073B1228E6883100D7B42A /* ViewController.swift */,
-				9D073B6928E6BDF200D7B42A /* FirstController.swift */,
 				9D073B1728E6883200D7B42A /* Assets.xcassets */,
 				9D073B1928E6883200D7B42A /* LaunchScreen.storyboard */,
 				9D073B1C28E6883200D7B42A /* Info.plist */,
@@ -189,6 +188,7 @@
 				9D073B2B28E6935600D7B42A /* UIImage+Extension.swift */,
 				9D073B3328E6AB8700D7B42A /* UIImage+Filter.swift */,
 				9D073B7328E6CC7C00D7B42A /* UIImage+Shape.swift */,
+				5ECDF51128E827D7007BF43F /* UIImage+MemoryCache.swift */,
 				9D073B2D28E6973000D7B42A /* UIColor+Extension.swift */,
 				9D073B2F28E697E200D7B42A /* UIView+Frame.swift */,
 				9D073B3128E69B5300D7B42A /* CALayer+Frame.swift */,
@@ -410,10 +410,10 @@
 				9D073B2C28E6935600D7B42A /* UIImage+Extension.swift in Sources */,
 				9D073B3728E6AF6A00D7B42A /* JJRouter.swift in Sources */,
 				9D073B7428E6CC7C00D7B42A /* UIImage+Shape.swift in Sources */,
+				5ECDF51228E827D7007BF43F /* UIImage+MemoryCache.swift in Sources */,
 				9D073B2E28E6973000D7B42A /* UIColor+Extension.swift in Sources */,
 				9D073B5D28E6B94D00D7B42A /* JJAlertPresentationContext.swift in Sources */,
 				9D073B4128E6AFE800D7B42A /* RouteMatchResultSource.swift in Sources */,
-				9D073B6A28E6BDF200D7B42A /* FirstController.swift in Sources */,
 				9D073B6828E6BBB100D7B42A /* JJPushPopPresentAnimator.swift in Sources */,
 				9D073B6428E6BB1E00D7B42A /* JJPushPopStylePresentDelegate.swift in Sources */,
 				9D073B9E28E6E56400D7B42A /* JJCarouselNumberPageView.swift in Sources */,

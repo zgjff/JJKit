@@ -66,3 +66,5 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 JJKit.podspec
+Sources/**/.DS_Store
+.DS_Store
