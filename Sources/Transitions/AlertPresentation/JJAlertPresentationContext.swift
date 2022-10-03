@@ -6,6 +6,8 @@
 //
 
 import UIKit
+
+/// 弹窗驱动上下文
 final public class JJAlertPresentationContext {
     /// 转场动画持续时间---默认0.2s
     public var duration: TimeInterval = 0.2
@@ -55,7 +57,7 @@ final public class JJAlertPresentationContext {
     ///
     public var willPresentAnimatorForBelowCoverView: ((_ belowCoverView: UIView, _ coordinator: UIViewControllerTransitionCoordinator) -> ())? = Default.dimmingBelowCoverViewAnimator(true)
     
-    /// 转场动画dismissalTransitionWillBegin时,belowCoverView要展示的动画效果,默认是高斯模糊view的动画效果
+    /// 转场动画dismissalTransitionWillBegin时,belowCoverView要展示的动画效果,默认是暗灰色view的动画效果
     ///
     /// 例如:
     ///
