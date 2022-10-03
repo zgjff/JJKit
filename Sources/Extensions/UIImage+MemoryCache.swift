@@ -1,8 +1,8 @@
 //
 //  UIImage+MemoryCache.swift
-//  Demo
+//  JJKit
 //
-//  Created by 郑桂杰 on 2022/10/1.
+//  Created by zgjff on 2022/10/1.
 //
 
 import UIKit

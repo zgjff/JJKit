@@ -2,7 +2,7 @@
 //  JJCarouselStyle.swift
 //  JJKit
 //
-//  Created by 郑桂杰 on 2022/9/30.
+//  Created by zgjff on 2022/9/30.
 //
 
 import CoreGraphics

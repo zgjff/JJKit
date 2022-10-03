@@ -7,6 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E594E4C28EA73E30026CCED /* PassParameterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E3528EA73E30026CCED /* PassParameterRouter.swift */; };
+		5E594E4D28EA73E30026CCED /* BlockRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E3628EA73E30026CCED /* BlockRouter.swift */; };
+		5E594E4E28EA73E30026CCED /* SimpleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E3728EA73E30026CCED /* SimpleRouter.swift */; };
+		5E594E4F28EA73E30026CCED /* RouterDemosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E3828EA73E30026CCED /* RouterDemosController.swift */; };
+		5E594E5028EA73E30026CCED /* RootRowAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E3928EA73E30026CCED /* RootRowAction.swift */; };
+		5E594E5128EA73E30026CCED /* ShowMatchRouterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E3A28EA73E30026CCED /* ShowMatchRouterable.swift */; };
+		5E594E5228EA73E30026CCED /* PassParameterByUrlController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E3C28EA73E30026CCED /* PassParameterByUrlController.swift */; };
+		5E594E5328EA73E30026CCED /* MapBlockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E3D28EA73E30026CCED /* MapBlockController.swift */; };
+		5E594E5428EA73E30026CCED /* BackBlockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E3E28EA73E30026CCED /* BackBlockController.swift */; };
+		5E594E5528EA73E30026CCED /* PassParameterMixUrlAndContextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E3F28EA73E30026CCED /* PassParameterMixUrlAndContextController.swift */; };
+		5E594E5628EA73E30026CCED /* AlertCenterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E4028EA73E30026CCED /* AlertCenterController.swift */; };
+		5E594E5728EA73E30026CCED /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E4128EA73E30026CCED /* LoginController.swift */; };
+		5E594E5828EA73E30026CCED /* FrontBlockBController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E4228EA73E30026CCED /* FrontBlockBController.swift */; };
+		5E594E5928EA73E30026CCED /* PassParametersForInitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E4328EA73E30026CCED /* PassParametersForInitController.swift */; };
+		5E594E5A28EA73E30026CCED /* PassParameterByEnumController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E4428EA73E30026CCED /* PassParameterByEnumController.swift */; };
+		5E594E5B28EA73E30026CCED /* SystemPresentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E4528EA73E30026CCED /* SystemPresentController.swift */; };
+		5E594E5C28EA73E30026CCED /* PushStylePresentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E4628EA73E30026CCED /* PushStylePresentController.swift */; };
+		5E594E5D28EA73E30026CCED /* PassParameterByContextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E4728EA73E30026CCED /* PassParameterByContextController.swift */; };
+		5E594E5E28EA73E30026CCED /* PassParameterByUrlWithQueryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E4828EA73E30026CCED /* PassParameterByUrlWithQueryController.swift */; };
+		5E594E5F28EA73E30026CCED /* FrontBlockAController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E4928EA73E30026CCED /* FrontBlockAController.swift */; };
+		5E594E6028EA73E30026CCED /* UpdateUIWhenMatchSameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E4A28EA73E30026CCED /* UpdateUIWhenMatchSameController.swift */; };
+		5E594E6128EA73E30026CCED /* SystemPushController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E4B28EA73E30026CCED /* SystemPushController.swift */; };
+		5E594E6A28EA8C5E0026CCED /* a-5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5E594E6428EA8C5E0026CCED /* a-5.jpeg */; };
+		5E594E6B28EA8C5E0026CCED /* a-4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5E594E6528EA8C5E0026CCED /* a-4.jpeg */; };
+		5E594E6C28EA8C5E0026CCED /* a-3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5E594E6628EA8C5E0026CCED /* a-3.jpeg */; };
+		5E594E6D28EA8C5E0026CCED /* a-2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5E594E6728EA8C5E0026CCED /* a-2.jpeg */; };
+		5E594E6E28EA8C5E0026CCED /* a-1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5E594E6828EA8C5E0026CCED /* a-1.jpeg */; };
+		5E594E6F28EA8C5E0026CCED /* a-0.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5E594E6928EA8C5E0026CCED /* a-0.jpeg */; };
+		5E594E7128EA8CBB0026CCED /* CarouselTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E7028EA8CBB0026CCED /* CarouselTabbarController.swift */; };
+		5E594E7328EA8CDB0026CCED /* CarouselController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E7228EA8CDB0026CCED /* CarouselController.swift */; };
+		5E594E7528EA8D090026CCED /* WebCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E7428EA8D090026CCED /* WebCarouselView.swift */; };
+		5E594E7728EA8D150026CCED /* WebCarouselModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E7628EA8D150026CCED /* WebCarouselModel.swift */; };
+		5E594E7928EA8DF10026CCED /* AddCloseNaviItemToDismissable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E7828EA8DF10026CCED /* AddCloseNaviItemToDismissable.swift */; };
 		5ECDF51228E827D7007BF43F /* UIImage+MemoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECDF51128E827D7007BF43F /* UIImage+MemoryCache.swift */; };
 		9D073B0F28E6883100D7B42A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D073B0E28E6883100D7B42A /* AppDelegate.swift */; };
 		9D073B1328E6883100D7B42A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D073B1228E6883100D7B42A /* ViewController.swift */; };
@@ -64,10 +97,46 @@
 		9D073B9A28E6E54800D7B42A /* JJCarouselHiddenPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D073B9928E6E54800D7B42A /* JJCarouselHiddenPageView.swift */; };
 		9D073B9C28E6E55600D7B42A /* JJCarouselDotPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D073B9B28E6E55600D7B42A /* JJCarouselDotPageView.swift */; };
 		9D073B9E28E6E56400D7B42A /* JJCarouselNumberPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D073B9D28E6E56400D7B42A /* JJCarouselNumberPageView.swift */; };
+		AFC0E8441AC42D6870DC7812 /* Pods_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27818B47D8E551B90C4BFF5F /* Pods_Demo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		27818B47D8E551B90C4BFF5F /* Pods_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E594E3528EA73E30026CCED /* PassParameterRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassParameterRouter.swift; sourceTree = "<group>"; };
+		5E594E3628EA73E30026CCED /* BlockRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockRouter.swift; sourceTree = "<group>"; };
+		5E594E3728EA73E30026CCED /* SimpleRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleRouter.swift; sourceTree = "<group>"; };
+		5E594E3828EA73E30026CCED /* RouterDemosController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterDemosController.swift; sourceTree = "<group>"; };
+		5E594E3928EA73E30026CCED /* RootRowAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootRowAction.swift; sourceTree = "<group>"; };
+		5E594E3A28EA73E30026CCED /* ShowMatchRouterable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowMatchRouterable.swift; sourceTree = "<group>"; };
+		5E594E3C28EA73E30026CCED /* PassParameterByUrlController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassParameterByUrlController.swift; sourceTree = "<group>"; };
+		5E594E3D28EA73E30026CCED /* MapBlockController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapBlockController.swift; sourceTree = "<group>"; };
+		5E594E3E28EA73E30026CCED /* BackBlockController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackBlockController.swift; sourceTree = "<group>"; };
+		5E594E3F28EA73E30026CCED /* PassParameterMixUrlAndContextController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassParameterMixUrlAndContextController.swift; sourceTree = "<group>"; };
+		5E594E4028EA73E30026CCED /* AlertCenterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertCenterController.swift; sourceTree = "<group>"; };
+		5E594E4128EA73E30026CCED /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		5E594E4228EA73E30026CCED /* FrontBlockBController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrontBlockBController.swift; sourceTree = "<group>"; };
+		5E594E4328EA73E30026CCED /* PassParametersForInitController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassParametersForInitController.swift; sourceTree = "<group>"; };
+		5E594E4428EA73E30026CCED /* PassParameterByEnumController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassParameterByEnumController.swift; sourceTree = "<group>"; };
+		5E594E4528EA73E30026CCED /* SystemPresentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemPresentController.swift; sourceTree = "<group>"; };
+		5E594E4628EA73E30026CCED /* PushStylePresentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushStylePresentController.swift; sourceTree = "<group>"; };
+		5E594E4728EA73E30026CCED /* PassParameterByContextController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassParameterByContextController.swift; sourceTree = "<group>"; };
+		5E594E4828EA73E30026CCED /* PassParameterByUrlWithQueryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassParameterByUrlWithQueryController.swift; sourceTree = "<group>"; };
+		5E594E4928EA73E30026CCED /* FrontBlockAController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrontBlockAController.swift; sourceTree = "<group>"; };
+		5E594E4A28EA73E30026CCED /* UpdateUIWhenMatchSameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateUIWhenMatchSameController.swift; sourceTree = "<group>"; };
+		5E594E4B28EA73E30026CCED /* SystemPushController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemPushController.swift; sourceTree = "<group>"; };
+		5E594E6428EA8C5E0026CCED /* a-5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "a-5.jpeg"; sourceTree = "<group>"; };
+		5E594E6528EA8C5E0026CCED /* a-4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "a-4.jpeg"; sourceTree = "<group>"; };
+		5E594E6628EA8C5E0026CCED /* a-3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "a-3.jpeg"; sourceTree = "<group>"; };
+		5E594E6728EA8C5E0026CCED /* a-2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "a-2.jpeg"; sourceTree = "<group>"; };
+		5E594E6828EA8C5E0026CCED /* a-1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "a-1.jpeg"; sourceTree = "<group>"; };
+		5E594E6928EA8C5E0026CCED /* a-0.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "a-0.jpeg"; sourceTree = "<group>"; };
+		5E594E7028EA8CBB0026CCED /* CarouselTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselTabbarController.swift; sourceTree = "<group>"; };
+		5E594E7228EA8CDB0026CCED /* CarouselController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselController.swift; sourceTree = "<group>"; };
+		5E594E7428EA8D090026CCED /* WebCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCarouselView.swift; sourceTree = "<group>"; };
+		5E594E7628EA8D150026CCED /* WebCarouselModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCarouselModel.swift; sourceTree = "<group>"; };
+		5E594E7828EA8DF10026CCED /* AddCloseNaviItemToDismissable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCloseNaviItemToDismissable.swift; sourceTree = "<group>"; };
 		5ECDF51128E827D7007BF43F /* UIImage+MemoryCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+MemoryCache.swift"; sourceTree = "<group>"; };
+		87B165928D99EF25A5DA9F41 /* Pods-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.debug.xcconfig"; path = "Target Support Files/Pods-Demo/Pods-Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		9D073B0B28E6883100D7B42A /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D073B0E28E6883100D7B42A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9D073B1228E6883100D7B42A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +195,7 @@
 		9D073B9928E6E54800D7B42A /* JJCarouselHiddenPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJCarouselHiddenPageView.swift; sourceTree = "<group>"; };
 		9D073B9B28E6E55600D7B42A /* JJCarouselDotPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJCarouselDotPageView.swift; sourceTree = "<group>"; };
 		9D073B9D28E6E56400D7B42A /* JJCarouselNumberPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJCarouselNumberPageView.swift; sourceTree = "<group>"; };
+		EDF7E3640305DF644F8C5CD2 /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,18 +203,108 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFC0E8441AC42D6870DC7812 /* Pods_Demo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E594E3328EA73E30026CCED /* RouterDemos */ = {
+			isa = PBXGroup;
+			children = (
+				5E594E3B28EA73E30026CCED /* Controllers */,
+				5E594E3428EA73E30026CCED /* Routers */,
+				5E594E3828EA73E30026CCED /* RouterDemosController.swift */,
+				5E594E3928EA73E30026CCED /* RootRowAction.swift */,
+				5E594E3A28EA73E30026CCED /* ShowMatchRouterable.swift */,
+			);
+			path = RouterDemos;
+			sourceTree = "<group>";
+		};
+		5E594E3428EA73E30026CCED /* Routers */ = {
+			isa = PBXGroup;
+			children = (
+				5E594E3528EA73E30026CCED /* PassParameterRouter.swift */,
+				5E594E3628EA73E30026CCED /* BlockRouter.swift */,
+				5E594E3728EA73E30026CCED /* SimpleRouter.swift */,
+			);
+			path = Routers;
+			sourceTree = "<group>";
+		};
+		5E594E3B28EA73E30026CCED /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5E594E4B28EA73E30026CCED /* SystemPushController.swift */,
+				5E594E4528EA73E30026CCED /* SystemPresentController.swift */,
+				5E594E4628EA73E30026CCED /* PushStylePresentController.swift */,
+				5E594E4028EA73E30026CCED /* AlertCenterController.swift */,
+				5E594E3E28EA73E30026CCED /* BackBlockController.swift */,
+				5E594E4928EA73E30026CCED /* FrontBlockAController.swift */,
+				5E594E4228EA73E30026CCED /* FrontBlockBController.swift */,
+				5E594E4128EA73E30026CCED /* LoginController.swift */,
+				5E594E3D28EA73E30026CCED /* MapBlockController.swift */,
+				5E594E3C28EA73E30026CCED /* PassParameterByUrlController.swift */,
+				5E594E4828EA73E30026CCED /* PassParameterByUrlWithQueryController.swift */,
+				5E594E3F28EA73E30026CCED /* PassParameterMixUrlAndContextController.swift */,
+				5E594E4728EA73E30026CCED /* PassParameterByContextController.swift */,
+				5E594E4328EA73E30026CCED /* PassParametersForInitController.swift */,
+				5E594E4428EA73E30026CCED /* PassParameterByEnumController.swift */,
+				5E594E4A28EA73E30026CCED /* UpdateUIWhenMatchSameController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		5E594E6228EA8C400026CCED /* CarouselDemo */ = {
+			isa = PBXGroup;
+			children = (
+				5E594E6328EA8C5E0026CCED /* Images */,
+				5E594E7028EA8CBB0026CCED /* CarouselTabbarController.swift */,
+				5E594E7228EA8CDB0026CCED /* CarouselController.swift */,
+				5E594E7428EA8D090026CCED /* WebCarouselView.swift */,
+				5E594E7628EA8D150026CCED /* WebCarouselModel.swift */,
+			);
+			path = CarouselDemo;
+			sourceTree = "<group>";
+		};
+		5E594E6328EA8C5E0026CCED /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				5E594E6428EA8C5E0026CCED /* a-5.jpeg */,
+				5E594E6528EA8C5E0026CCED /* a-4.jpeg */,
+				5E594E6628EA8C5E0026CCED /* a-3.jpeg */,
+				5E594E6728EA8C5E0026CCED /* a-2.jpeg */,
+				5E594E6828EA8C5E0026CCED /* a-1.jpeg */,
+				5E594E6928EA8C5E0026CCED /* a-0.jpeg */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		6AB607B1FD915917FD9E77DD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				87B165928D99EF25A5DA9F41 /* Pods-Demo.debug.xcconfig */,
+				EDF7E3640305DF644F8C5CD2 /* Pods-Demo.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		6E08819B1AF16B0743A80EB0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				27818B47D8E551B90C4BFF5F /* Pods_Demo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9D073B0228E6883100D7B42A = {
 			isa = PBXGroup;
 			children = (
 				9D073B2228E68A7A00D7B42A /* Sources */,
 				9D073B0D28E6883100D7B42A /* Demo */,
 				9D073B0C28E6883100D7B42A /* Products */,
+				6AB607B1FD915917FD9E77DD /* Pods */,
+				6E08819B1AF16B0743A80EB0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -159,8 +319,11 @@
 		9D073B0D28E6883100D7B42A /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				5E594E6228EA8C400026CCED /* CarouselDemo */,
+				5E594E3328EA73E30026CCED /* RouterDemos */,
 				9D073B0E28E6883100D7B42A /* AppDelegate.swift */,
 				9D073B1228E6883100D7B42A /* ViewController.swift */,
+				5E594E7828EA8DF10026CCED /* AddCloseNaviItemToDismissable.swift */,
 				9D073B1728E6883200D7B42A /* Assets.xcassets */,
 				9D073B1928E6883200D7B42A /* LaunchScreen.storyboard */,
 				9D073B1C28E6883200D7B42A /* Info.plist */,
@@ -316,9 +479,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9D073B1F28E6883200D7B42A /* Build configuration list for PBXNativeTarget "Demo" */;
 			buildPhases = (
+				F590E76B73785C28ADC36CA2 /* [CP] Check Pods Manifest.lock */,
 				9D073B0728E6883100D7B42A /* Sources */,
 				9D073B0828E6883100D7B42A /* Frameworks */,
 				9D073B0928E6883100D7B42A /* Resources */,
+				2EC79CCB96FB0E70E889D66F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -367,12 +532,60 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E594E6C28EA8C5E0026CCED /* a-3.jpeg in Resources */,
 				9D073B1B28E6883200D7B42A /* LaunchScreen.storyboard in Resources */,
+				5E594E6F28EA8C5E0026CCED /* a-0.jpeg in Resources */,
+				5E594E6D28EA8C5E0026CCED /* a-2.jpeg in Resources */,
 				9D073B1828E6883200D7B42A /* Assets.xcassets in Resources */,
+				5E594E6E28EA8C5E0026CCED /* a-1.jpeg in Resources */,
+				5E594E6B28EA8C5E0026CCED /* a-4.jpeg in Resources */,
+				5E594E6A28EA8C5E0026CCED /* a-5.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2EC79CCB96FB0E70E889D66F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Demo/Pods-Demo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Demo/Pods-Demo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Demo/Pods-Demo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F590E76B73785C28ADC36CA2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Demo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9D073B0728E6883100D7B42A /* Sources */ = {
@@ -384,15 +597,25 @@
 				9D073B2628E68CD000D7B42A /* JJBox.swift in Sources */,
 				9D073B9C28E6E55600D7B42A /* JJCarouselDotPageView.swift in Sources */,
 				9D073B4728E6B01200D7B42A /* RouterOpenFailure.swift in Sources */,
+				5E594E4C28EA73E30026CCED /* PassParameterRouter.swift in Sources */,
+				5E594E4D28EA73E30026CCED /* BlockRouter.swift in Sources */,
 				9D073B4F28E6B04C00D7B42A /* RoutingPatternToken.swift in Sources */,
 				9D073B8F28E6E4B700D7B42A /* JJCarouselViewPageable.swift in Sources */,
 				9D073B3928E6AF8E00D7B42A /* RouterSource.swift in Sources */,
+				5E594E6028EA73E30026CCED /* UpdateUIWhenMatchSameController.swift in Sources */,
+				5E594E4E28EA73E30026CCED /* SimpleRouter.swift in Sources */,
+				5E594E4F28EA73E30026CCED /* RouterDemosController.swift in Sources */,
 				9D073B3028E697E200D7B42A /* UIView+Frame.swift in Sources */,
+				5E594E5628EA73E30026CCED /* AlertCenterController.swift in Sources */,
+				5E594E7128EA8CBB0026CCED /* CarouselTabbarController.swift in Sources */,
+				5E594E5328EA73E30026CCED /* MapBlockController.swift in Sources */,
 				9D073B3F28E6AFDD00D7B42A /* RouteMatchResult.swift in Sources */,
 				9D073B4D28E6B04000D7B42A /* RouteScanTerminal.swift in Sources */,
+				5E594E7728EA8D150026CCED /* WebCarouselModel.swift in Sources */,
 				9D073B1328E6883100D7B42A /* ViewController.swift in Sources */,
 				9D073B5B28E6B92300D7B42A /* JJAlertPresentationController.swift in Sources */,
 				9D073B9A28E6E54800D7B42A /* JJCarouselHiddenPageView.swift in Sources */,
+				5E594E7928EA8DF10026CCED /* AddCloseNaviItemToDismissable.swift in Sources */,
 				9D073B5328E6B06800D7B42A /* Route.swift in Sources */,
 				9D073B5F28E6B96800D7B42A /* JJAlertPresentationContext+Default.swift in Sources */,
 				9D073B4928E6B02300D7B42A /* MatchedSameRouterAction.swift in Sources */,
@@ -400,19 +623,29 @@
 				9D073B7A28E6DD2200D7B42A /* ReusableViewExtension.swift in Sources */,
 				9D073B3B28E6AFB300D7B42A /* RouterDestination.swift in Sources */,
 				9D073B7028E6C09B00D7B42A /* UIBarButtonItem+Extension.swift in Sources */,
+				5E594E5D28EA73E30026CCED /* PassParameterByContextController.swift in Sources */,
+				5E594E5128EA73E30026CCED /* ShowMatchRouterable.swift in Sources */,
 				9D073B6228E6BACB00D7B42A /* JJPushPopPresentTransition.swift in Sources */,
 				9D073B7228E6C0E400D7B42A /* Date+Extension.swift in Sources */,
 				9D073B7828E6DC2800D7B42A /* Collection+SafeIndex.swift in Sources */,
 				9D073B7628E6D1CA00D7B42A /* String+Extension.swift in Sources */,
 				9D073B3228E69B5300D7B42A /* CALayer+Frame.swift in Sources */,
 				9D073B5128E6B05900D7B42A /* PatternTokenBuilder.swift in Sources */,
+				5E594E5A28EA73E30026CCED /* PassParameterByEnumController.swift in Sources */,
 				9D073B8328E6E45B00D7B42A /* JJCarouselView.swift in Sources */,
+				5E594E7528EA8D090026CCED /* WebCarouselView.swift in Sources */,
 				9D073B2C28E6935600D7B42A /* UIImage+Extension.swift in Sources */,
 				9D073B3728E6AF6A00D7B42A /* JJRouter.swift in Sources */,
+				5E594E5228EA73E30026CCED /* PassParameterByUrlController.swift in Sources */,
 				9D073B7428E6CC7C00D7B42A /* UIImage+Shape.swift in Sources */,
 				5ECDF51228E827D7007BF43F /* UIImage+MemoryCache.swift in Sources */,
+				5E594E5028EA73E30026CCED /* RootRowAction.swift in Sources */,
+				5E594E5C28EA73E30026CCED /* PushStylePresentController.swift in Sources */,
 				9D073B2E28E6973000D7B42A /* UIColor+Extension.swift in Sources */,
+				5E594E5728EA73E30026CCED /* LoginController.swift in Sources */,
 				9D073B5D28E6B94D00D7B42A /* JJAlertPresentationContext.swift in Sources */,
+				5E594E5828EA73E30026CCED /* FrontBlockBController.swift in Sources */,
+				5E594E5E28EA73E30026CCED /* PassParameterByUrlWithQueryController.swift in Sources */,
 				9D073B4128E6AFE800D7B42A /* RouteMatchResultSource.swift in Sources */,
 				9D073B6828E6BBB100D7B42A /* JJPushPopPresentAnimator.swift in Sources */,
 				9D073B6428E6BB1E00D7B42A /* JJPushPopStylePresentDelegate.swift in Sources */,
@@ -421,19 +654,26 @@
 				9D073B8928E6E48A00D7B42A /* JJCarouselConfig.swift in Sources */,
 				9D073B6E28E6BFA400D7B42A /* UIGesture+Extension.swift in Sources */,
 				9D073B6C28E6BE7D00D7B42A /* UIControl+Extension.swift in Sources */,
+				5E594E5F28EA73E30026CCED /* FrontBlockAController.swift in Sources */,
+				5E594E5928EA73E30026CCED /* PassParametersForInitController.swift in Sources */,
 				9D073B4B28E6B02F00D7B42A /* RouteScanner.swift in Sources */,
 				9D073B4328E6AFF600D7B42A /* RouterMatchResult.swift in Sources */,
+				5E594E5428EA73E30026CCED /* BackBlockController.swift in Sources */,
 				9D073B8B28E6E49700D7B42A /* JJCarouselEvent.swift in Sources */,
 				9D073B2828E6909000D7B42A /* UIApplication+Extension.swift in Sources */,
 				9D073B6628E6BB6700D7B42A /* JJPushPopPresentTransitionDelegate.swift in Sources */,
 				9D073B8728E6E47D00D7B42A /* JJCarouselDirection.swift in Sources */,
 				9D073B8128E6E45000D7B42A /* JJCarousel+namespace.swift in Sources */,
+				5E594E5528EA73E30026CCED /* PassParameterMixUrlAndContextController.swift in Sources */,
 				9D073B9128E6E4C400D7B42A /* CellContainer.swift in Sources */,
+				5E594E7328EA8CDB0026CCED /* CarouselController.swift in Sources */,
+				5E594E6128EA73E30026CCED /* SystemPushController.swift in Sources */,
 				9D073B4528E6B00500D7B42A /* RouterOpenSuccess.swift in Sources */,
 				9D073B0F28E6883100D7B42A /* AppDelegate.swift in Sources */,
 				9D073B9728E6E52200D7B42A /* FullCarouselContainerView.swift in Sources */,
 				9D073B7C28E6DE7E00D7B42A /* UITextInput+Limit.swift in Sources */,
 				9D073B8D28E6E4A700D7B42A /* JJCarouselContainerView.swift in Sources */,
+				5E594E5B28EA73E30026CCED /* SystemPresentController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,6 +807,7 @@
 		};
 		9D073B2028E6883200D7B42A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 87B165928D99EF25A5DA9F41 /* Pods-Demo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -594,6 +835,7 @@
 		};
 		9D073B2128E6883200D7B42A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EDF7E3640305DF644F8C5CD2 /* Pods-Demo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

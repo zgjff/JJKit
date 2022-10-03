@@ -2,29 +2,87 @@
 //  ViewController.swift
 //  Demo
 //
-//  Created by 郑桂杰 on 2022/9/30.
+//  Created by zgjff on 2022/9/30.
 //
 
 import UIKit
 
 class ViewController: UIViewController {
+    private lazy var tableView = UITableView()
+    private var datas: [(title: String, action: String)] = []
+}
+
+extension ViewController {
+    override func loadView() {
+        view = tableView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .jRandom()
-        let a = UINavigationController()
-        let iv1 = UIImageView()
-        iv1.backgroundColor = .jRandom()
-        iv1.frame = CGRect(x: 50, y: 100, width: 200, height: 200)
-        view.addSubview(iv1)
-        let img1 = UIImage.shape(.plus(10), size: 200)
-        iv1.image = img1
-        
-        let iv = UIImageView()
-        iv.backgroundColor = .jRandom()
-        iv.frame = CGRect(x: 50, y: 400, width: 200, height: 200)
-        view.addSubview(iv)
-        let img = UIImage.shape(.plus(10), size: 200)
-        iv.image = img
+        setup()
+    }
+}
+
+//MARK: - UITableViewDelegate, UITableViewDataSource
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return datas.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.jj.dequeueReusableCell()
+        let data = datas[indexPath.row]
+        if #available(iOS 14.0, *) {
+            var config = cell.defaultContentConfiguration()
+            config.text = data.title
+            cell.contentConfiguration = config
+        } else {
+            cell.textLabel?.text = data.title
+        }
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let data = datas[indexPath.row]
+        let sel = Selector(data.action)
+        perform(sel)
+    }
+}
+
+//MARK: - cell actions
+private extension ViewController {
+    @IBAction func showRouterDemos() {
+        let navi = UINavigationController(rootViewController: RouterDemosController())
+        navi.modalPresentationStyle = .fullScreen
+        present(navi, animated: true)
+    }
+    
+    @IBAction func showCarouselDemos() {
+        let navi = UINavigationController(rootViewController: CarouselTabbarController())
+        navi.modalPresentationStyle = .fullScreen
+        present(navi, animated: true)
+    }
+}
+
+private extension ViewController {
+    func setup() {
+        title = "Root"
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = .systemBackground
+        } else {
+            view.backgroundColor = .black
+        }
+        datas = [
+            ("路由", "showRouterDemos"),
+            ("轮播", "showCarouselDemos")
+        ]
+        tableView.delegate = self
+        tableView.dataSource = self
     }
 }
