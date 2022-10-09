@@ -1,18 +1,26 @@
 //
-//  ViewController.swift
+//  ExtensionDemosController.swift
 //  Demo
 //
-//  Created by zgjff on 2022/9/30.
+//  Created by zgjff on 2022/10/8.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
+class ExtensionDemosController: UIViewController {
     private lazy var tableView = UITableView()
     private var datas: [(title: String, action: String)] = []
 }
 
-extension ViewController {
+extension ExtensionDemosController: JJRouterDestination {
+    func showDetail(withMatchRouterResult result: JJRouter.MatchResult, from sourceController: UIViewController) {
+        let navi = UINavigationController(rootViewController: self)
+        navi.modalPresentationStyle = .fullScreen
+        sourceController.present(navi, animated: true)
+    }
+}
+
+extension ExtensionDemosController: AddCloseNaviItemToDismissable {
     override func loadView() {
         view = tableView
     }
@@ -24,7 +32,7 @@ extension ViewController {
 }
 
 //MARK: - UITableViewDelegate, UITableViewDataSource
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
+extension ExtensionDemosController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -56,20 +64,16 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 //MARK: - cell actions
-private extension ViewController {
-    @IBAction func showRouterDemos() {
-        openDemoRouter(.jjrouter)
+private extension ExtensionDemosController {
+    @IBAction func showAttributeDemos() {
+        openDemoRouter(.attribute)
     }
     
-    @IBAction func showCarouselDemos() {
-        openDemoRouter(.carousel)
+    @IBAction func showRenderImageDemos() {
+        openDemoRouter(.renderImage)
     }
     
-    @IBAction func showExtensionDemos() {
-        openDemoRouter(.extensions)
-    }
-    
-    private func openDemoRouter(_ router: DemoRouter) {
+    private func openDemoRouter(_ router: ExtensionRouter) {
         do {
             let result = try JJRouter.open(router)
             result.jump(from: self)
@@ -79,18 +83,18 @@ private extension ViewController {
     }
 }
 
-private extension ViewController {
+private extension ExtensionDemosController {
     func setup() {
-        title = "Root"
+        title = "Extensions"
         if #available(iOS 13.0, *) {
             view.backgroundColor = .systemBackground
         } else {
             view.backgroundColor = .black
         }
+        addCloseNaviItem()
         datas = [
-            ("路由", "showRouterDemos"),
-            ("轮播图", "showCarouselDemos"),
-            ("Extensions", "showExtensionDemos")
+            ("富文本", "showAttributeDemos"),
+            ("图片", "showRenderImageDemos"),
         ]
         tableView.delegate = self
         tableView.dataSource = self

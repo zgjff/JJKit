@@ -23,8 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate {
     private func registerRouters() {
+        DemoRouter.allCases.forEach { try! $0.register() }
         SimpleRouter.allCases.forEach { try! $0.register() }
         BlockRouter.allCases.forEach { try! $0.register() }
+        ExtensionRouter.allCases.forEach { try! $0.register() }
         PassParameterRouter.register()
     }
 }

@@ -7,14 +7,15 @@
 [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/zgjff/JJKit)](https://github.com/zgjff/JJKit)
 [![Cocoapods](https://img.shields.io/cocoapods/v/JJKit)](https://cocoapods.org/pods/JJKit)
 
-## 一: 路由功能
-> 请参考文档[JJRouter.md](https://github.com/zgjff/JJKit/blob/master/Documentation/JJRouter.md)
 
-## 二: 轮播图功能
-> 请参考文档[JJCarouselView.md](https://github.com/zgjff/JJKit/blob/master/Documentation/JJCarouselView.md)
-
-### 三: 转场动画功能
-> 请参考文档[JJTransition.md](https://github.com/zgjff/JJKit/blob/master/Documentation/JJTransition.md)
+功能列表
+=================
+|功能|名称|文档地址|
+|:----:|:----:|:----:|
+|路由|JJRouter|[JJRouter.md](./Documentation/JJRouter.md)|
+|轮播图|JJCarouselView|[JJCarouselView.md](./Documentation/JJCarouselView.md)|
+|转场动画|JJTransition|[JJTransition.md](./Documentation/JJTransition.md)|
+|API扩展|Extensions|[Extensions.md](./Documentation/Extensions.md)|
 
 使用需求
 =================

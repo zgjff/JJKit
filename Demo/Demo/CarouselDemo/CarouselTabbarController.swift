@@ -23,3 +23,11 @@ class CarouselTabbarController: UITabBarController, AddCloseNaviItemToDismissabl
         viewControllers = [vc1, vc2]
     }
 }
+
+extension CarouselTabbarController: JJRouterDestination {
+    func showDetail(withMatchRouterResult result: JJRouter.MatchResult, from sourceController: UIViewController) {
+        let navi = UINavigationController(rootViewController: self)
+        navi.modalPresentationStyle = .fullScreen
+        sourceController.present(navi, animated: true)
+    }
+}

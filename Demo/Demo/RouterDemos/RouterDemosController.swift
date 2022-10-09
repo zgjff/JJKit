@@ -13,6 +13,14 @@ class RouterDemosController: UIViewController {
     private var actions: [RootRowAction] = []
 }
 
+extension RouterDemosController: JJRouterDestination {
+    func showDetail(withMatchRouterResult result: JJRouter.MatchResult, from sourceController: UIViewController) {
+        let navi = UINavigationController(rootViewController: self)
+        navi.modalPresentationStyle = .fullScreen
+        sourceController.present(navi, animated: true)
+    }
+}
+
 extension RouterDemosController: AddCloseNaviItemToDismissable {
     override func loadView() {
         view = tableView

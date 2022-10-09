@@ -80,7 +80,7 @@ extension UIImage {
     /// 线性颜色渐变图像
     ///
     /// - Parameters:
-    ///   - linearColors: (颜色, 起始点)数组 注意：起始点范围(0~1.0)
+    ///   - linearColors: (颜色, 变成此颜色的点)数组 注意：起始点范围(0~1.0)
     ///   - size: 大小
     ///   - start: 起始点(起点所在size中的x，y的百分比)
     ///   - end: 结束点(起点所在size中的x，y的百分比)

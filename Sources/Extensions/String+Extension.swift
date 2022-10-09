@@ -26,7 +26,7 @@ public final class JJAttributMaker {
     internal init(string: String) {
         self.string = string
     }
-    fileprivate var dic: [NSRange: JJAttributMakerExtendable] = [:]
+    fileprivate var dic: [Key: JJAttributMakerExtendable] = [:]
 }
 
 extension JJAttributMaker {
@@ -38,11 +38,14 @@ extension JJAttributMaker {
         if rs.isEmpty {
             return nil
         }
-        let e = JJAttributMakerExtendable(sort: dic.count)
-        rs.forEach { $0.filter { $0.length > 0 }.forEach { dic.updateValue(e, forKey: $0) } }
+        let sort = dic.count
+        let e = JJAttributMakerExtendable()
+        rs.forEach { $0.filter { $0.length > 0 }.forEach { dic.updateValue(e, forKey: Key(range: $0, sort: sort)) } }
         return e
     }
     
+    /// 为所有字符串添加富文本的DSL
+    /// - Returns: 描述富文本的DSL
     public func all() -> JJAttributMakerExtendable? {
         return self.for(string)
     }
@@ -52,19 +55,41 @@ extension JJAttributMaker {
             return NSAttributedString(string: "")
         }
         let att = NSMutableAttributedString(string: string)
-        dic.sorted(by: { $0.value.sort < $1.value.sort })
-            .forEach { att.setAttributes($0.value.attrs, range: $0.key) }
+        dic.sorted(by: { $0.key < $1.key })
+            .forEach { att.addAttributes($0.value.attrs, range: $0.key.range) }
         return att
     }
 }
 
-public final class JJAttributMakerExtendable {
-    fileprivate let sort: Int
-    init(sort: Int) {
-        self.sort = sort
+extension JJAttributMaker {
+    struct Key: Hashable, Equatable, Comparable {
+        let range: NSRange
+        let sort: Int
+        
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(sort)
+            hasher.combine(range.length)
+            hasher.combine(range.location)
+        }
+        
+        static func == (lhs: Self, rhs: Self) -> Bool {
+            return (lhs.sort == rhs.sort) && (lhs.range.location == rhs.range.location) && (lhs.range.length == rhs.range.length)
+        }
+        
+        static func < (lhs: Self, rhs: Self) -> Bool {
+            guard (lhs.sort == rhs.sort) else {
+                return lhs.sort < rhs.sort
+            }
+            guard (lhs.range.location == rhs.range.location) else {
+                return lhs.range.location < rhs.range.length
+            }
+            return lhs.range.length < rhs.range.length
+        }
     }
+}
+
+public final class JJAttributMakerExtendable {
     private var styles: Set<Attribute> = []
-    
     fileprivate var attrs: [NSAttributedString.Key: Any] {
         let initial: [NSAttributedString.Key: Any] = [:]
         return styles.reduce(initial, { (result, style) in
@@ -221,7 +246,17 @@ extension JJAttributMakerExtendable {
     }
 }
 
-struct Attribute: Hashable, Equatable {
+extension JJAttributMakerExtendable: CustomStringConvertible, CustomDebugStringConvertible {
+    public var description: String {
+        return "styles: \(styles)"
+    }
+
+    public var debugDescription: String {
+        return description
+    }
+}
+
+struct Attribute: Hashable, Equatable, CustomStringConvertible, CustomDebugStringConvertible {
     func hash(into hasher: inout Hasher) {
         hasher.combine(key.hashValue)
     }
@@ -236,6 +271,14 @@ struct Attribute: Hashable, Equatable {
     static func == (lhs: Attribute, rhs: Attribute) -> Bool {
         return lhs.key == rhs.key
     }
+    
+    public var description: String {
+        return "[key: \(key.rawValue), value: \(value)]"
+    }
+    
+    public var debugDescription: String {
+        return description
+    }
 }
 
 /// 获取在给定字符串中的range(NSRange)
@@ -245,22 +288,28 @@ public protocol Rangeable {
 
 extension String: Rangeable {
     public func rangeFrom(parent: String) -> Set<NSRange> {
-        guard !isEmpty && count > 0 else {
+        guard let regex = JJAttributedRegexp(pattern: self) else {
             return []
         }
+        return regex.rangeFrom(parent: parent)
+    }
+}
+
+extension NSRange: Rangeable {
+    public func rangeFrom(parent: String) -> Set<NSRange> {
         guard !parent.isEmpty && parent.count > 0 else {
             return []
         }
-        guard let regex = try? NSRegularExpression(pattern: self, options: .caseInsensitive) else {
+        let low = lowerBound >= 0 ? lowerBound : 0
+        let up = upperBound
+        let count = parent.count
+        guard low <= (count - 1) && up > 0 else {
             return []
         }
-        let cs = regex.matches(in: parent, options: [], range: NSRange(location: 0, length: parent.count))
-        let initi: Set<NSRange> = []
-        return cs.reduce(initi) { (re, result) in
-            var temp = re
-            temp.insert(result.range)
-            return temp
+        if up > count - 1 {
+            return [NSMakeRange(low, count - low)]
         }
+        return [self]
     }
 }
 
@@ -273,24 +322,6 @@ extension Int: Rangeable {
             return []
         }
         return [NSMakeRange(self, 1)]
-    }
-}
-
-extension NSRange: Rangeable {
-    public func rangeFrom(parent: String) -> Set<NSRange> {
-        guard !parent.isEmpty && parent.count > 0 else {
-            return []
-        }
-        let low = lowerBound
-        let up = upperBound
-        let count = parent.count
-        guard low <= (count - 1) && up > 0 else {
-            return []
-        }
-        if up > count - 1 {
-            return [NSMakeRange(low, count - low)]
-        }
-        return [self]
     }
 }
 
@@ -330,7 +361,7 @@ extension CountableClosedRange: Rangeable where Element == Int {
     }
 }
 
-/// 根据正则查找字符串中符合正则的范围Rnage
+/// 根据正则查找字符串中所有符合正则的范围Rnage
 public struct JJAttributedRegexp {
     private let regular: NSRegularExpression
     private let matching: NSRegularExpression.MatchingOptions

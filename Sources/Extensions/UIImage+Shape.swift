@@ -35,6 +35,10 @@ extension UIImage {
     public typealias LineShape = (_ lineWidth: CGFloat) -> UIImage.Shape
     /// 特定颜色的线条形状
     public typealias LineWithColorShape = (_ lineWidth: CGFloat, _ lineColor: UIColor) -> UIImage.Shape
+    /// 特定方向的形状
+    public typealias ArrowShape = (_ direction: Shape.ArrowDriection, _ lineWidth: CGFloat) -> UIImage.Shape
+    /// 特定方向颜色的线条形状
+    public typealias ArrowWithColorShape = (_ direction: Shape.ArrowDriection, _ lineWidth: CGFloat, _ lineColor: UIColor) -> UIImage.Shape
     
     /// 要绘制的图片形状
     public struct Shape {
@@ -48,6 +52,11 @@ extension UIImage {
         
         fileprivate func draw(ctx: CGContext, size: CGFloat, tintColor: UIColor) {
             actions(ctx, size, tintColor)
+        }
+        
+        /// 箭头方向
+        public enum ArrowDriection: String {
+            case left, right, up, down
         }
     }
 }
@@ -181,13 +190,145 @@ extension UIImage.Shape {
     public static var equalCircleFill: UIImage.LineWithColorShape = { lw, lc in
         return UIImage.Shape(cacheKey: "UIImage.Shape.equalCircleFill: lineWidth=\(lw) lineColor=\(lc)") { (ctx, size, tintColor) in
             ctx.setFillColor(tintColor.cgColor)
-            UIImage.Shapes.circle(UIBezierPath(arcCenter: CGPoint(x: size * 0.5, y: size * 0.5), radius: (size - lw) * 0.5, startAngle: 0, endAngle: .pi * 2, clockwise: true))(.fill)
+            UIImage.Shapes.circle(UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: size, height: size), cornerRadius: size * 0.5))(.fill)
             let space: CGFloat = 6
             let h = space + lw
             ctx.setStrokeColor(lc.cgColor)
             let path = UIBezierPath()
             UIImage.Shapes.line(path)(CGRect(x: size * 0.28, y: size * 0.5 - h, width: size * 0.44, height: h))(lw)
             UIImage.Shapes.line(path)(CGRect(x: size * 0.28, y: size * 0.5, width: size * 0.44, height: h))(lw)
+        }
+    }
+    
+    /// >  direction: 方向 lineWidth:线条宽
+    public static var chevron: UIImage.ArrowShape = { direction, lw in
+        return UIImage.Shape(cacheKey: "UIImage.Shape.chevron.\(direction.rawValue): lineWidth=\(lw)") { (ctx, size, tintColor) in
+            ctx.setStrokeColor(tintColor.cgColor)
+            let rect: CGRect
+            switch direction {
+            case .left, .right:
+                rect = CGRect(x: size * 0.75 - 0.5 * (size - lw), y: lw * 0.5, width: 0.5 * (size - lw), height: size - lw)
+            case .up, .down:
+                rect = CGRect(x: lw * 0.5, y: size * 0.75 - 0.5 * (size - lw), width: size - lw, height: 0.5 * (size - lw))
+            }
+            UIImage.Shapes.chevron(direction, UIBezierPath())(rect)(lw)
+        }
+    }
+    
+    /// 空心 >  direction: 方向 lineWidth:线条宽
+    public static var chevronCircle: UIImage.ArrowShape = { direction, lw in
+        return UIImage.Shape(cacheKey: "UIImage.Shape.chevronCircle.\(direction.rawValue)Circle: lineWidth=\(lw)") { (ctx, size, tintColor) in
+            ctx.setStrokeColor(tintColor.cgColor)
+            let path = UIBezierPath(arcCenter: CGPoint(x: size * 0.5, y: size * 0.5), radius: (size - lw) * 0.5, startAngle: 0, endAngle: .pi * 2, clockwise: true)
+            UIImage.Shapes.circle(path)(.stroke(lineWidth: lw))
+            let rect: CGRect
+            switch direction {
+            case .left:
+                rect = CGRect(x: (size - lw) * (0.5 - 0.11), y: size * 0.28 + 0.22 * lw, width: (size - lw) * 0.22, height: (size - lw) * 0.44)
+            case .right:
+                rect = CGRect(x: (size + lw) * (0.5 - 0.11), y: size * 0.28 + 0.22 * lw, width: (size - lw) * 0.22, height: (size - lw) * 0.44)
+            case .up:
+                rect = CGRect(x: size * 0.28 + 0.22 * lw, y: (size - lw) * (0.5 - 0.11), width: (size - lw) * 0.44, height: (size - lw) * 0.22)
+            case .down:
+                rect = CGRect(x: size * 0.28 + 0.22 * lw, y: (size + lw) * (0.5 - 0.11), width: (size - lw) * 0.44, height: (size - lw) * 0.22)
+            }
+            UIImage.Shapes.chevron(direction, UIBezierPath())(rect)(lw)
+        }
+    }
+    
+    /// 实心 >  direction: 方向 lineWidth:线条宽  lineColor:线条颜色
+    public static var chevronCircleFill: UIImage.ArrowWithColorShape = { direction, lw, lc in
+        return UIImage.Shape(cacheKey: "UIImage.Shape.chevronCircleFill.\(direction.rawValue)Fill: lineWidth=\(lw) lineColor=\(lc)") { (ctx, size, tintColor) in
+            ctx.setFillColor(tintColor.cgColor)
+            UIImage.Shapes.circle(UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: size, height: size), cornerRadius: size * 0.5))(.fill)
+            ctx.setStrokeColor(lc.cgColor)
+            let rect: CGRect
+            switch direction {
+            case .left:
+                rect = CGRect(x: (size - lw) * (0.5 - 0.11), y: size * 0.28 + 0.22 * lw, width: (size - lw) * 0.22, height: (size - lw) * 0.44)
+            case .right:
+                rect = CGRect(x: (size + lw) * (0.5 - 0.11), y: size * 0.28 + 0.22 * lw, width: (size - lw) * 0.22, height: (size - lw) * 0.44)
+            case .up:
+                rect = CGRect(x: size * 0.28 + 0.22 * lw, y: (size - lw) * (0.5 - 0.11), width: (size - lw) * 0.44, height: (size - lw) * 0.22)
+            case .down:
+                rect = CGRect(x: size * 0.28 + 0.22 * lw, y: (size + lw) * (0.5 - 0.11), width: (size - lw) * 0.44, height: (size - lw) * 0.22)
+            }
+            UIImage.Shapes.chevron(direction, UIBezierPath())(rect)(lw)
+        }
+    }
+    
+    /// -->  direction: 方向 lineWidth:线条宽
+    public static var arrow: UIImage.ArrowShape = { direction, lw in
+        return UIImage.Shape(cacheKey: "UIImage.Shape.arrow.\(direction.rawValue): lineWidth=\(lw)") { (ctx, size, tintColor) in
+            ctx.setStrokeColor(tintColor.cgColor)
+            let path = UIBezierPath()
+            let rect: CGRect
+            switch direction {
+            case .left:
+                UIImage.Shapes.line(path)(CGRect(x: size * 0.1, y: 0, width: size * 0.8, height: size))(lw)
+                rect = CGRect(x: size * 0.1, y: size * 0.07, width: size * 0.36, height: size * 0.86)
+            case .right:
+                UIImage.Shapes.line(path)(CGRect(x: size * 0.1, y: 0, width: size * 0.8, height: size))(lw)
+                rect = CGRect(x: size * 0.54, y: size * 0.07, width: size * 0.36, height: size * 0.86)
+            case .up:
+                UIImage.Shapes.verticalLine(path)(CGRect(x: 0, y: size * 0.1, width: size, height: size * 0.8))(lw)
+                rect = CGRect(x: size * 0.07, y: size * 0.1, width: size * 0.86, height: size * 0.36)
+            case .down:
+                UIImage.Shapes.verticalLine(path)(CGRect(x: 0, y: size * 0.1, width: size, height: size * 0.8))(lw)
+                rect = CGRect(x: size * 0.07, y: size * 0.54, width: size * 0.86, height: size * 0.36)
+            }
+            UIImage.Shapes.chevron(direction, path)(rect)(lw)
+        }
+    }
+    
+    /// 空心 -->  direction: 方向 lineWidth:线条宽
+    public static var arrowCircle: UIImage.ArrowShape = { direction, lw in
+        return UIImage.Shape(cacheKey: "UIImage.Shape.arrowCircle.\(direction.rawValue)Circle: lineWidth=\(lw)") { (ctx, size, tintColor) in
+            ctx.setStrokeColor(tintColor.cgColor)
+            let path = UIBezierPath(arcCenter: CGPoint(x: size * 0.5, y: size * 0.5), radius: (size - lw) * 0.5, startAngle: 0, endAngle: .pi * 2, clockwise: true)
+            UIImage.Shapes.circle(path)(.stroke(lineWidth: lw))
+            let rect: CGRect
+            switch direction {
+            case .left:
+                UIImage.Shapes.line(path)(CGRect(x: size * (1 - 0.44 * 0.86) * 0.5, y: 0, width: size * 0.44 * 0.86, height: size))(lw)
+                rect = CGRect(x: size * 0.28, y: size * 0.32, width: size * 0.21, height: size * 0.36)
+            case .right:
+                UIImage.Shapes.line(path)(CGRect(x: size * (1 - 0.44 * 0.86) * 0.5, y: 0, width: size * 0.44 * 0.86, height: size))(lw)
+                rect = CGRect(x: size * 0.51, y: size * 0.32, width: size * 0.21, height: size * 0.36)
+            case .up:
+                UIImage.Shapes.verticalLine(path)(CGRect(x: 0, y: size * (1 - 0.44 * 0.86) * 0.5, width: size, height: size * 0.44 * 0.86))(lw)
+                rect = CGRect(x: size * 0.32, y: size * (1 - 0.44 * 0.86) * 0.5, width: size * 0.36, height: size * 0.21)
+            case .down:
+                UIImage.Shapes.verticalLine(path)(CGRect(x: 0, y: size * (1 - 0.44 * 0.86) * 0.5, width: size, height: size * 0.44 * 0.86))(lw)
+                rect = CGRect(x: size * 0.32, y: size * 0.51, width: size * 0.36, height: size * 0.21)
+            }
+            UIImage.Shapes.chevron(direction, path)(rect)(lw)
+        }
+    }
+    
+    /// 实心 -->  direction: 方向 lineWidth:线条宽  lineColor:线条颜色
+    public static var arrowCircleFill: UIImage.ArrowWithColorShape = { direction, lw, lc in
+        return UIImage.Shape(cacheKey: "UIImage.Shape.arrowCircleFill.\(direction.rawValue)Fill: lineWidth=\(lw) lineColor=\(lc)") { (ctx, size, tintColor) in
+            ctx.setFillColor(tintColor.cgColor)
+            UIImage.Shapes.circle(UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: size, height: size), cornerRadius: size * 0.5))(.fill)
+            ctx.setStrokeColor(lc.cgColor)
+            let path = UIBezierPath()
+            let rect: CGRect
+            switch direction {
+            case .left:
+                UIImage.Shapes.line(path)(CGRect(x: size * (1 - 0.44 * 0.86) * 0.5, y: 0, width: size * 0.44 * 0.86, height: size))(lw)
+                rect = CGRect(x: size * 0.28, y: size * 0.32, width: size * 0.21, height: size * 0.36)
+            case .right:
+                UIImage.Shapes.line(path)(CGRect(x: size * (1 - 0.44 * 0.86) * 0.5, y: 0, width: size * 0.44 * 0.86, height: size))(lw)
+                rect = CGRect(x: size * 0.51, y: size * 0.32, width: size * 0.21, height: size * 0.36)
+            case .up:
+                UIImage.Shapes.verticalLine(path)(CGRect(x: 0, y: size * (1 - 0.44 * 0.86) * 0.5, width: size, height: size * 0.44 * 0.86))(lw)
+                rect = CGRect(x: size * 0.32, y: size * (1 - 0.44 * 0.86) * 0.5, width: size * 0.36, height: size * 0.21)
+            case .down:
+                UIImage.Shapes.verticalLine(path)(CGRect(x: 0, y: size * (1 - 0.44 * 0.86) * 0.5, width: size, height: size * 0.44 * 0.86))(lw)
+                rect = CGRect(x: size * 0.32, y: size * 0.51, width: size * 0.36, height: size * 0.21)
+            }
+            UIImage.Shapes.chevron(direction, path)(rect)(lw)
         }
     }
 }
@@ -199,6 +340,7 @@ extension UIImage {
             case stroke(lineWidth: CGFloat)
         }
         
+        /// 圆圈
         static var circle: (UIBezierPath) -> (CircleStyle) -> Void = { path in
             return { style in
                 switch style {
@@ -211,6 +353,7 @@ extension UIImage {
             }
         }
         
+        /// +
         static var plus: (UIBezierPath) -> (CGRect) -> (CGFloat) -> Void = { path in
             path.lineCapStyle = .round
             return { rect in
@@ -225,6 +368,7 @@ extension UIImage {
             }
         }
         
+        /// -
         static var line: (UIBezierPath) -> (CGRect) -> (CGFloat) -> Void = { path in
             path.lineCapStyle = .round
             return { rect in
@@ -237,6 +381,20 @@ extension UIImage {
             }
         }
         
+        /// |
+        static var verticalLine: (UIBezierPath) -> (CGRect) -> (CGFloat) -> Void = { path in
+            path.lineCapStyle = .round
+            return { rect in
+                path.move(to: CGPoint(x: rect.midX, y: rect.minY))
+                path.addLine(to: CGPoint(x: rect.midX, y: rect.maxY))
+                return { lineWidth in
+                    path.lineWidth = lineWidth
+                    path.stroke()
+                }
+            }
+        }
+        
+        /// x
         static var multiply: (UIBezierPath) -> (CGRect) -> (CGFloat) -> Void = { path in
             path.lineCapStyle = .round
             return { rect in
@@ -244,6 +402,36 @@ extension UIImage {
                 path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
                 path.move(to: CGPoint(x: rect.maxX, y: rect.minY))
                 path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
+                return { lineWidth in
+                    path.lineWidth = lineWidth
+                    path.stroke()
+                }
+            }
+        }
+        
+        /// <
+        static var chevron: (UIImage.Shape.ArrowDriection, UIBezierPath) -> (CGRect) -> (CGFloat) -> Void = { direction, path in
+            path.lineCapStyle = .round
+            path.lineJoinStyle = .round
+            return { rect in
+                switch direction {
+                case .left:
+                    path.move(to: CGPoint(x: rect.maxX, y: rect.minY))
+                    path.addLine(to: CGPoint(x: rect.minX, y: rect.midY))
+                    path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
+                case .right:
+                    path.move(to: CGPoint(x: rect.minX, y: rect.minY))
+                    path.addLine(to: CGPoint(x: rect.maxX, y: rect.midY))
+                    path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
+                case .up:
+                    path.move(to: CGPoint(x: rect.minX, y: rect.maxY))
+                    path.addLine(to: CGPoint(x: rect.midX, y: rect.minY))
+                    path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
+                case .down:
+                    path.move(to: CGPoint(x: rect.minX, y: rect.minY))
+                    path.addLine(to: CGPoint(x: rect.midX, y: rect.maxY))
+                    path.addLine(to: CGPoint(x: rect.maxX, y: rect.minY))
+                }
                 return { lineWidth in
                     path.lineWidth = lineWidth
                     path.stroke()

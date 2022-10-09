@@ -97,6 +97,15 @@
 		9D073B9A28E6E54800D7B42A /* JJCarouselHiddenPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D073B9928E6E54800D7B42A /* JJCarouselHiddenPageView.swift */; };
 		9D073B9C28E6E55600D7B42A /* JJCarouselDotPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D073B9B28E6E55600D7B42A /* JJCarouselDotPageView.swift */; };
 		9D073B9E28E6E56400D7B42A /* JJCarouselNumberPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D073B9D28E6E56400D7B42A /* JJCarouselNumberPageView.swift */; };
+		9D3390A628F2C1E4004B9CF2 /* shape_image_demo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D3390A528F2C1E4004B9CF2 /* shape_image_demo.png */; };
+		9D602A1828F118FF00E9D429 /* ExtensionDemosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D602A1728F118FF00E9D429 /* ExtensionDemosController.swift */; };
+		9D602A1A28F1196900E9D429 /* DemoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D602A1928F1196900E9D429 /* DemoRouter.swift */; };
+		9D602A1C28F11F3800E9D429 /* ExtensionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D602A1B28F11F3800E9D429 /* ExtensionRouter.swift */; };
+		9D602A1E28F11F7100E9D429 /* AttributMakerDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D602A1D28F11F7100E9D429 /* AttributMakerDemoController.swift */; };
+		9D602A2028F1542E00E9D429 /* UIImageRenderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D602A1F28F1542E00E9D429 /* UIImageRenderController.swift */; };
+		9D602A2228F1552A00E9D429 /* ColorImageDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D602A2128F1552A00E9D429 /* ColorImageDemoController.swift */; };
+		9D602A2428F15E4C00E9D429 /* FilterImageDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D602A2328F15E4C00E9D429 /* FilterImageDemoController.swift */; };
+		9D602A2628F1708B00E9D429 /* ShapeImageDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D602A2528F1708B00E9D429 /* ShapeImageDemoController.swift */; };
 		AFC0E8441AC42D6870DC7812 /* Pods_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27818B47D8E551B90C4BFF5F /* Pods_Demo.framework */; };
 /* End PBXBuildFile section */
 
@@ -195,6 +204,15 @@
 		9D073B9928E6E54800D7B42A /* JJCarouselHiddenPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJCarouselHiddenPageView.swift; sourceTree = "<group>"; };
 		9D073B9B28E6E55600D7B42A /* JJCarouselDotPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJCarouselDotPageView.swift; sourceTree = "<group>"; };
 		9D073B9D28E6E56400D7B42A /* JJCarouselNumberPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJCarouselNumberPageView.swift; sourceTree = "<group>"; };
+		9D3390A528F2C1E4004B9CF2 /* shape_image_demo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shape_image_demo.png; sourceTree = "<group>"; };
+		9D602A1728F118FF00E9D429 /* ExtensionDemosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDemosController.swift; sourceTree = "<group>"; };
+		9D602A1928F1196900E9D429 /* DemoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoRouter.swift; sourceTree = "<group>"; };
+		9D602A1B28F11F3800E9D429 /* ExtensionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionRouter.swift; sourceTree = "<group>"; };
+		9D602A1D28F11F7100E9D429 /* AttributMakerDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributMakerDemoController.swift; sourceTree = "<group>"; };
+		9D602A1F28F1542E00E9D429 /* UIImageRenderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageRenderController.swift; sourceTree = "<group>"; };
+		9D602A2128F1552A00E9D429 /* ColorImageDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorImageDemoController.swift; sourceTree = "<group>"; };
+		9D602A2328F15E4C00E9D429 /* FilterImageDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterImageDemoController.swift; sourceTree = "<group>"; };
+		9D602A2528F1708B00E9D429 /* ShapeImageDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeImageDemoController.swift; sourceTree = "<group>"; };
 		EDF7E3640305DF644F8C5CD2 /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -319,10 +337,12 @@
 		9D073B0D28E6883100D7B42A /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				9D602A1628F118D400E9D429 /* ExtensionDemos */,
 				5E594E6228EA8C400026CCED /* CarouselDemo */,
 				5E594E3328EA73E30026CCED /* RouterDemos */,
 				9D073B0E28E6883100D7B42A /* AppDelegate.swift */,
 				9D073B1228E6883100D7B42A /* ViewController.swift */,
+				9D602A1928F1196900E9D429 /* DemoRouter.swift */,
 				5E594E7828EA8DF10026CCED /* AddCloseNaviItemToDismissable.swift */,
 				9D073B1728E6883200D7B42A /* Assets.xcassets */,
 				9D073B1928E6883200D7B42A /* LaunchScreen.storyboard */,
@@ -472,6 +492,29 @@
 			path = PageView;
 			sourceTree = "<group>";
 		};
+		9D3390A228F2BEB0004B9CF2 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				9D3390A528F2C1E4004B9CF2 /* shape_image_demo.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		9D602A1628F118D400E9D429 /* ExtensionDemos */ = {
+			isa = PBXGroup;
+			children = (
+				9D3390A228F2BEB0004B9CF2 /* Images */,
+				9D602A1728F118FF00E9D429 /* ExtensionDemosController.swift */,
+				9D602A1B28F11F3800E9D429 /* ExtensionRouter.swift */,
+				9D602A1D28F11F7100E9D429 /* AttributMakerDemoController.swift */,
+				9D602A1F28F1542E00E9D429 /* UIImageRenderController.swift */,
+				9D602A2128F1552A00E9D429 /* ColorImageDemoController.swift */,
+				9D602A2328F15E4C00E9D429 /* FilterImageDemoController.swift */,
+				9D602A2528F1708B00E9D429 /* ShapeImageDemoController.swift */,
+			);
+			path = ExtensionDemos;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -532,6 +575,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D3390A628F2C1E4004B9CF2 /* shape_image_demo.png in Resources */,
 				5E594E6C28EA8C5E0026CCED /* a-3.jpeg in Resources */,
 				9D073B1B28E6883200D7B42A /* LaunchScreen.storyboard in Resources */,
 				5E594E6F28EA8C5E0026CCED /* a-0.jpeg in Resources */,
@@ -596,6 +640,7 @@
 				9D073B5528E6B07700D7B42A /* Routes.swift in Sources */,
 				9D073B2628E68CD000D7B42A /* JJBox.swift in Sources */,
 				9D073B9C28E6E55600D7B42A /* JJCarouselDotPageView.swift in Sources */,
+				9D602A1E28F11F7100E9D429 /* AttributMakerDemoController.swift in Sources */,
 				9D073B4728E6B01200D7B42A /* RouterOpenFailure.swift in Sources */,
 				5E594E4C28EA73E30026CCED /* PassParameterRouter.swift in Sources */,
 				5E594E4D28EA73E30026CCED /* BlockRouter.swift in Sources */,
@@ -611,9 +656,13 @@
 				5E594E5328EA73E30026CCED /* MapBlockController.swift in Sources */,
 				9D073B3F28E6AFDD00D7B42A /* RouteMatchResult.swift in Sources */,
 				9D073B4D28E6B04000D7B42A /* RouteScanTerminal.swift in Sources */,
+				9D602A1C28F11F3800E9D429 /* ExtensionRouter.swift in Sources */,
 				5E594E7728EA8D150026CCED /* WebCarouselModel.swift in Sources */,
+				9D602A2028F1542E00E9D429 /* UIImageRenderController.swift in Sources */,
+				9D602A2428F15E4C00E9D429 /* FilterImageDemoController.swift in Sources */,
 				9D073B1328E6883100D7B42A /* ViewController.swift in Sources */,
 				9D073B5B28E6B92300D7B42A /* JJAlertPresentationController.swift in Sources */,
+				9D602A2628F1708B00E9D429 /* ShapeImageDemoController.swift in Sources */,
 				9D073B9A28E6E54800D7B42A /* JJCarouselHiddenPageView.swift in Sources */,
 				5E594E7928EA8DF10026CCED /* AddCloseNaviItemToDismissable.swift in Sources */,
 				9D073B5328E6B06800D7B42A /* Route.swift in Sources */,
@@ -625,6 +674,7 @@
 				9D073B7028E6C09B00D7B42A /* UIBarButtonItem+Extension.swift in Sources */,
 				5E594E5D28EA73E30026CCED /* PassParameterByContextController.swift in Sources */,
 				5E594E5128EA73E30026CCED /* ShowMatchRouterable.swift in Sources */,
+				9D602A2228F1552A00E9D429 /* ColorImageDemoController.swift in Sources */,
 				9D073B6228E6BACB00D7B42A /* JJPushPopPresentTransition.swift in Sources */,
 				9D073B7228E6C0E400D7B42A /* Date+Extension.swift in Sources */,
 				9D073B7828E6DC2800D7B42A /* Collection+SafeIndex.swift in Sources */,
@@ -653,6 +703,7 @@
 				9D073B8528E6E46D00D7B42A /* JJCarouselStyle.swift in Sources */,
 				9D073B8928E6E48A00D7B42A /* JJCarouselConfig.swift in Sources */,
 				9D073B6E28E6BFA400D7B42A /* UIGesture+Extension.swift in Sources */,
+				9D602A1A28F1196900E9D429 /* DemoRouter.swift in Sources */,
 				9D073B6C28E6BE7D00D7B42A /* UIControl+Extension.swift in Sources */,
 				5E594E5F28EA73E30026CCED /* FrontBlockAController.swift in Sources */,
 				5E594E5928EA73E30026CCED /* PassParametersForInitController.swift in Sources */,
@@ -670,6 +721,7 @@
 				5E594E6128EA73E30026CCED /* SystemPushController.swift in Sources */,
 				9D073B4528E6B00500D7B42A /* RouterOpenSuccess.swift in Sources */,
 				9D073B0F28E6883100D7B42A /* AppDelegate.swift in Sources */,
+				9D602A1828F118FF00E9D429 /* ExtensionDemosController.swift in Sources */,
 				9D073B9728E6E52200D7B42A /* FullCarouselContainerView.swift in Sources */,
 				9D073B7C28E6DE7E00D7B42A /* UITextInput+Limit.swift in Sources */,
 				9D073B8D28E6E4A700D7B42A /* JJCarouselContainerView.swift in Sources */,
