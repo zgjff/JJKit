@@ -15,6 +15,7 @@ enum SimpleRouter: String, CaseIterable {
     case alertCenter = "/app/alertCenter"
     case web = "/app/web"
     case login = "/app/login"
+    case hash = "/app/hash#/help"
 }
 
 extension SimpleRouter: JJRouterSource {
@@ -36,6 +37,8 @@ extension SimpleRouter: JJRouterSource {
             return AlertCenterController()
         case .login:
             return LoginController()
+        case .hash:
+            return HelpForHashController()
         }
     }
 }

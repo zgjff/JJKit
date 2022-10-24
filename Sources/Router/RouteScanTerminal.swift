@@ -21,8 +21,9 @@ extension JJRouter.Scanner {
         case variable
         /// #
         case fragment
+        /// #/
+        case hash
+        /// 字母
         case letters(_ value: String)
-        
-        // TODO: - 添加hash模式url支持   #/xxx 格式
     }
 }

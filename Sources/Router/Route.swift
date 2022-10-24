@@ -31,6 +31,10 @@ internal extension JJRouter.Route {
                 if dest != .slash {
                     return nil
                 }
+            case .hash:
+                if dest != .hash {
+                    return nil
+                }
             case .path(let lp):
                 if case let .path(rp) = dest {
                     if lp != rp {
@@ -57,7 +61,7 @@ internal extension JJRouter.Route {
     
     private func matchFilter(token: JJRouter.RoutingPatternToken) -> Bool {
         switch token {
-        case .slash, .path, .variable:
+        case .slash, .path, .variable, .hash:
             return true
         case .search, .fragment:
             return false

@@ -44,6 +44,11 @@ extension JJRouter.PatternTokenBuilder {
         scanTerminals.append(.fragment)
     }
     
+    /// 添加hash路由模式的url,  #/
+    mutating func appendHash() {
+        scanTerminals.append(.hash)
+    }
+    
     /// 添加 字符串
     mutating func appendLetters(_ letters: String) {
         scanTerminals.append(.letters(letters))
@@ -59,6 +64,8 @@ extension JJRouter.PatternTokenBuilder {
                 tokens.append(.slash)
             case .query, .equal, .and, .variable, .fragment:
                 continue
+            case .hash:
+                tokens.append(.hash)
             case .letters(let text):
                 if idx == 0 {
                     tokens.append(.path(text))
@@ -88,6 +95,8 @@ extension JJRouter.PatternTokenBuilder {
                     tokens.append(.variable(key: text))
                 case .letters:
                     // 这个永远不会出现
+                    continue
+                case .hash:
                     continue
                 }
             }

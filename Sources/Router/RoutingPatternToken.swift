@@ -10,6 +10,7 @@ import Foundation
 extension JJRouter {
     internal enum RoutingPatternToken {
         case slash
+        case hash
         case path(String)
         case variable(key: String)
         case search(key: String, value: String)
@@ -30,6 +31,8 @@ extension JJRouter.RoutingPatternToken: CustomStringConvertible {
             return "[Variable \"\(k)\"]"
         case .fragment(value: let v):
             return "[Fragment \"\(v)\"]"
+        case .hash:
+            return "[Hash]"
         }
     }
 }
@@ -47,6 +50,8 @@ extension JJRouter.RoutingPatternToken: Equatable {
             return k1 == k2
         case let (.fragment(value: v1), .fragment(value: v2)):
             return v1 == v2
+        case (.hash, .hash):
+            return true
         default:
             return false
         }

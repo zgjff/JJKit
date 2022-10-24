@@ -84,6 +84,7 @@ private extension RouterDemosController {
             RootRowAction(title: "Present", action: "onClickPresent"),
             RootRowAction(title: "PushPop Style Present", action: "onClickPushPopStylePresent"),
             RootRowAction(title: "Center Alert ", action: "onClickAlertCenter"),
+            RootRowAction(title: "匹配hash路由模式", action: "onClickShowHashModeController"),
             RootRowAction(title: "block 1 ", action: "onClickBackBlock"),
             RootRowAction(title: "block 2 ", action: "onClickFrontBlock"),
             RootRowAction(title: "map block ", action: "onClickMapBlock"),
@@ -124,6 +125,10 @@ private extension RouterDemosController {
     
     @IBAction func onClickAlertCenter() {
         (try? JJRouter.default.open(SimpleRouter.alertCenter))?.jump(from: self)
+    }
+    
+    @IBAction func onClickShowHashModeController() {
+        (try? JJRouter.default.open("https://www.appwebsite.com/app/hash#/help?q=how_to_use"))?.jump(from: self)
     }
 }
 

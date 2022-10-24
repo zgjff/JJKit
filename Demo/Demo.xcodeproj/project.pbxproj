@@ -106,6 +106,7 @@
 		9D602A2228F1552A00E9D429 /* ColorImageDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D602A2128F1552A00E9D429 /* ColorImageDemoController.swift */; };
 		9D602A2428F15E4C00E9D429 /* FilterImageDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D602A2328F15E4C00E9D429 /* FilterImageDemoController.swift */; };
 		9D602A2628F1708B00E9D429 /* ShapeImageDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D602A2528F1708B00E9D429 /* ShapeImageDemoController.swift */; };
+		9D94B8D729065A4D00D06306 /* HelpForHashController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D94B8D629065A4D00D06306 /* HelpForHashController.swift */; };
 		AFC0E8441AC42D6870DC7812 /* Pods_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27818B47D8E551B90C4BFF5F /* Pods_Demo.framework */; };
 /* End PBXBuildFile section */
 
@@ -213,6 +214,7 @@
 		9D602A2128F1552A00E9D429 /* ColorImageDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorImageDemoController.swift; sourceTree = "<group>"; };
 		9D602A2328F15E4C00E9D429 /* FilterImageDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterImageDemoController.swift; sourceTree = "<group>"; };
 		9D602A2528F1708B00E9D429 /* ShapeImageDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeImageDemoController.swift; sourceTree = "<group>"; };
+		9D94B8D629065A4D00D06306 /* HelpForHashController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpForHashController.swift; sourceTree = "<group>"; };
 		EDF7E3640305DF644F8C5CD2 /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -269,6 +271,7 @@
 				5E594E4328EA73E30026CCED /* PassParametersForInitController.swift */,
 				5E594E4428EA73E30026CCED /* PassParameterByEnumController.swift */,
 				5E594E4A28EA73E30026CCED /* UpdateUIWhenMatchSameController.swift */,
+				9D94B8D629065A4D00D06306 /* HelpForHashController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -647,6 +650,7 @@
 				9D073B4F28E6B04C00D7B42A /* RoutingPatternToken.swift in Sources */,
 				9D073B8F28E6E4B700D7B42A /* JJCarouselViewPageable.swift in Sources */,
 				9D073B3928E6AF8E00D7B42A /* RouterSource.swift in Sources */,
+				9D94B8D729065A4D00D06306 /* HelpForHashController.swift in Sources */,
 				5E594E6028EA73E30026CCED /* UpdateUIWhenMatchSameController.swift in Sources */,
 				5E594E4E28EA73E30026CCED /* SimpleRouter.swift in Sources */,
 				5E594E4F28EA73E30026CCED /* RouterDemosController.swift in Sources */,

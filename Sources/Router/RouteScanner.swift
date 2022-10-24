@@ -11,11 +11,14 @@ extension JJRouter {
     internal struct Scanner {
         /// 包含字符串+数字+特定字符的字符集(主要为了正确解析类似于 name1.3app_test 为一个字段属性)
         private let letterNumberMixSpecificSymbolCharacterSet: CharacterSet
+        /// 解析hash路由url
+        private let hashCharacterSet: CharacterSet
         private let below13ContinueScanCharacterSet: CharacterSet
         init() {
             let specificSymbolCharacterSet = CharacterSet(charactersIn: "_.-")
             letterNumberMixSpecificSymbolCharacterSet = CharacterSet.alphanumerics.union(specificSymbolCharacterSet)
             below13ContinueScanCharacterSet = CharacterSet(charactersIn: "!@#$^&%*+,:;='\"`<>()[]{}/\\| ")
+            hashCharacterSet = CharacterSet(charactersIn: "#/")
         }
     }
 }
@@ -44,6 +47,10 @@ private extension JJRouter.Scanner {
     func scanner_above13(using scanner: Foundation.Scanner, into builder: inout JJRouter.PatternTokenBuilder) {
         if let str = scanner.scanCharacters(from: letterNumberMixSpecificSymbolCharacterSet) {
             builder.appendLetters(str)
+            return
+        }
+        if let _ = scanner.scanCharacters(from: hashCharacterSet) {
+            builder.appendHash()
             return
         }
         if let _ = scanner.scanString("/") {
@@ -80,6 +87,12 @@ private extension JJRouter.Scanner {
             if scanner.scanCharacters(from: letterNumberMixSpecificSymbolCharacterSet, into: &str) {
                 if let str = str {
                     builder.appendLetters(str as String)
+                }
+                return
+            }
+            if scanner.scanCharacters(from: hashCharacterSet, into: &str) {
+                if str != nil {
+                    builder.appendHash()
                 }
                 return
             }
