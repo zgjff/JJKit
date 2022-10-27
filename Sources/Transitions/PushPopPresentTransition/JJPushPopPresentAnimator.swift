@@ -9,6 +9,7 @@ import UIKit
 
 internal final class JJPushPopPresentAnimator: NSObject {
     var transitionCompleted: (() -> ())?
+    private var animator: UIViewImplicitlyAnimating?
     init(edge: UIRectEdge) {
         self.targetEdge = edge
         super.init()
@@ -18,22 +19,90 @@ internal final class JJPushPopPresentAnimator: NSObject {
 
 extension JJPushPopPresentAnimator: UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return (transitionContext?.isAnimated ?? true) ? 0.35 : 0
+        return (transitionContext?.isAnimated ?? true) ? 1.35 : 0
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        guard let fromVC = transitionContext.viewController(forKey: .from),
-            let toVC = transitionContext.viewController(forKey: .to) else { return }
-        // FIX: - pageSheet
-        if fromVC.modalPresentationStyle == .custom || toVC.modalPresentationStyle == .custom || fromVC.modalPresentationStyle == .pageSheet || toVC.modalPresentationStyle == .pageSheet {
-            return customModalPresentationStyleAnimateTransition(using: transitionContext)
-        } else {
-            return systemModalPresentationStyleAnimateTransition(using: transitionContext)
+        let anim = interruptibleAnimator(using: transitionContext)
+        anim.startAnimation()
+    }
+    
+    func interruptibleAnimator(using transitionContext: UIViewControllerContextTransitioning) -> UIViewImplicitlyAnimating {
+        if let animator {
+            return animator
         }
+        guard let fromVC = transitionContext.viewController(forKey: .from),
+            let toVC = transitionContext.viewController(forKey: .to) else {
+            fatalError()
+        }
+        print(fromVC.modalPresentationStyle.rawValue, toVC.modalPresentationStyle.rawValue)
+        let duration = transitionDuration(using: transitionContext)
+        let containerView = transitionContext.containerView
+        var fromView, toView: UIView
+        if transitionContext.responds(to: #selector(transitionContext.view(forKey:))) {
+            fromView = transitionContext.view(forKey: .from) ?? fromVC.view!
+            toView = transitionContext.view(forKey: .to) ?? toVC.view!
+        } else {
+            fromView = fromVC.view
+            toView = toVC.view
+        }
+        let isPresenting = toVC.presentingViewController == fromVC
+        let startFrame = transitionContext.initialFrame(for: fromVC)
+        let endFrame = transitionContext.finalFrame(for: toVC)
+        
+        var offset: CGVector
+        switch targetEdge {
+        case .top:
+            offset = CGVector(dx: 0, dy: 1)
+        case .bottom:
+            offset = CGVector(dx: 0, dy: -1)
+        case .left:
+            offset = CGVector(dx: 1, dy: 0)
+        case .right:
+            offset = CGVector(dx: -1, dy: 0)
+        default:
+            offset = CGVector()
+            assert(false, "targetEdge must be one of UIRectEdgeTop, UIRectEdgeBottom, UIRectEdgeLeft, or UIRectEdgeRight.")
+        }
+        
+        if isPresenting {
+            fromView.frame = startFrame
+            toView.frame = endFrame.offsetBy(dx: endFrame.width * offset.dx * -1, dy: endFrame.height * offset.dy * -1)
+        } else {
+            fromView.frame = startFrame
+            toView.frame = endFrame.offsetBy(dx: endFrame.width * -0.3, dy: 0)
+        }
+        
+        if isPresenting {
+            containerView.addSubview(toView)
+        } else {
+            containerView.insertSubview(toView, belowSubview: fromView)
+        }
+        
+        let animator = UIViewPropertyAnimator(duration: duration, curve: .easeInOut) {
+            if isPresenting {
+                toView.frame = endFrame
+                fromView.frame = startFrame.offsetBy(dx: startFrame.width * -0.3, dy: 0)
+            } else {
+                fromView.frame = startFrame.offsetBy(dx: startFrame.width * offset.dx, dy: startFrame.height * offset.dy)
+                toView.frame = endFrame
+            }
+        }
+        
+        animator.addCompletion { _ in
+            let wasCancelled = transitionContext.transitionWasCancelled
+            if wasCancelled {
+                toView.removeFromSuperview()
+            }
+            transitionContext.completeTransition(!wasCancelled)
+        }
+        self.animator = animator
+        return animator
     }
     
     func animationEnded(_ transitionCompleted: Bool) {
         self.transitionCompleted?()
+        self.animator = nil
     }
 }
 

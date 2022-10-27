@@ -26,6 +26,7 @@ extension AlertCenterController: JJRouterDestination {
         self.result = result
         let pd = JJAlertPresentationController(show: self, from: sourceController) { ctx in
             ctx.usingBlurBelowCoverAnimators(style: .dark)
+            ctx.presentingControllerTriggerAppearLifecycle = .all
         }
         transitioningDelegate = pd
         sourceController.present(self, animated: true) {

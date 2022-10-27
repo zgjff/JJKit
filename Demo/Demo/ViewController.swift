@@ -69,6 +69,10 @@ private extension ViewController {
         openDemoRouter(.extensions)
     }
     
+    @IBAction func showTestIdeas() {
+        openDemoRouter(.test)
+    }
+    
     private func openDemoRouter(_ router: DemoRouter) {
         do {
             let result = try JJRouter.open(router)
@@ -90,7 +94,8 @@ private extension ViewController {
         datas = [
             ("路由", "showRouterDemos"),
             ("轮播图", "showCarouselDemos"),
-            ("Extensions", "showExtensionDemos")
+            ("Extensions", "showExtensionDemos"),
+            ("Idea", "showTestIdeas")
         ]
         tableView.delegate = self
         tableView.dataSource = self

@@ -97,6 +97,7 @@
 		9D073B9A28E6E54800D7B42A /* JJCarouselHiddenPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D073B9928E6E54800D7B42A /* JJCarouselHiddenPageView.swift */; };
 		9D073B9C28E6E55600D7B42A /* JJCarouselDotPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D073B9B28E6E55600D7B42A /* JJCarouselDotPageView.swift */; };
 		9D073B9E28E6E56400D7B42A /* JJCarouselNumberPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D073B9D28E6E56400D7B42A /* JJCarouselNumberPageView.swift */; };
+		9D14900429078D160068A15F /* IdeaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D14900329078D160068A15F /* IdeaController.swift */; };
 		9D3390A628F2C1E4004B9CF2 /* shape_image_demo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D3390A528F2C1E4004B9CF2 /* shape_image_demo.png */; };
 		9D602A1828F118FF00E9D429 /* ExtensionDemosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D602A1728F118FF00E9D429 /* ExtensionDemosController.swift */; };
 		9D602A1A28F1196900E9D429 /* DemoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D602A1928F1196900E9D429 /* DemoRouter.swift */; };
@@ -205,6 +206,7 @@
 		9D073B9928E6E54800D7B42A /* JJCarouselHiddenPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJCarouselHiddenPageView.swift; sourceTree = "<group>"; };
 		9D073B9B28E6E55600D7B42A /* JJCarouselDotPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJCarouselDotPageView.swift; sourceTree = "<group>"; };
 		9D073B9D28E6E56400D7B42A /* JJCarouselNumberPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJCarouselNumberPageView.swift; sourceTree = "<group>"; };
+		9D14900329078D160068A15F /* IdeaController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdeaController.swift; sourceTree = "<group>"; };
 		9D3390A528F2C1E4004B9CF2 /* shape_image_demo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shape_image_demo.png; sourceTree = "<group>"; };
 		9D602A1728F118FF00E9D429 /* ExtensionDemosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDemosController.swift; sourceTree = "<group>"; };
 		9D602A1928F1196900E9D429 /* DemoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoRouter.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				5E594E3328EA73E30026CCED /* RouterDemos */,
 				9D073B0E28E6883100D7B42A /* AppDelegate.swift */,
 				9D073B1228E6883100D7B42A /* ViewController.swift */,
+				9D14900329078D160068A15F /* IdeaController.swift */,
 				9D602A1928F1196900E9D429 /* DemoRouter.swift */,
 				5E594E7828EA8DF10026CCED /* AddCloseNaviItemToDismissable.swift */,
 				9D073B1728E6883200D7B42A /* Assets.xcassets */,
@@ -673,6 +676,7 @@
 				9D073B5F28E6B96800D7B42A /* JJAlertPresentationContext+Default.swift in Sources */,
 				9D073B4928E6B02300D7B42A /* MatchedSameRouterAction.swift in Sources */,
 				9D073B5728E6B08400D7B42A /* SyncRoutes.swift in Sources */,
+				9D14900429078D160068A15F /* IdeaController.swift in Sources */,
 				9D073B7A28E6DD2200D7B42A /* ReusableViewExtension.swift in Sources */,
 				9D073B3B28E6AFB300D7B42A /* RouterDestination.swift in Sources */,
 				9D073B7028E6C09B00D7B42A /* UIBarButtonItem+Extension.swift in Sources */,

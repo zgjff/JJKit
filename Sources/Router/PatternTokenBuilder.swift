@@ -97,7 +97,7 @@ extension JJRouter.PatternTokenBuilder {
                     // 这个永远不会出现
                     continue
                 case .hash:
-                    continue
+                    tokens.append(.path(text))
                 }
             }
         }

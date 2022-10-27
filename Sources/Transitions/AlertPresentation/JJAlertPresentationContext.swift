@@ -12,6 +12,9 @@ final public class JJAlertPresentationContext {
     /// 转场动画持续时间---默认0.2s
     public var duration: TimeInterval = 0.2
     
+    /// 源控制器是否触发生命周期(viewWillDisappear/viewDidDisappear/viewWillAppear/viewDidAppear),默认不触发任何
+    public var presentingControllerTriggerAppearLifecycle = TriggerPresentingControllerLifecycle.none
+    
     /// 弹出界面的其余部分点击事件,默认为自动dismiss
     ///
     /// 可以在弹窗出现之后通过`AlertPresentationController`的`updateContext`方法随时更改此属性
@@ -127,5 +130,36 @@ extension JJAlertPresentationContext {
         case autodismiss(_ auto: Bool)
         /// 自定义动作
         case customize(action: () -> ())
+    }
+    
+    
+    /// 源控制器触发生命周期
+    public struct TriggerPresentingControllerLifecycle: OptionSet {
+        public let rawValue: UInt
+        public init(rawValue: UInt) {
+            self.rawValue = rawValue
+        }
+        
+        /// 不触发任何生命周期
+        public static var none: TriggerPresentingControllerLifecycle {
+            return TriggerPresentingControllerLifecycle(rawValue: 1 << 0)
+        }
+        
+        /// 触发viewWillDisappear+viewDidDisappear
+        public static var disappear: TriggerPresentingControllerLifecycle {
+            return TriggerPresentingControllerLifecycle(rawValue: 1 << 1)
+        }
+        
+        /// 触发viewWillAppear+viewDidAppear
+        public static var appear: TriggerPresentingControllerLifecycle {
+            return TriggerPresentingControllerLifecycle(rawValue: 1 << 2)
+        }
+
+        /// 触发所有
+        public static var all: TriggerPresentingControllerLifecycle {
+            let rvalue = TriggerPresentingControllerLifecycle.disappear.rawValue |
+                           TriggerPresentingControllerLifecycle.appear.rawValue
+            return TriggerPresentingControllerLifecycle(rawValue: rvalue)
+        }
     }
 }

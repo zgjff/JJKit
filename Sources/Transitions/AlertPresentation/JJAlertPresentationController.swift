@@ -62,6 +62,9 @@ extension JJAlertPresentationController {
                 self.presentationWrappingView = presentedViewControllerView
             }
         }
+        if context.presentingControllerTriggerAppearLifecycle.contains(.disappear) {
+            presentingViewController.beginAppearanceTransition(false, animated: true)
+        }
         do {
             guard let cb = context.belowCoverView,
             let cv = containerView else { return }
@@ -75,6 +78,11 @@ extension JJAlertPresentationController {
     }
     
     public override func presentationTransitionDidEnd(_ completed: Bool) {
+        if (completed) {
+            if context.presentingControllerTriggerAppearLifecycle.contains(.disappear) {
+                presentingViewController.endAppearanceTransition()
+            }
+        }
         if !completed {
             presentationWrappingView = nil
             belowCoverView = nil
@@ -84,6 +92,9 @@ extension JJAlertPresentationController {
     public override func dismissalTransitionWillBegin() {
         guard let belowView = belowCoverView,
         let coordinator = presentingViewController.transitionCoordinator else { return }
+        if context.presentingControllerTriggerAppearLifecycle.contains(.appear) {
+            presentingViewController.beginAppearanceTransition(true, animated: true)
+        }
         context.willDismissAnimatorForBelowCoverView?(belowView, coordinator)
     }
     
@@ -91,6 +102,9 @@ extension JJAlertPresentationController {
         if completed {
             presentationWrappingView = nil
             belowCoverView = nil
+            if context.presentingControllerTriggerAppearLifecycle.contains(.appear) {
+                presentingViewController.endAppearanceTransition()
+            }
         }
     }
 }

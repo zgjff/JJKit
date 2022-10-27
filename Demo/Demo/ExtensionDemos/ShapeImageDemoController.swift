@@ -182,7 +182,7 @@ private extension ShapeImageDemoController {
 
         let iv32 = UIImageView()
         iv32.frame = iv31.frame.offsetBy(dx: iv11.jj.width + 20, dy: 0)
-        iv32.image = UIImage.shape(.arrowCircleFill(.left, 4, .jRandom()), size: 40, tintColor: .jRandom())
+        iv32.image = UIImage.shape(.arrowCircleFill(.right, 4, .jRandom()), size: 40, tintColor: .jRandom())
         scrollView.addSubview(iv32)
         
         let iv33 = UIImageView()
@@ -197,7 +197,7 @@ private extension ShapeImageDemoController {
 
         let iv35 = UIImageView()
         iv35.frame = iv34.frame.offsetBy(dx: iv11.jj.width + 20, dy: 0)
-        iv35.image = UIImage.shape(.arrowCircleFill(.left, 4, .jRandom()), size: 40, tintColor: .jRandom())
+        iv35.image = UIImage.shape(.arrowCircleFill(.up, 4, .jRandom()), size: 40, tintColor: .jRandom())
         scrollView.addSubview(iv35)
         
         let iv36 = UIImageView()
