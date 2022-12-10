@@ -107,6 +107,7 @@
 		9D602A2228F1552A00E9D429 /* ColorImageDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D602A2128F1552A00E9D429 /* ColorImageDemoController.swift */; };
 		9D602A2428F15E4C00E9D429 /* FilterImageDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D602A2328F15E4C00E9D429 /* FilterImageDemoController.swift */; };
 		9D602A2628F1708B00E9D429 /* ShapeImageDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D602A2528F1708B00E9D429 /* ShapeImageDemoController.swift */; };
+		9D7F33712910F73E0055B08F /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7F33702910F73E0055B08F /* FirstViewController.swift */; };
 		9D94B8D729065A4D00D06306 /* HelpForHashController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D94B8D629065A4D00D06306 /* HelpForHashController.swift */; };
 		AFC0E8441AC42D6870DC7812 /* Pods_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27818B47D8E551B90C4BFF5F /* Pods_Demo.framework */; };
 /* End PBXBuildFile section */
@@ -216,6 +217,7 @@
 		9D602A2128F1552A00E9D429 /* ColorImageDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorImageDemoController.swift; sourceTree = "<group>"; };
 		9D602A2328F15E4C00E9D429 /* FilterImageDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterImageDemoController.swift; sourceTree = "<group>"; };
 		9D602A2528F1708B00E9D429 /* ShapeImageDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeImageDemoController.swift; sourceTree = "<group>"; };
+		9D7F33702910F73E0055B08F /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		9D94B8D629065A4D00D06306 /* HelpForHashController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpForHashController.swift; sourceTree = "<group>"; };
 		EDF7E3640305DF644F8C5CD2 /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -348,6 +350,7 @@
 				9D073B0E28E6883100D7B42A /* AppDelegate.swift */,
 				9D073B1228E6883100D7B42A /* ViewController.swift */,
 				9D14900329078D160068A15F /* IdeaController.swift */,
+				9D7F33702910F73E0055B08F /* FirstViewController.swift */,
 				9D602A1928F1196900E9D429 /* DemoRouter.swift */,
 				5E594E7828EA8DF10026CCED /* AddCloseNaviItemToDismissable.swift */,
 				9D073B1728E6883200D7B42A /* Assets.xcassets */,
@@ -672,6 +675,7 @@
 				9D602A2628F1708B00E9D429 /* ShapeImageDemoController.swift in Sources */,
 				9D073B9A28E6E54800D7B42A /* JJCarouselHiddenPageView.swift in Sources */,
 				5E594E7928EA8DF10026CCED /* AddCloseNaviItemToDismissable.swift in Sources */,
+				9D7F33712910F73E0055B08F /* FirstViewController.swift in Sources */,
 				9D073B5328E6B06800D7B42A /* Route.swift in Sources */,
 				9D073B5F28E6B96800D7B42A /* JJAlertPresentationContext+Default.swift in Sources */,
 				9D073B4928E6B02300D7B42A /* MatchedSameRouterAction.swift in Sources */,

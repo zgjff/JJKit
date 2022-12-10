@@ -61,9 +61,9 @@ private extension AttributMakerDemoController {
             make.for(42..<45)?.foregroundColor(.green)
             make.for(72...82)?.foregroundColor(.green)
             make.for("春江")?.foregroundColor(.cyan)
-            let regex = JJAttributedRegexp(pattern: "人")!
-            make.for(regex)?.foregroundColor(.yellow)
             make.for(NSRange(location: 300, length: 201))?.foregroundColor(UIColor.red)
+            let regex = JJAttributedRegexp(pattern: "[江?.月]")!
+            make.for(regex)?.foregroundColor(.magenta)
         })
         l.sizeToFit()
         l.jj.width = view.jj.width

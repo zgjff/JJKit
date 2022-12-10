@@ -9,11 +9,17 @@ import Foundation
 
 extension JJRouter {
     internal enum RoutingPatternToken {
+        /// /
         case slash
+        /// #/ 表示hashurl
         case hash
+        // 路径
         case path(String)
+        /// 变量
         case variable(key: String)
+        /// query参数
         case search(key: String, value: String)
+        /// fragment字段
         case fragment(value: String)
     }
 }

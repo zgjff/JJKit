@@ -32,7 +32,7 @@ extension JJPushPopStylePresentDelegate {
 extension UIViewController: JJCompatible {}
 
 extension JJBox where Base: JJPushPopStylePresentDelegate {
-    /// 添加跟系统push一样的动画的presetn
+    /// 添加跟系统pop一样的动画的手势dismiss
     public func addScreenPanGestureDismiss() {
         base.addScreenPanGestureDismiss()
     }
@@ -60,7 +60,7 @@ extension JJBox where Base: JJPushPopStylePresentDelegate {
 }
 
 extension JJPushPopStylePresentDelegate {
-    /// 添加跟系统push一样的动画的presetn
+    /// 添加跟系统pop一样的动画的dismiss
     fileprivate func addScreenPanGestureDismiss() {
         let spGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(onBeganEdgePanGestureBack(_:)))
         spGesture.edges = .left

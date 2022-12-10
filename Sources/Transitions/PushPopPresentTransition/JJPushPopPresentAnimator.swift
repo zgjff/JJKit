@@ -19,7 +19,7 @@ internal final class JJPushPopPresentAnimator: NSObject {
 
 extension JJPushPopPresentAnimator: UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return (transitionContext?.isAnimated ?? true) ? 1.35 : 0
+        return (transitionContext?.isAnimated ?? true) ? 0.35 : 0
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -35,7 +35,6 @@ extension JJPushPopPresentAnimator: UIViewControllerAnimatedTransitioning {
             let toVC = transitionContext.viewController(forKey: .to) else {
             fatalError()
         }
-        print(fromVC.modalPresentationStyle.rawValue, toVC.modalPresentationStyle.rawValue)
         let duration = transitionDuration(using: transitionContext)
         let containerView = transitionContext.containerView
         var fromView, toView: UIView

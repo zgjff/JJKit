@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// 注册、匹配功能路由
 protocol Routes: CustomStringConvertible {
     /// 注册路由
     /// - Parameter pattern: 路由path

@@ -7,12 +7,12 @@
 
 import UIKit
 
-protocol JJReusableViewable: NSObjectProtocol {
+public protocol JJReusableViewable: NSObjectProtocol {
     static var jj_defaultReuseIdentifier: String { get }
 }
 
 extension JJReusableViewable where Self: UIView {
-    static var jj_defaultReuseIdentifier: String {
+    public static var jj_defaultReuseIdentifier: String {
         return String(describing: self)
     }
 }
@@ -20,7 +20,7 @@ extension JJReusableViewable where Self: UIView {
 extension UITableViewCell: JJReusableViewable {}
 extension UITableViewHeaderFooterView: JJReusableViewable {}
 
-extension JJBox where Base: UITableView {
+public extension JJBox where Base: UITableView {
     /// 加载可重复使用的UITableViewCell
     /// 使用此方法无需registerCell
     /// - Parameter initialize: UITableViewCell 的初始化
@@ -48,7 +48,7 @@ extension JJBox where Base: UITableView {
 
 extension UICollectionReusableView: JJReusableViewable {}
 
-extension JJBox where Base: UICollectionView {
+public extension JJBox where Base: UICollectionView {
     func registerCell<T>(_: T.Type) where T: UICollectionViewCell {
         base.register(T.self, forCellWithReuseIdentifier: T.jj_defaultReuseIdentifier)
     }

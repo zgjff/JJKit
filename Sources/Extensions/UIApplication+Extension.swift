@@ -18,7 +18,7 @@ extension JJBox where Base: UIApplication {
     public var keyWindow: UIWindow? {
         if #available(iOS 13.0, *) {
             let windows = base.connectedScenes.compactMap { screen -> UIWindow? in
-                guard let wc = screen as? UIWindowScene, wc.activationState == .foregroundActive else {
+                guard let wc = screen as? UIWindowScene, (wc.activationState == .foregroundActive || wc.activationState == .foregroundInactive) else {
                     return nil
                 }
                 if #available(iOS 15.0, *) {
