@@ -18,7 +18,7 @@ extension JJBox where Base: UIApplication {
     public var keyWindow: UIWindow? {
         if #available(iOS 13.0, *) {
             let windows = base.connectedScenes.compactMap { screen -> UIWindow? in
-                guard let wc = screen as? UIWindowScene, (wc.activationState == .foregroundActive || wc.activationState == .foregroundInactive) else {
+                guard let wc = screen as? UIWindowScene, wc.activationState != .unattached else {
                     return nil
                 }
                 if #available(iOS 15.0, *) {
@@ -45,6 +45,11 @@ extension JJBox where Base: UIApplication {
         if let tab = top as? UITabBarController {
             if let selected = tab.selectedViewController {
                 return topViewController(selected)
+            }
+        }
+        if let page = top as? UIPageViewController {
+            if let vc = page.viewControllers?.first {
+                return topViewController(vc)
             }
         }
         if let presented = top?.presentedViewController {
