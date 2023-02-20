@@ -39,6 +39,7 @@ extension JJBox where Base: UITextView {
     func shouldChangeCharactersWithReplacementString(_ string: String, range: NSRange, maxCount: Int) -> Bool {
         if !base.hasObservedEditingChanged {
             base.maxTextLimitCount = maxCount
+            base.addEditingChangedObserve()
             base.hasObservedEditingChanged = true
         }
         return base.private_shouldChangeCharactersWithReplacementString(string, range: range, maxCount: maxCount, currentInputText: base.text) { str in
@@ -46,6 +47,31 @@ extension JJBox where Base: UITextView {
         } afterResetText: {
             NotificationCenter.default.post(name: UITextView.textDidChangeNotification, object: self.base)
         }
+    }
+}
+
+extension UITextView {
+    fileprivate func addEditingChangedObserve() {
+        NotificationCenter.default.addObserver(self, selector: #selector(onChangeEditing), name: UITextView.textDidChangeNotification, object: self)
+    }
+    
+    @IBAction private func onChangeEditing() {
+        if let undo = undoManager, undo.isUndoing || undo.isRedoing {
+            return
+        }
+        if markedTextRange != nil {
+            return
+        }
+        let ctext = text ?? ""
+        if ctext.count <= maxTextLimitCount {
+            return
+        }
+        let subStart = ctext.startIndex
+        let subEnd = ctext.index(subStart, offsetBy: maxTextLimitCount)
+        let crang = ctext.rangeOfComposedCharacterSequences(for: subStart..<subEnd)
+        let allowedText = String(ctext[crang.lowerBound..<crang.upperBound])
+        text = allowedText
+        NotificationCenter.default.post(name: UITextView.textDidChangeNotification, object: self)
     }
 }
 

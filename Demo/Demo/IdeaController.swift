@@ -8,13 +8,19 @@
 import UIKit
 /// 想法、思路演示
 class IdeaController: UIViewController {
-    
+    private lazy var textView = UITextView()
 }
 
 extension IdeaController: JJRouterDestination {
     func showDetail(withMatchRouterResult result: JJRouter.MatchResult, from sourceController: UIViewController) {
         let navi = UINavigationController(rootViewController: self)
         sourceController.present(navi, animated: true)
+    }
+}
+
+extension IdeaController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        return textView.jj.shouldChangeCharactersWithReplacementString(text, range: range, maxCount: 20)
     }
 }
 
@@ -32,8 +38,12 @@ extension IdeaController {
         b.jj.handler({ [unowned self] _ in
             self.startShow()
         }, for: .primaryActionTriggered)
-    }
     
+        textView.frame = CGRect(x: 30, y: 80, width: 300, height: 50)
+        textView.delegate = self
+        view.addSubview(textView)
+    }
+     
     func startShow() {
         
     }
