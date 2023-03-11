@@ -27,6 +27,13 @@ public final class JJRouter {
         return UIApplication.shared.jj.keyWindow
     }
     
+    /// 获取当前控制器的最上层控制器
+    /// 
+    /// 如果不使用框架提供的`apptopController`,你可以提供自己实现的`apptopController`
+    public lazy var apptopController: (_ current: UIViewController?) -> UIViewController? = { current in
+        return UIApplication.shared.jj.topViewController(current)
+    }
+    
     private let routes: Routes
     private let defaultUnmatchHandler: UnmatchHandler?
     private var routeHandlerMappings: [String: MatchedHandler] = [:]

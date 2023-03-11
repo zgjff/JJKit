@@ -36,7 +36,7 @@ extension JJRouterDestination {
     /// 处理路由匹配到的界面
     /// - Parameter result: 匹配结果
     func deal(withMatchedResult result: JJRouter.MatchResult, from sourceController: UIViewController?) {
-        let fromController = sourceController ?? UIApplication.shared.jj.topViewController(JJRouter.default.appKeyWindow()?.rootViewController)
+        let fromController = sourceController ?? JJRouter.default.apptopController(JJRouter.default.appKeyWindow()?.rootViewController)
         guard let tvc = fromController else {
             return
         }
