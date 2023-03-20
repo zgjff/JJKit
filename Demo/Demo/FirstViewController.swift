@@ -16,7 +16,5 @@ extension FirstViewController {
         super.viewDidLoad()
         view.backgroundColor = .brown
         preferredContentSize = CGSize(width: view.bounds.width, height: 300)
-        let a = Result<Int, Error>.success(1)
-        
     }
 }

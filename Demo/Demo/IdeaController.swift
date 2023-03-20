@@ -7,13 +7,12 @@
 
 import UIKit
 /// 想法、思路演示
-class IdeaController: UIViewController {
-    private lazy var textView = UITextView()
-}
+class IdeaController: UIViewController {}
 
 extension IdeaController: JJRouterDestination {
     func showDetail(withMatchRouterResult result: JJRouter.MatchResult, from sourceController: UIViewController) {
         let navi = UINavigationController(rootViewController: self)
+        navi.modalPresentationStyle = .fullScreen
         sourceController.present(navi, animated: true)
     }
 }
@@ -38,12 +37,8 @@ extension IdeaController {
         b.jj.handler({ [unowned self] _ in
             self.startShow()
         }, for: .primaryActionTriggered)
-    
-        textView.frame = CGRect(x: 30, y: 80, width: 300, height: 50)
-        textView.delegate = self
-        view.addSubview(textView)
     }
-     
+    
     func startShow() {
         
     }

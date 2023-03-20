@@ -107,6 +107,7 @@
 		9D602A2228F1552A00E9D429 /* ColorImageDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D602A2128F1552A00E9D429 /* ColorImageDemoController.swift */; };
 		9D602A2428F15E4C00E9D429 /* FilterImageDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D602A2328F15E4C00E9D429 /* FilterImageDemoController.swift */; };
 		9D602A2628F1708B00E9D429 /* ShapeImageDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D602A2528F1708B00E9D429 /* ShapeImageDemoController.swift */; };
+		9D62D1A529C8261E009B79E2 /* JJChildrenDisplayDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D62D1A429C8261E009B79E2 /* JJChildrenDisplayDriver.swift */; };
 		9D7F33712910F73E0055B08F /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7F33702910F73E0055B08F /* FirstViewController.swift */; };
 		9D94B8D729065A4D00D06306 /* HelpForHashController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D94B8D629065A4D00D06306 /* HelpForHashController.swift */; };
 		AFC0E8441AC42D6870DC7812 /* Pods_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27818B47D8E551B90C4BFF5F /* Pods_Demo.framework */; };
@@ -217,6 +218,7 @@
 		9D602A2128F1552A00E9D429 /* ColorImageDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorImageDemoController.swift; sourceTree = "<group>"; };
 		9D602A2328F15E4C00E9D429 /* FilterImageDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterImageDemoController.swift; sourceTree = "<group>"; };
 		9D602A2528F1708B00E9D429 /* ShapeImageDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeImageDemoController.swift; sourceTree = "<group>"; };
+		9D62D1A429C8261E009B79E2 /* JJChildrenDisplayDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJChildrenDisplayDriver.swift; sourceTree = "<group>"; };
 		9D7F33702910F73E0055B08F /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		9D94B8D629065A4D00D06306 /* HelpForHashController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpForHashController.swift; sourceTree = "<group>"; };
 		EDF7E3640305DF644F8C5CD2 /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
@@ -430,6 +432,7 @@
 		9D073B5828E6B76100D7B42A /* Transitions */ = {
 			isa = PBXGroup;
 			children = (
+				9D62D1A329C8260C009B79E2 /* JJChildrenDisplayDriver */,
 				9D073B6028E6BAA900D7B42A /* PushPopPresentTransition */,
 				9D073B5928E6B91700D7B42A /* AlertPresentation */,
 			);
@@ -522,6 +525,14 @@
 				9D602A2528F1708B00E9D429 /* ShapeImageDemoController.swift */,
 			);
 			path = ExtensionDemos;
+			sourceTree = "<group>";
+		};
+		9D62D1A329C8260C009B79E2 /* JJChildrenDisplayDriver */ = {
+			isa = PBXGroup;
+			children = (
+				9D62D1A429C8261E009B79E2 /* JJChildrenDisplayDriver.swift */,
+			);
+			path = JJChildrenDisplayDriver;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -732,6 +743,7 @@
 				5E594E7328EA8CDB0026CCED /* CarouselController.swift in Sources */,
 				5E594E6128EA73E30026CCED /* SystemPushController.swift in Sources */,
 				9D073B4528E6B00500D7B42A /* RouterOpenSuccess.swift in Sources */,
+				9D62D1A529C8261E009B79E2 /* JJChildrenDisplayDriver.swift in Sources */,
 				9D073B0F28E6883100D7B42A /* AppDelegate.swift in Sources */,
 				9D602A1828F118FF00E9D429 /* ExtensionDemosController.swift in Sources */,
 				9D073B9728E6E52200D7B42A /* FullCarouselContainerView.swift in Sources */,
@@ -883,7 +895,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -911,7 +923,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
