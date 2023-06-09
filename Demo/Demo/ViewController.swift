@@ -74,12 +74,7 @@ private extension ViewController {
     }
     
     private func openDemoRouter(_ router: DemoRouter) {
-        do {
-            let result = try JJRouter.open(router)
-            result.jump(from: self)
-        } catch {
-            print("open Router demos failure: ", error)
-        }
+        JJRouter.fastOpen(router)
     }
 }
 

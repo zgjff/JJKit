@@ -140,7 +140,7 @@ extension JJRouter {
 
     /// 匹配`URL`并跳转路由
     /// - Parameters:
-    ///   - path: 路由path
+    ///   - path: 路由url
     ///   - context: 传递给匹配到的路由界面数据
     ///   - unmatchHandler: 未匹配到路由时的回调
     /// - Returns: 路由打开成功
@@ -172,6 +172,81 @@ extension JJRouter {
     @discardableResult
     public static func open(_ url: URL, context: Any? = nil, unmatchHandler: UnmatchHandler? = nil) throws -> OpenSuccess {
         return try JJRouter.default.open(url, context: context, unmatchHandler: unmatchHandler)
+    }
+}
+
+// MARK: - fast open
+extension JJRouter {
+    /// 快速匹配`path`并跳转路由
+    /// - Parameters:
+    ///   - path: 路由path
+    ///   - context: 传递给匹配到的路由界面数据
+    ///   - sourceController: 跳转源控制器.如果传nil的话,会从`apptopController`获取
+    /// - Returns: 路由匹配结果
+    @discardableResult
+    public func fastOpen(_ path: String, context: Any? = nil, from sourceController: UIViewController? = nil) -> JJRouter.MatchResult? {
+        let matchResult = try? open(path, context: context)
+        return matchResult?.jump(from: sourceController)
+    }
+    
+    /// 使用默认的全局路由管理器快速匹配`path`并跳转路由
+    /// - Parameters:
+    ///   - path: 路由path
+    ///   - context: 传递给匹配到的路由界面数据
+    ///   - sourceController: 跳转源控制器.如果传nil的话,会从`apptopController`获取
+    /// - Returns: 路由匹配结果
+    @discardableResult
+    public static func fastOpen(_ path: String, context: Any? = nil, from sourceController: UIViewController? = nil) -> JJRouter.MatchResult? {
+        let matchResult = try? JJRouter.open(path, context: context)
+        return matchResult?.jump(from: sourceController)
+    }
+    
+    /// 快速匹配匹配`URL`并跳转路由
+    /// - Parameters:
+    ///   - url: 路由url
+    ///   - context: 传递给匹配到的路由界面数据
+    ///   - sourceController: 跳转源控制器.如果传nil的话,会从`apptopController`获取
+    /// - Returns: 路由匹配结果
+    @discardableResult
+    public func fastOpen(_ url: URL, context: Any? = nil, from sourceController: UIViewController? = nil) -> JJRouter.MatchResult? {
+        let matchResult = try? open(url, context: context)
+        return matchResult?.jump(from: sourceController)
+    }
+    
+    /// 使用默认的全局路由管理器快速匹配匹配`URL`并跳转路由
+    /// - Parameters:
+    ///   - url: 路由url
+    ///   - context: 传递给匹配到的路由界面数据
+    ///   - sourceController: 跳转源控制器.如果传nil的话,会从`apptopController`获取
+    /// - Returns: 路由匹配结果
+    @discardableResult
+    public static func fastOpen(_ url: URL, context: Any? = nil, from sourceController: UIViewController? = nil) -> JJRouter.MatchResult? {
+        let matchResult = try? JJRouter.open(url, context: context)
+        return matchResult?.jump(from: sourceController)
+    }
+    
+    /// 快速匹配匹配并跳转路由
+    /// - Parameters:
+    ///   - source: 路由来源
+    ///   - context: 传递给匹配到的路由界面数据
+    ///   - sourceController: 跳转源控制器.如果传nil的话,会从`apptopController`获取
+    /// - Returns: 路由匹配结果
+    @discardableResult
+    public func fastOpen<T>(_ source: T, context: Any? = nil, from sourceController: UIViewController? = nil) -> JJRouter.MatchResult? where T: JJRouterSource {
+        let matchResult = try? open(source, context: context)
+        return matchResult?.jump(from: sourceController)
+    }
+    
+    /// 使用默认的全局路由管理器快速匹配匹配并跳转路由
+    /// - Parameters:
+    ///   - source: 路由来源
+    ///   - context: 传递给匹配到的路由界面数据
+    ///   - sourceController: 跳转源控制器.如果传nil的话,会从`apptopController`获取
+    /// - Returns: 路由匹配结果
+    @discardableResult
+    public static func fastOpen<T>(_ source: T, context: Any? = nil, from sourceController: UIViewController? = nil) -> JJRouter.MatchResult? where T: JJRouterSource {
+        let matchResult = try? JJRouter.open(source, context: context)
+        return matchResult?.jump(from: sourceController)
     }
 }
 

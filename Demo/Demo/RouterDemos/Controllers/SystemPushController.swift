@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SystemPushController: UIViewController, ShowMatchRouterable {
+class SystemPushController: UIViewController, ShowMatchRouterable, JJRouterDestination {
 
     private var result: JJRouter.MatchResult?
     override func viewDidLoad() {
@@ -15,12 +15,5 @@ class SystemPushController: UIViewController, ShowMatchRouterable {
         title = "System Push"
         view.backgroundColor = .jRandom()
         showMatchResult(result)
-    }
-}
-
-extension SystemPushController: JJRouterDestination {
-    func showDetail(withMatchRouterResult result: JJRouter.MatchResult, from sourceController: UIViewController) {
-        self.result = result
-        sourceController.navigationController?.pushViewController(self, animated: true)
     }
 }
