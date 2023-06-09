@@ -32,6 +32,6 @@ Pod::Spec.new do |s|
      ss.dependency 'JJKit/JJExtension'
   end
 
-  s.platform     = :ios, "10.0"
+  s.platform     = :ios, "11.0"
   s.swift_version = '5.5'
 end
