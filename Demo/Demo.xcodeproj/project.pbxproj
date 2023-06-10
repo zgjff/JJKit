@@ -40,6 +40,11 @@
 		5E594E7528EA8D090026CCED /* WebCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E7428EA8D090026CCED /* WebCarouselView.swift */; };
 		5E594E7728EA8D150026CCED /* WebCarouselModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E7628EA8D150026CCED /* WebCarouselModel.swift */; };
 		5E594E7928EA8DF10026CCED /* AddCloseNaviItemToDismissable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E7828EA8DF10026CCED /* AddCloseNaviItemToDismissable.swift */; };
+		5E8BCFF529EBECF1006C0777 /* Archiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8BCFF429EBECF1006C0777 /* Archiver.swift */; };
+		5E8BCFF829EBF88C006C0777 /* NSAttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8BCFF729EBF88C006C0777 /* NSAttributedString+Extensions.swift */; };
+		5EA5022B29EBCD5900C06A0F /* RubyAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA5022A29EBCD5900C06A0F /* RubyAnnotation.swift */; };
+		5EA794E729EAF46400DA83A3 /* YJText+Namespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA794E629EAF46400DA83A3 /* YJText+Namespace.swift */; };
+		5EA794E929EAF4A000DA83A3 /* RunDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA794E829EAF4A000DA83A3 /* RunDelegate.swift */; };
 		5ECDF51228E827D7007BF43F /* UIImage+MemoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECDF51128E827D7007BF43F /* UIImage+MemoryCache.swift */; };
 		9D073B0F28E6883100D7B42A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D073B0E28E6883100D7B42A /* AppDelegate.swift */; };
 		9D073B1328E6883100D7B42A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D073B1228E6883100D7B42A /* ViewController.swift */; };
@@ -148,6 +153,11 @@
 		5E594E7428EA8D090026CCED /* WebCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCarouselView.swift; sourceTree = "<group>"; };
 		5E594E7628EA8D150026CCED /* WebCarouselModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCarouselModel.swift; sourceTree = "<group>"; };
 		5E594E7828EA8DF10026CCED /* AddCloseNaviItemToDismissable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCloseNaviItemToDismissable.swift; sourceTree = "<group>"; };
+		5E8BCFF429EBECF1006C0777 /* Archiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Archiver.swift; sourceTree = "<group>"; };
+		5E8BCFF729EBF88C006C0777 /* NSAttributedString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extensions.swift"; sourceTree = "<group>"; };
+		5EA5022A29EBCD5900C06A0F /* RubyAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubyAnnotation.swift; sourceTree = "<group>"; };
+		5EA794E629EAF46400DA83A3 /* YJText+Namespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "YJText+Namespace.swift"; sourceTree = "<group>"; };
+		5EA794E829EAF4A000DA83A3 /* RunDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunDelegate.swift; sourceTree = "<group>"; };
 		5ECDF51128E827D7007BF43F /* UIImage+MemoryCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+MemoryCache.swift"; sourceTree = "<group>"; };
 		87B165928D99EF25A5DA9F41 /* Pods-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.debug.xcconfig"; path = "Target Support Files/Pods-Demo/Pods-Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		9D073B0B28E6883100D7B42A /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -307,6 +317,34 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		5E8BCFF629EBF87D006C0777 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				5E8BCFF729EBF88C006C0777 /* NSAttributedString+Extensions.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		5EA794E229EAF2EF00DA83A3 /* YJText */ = {
+			isa = PBXGroup;
+			children = (
+				5E8BCFF629EBF87D006C0777 /* Utility */,
+				5EA794E329EAF2FF00DA83A3 /* String */,
+				5EA794E629EAF46400DA83A3 /* YJText+Namespace.swift */,
+			);
+			path = YJText;
+			sourceTree = "<group>";
+		};
+		5EA794E329EAF2FF00DA83A3 /* String */ = {
+			isa = PBXGroup;
+			children = (
+				5EA794E829EAF4A000DA83A3 /* RunDelegate.swift */,
+				5EA5022A29EBCD5900C06A0F /* RubyAnnotation.swift */,
+				5E8BCFF429EBECF1006C0777 /* Archiver.swift */,
+			);
+			path = String;
+			sourceTree = "<group>";
+		};
 		6AB607B1FD915917FD9E77DD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -365,6 +403,7 @@
 		9D073B2228E68A7A00D7B42A /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				5EA794E229EAF2EF00DA83A3 /* YJText */,
 				9D073B7F28E6E41900D7B42A /* CarouselView */,
 				9D073B5828E6B76100D7B42A /* Transitions */,
 				9D073B3528E6AF5B00D7B42A /* Router */,
@@ -658,8 +697,10 @@
 			files = (
 				9D073B3428E6AB8700D7B42A /* UIImage+Filter.swift in Sources */,
 				9D073B5528E6B07700D7B42A /* Routes.swift in Sources */,
+				5EA794E729EAF46400DA83A3 /* YJText+Namespace.swift in Sources */,
 				9D073B2628E68CD000D7B42A /* JJBox.swift in Sources */,
 				9D073B9C28E6E55600D7B42A /* JJCarouselDotPageView.swift in Sources */,
+				5EA794E929EAF4A000DA83A3 /* RunDelegate.swift in Sources */,
 				9D602A1E28F11F7100E9D429 /* AttributMakerDemoController.swift in Sources */,
 				9D073B4728E6B01200D7B42A /* RouterOpenFailure.swift in Sources */,
 				5E594E4C28EA73E30026CCED /* PassParameterRouter.swift in Sources */,
@@ -695,6 +736,7 @@
 				9D073B7A28E6DD2200D7B42A /* ReusableViewExtension.swift in Sources */,
 				9D073B3B28E6AFB300D7B42A /* RouterDestination.swift in Sources */,
 				9D073B7028E6C09B00D7B42A /* UIBarButtonItem+Extension.swift in Sources */,
+				5E8BCFF529EBECF1006C0777 /* Archiver.swift in Sources */,
 				5E594E5D28EA73E30026CCED /* PassParameterByContextController.swift in Sources */,
 				5E594E5128EA73E30026CCED /* ShowMatchRouterable.swift in Sources */,
 				9D602A2228F1552A00E9D429 /* ColorImageDemoController.swift in Sources */,
@@ -734,6 +776,7 @@
 				9D073B4328E6AFF600D7B42A /* RouterMatchResult.swift in Sources */,
 				5E594E5428EA73E30026CCED /* BackBlockController.swift in Sources */,
 				9D073B8B28E6E49700D7B42A /* JJCarouselEvent.swift in Sources */,
+				5E8BCFF829EBF88C006C0777 /* NSAttributedString+Extensions.swift in Sources */,
 				9D073B2828E6909000D7B42A /* UIApplication+Extension.swift in Sources */,
 				9D073B6628E6BB6700D7B42A /* JJPushPopPresentTransitionDelegate.swift in Sources */,
 				9D073B8728E6E47D00D7B42A /* JJCarouselDirection.swift in Sources */,
@@ -745,6 +788,7 @@
 				9D073B4528E6B00500D7B42A /* RouterOpenSuccess.swift in Sources */,
 				9D62D1A529C8261E009B79E2 /* JJChildrenDisplayDriver.swift in Sources */,
 				9D073B0F28E6883100D7B42A /* AppDelegate.swift in Sources */,
+				5EA5022B29EBCD5900C06A0F /* RubyAnnotation.swift in Sources */,
 				9D602A1828F118FF00E9D429 /* ExtensionDemosController.swift in Sources */,
 				9D073B9728E6E52200D7B42A /* FullCarouselContainerView.swift in Sources */,
 				9D073B7C28E6DE7E00D7B42A /* UITextInput+Limit.swift in Sources */,

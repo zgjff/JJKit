@@ -37,9 +37,20 @@ extension IdeaController {
         b.jj.handler({ [unowned self] _ in
             self.startShow()
         }, for: .primaryActionTriggered)
+        
+        let c = UIButton()
+        c.backgroundColor = .jRandom()
+        c.frame = b.frame.offsetBy(dx: 0, dy: 80)
+        view.addSubview(c)
+        c.jj.handler({ [unowned self] _ in
+            self.dismiss(animated: true)
+        }, for: .primaryActionTriggered)
     }
     
     func startShow() {
-        
+        let a = YJText.RubyAnnotation()
+        print(a)
+        let c = a.ctRubyAnnotation
+        print(c)
     }
 }
