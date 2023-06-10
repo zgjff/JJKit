@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "JJKit"
-  s.version      = "1.0.4"
+  s.version      = "1.0.5"
   s.summary      = "包括便捷扩展、路由、轮播图、转场动画的框架"
   s.homepage     = "https://github.com/zgjff/JJKit"
   s.license      = "MIT"
@@ -32,7 +32,6 @@ Pod::Spec.new do |s|
      ss.dependency 'JJKit/JJExtension'
   end
 
-  s.platform     = :ios, "10.0"
+  s.platform     = :ios, "11.0"
   s.swift_version = '5.5'
-  s.requires_arc = true
 end

@@ -17,33 +17,25 @@ public extension JJBox where Base: CALayer {
     }
     
     func setCornerRadius(_ radius: CGFloat, corner: UIRectCorner) {
-        if #available(iOS 11.0, *) {
-            base.cornerRadius = radius
-            if corner.contains(.allCorners) {
-                base.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner]
-                return
-            }
-            var maskedCorners: CACornerMask = []
-            if corner.contains(.topLeft) {
-                maskedCorners.insert(.layerMinXMinYCorner)
-            }
-            if corner.contains(.topRight) {
-                maskedCorners.insert(.layerMaxXMinYCorner)
-            }
-            if corner.contains(.bottomLeft) {
-                maskedCorners.insert(.layerMinXMaxYCorner)
-            }
-            if corner.contains(.bottomRight) {
-                maskedCorners.insert(.layerMaxXMaxYCorner)
-            }
-            base.maskedCorners = maskedCorners
-        } else {
-            let path = UIBezierPath(roundedRect: base.bounds, byRoundingCorners: corner, cornerRadii: CGSize(width: radius, height: radius))
-            let maskLayer = CAShapeLayer()
-            maskLayer.frame = base.bounds
-            maskLayer.path = path.cgPath
-            base.mask = maskLayer
+        base.cornerRadius = radius
+        if corner.contains(.allCorners) {
+            base.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+            return
         }
+        var maskedCorners: CACornerMask = []
+        if corner.contains(.topLeft) {
+            maskedCorners.insert(.layerMinXMinYCorner)
+        }
+        if corner.contains(.topRight) {
+            maskedCorners.insert(.layerMaxXMinYCorner)
+        }
+        if corner.contains(.bottomLeft) {
+            maskedCorners.insert(.layerMinXMaxYCorner)
+        }
+        if corner.contains(.bottomRight) {
+            maskedCorners.insert(.layerMaxXMaxYCorner)
+        }
+        base.maskedCorners = maskedCorners
     }
 }
 

@@ -14,32 +14,20 @@ extension UIImage {
     ///   - size: 图像画布大小
     ///   - actions: 操作画布---(CGContext)
     public convenience init?(size: CGSize, actions: @escaping (_ ctx: CGContext) -> ()) {
-        var img: UIImage?
         let scale = UIScreen.main.scale
-        if #available(iOS 10.0, *) {
-            let f = UIGraphicsImageRendererFormat.default()
-            f.scale = scale
-            if #available(iOS 12.0, *) {
-                f.preferredRange = .extended
-            } else {
-                f.prefersExtendedRange = true
-            }
-            let render = UIGraphicsImageRenderer(size: size, format: f)
-            img = render.image(actions: { c in
-                actions(c.cgContext)
-            })
+        let f = UIGraphicsImageRendererFormat.default()
+        f.scale = scale
+        if #available(iOS 12.0, *) {
+            f.preferredRange = .extended
         } else {
-            UIGraphicsBeginImageContextWithOptions(size, false, scale)
-            defer {
-                UIGraphicsEndImageContext()
-            }
-            if let c = UIGraphicsGetCurrentContext() {
-                actions(c)
-            }
-            img = UIGraphicsGetImageFromCurrentImageContext()
+            f.prefersExtendedRange = true
         }
-        if let i = img, let cg = i.cgImage {
-            self.init(cgImage: cg, scale: i.scale, orientation: i.imageOrientation)
+        let render = UIGraphicsImageRenderer(size: size, format: f)
+        let img = render.image(actions: { c in
+            actions(c.cgContext)
+        })
+        if let cg = img.cgImage {
+            self.init(cgImage: cg, scale: img.scale, orientation: img.imageOrientation)
         } else {
             return nil
         }

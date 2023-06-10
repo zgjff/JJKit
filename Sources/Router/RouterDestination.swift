@@ -23,6 +23,8 @@ public protocol JJRouterDestination {
     func updateWhenRouterIdentifierIsSame(withNewMatchRouterResult result: JJRouter.MatchResult)
     
     /// 显示匹配到的界面逻辑
+    ///
+    /// 默认实现是如果有导航栏则push,否则present
     func showDetail(withMatchRouterResult result: JJRouter.MatchResult, from sourceController: UIViewController)
 }
 
@@ -53,5 +55,15 @@ extension JJRouterDestination {
         case .new:
             showDetail(withMatchRouterResult: result, from: tvc)
         }
+    }
+}
+
+extension JJRouterDestination where Self: UIViewController {
+    public func showDetail(withMatchRouterResult result: JJRouter.MatchResult, from sourceController: UIViewController) {
+        if let navi = sourceController.navigationController {
+            navi.pushViewController(self, animated: true)
+            return
+        }
+        sourceController.present(self, animated: true)
     }
 }

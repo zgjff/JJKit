@@ -380,9 +380,7 @@ extension JJAttributedRegexp: Rangeable {
         regular.enumerateMatches(in: parent, options: matching, range: NSRange(location: 0, length: parent.count)) { (match, _, stopPointer) in
             guard let match = match else { return }
             result.insert(match.range)
-            if let sc = stopCondition {
-                stopPointer.pointee = ObjCBool(sc(result, match))
-            }
+            stopPointer.pointee = true
         }
         return result
     }
