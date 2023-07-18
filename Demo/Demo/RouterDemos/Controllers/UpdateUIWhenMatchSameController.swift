@@ -38,6 +38,7 @@ extension UpdateUIWhenMatchSameController: JJRouterDestination {
     }
     
     func actionWhenMatchedRouterDestinationSameToCurrent(withNewMatchRouterResult result: JJRouter.MatchResult) -> JJRouter.MatchedSameRouterDestinationAction {
+        print("actionWhenMatchedRouterDestinationSameToCurrent-------", pid, parseId(from: result.parameters))
         return .update
     }
     

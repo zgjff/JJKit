@@ -15,6 +15,7 @@ internal final class SyncRoutes: Routes {
 extension SyncRoutes {
     @discardableResult
     func register(pattern: String) throws -> JJRouter.Route {
+        // TODO: - 转换成url去掉scheme, 只取path
         let tokens = scanner.tokenize(pattern: pattern)
         if tokens.isEmpty {
             throw RegisterRouteError.emptyPattern

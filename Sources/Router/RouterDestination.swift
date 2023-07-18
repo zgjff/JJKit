@@ -45,7 +45,11 @@ extension JJRouterDestination {
         if type(of: tvc) != type(of: self) {
             return showDetail(withMatchRouterResult: result, from: tvc)
         }
-        switch actionWhenMatchedRouterDestinationSameToCurrent(withNewMatchRouterResult: result) {
+        guard let sameVC = tvc as? JJRouterDestination else {
+            showDetail(withMatchRouterResult: result, from: tvc)
+            return
+        }
+        switch sameVC.actionWhenMatchedRouterDestinationSameToCurrent(withNewMatchRouterResult: result) {
         case .none:
             return
         case .update:
