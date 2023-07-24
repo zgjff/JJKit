@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 enum SimpleRouter: String, CaseIterable {
-    case systemPush = "/app/systemPush"
+    case systemPush = "https://www.appwebsite.com/app/systemPush"
     case systemPresent = "/app/systemPresent"
     case pushPopStylePreset = "/app/pushPopStylePreset"
     case alertCenter = "/app/alertCenter"

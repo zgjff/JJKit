@@ -15,8 +15,15 @@ internal final class SyncRoutes: Routes {
 extension SyncRoutes {
     @discardableResult
     func register(pattern: String) throws -> JJRouter.Route {
-        // TODO: - 转换成url去掉scheme, 只取path
-        let tokens = scanner.tokenize(pattern: pattern)
+        var path = pattern
+        if let url = URL(string: pattern) {
+            if #available(iOS 16.0, *) {
+                path = url.path()
+            } else {
+                path = url.path
+            }
+        }
+        let tokens = scanner.tokenize(pattern: path)
         if tokens.isEmpty {
             throw RegisterRouteError.emptyPattern
         }
@@ -32,7 +39,12 @@ extension SyncRoutes {
         if routes.isEmpty {
             return Result.failure(.emptyRoutes)
         }
-        var pattern = url.path
+        var pattern: String
+        if #available(iOS 16.0, *) {
+            pattern = url.path()
+        } else {
+            pattern = url.path
+        }
         if let query = url.query {
             pattern.append("?\(query)")
         }

@@ -53,9 +53,7 @@ extension JJRouterDestination {
         case .none:
             return
         case .update:
-            if let rvc = tvc as? JJRouterDestination {
-                rvc.updateWhenRouterIdentifierIsSame(withNewMatchRouterResult: result)
-            }
+            sameVC.updateWhenRouterIdentifierIsSame(withNewMatchRouterResult: result)
         case .new:
             showDetail(withMatchRouterResult: result, from: tvc)
         }

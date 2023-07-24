@@ -110,7 +110,7 @@ private extension RouterDemosController {
     }
     
     @IBAction func onClickPushUsingUrl() {
-        if let url = URL(string: "https://www.appwebsite.com/app/systemPush/") {
+        if let url = URL(string: "https://www.appwebsite.com/app/systemPush") {
             (try? JJRouter.default.open(url))?.jump(from: self)
         }
     }
