@@ -11,38 +11,42 @@ import UIKit
 public protocol JJToastContainer: UIView, JJToastableDelegate, CAAnimationDelegate {
     var options: JJToastContainerOptions { get set }
     /// 显示toast
-    func showToast(inView view: UIView, animated: Bool)
+    func present(_ viewToShow: UIView, animated flag: Bool)
     /// 隐藏toast
-    func beginHidden(animated: Bool)
+    func dismiss(animated flag: Bool)
     /// 在一定时间之后执行自动隐藏
-    func performAutoHidden(after delay: TimeInterval)
+    func performAutoDismiss(after delay: TimeInterval)
     /// 取消自动隐藏
-    func cancelPerformAutoHidden()
+    func cancelperformAutoDismiss()
+    /// 观察屏幕方向改变
+    func addOrientationDidChangeObserver(action: @escaping (CGSize) -> ()) -> NSObjectProtocol?
+    /// 取消屏幕方向观察
+    func removeOrientationDidChangeObserver(_ observer: NSObjectProtocol?)
 }
 
 extension JJToastContainer {
-    public func showToast(inView view: UIView, animated: Bool) {
-        self.center = options.postition.centerForContainer(self, inView: view)
+    public func present(_ viewToShow: UIView, animated flag: Bool) {
+        self.center = options.postition.centerForContainer(self, inView: viewToShow)
         layer.jj.setCornerRadius(options.cornerRadius, corner: options.corners)
         clipsToBounds = true
-        view.addSubview(self)
+        viewToShow.addSubview(self)
         shownContaienrQueue.append(self)
         options.onAppear?()
         var needAnimation = false
-        if animated, let ani = options.startAppearAnimations(for: self) {
+        if flag, let ani = options.startAppearAnimations(for: self) {
             needAnimation = true
             let key = options.layerAnimationKey(forShow: true)
             layer.add(ani, forKey: key)
         }
         if case let .seconds(t) = options.duration, needAnimation {
-            performAutoHidden(after: t + options.showOrHiddenAnimationDuration)
+            performAutoDismiss(after: t + options.showOrHiddenAnimationDuration)
         }
     }
     
-    public func beginHidden(animated: Bool = true) {
-        cancelPerformAutoHidden()
+    public func dismiss(animated flag: Bool = true) {
+        cancelperformAutoDismiss()
         layer.removeAllAnimations()
-        if animated, let ani = options.startHiddenAnimations(for: self) {
+        if flag, let ani = options.startHiddenAnimations(for: self) {
             ani.delegate = JJWeakProxy(target: self).target
             let key = options.layerAnimationKey(forShow: false)
             layer.add(ani, forKey: key)
@@ -51,6 +55,26 @@ extension JJToastContainer {
         remove()
     }
     
+    public func addOrientationDidChangeObserver(action: @escaping (CGSize) -> ()) -> NSObjectProtocol? {
+        UIDevice.current.beginGeneratingDeviceOrientationNotifications()
+        return NotificationCenter.default.addObserver(forName: UIDevice.orientationDidChangeNotification, object: nil, queue: .main) { [weak self] _ in
+            DispatchQueue.main.async { [weak self] in
+                if let v = self?.superview {
+                    action(v.bounds.size)
+                }
+            }
+        }
+    }
+    
+    public func removeOrientationDidChangeObserver(_ observer: NSObjectProtocol?) {
+        if let observer {
+            NotificationCenter.default.removeObserver(observer)
+        }
+        UIDevice.current.endGeneratingDeviceOrientationNotifications()
+    }
+}
+
+extension JJToastContainer {
     internal func remove() {
         let sv = superview
         removeFromSuperview()

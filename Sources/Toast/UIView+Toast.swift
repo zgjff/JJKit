@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - 操作 `Toast`,通用方法
 public extension UIView {
-    func makeToast(_ item: some JJToastItemable) -> JJToastDSL<some JJToastItemable> {
+    func makeToast<T>(_ item: T) -> JJToastDSL<T> where T: JJToastItemable {
         JJToastDSL(view: self, item: item)
     }
 }

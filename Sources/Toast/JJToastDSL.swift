@@ -94,8 +94,16 @@ public extension JJToastDSL {
     }
     
     /// 点击回调
-    func onTap(block: @escaping (_ toast: any JJToastContainer) -> ()) -> Self {
+    func didTap(block: @escaping (_ toast: any JJToastContainer) -> ()) -> Self {
         containerOptions.onTap = block
+        return self
+    }
+    
+    /// 点击自动消失
+    func autoDismissOnTap() -> Self {
+        containerOptions.onTap = { container in
+            container.dismiss(animated: true)
+        }
         return self
     }
 }
@@ -104,11 +112,11 @@ public extension JJToastDSL {
     /// 显示toast
     /// - Parameter animated: 是否开启动画
     @discardableResult
-    func show(animated: Bool = true) -> any JJToastContainer {
+    func show(animated flag: Bool = true) -> any JJToastContainer {
         item.delegate = container
         container.options = containerOptions
         item.layoutToastView(with: itemOptions, inViewSize: view.bounds.size)
-        container.showToast(inView: view, animated: animated)
+        container.present(view, animated: flag)
         return container
     }
 }

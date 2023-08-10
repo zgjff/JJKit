@@ -21,6 +21,12 @@
 		2F7AAEAE2A8336A70071B2D0 /* JJContainerAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7AAEAD2A8336A70071B2D0 /* JJContainerAnimator.swift */; };
 		2F7AAEB22A836C3A0071B2D0 /* JJToastContaienrQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7AAEB12A836C3A0071B2D0 /* JJToastContaienrQueue.swift */; };
 		2F7AAEB42A837EE30071B2D0 /* JJWeakProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7AAEB32A837EE30071B2D0 /* JJWeakProxy.swift */; };
+		2F7AAEB62A84E3F80071B2D0 /* JJActivityToastItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7AAEB52A84E3F80071B2D0 /* JJActivityToastItem.swift */; };
+		2F7AAEB82A84E6270071B2D0 /* JJImageToastItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7AAEB72A84E6270071B2D0 /* JJImageToastItem.swift */; };
+		2F7AAEBA2A84E7F90071B2D0 /* JJArcrotationToastItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7AAEB92A84E7F90071B2D0 /* JJArcrotationToastItem.swift */; };
+		2F7AAEBC2A84F4B10071B2D0 /* JJColorfulContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7AAEBB2A84F4B10071B2D0 /* JJColorfulContainer.swift */; };
+		2F7AAEBE2A84F6620071B2D0 /* JJGradientContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7AAEBD2A84F6620071B2D0 /* JJGradientContainer.swift */; };
+		2F7AAEC02A84FEAB0071B2D0 /* JJMixTwoToastItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7AAEBF2A84FEAB0071B2D0 /* JJMixTwoToastItem.swift */; };
 		5E594E4C28EA73E30026CCED /* PassParameterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E3528EA73E30026CCED /* PassParameterRouter.swift */; };
 		5E594E4D28EA73E30026CCED /* BlockRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E3628EA73E30026CCED /* BlockRouter.swift */; };
 		5E594E4E28EA73E30026CCED /* SimpleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E3728EA73E30026CCED /* SimpleRouter.swift */; };
@@ -149,6 +155,12 @@
 		2F7AAEAD2A8336A70071B2D0 /* JJContainerAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJContainerAnimator.swift; sourceTree = "<group>"; };
 		2F7AAEB12A836C3A0071B2D0 /* JJToastContaienrQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJToastContaienrQueue.swift; sourceTree = "<group>"; };
 		2F7AAEB32A837EE30071B2D0 /* JJWeakProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJWeakProxy.swift; sourceTree = "<group>"; };
+		2F7AAEB52A84E3F80071B2D0 /* JJActivityToastItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJActivityToastItem.swift; sourceTree = "<group>"; };
+		2F7AAEB72A84E6270071B2D0 /* JJImageToastItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJImageToastItem.swift; sourceTree = "<group>"; };
+		2F7AAEB92A84E7F90071B2D0 /* JJArcrotationToastItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJArcrotationToastItem.swift; sourceTree = "<group>"; };
+		2F7AAEBB2A84F4B10071B2D0 /* JJColorfulContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJColorfulContainer.swift; sourceTree = "<group>"; };
+		2F7AAEBD2A84F6620071B2D0 /* JJGradientContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJGradientContainer.swift; sourceTree = "<group>"; };
+		2F7AAEBF2A84FEAB0071B2D0 /* JJMixTwoToastItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJMixTwoToastItem.swift; sourceTree = "<group>"; };
 		5E594E3528EA73E30026CCED /* PassParameterRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassParameterRouter.swift; sourceTree = "<group>"; };
 		5E594E3628EA73E30026CCED /* BlockRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockRouter.swift; sourceTree = "<group>"; };
 		5E594E3728EA73E30026CCED /* SimpleRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleRouter.swift; sourceTree = "<group>"; };
@@ -304,7 +316,13 @@
 			isa = PBXGroup;
 			children = (
 				2F7AAE972A821C340071B2D0 /* JJBlurEffectContainer.swift */,
+				2F7AAEBB2A84F4B10071B2D0 /* JJColorfulContainer.swift */,
+				2F7AAEBD2A84F6620071B2D0 /* JJGradientContainer.swift */,
 				2F7AAE9B2A821D390071B2D0 /* JJTextToastItem.swift */,
+				2F7AAEB52A84E3F80071B2D0 /* JJActivityToastItem.swift */,
+				2F7AAEB92A84E7F90071B2D0 /* JJArcrotationToastItem.swift */,
+				2F7AAEB72A84E6270071B2D0 /* JJImageToastItem.swift */,
+				2F7AAEBF2A84FEAB0071B2D0 /* JJMixTwoToastItem.swift */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -780,6 +798,7 @@
 				2F7AAEA82A8335870071B2D0 /* JJToastContainerOptions.swift in Sources */,
 				2F7AAEAA2A8335A00071B2D0 /* JJToastDuration.swift in Sources */,
 				9D602A1E28F11F7100E9D429 /* AttributMakerDemoController.swift in Sources */,
+				2F7AAEB82A84E6270071B2D0 /* JJImageToastItem.swift in Sources */,
 				9D073B4728E6B01200D7B42A /* RouterOpenFailure.swift in Sources */,
 				5E594E4C28EA73E30026CCED /* PassParameterRouter.swift in Sources */,
 				5E594E4D28EA73E30026CCED /* BlockRouter.swift in Sources */,
@@ -796,6 +815,7 @@
 				5E594E5328EA73E30026CCED /* MapBlockController.swift in Sources */,
 				9D073B3F28E6AFDD00D7B42A /* RouteMatchResult.swift in Sources */,
 				9D073B4D28E6B04000D7B42A /* RouteScanTerminal.swift in Sources */,
+				2F7AAEBE2A84F6620071B2D0 /* JJGradientContainer.swift in Sources */,
 				9D602A1C28F11F3800E9D429 /* ExtensionRouter.swift in Sources */,
 				5E594E7728EA8D150026CCED /* WebCarouselModel.swift in Sources */,
 				9D602A2028F1542E00E9D429 /* UIImageRenderController.swift in Sources */,
@@ -844,6 +864,7 @@
 				5E594E5728EA73E30026CCED /* LoginController.swift in Sources */,
 				9D073B5D28E6B94D00D7B42A /* JJAlertPresentationContext.swift in Sources */,
 				5E594E5828EA73E30026CCED /* FrontBlockBController.swift in Sources */,
+				2F7AAEBA2A84E7F90071B2D0 /* JJArcrotationToastItem.swift in Sources */,
 				2F7AAEA12A821EE30071B2D0 /* JJToastDSL.swift in Sources */,
 				5E594E5E28EA73E30026CCED /* PassParameterByUrlWithQueryController.swift in Sources */,
 				9D073B4128E6AFE800D7B42A /* RouteMatchResultSource.swift in Sources */,
@@ -855,6 +876,7 @@
 				9D073B6E28E6BFA400D7B42A /* UIGesture+Extension.swift in Sources */,
 				9D602A1A28F1196900E9D429 /* DemoRouter.swift in Sources */,
 				9D073B6C28E6BE7D00D7B42A /* UIControl+Extension.swift in Sources */,
+				2F7AAEBC2A84F4B10071B2D0 /* JJColorfulContainer.swift in Sources */,
 				5E594E5F28EA73E30026CCED /* FrontBlockAController.swift in Sources */,
 				5E594E5928EA73E30026CCED /* PassParametersForInitController.swift in Sources */,
 				9D073B4B28E6B02F00D7B42A /* RouteScanner.swift in Sources */,
@@ -869,6 +891,7 @@
 				2F7AAE982A821C340071B2D0 /* JJBlurEffectContainer.swift in Sources */,
 				9D073B8128E6E45000D7B42A /* JJCarousel+namespace.swift in Sources */,
 				5E594E5528EA73E30026CCED /* PassParameterMixUrlAndContextController.swift in Sources */,
+				2F7AAEB62A84E3F80071B2D0 /* JJActivityToastItem.swift in Sources */,
 				2F7AAE962A821A9B0071B2D0 /* JJToastContainer.swift in Sources */,
 				9D073B9128E6E4C400D7B42A /* CellContainer.swift in Sources */,
 				5E594E7328EA8CDB0026CCED /* CarouselController.swift in Sources */,
@@ -878,6 +901,7 @@
 				9D073B0F28E6883100D7B42A /* AppDelegate.swift in Sources */,
 				5EA5022B29EBCD5900C06A0F /* RubyAnnotation.swift in Sources */,
 				9D602A1828F118FF00E9D429 /* ExtensionDemosController.swift in Sources */,
+				2F7AAEC02A84FEAB0071B2D0 /* JJMixTwoToastItem.swift in Sources */,
 				9D073B9728E6E52200D7B42A /* FullCarouselContainerView.swift in Sources */,
 				2F7AAE9C2A821D390071B2D0 /* JJTextToastItem.swift in Sources */,
 				9D073B7C28E6DE7E00D7B42A /* UITextInput+Limit.swift in Sources */,

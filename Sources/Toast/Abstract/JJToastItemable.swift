@@ -30,3 +30,13 @@ public protocol JJTextToastItemable: JJToastItemable {
     init(text: String)
     init(attributedString: NSAttributedString)
 }
+
+/// 显示指示器的 `toast`组件协议
+public protocol JJIndicatorToastItemable: JJToastItemable {
+    func startAnimating()
+}
+
+/// 显示进度条的 `toast`组件协议
+public protocol JJProgressToastItemable: JJToastItemable {
+    func setProgress(_ progress: Float, animated flag: Bool)
+}

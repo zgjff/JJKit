@@ -10,7 +10,7 @@ import UIKit
 /// 显示文字的`toast`的默认实现
 public final class JJTextToastItem: JJTextToastItemable {
     public weak var delegate: JJToastableDelegate?
-    
+    public typealias Options = JJTextToastItem.InnerOptions
     public init(text: String) {
         attributedString = NSAttributedString(string: text, attributes: [.font: UIFont.systemFont(ofSize: 17), .foregroundColor: UIColor.white])
     }
@@ -34,7 +34,7 @@ public final class JJTextToastItem: JJTextToastItemable {
 
 // MARK: - JJTextToastItemable
 extension JJTextToastItem {
-    public func layoutToastView(with options: Options, inViewSize size: CGSize) {
+    public func layoutToastView(with options: InnerOptions, inViewSize size: CGSize) {
         self.options = options
         configLabel(with: options)
         resetContentSizeWithViewSize(size)
@@ -50,7 +50,7 @@ extension JJTextToastItem {
 
 // MARK: - private
 private extension JJTextToastItem {
-    func configLabel(with options: Options) {
+    func configLabel(with options: InnerOptions) {
         options.configLabel?(label)
         if options.lineSpacing <= 0 {
             label.attributedText = attributedString
@@ -96,7 +96,7 @@ private extension JJTextToastItem {
 // MARK: - 文字配置
 extension JJTextToastItem {
     /// 文字`taost`配置项
-    public struct Options: JJToastItemOptions {
+    public struct InnerOptions: JJToastItemOptions {
         public init() {}
         
         /// 通过block方式设置label的属性

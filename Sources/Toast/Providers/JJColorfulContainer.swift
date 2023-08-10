@@ -1,21 +1,20 @@
 //
-//  JJBlurEffectContainer.swift
-//  JJKit
+//  JJColorfulContainer.swift
+//  Demo
 //
-//  Created by zgjff on 2023/8/8.
+//  Created by zgjff on 2023/8/10.
 //
 
 import UIKit
 
-/// 高斯模糊容器
-public final class JJBlurEffectContainer: UIVisualEffectView, CAAnimationDelegate {
+/// 带背景色的容器默认实现
+public final class JJColorfulContainer: UIView, CAAnimationDelegate {
     public var options = JJToastContainerOptions()
     private var toastItem: (any JJToastItemable)?
     private var orientationObserver: NSObjectProtocol?
-    
-    public override init(effect: UIVisualEffect?) {
-        let eff = effect == nil ? UIBlurEffect(style: .dark) : effect
-        super.init(effect: eff)
+    init(color: UIColor) {
+        super.init(frame: .zero)
+        backgroundColor = color
         let tap = UITapGestureRecognizer(target: self, action: #selector(onTap))
         addGestureRecognizer(tap)
         orientationObserver = addOrientationDidChangeObserver(action: { [weak self] size in
@@ -28,7 +27,7 @@ public final class JJBlurEffectContainer: UIVisualEffectView, CAAnimationDelegat
     }
     
     deinit {
-        debugPrint("BlurEffectContainer deinit")
+        debugPrint("JJColorfulContainer deinit")
         removeOrientationDidChangeObserver(orientationObserver)
     }
     
@@ -43,7 +42,7 @@ public final class JJBlurEffectContainer: UIVisualEffectView, CAAnimationDelegat
 }
 
 // MARK: - JJToastContainer
-extension JJBlurEffectContainer: JJToastContainer {
+extension JJColorfulContainer: JJToastContainer {
     public func performAutoDismiss(after delay: TimeInterval) {
         perform(#selector(needHiddenToast), with: nil, afterDelay: delay)
     }
@@ -58,12 +57,12 @@ extension JJBlurEffectContainer: JJToastContainer {
 }
 
 // MARK: - JJToastableDelegate
-extension JJBlurEffectContainer {
+extension JJColorfulContainer {
     public func didCalculationView(_ view: UIView, viewSize size: CGSize, sender: any JJToastItemable) {
         toastItem = sender
         bounds.size = size
         if view.superview == nil {
-            contentView.addSubview(view)
+            addSubview(view)
         }
         if let sv = superview {
             self.center = options.postition.centerForContainer(self, inView: sv)

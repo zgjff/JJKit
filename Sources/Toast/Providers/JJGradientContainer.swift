@@ -1,21 +1,25 @@
 //
-//  JJBlurEffectContainer.swift
-//  JJKit
+//  JJGradientContainer.swift
+//  Demo
 //
-//  Created by zgjff on 2023/8/8.
+//  Created by zgjff on 2023/8/10.
 //
 
 import UIKit
 
-/// 高斯模糊容器
-public final class JJBlurEffectContainer: UIVisualEffectView, CAAnimationDelegate {
+/// 带渐变色的容器默认实现
+public final class JJGradientContainer: UIView, CAAnimationDelegate {
     public var options = JJToastContainerOptions()
     private var toastItem: (any JJToastItemable)?
     private var orientationObserver: NSObjectProtocol?
-    
-    public override init(effect: UIVisualEffect?) {
-        let eff = effect == nil ? UIBlurEffect(style: .dark) : effect
-        super.init(effect: eff)
+    private lazy var gradientLayer = CAGradientLayer()
+    init(colors: [UIColor], locations: [NSNumber]? = nil, startPoint: CGPoint = CGPoint(x: 0, y: 0.5), endPoint: CGPoint = CGPoint(x: 1, y: 0.5)) {
+        super.init(frame: .zero)
+        gradientLayer.colors = colors.map { $0.cgColor }
+        gradientLayer.locations = locations
+        gradientLayer.startPoint = startPoint
+        gradientLayer.endPoint = endPoint
+        layer.insertSublayer(gradientLayer, at: 0)
         let tap = UITapGestureRecognizer(target: self, action: #selector(onTap))
         addGestureRecognizer(tap)
         orientationObserver = addOrientationDidChangeObserver(action: { [weak self] size in
@@ -28,7 +32,7 @@ public final class JJBlurEffectContainer: UIVisualEffectView, CAAnimationDelegat
     }
     
     deinit {
-        debugPrint("BlurEffectContainer deinit")
+        debugPrint("JJColorfulContainer deinit")
         removeOrientationDidChangeObserver(orientationObserver)
     }
     
@@ -43,7 +47,7 @@ public final class JJBlurEffectContainer: UIVisualEffectView, CAAnimationDelegat
 }
 
 // MARK: - JJToastContainer
-extension JJBlurEffectContainer: JJToastContainer {
+extension JJGradientContainer: JJToastContainer {
     public func performAutoDismiss(after delay: TimeInterval) {
         perform(#selector(needHiddenToast), with: nil, afterDelay: delay)
     }
@@ -58,12 +62,13 @@ extension JJBlurEffectContainer: JJToastContainer {
 }
 
 // MARK: - JJToastableDelegate
-extension JJBlurEffectContainer {
+extension JJGradientContainer {
     public func didCalculationView(_ view: UIView, viewSize size: CGSize, sender: any JJToastItemable) {
         toastItem = sender
         bounds.size = size
+        gradientLayer.frame = CGRect(origin: .zero, size: size)
         if view.superview == nil {
-            contentView.addSubview(view)
+            addSubview(view)
         }
         if let sv = superview {
             self.center = options.postition.centerForContainer(self, inView: sv)
