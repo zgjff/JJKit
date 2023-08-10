@@ -12,14 +12,14 @@ protocol AddCloseNaviItemToDismissable: UIViewController {
 
 extension AddCloseNaviItemToDismissable {
     func addCloseNaviItem() {
+        let item: UIBarButtonItem.SystemItem
         if #available(iOS 13.0, *) {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, handler: { [unowned self] item in
-                self.dismiss(animated: true)
-            })
+            item = .close
         } else {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, handler: { [unowned self] item in
-                self.dismiss(animated: true)
-            })
+            item = .cancel
         }
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: item, handler: { [unowned self] item in
+            self.dismiss(animated: true)
+        })
     }
 }

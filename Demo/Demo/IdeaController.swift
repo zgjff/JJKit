@@ -45,13 +45,6 @@ extension IdeaController {
         c.jj.handler({ [unowned self] _ in
             self.dismiss(animated: true)
         }, for: .primaryActionTriggered)
-        
-        let url = URL(string: "cinmoore://app/meari/deviceSettings/:platformId/:deviceId")!
-        if #available(iOS 16.0, *) {
-            print(url.path())
-        } else {
-            print(url.path)
-        }
     }
     
     func startShow() {

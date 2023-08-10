@@ -57,4 +57,14 @@ extension JJBox where Base: UIApplication {
         }
         return top
     }
+    
+    /// 屏幕方向
+    public var orientation: UIInterfaceOrientation {
+        if #available(iOS 13.0, *) {
+            let scenes = UIApplication.shared.connectedScenes.filter { $0.activationState != .unattached }.compactMap { $0 as? UIWindowScene }
+            return scenes.first?.interfaceOrientation ?? .portrait
+        } else {
+            return UIApplication.shared.statusBarOrientation
+        }
+    }
 }

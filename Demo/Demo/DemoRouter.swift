@@ -11,6 +11,7 @@ enum DemoRouter: String, CaseIterable {
     case jjrouter = "/app/jjrouter"
     case carousel = "/app/jjcarousel"
     case extensions = "/app/extensions"
+    case toast       = "/app/toast"
     case test        = "/app/test"
 }
 
@@ -27,6 +28,8 @@ extension DemoRouter: JJRouterSource {
             return CarouselTabbarController()
         case .extensions:
             return ExtensionDemosController()
+        case .toast:
+            return ToastDemosController()
         case .test:
             return IdeaController()
         }
