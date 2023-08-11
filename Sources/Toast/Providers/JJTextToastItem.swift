@@ -7,9 +7,10 @@
 
 import UIKit
 
-/// 显示文字的`toast`的默认实现
+/// 显示文字的`toast`样式的默认实现
 public final class JJTextToastItem: JJTextToastItemable {
     public weak var delegate: JJToastableDelegate?
+    public let identifier = JJToastItemIdentifiers.text.identifier
     public typealias Options = JJTextToastItem.InnerOptions
     public init(text: String) {
         attributedString = NSAttributedString(string: text, attributes: [.font: UIFont.systemFont(ofSize: 17), .foregroundColor: UIColor.white])
@@ -98,6 +99,7 @@ extension JJTextToastItem {
     /// 文字`taost`配置项
     public struct InnerOptions: JJToastItemOptions {
         public init() {}
+        public var sameToastItemTypeStrategy: JJSameToastItemTypeStrategy = JJReplaceWithOutAnimatorStrategy()
         
         /// 通过block方式设置label的属性
         public var configLabel: ((UILabel) -> ())?
@@ -106,6 +108,9 @@ extension JJTextToastItem {
         ///
         /// 设置此项,可能会导致`TextToastProvider`通过`init(attributedString: NSAttributedString)`方式初始化时,设置的`paragraphStyle`行间距无效
         public var lineSpacing: CGFloat = 6
+        
+        /// 文字对齐方式
+        public var textAlignment = NSTextAlignment.center
         
         /// 设置文字label外边距
         public var margin = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)

@@ -10,7 +10,8 @@ import UIKit
 /// 带渐变色的容器默认实现
 public final class JJGradientContainer: UIView, CAAnimationDelegate {
     public var options = JJToastContainerOptions()
-    private var toastItem: (any JJToastItemable)?
+    public var state = JJToastState.presenting
+    public private(set) var toastItem: (any JJToastItemable)?
     private var orientationObserver: NSObjectProtocol?
     private lazy var gradientLayer = CAGradientLayer()
     init(colors: [UIColor], locations: [NSNumber]? = nil, startPoint: CGPoint = CGPoint(x: 0, y: 0.5), endPoint: CGPoint = CGPoint(x: 1, y: 0.5)) {
@@ -41,8 +42,7 @@ public final class JJGradientContainer: UIView, CAAnimationDelegate {
     }
     
     public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        layer.removeAllAnimations()
-        remove()
+        handleAnimationDidStop(anim, finished: flag)
     }
 }
 

@@ -20,6 +20,11 @@ internal struct JJContainerCornerRadius {
 
 /// 容器配置
 public struct JJToastContainerOptions {
+    /// 显示动画key
+    static let layerShowAnimationKey = "showJJToastContainerGroupAnimations"
+    /// 隐藏动画key
+    static let layerDismissAnimationKey = "hideJJToastContainerGroupAnimations"
+    
     /// 显示隐藏动画时间
     internal var showOrHiddenAnimationDuration = 0.15
     /// 圆角大小: 默认8
@@ -53,16 +58,16 @@ extension JJToastContainerOptions {
     
     @discardableResult
     internal func startAppearAnimations(for view: UIView) -> CAAnimation? {
-        return handleAnimations(appearAnimations, forView: view)
+        return handleAnimations(appearAnimations, forView: view, isShow: true)
     }
     
     @discardableResult
     internal func startHiddenAnimations(for view: UIView) -> CAAnimation? {
-        return handleAnimations(disappearAnimations, forView: view)
+        return handleAnimations(disappearAnimations, forView: view, isShow: false)
     }
     
     @discardableResult
-    private func handleAnimations(_ animations: Set<JJContainerAnimator>, forView view: UIView) -> CAAnimation? {
+    private func handleAnimations(_ animations: Set<JJContainerAnimator>, forView view: UIView, isShow: Bool) -> CAAnimation? {
         if animations.isEmpty {
             return nil
         }
@@ -81,7 +86,7 @@ extension JJToastContainerOptions {
         return group
     }
     
-    internal func layerAnimationKey(forShow isShow: Bool) -> String {
-        return isShow ? "showJJToastContainerGroupAnimations" : "hideJJToastContainerGroupAnimations"
+    internal func layerAnimationKey(forShow flag: Bool) -> String {
+        return flag ? JJToastContainerOptions.layerShowAnimationKey : JJToastContainerOptions.layerDismissAnimationKey
     }
 }

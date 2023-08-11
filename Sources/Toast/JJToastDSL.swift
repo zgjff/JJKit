@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// `totast`链式操作
 public class JJToastDSL<T> where T: JJToastItemable {
     private var item: T
     private var itemOptions = T.Options.init()

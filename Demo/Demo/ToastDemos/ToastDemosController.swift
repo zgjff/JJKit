@@ -109,11 +109,7 @@ private extension ToastDemosController {
 
 private extension ToastDemosController {
     @IBAction func showTextAtCenter() {
-        view.makeToast(JJTextToastItem(text: "居中文字"))
-            .didTap(block: { toast in
-                toast.dismiss(animated: true)
-            })
-            .show(animated: true)
+        view.jj.show(message: "居中文字")
     }
     
     @IBAction func showAttrTextAtSafeTop() {
@@ -123,19 +119,19 @@ private extension ToastDemosController {
         att.addAttributes([.font: UIFont.boldSystemFont(ofSize: 25), .foregroundColor: UIColor.orange], range: r)
         let r1 = (str as NSString).range(of: "从安全区域顶部显示")
         att.addAttributes([.font: UIFont.boldSystemFont(ofSize: 13), .foregroundColor: UIColor.cyan], range: r1)
-        view.makeToast(JJTextToastItem(attributedString: att))
+        view.jj.makeToast(JJTextToastItem(attributedString: att))
             .position(.safeTop)
             .show()
     }
     
     @IBAction func showSystemActivityIndicatorAtCenter() {
-        view.makeToast(JJActivityToastItem())
+        view.jj.makeToast(JJActivityToastItem())
             .autoDismissOnTap()
             .show(animated: true)
     }
     
     @IBAction func showArcrotationIndicatorAtCenter() {
-        view.makeToast(JJArcrotationToastItem())
+        view.jj.makeToast(JJArcrotationToastItem())
             .autoDismissOnTap()
             .duration(.distantFuture)
             .show(animated: true)
@@ -144,7 +140,7 @@ private extension ToastDemosController {
     @IBAction func showSingleImageAtSafeBottom() {
         if #available(iOS 13.0, *) {
             let img = UIImage(systemName: "mic")!
-            view.makeToast(JJImageToastItem(image: img))
+            view.jj.makeToast(JJImageToastItem(image: img))
                 .position(.safeBottom)
                 .show()
         }
@@ -157,7 +153,7 @@ private extension ToastDemosController {
             let img3 = UIImage(systemName: "mic.circle")!
             let img4 = UIImage(systemName: "mic.circle.fill")!
             let img = UIImage.animatedImage(with: [img1.withTintColor(.orange), img2, img3, img4], duration: 2)!
-            view.makeToast(JJImageToastItem(image: img))
+            view.jj.makeToast(JJImageToastItem(image: img))
                 .duration(.distantFuture)
                 .position(.threeQuarter)
                 .autoDismissOnTap()
@@ -169,7 +165,7 @@ private extension ToastDemosController {
         guard let url = URL(string: "http://apng.onevcat.com/assets/elephant.png") else {
             return
         }
-        view.makeToast(JJImageToastItem(url: url, display: { url, imageView in
+        view.jj.makeToast(JJImageToastItem(url: url, display: { url, imageView in
             imageView.sd_setImage(with: url, completed: nil)
         })).updateItem(options: { opt in
             opt.imageSize = .fixed(CGSize(width: 150, height: 150))
@@ -180,14 +176,15 @@ private extension ToastDemosController {
         })
         .autoDismissOnTap()
         .duration(.distantFuture)
-        .position(.center).show()
+        .position(.center)
+        .show()
     }
     
     @IBAction func showSDGifImage() {
         guard let url = URL(string: "http://assets.sbnation.com/assets/2512203/dogflops.gif") else {
             return
         }
-        view.makeToast(JJImageToastItem(data: .web(url: url, display: { url, _ in
+        view.jj.makeToast(JJImageToastItem(data: .web(url: url, display: { url, _ in
             let animatedView = SDAnimatedImageView()
             animatedView.sd_setImage(with: url, completed: nil)
             return animatedView
@@ -202,7 +199,7 @@ private extension ToastDemosController {
     }
     
     @IBAction func showUsingColorContainerTextToast() {
-        view.makeToast(JJTextToastItem(text: "我是一个带色彩背景的toast"))
+        view.jj.makeToast(JJTextToastItem(text: "我是一个带色彩背景的toast"))
             .useContainer(JJColorfulContainer(color: .jRandom()))
             .duration(.distantFuture)
             .autoDismissOnTap()
@@ -210,7 +207,7 @@ private extension ToastDemosController {
     }
     
     @IBAction func showUsingGradientContainerTextToast() {
-        view.makeToast(JJTextToastItem(text: "我是一个带渐变色背景的toast"))
+        view.jj.makeToast(JJTextToastItem(text: "我是一个带渐变色背景的toast"))
             .useContainer(JJGradientContainer(colors: [.jRandom(), .jRandom(), .jRandom()]))
             .position(.threeQuarter)
             .duration(.distantFuture)
@@ -219,21 +216,21 @@ private extension ToastDemosController {
     }
     
     @IBAction func showMixTextAndTextToast() {
-        view.makeToast(JJMixTwoToastItem(first: JJTextToastItem(attributedString: NSAttributedString(string: "标题", attributes: [.font: UIFont.systemFont(ofSize: 22), .foregroundColor: UIColor.jRandom()])), second: JJTextToastItem(text: "我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容")))
+        view.jj.makeToast(JJMixTwoToastItem(first: JJTextToastItem(attributedString: NSAttributedString(string: "标题", attributes: [.font: UIFont.systemFont(ofSize: 22), .foregroundColor: UIColor.jRandom()])), second: JJTextToastItem(text: "我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容")))
             .duration(.distantFuture)
             .autoDismissOnTap()
             .show()
     }
     
     @IBAction func showMixActivityAndTextToast() {
-        view.makeToast(JJMixTwoToastItem(first: JJActivityToastItem(), second: JJTextToastItem(text: "我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容")))
+        view.jj.makeToast(JJMixTwoToastItem(first: JJActivityToastItem(), second: JJTextToastItem(text: "我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容")))
             .duration(.distantFuture)
             .autoDismissOnTap()
             .show()
     }
     
     @IBAction func showMixArcrotationAndTextToast() {
-        view.makeToast(JJMixTwoToastItem(first: JJArcrotationToastItem(), second: JJTextToastItem(text: "我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容")))
+        view.jj.makeToast(JJMixTwoToastItem(first: JJArcrotationToastItem(), second: JJTextToastItem(text: "我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容")))
             .updateItem(options: { options in
                 options.layout = .ltr_center
             })
@@ -243,7 +240,7 @@ private extension ToastDemosController {
     }
     
     @IBAction func showMixArcrotationAndActivityToast() {
-        view.makeToast(JJMixTwoToastItem(first: JJArcrotationToastItem(), second: JJActivityToastItem()))
+        view.jj.makeToast(JJMixTwoToastItem(first: JJArcrotationToastItem(), second: JJActivityToastItem()))
             .updateItem(options: { options in
                 options.layout = .ltr_center
             })
@@ -256,7 +253,7 @@ private extension ToastDemosController {
         guard let url = URL(string: "http://apng.onevcat.com/assets/elephant.png") else {
             return
         }
-        view.makeToast(JJMixTwoToastItem(first: JJTextToastItem(text: "进击的象🐘"), second: JJImageToastItem(url: url, display: { url, imageView in
+        view.jj.makeToast(JJMixTwoToastItem(first: JJTextToastItem(text: "进击的象🐘"), second: JJImageToastItem(url: url, display: { url, imageView in
             imageView.sd_setImage(with: url, completed: nil)
         }))).updateItem(options: { opt in
             opt.secondOptions.imageSize = .fixed(CGSize(width: 150, height: 150))
@@ -272,7 +269,7 @@ private extension ToastDemosController {
     }
     
     @IBAction func showCustomAppearAniamtorToast() {
-        view.makeToast(JJArcrotationToastItem())
+        view.jj.makeToast(JJArcrotationToastItem())
             .appearAnimations([.scaleX(0.2), .opacity(0.3)])
             .autoDismissOnTap()
             .duration(.distantFuture)
@@ -280,7 +277,7 @@ private extension ToastDemosController {
     }
     
     @IBAction func showCustomDisappearAniamtorToast() {
-        view.makeToast(JJArcrotationToastItem())
+        view.jj.makeToast(JJArcrotationToastItem())
             .disappearAnimations([.scaleY(0.2).opposite, .opacity(0.3).opposite])
             .autoDismissOnTap()
             .duration(.distantFuture)

@@ -11,6 +11,7 @@ private var shownJJToastContainerQueueKey = 0
 private var inQueueJJToastContainerQueueKey = 0
 
 extension UIView {
+    /// 正在显示的`toast`队列
     var shownContaienrQueue: JJToastContaienrQueue {
         get {
             return containerQueue(for: &shownJJToastContainerQueueKey)
@@ -34,7 +35,12 @@ extension UIView {
 }
 
 internal final class JJToastContaienrQueue {
-    lazy var arr: NSHashTable<AnyObject> = NSHashTable.weakObjects()
+    private lazy var arr: NSHashTable<AnyObject> = NSHashTable.weakObjects()
+    
+    var all: [AnyObject] {
+        arr.allObjects
+    }
+    
     func append(_ container: any JJToastContainer) {
         arr.add(container)
     }

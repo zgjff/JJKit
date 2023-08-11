@@ -7,9 +7,10 @@
 
 import UIKit
 
-/// 显示三色旋转的转动指示器的`toast`
+/// 显示三色旋转的转动指示器样式的`toast`
 public final class JJArcrotationToastItem: JJIndicatorToastItemable {
     weak public var delegate: JJToastableDelegate?
+    public let identifier = JJToastItemIdentifiers.arcrotation.identifier
     public typealias Options = JJArcrotationToastItem.InnerOptions
     private var options = Options.init()
     private var view: View!
@@ -45,6 +46,8 @@ extension JJArcrotationToastItem {
     /// 三色旋转器配置项
     public struct InnerOptions: JJToastItemOptions {
         public init() {}
+        public var sameToastItemTypeStrategy: JJSameToastItemTypeStrategy = JJReplaceWithOutAnimatorStrategy()
+        
         /// 三个圆弧的颜色
         public var colors = (UIColor.white, UIColor.systemGreen, UIColor.systemRed)
         

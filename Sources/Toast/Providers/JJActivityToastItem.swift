@@ -7,9 +7,10 @@
 
 import UIKit
 
-/// 显示系统`UIActivityIndicatorView`的`toast` item
+/// 显示系统`UIActivityIndicatorView`样式的`toast` item
 public final class JJActivityToastItem: JJIndicatorToastItemable {
     weak public var delegate: JJToastableDelegate?
+    public let identifier = JJToastItemIdentifiers.activity.identifier
     public typealias Options = JJActivityToastItem.InnerOptions
     private var options = Options.init()
     private lazy var activity: UIActivityIndicatorView = {
@@ -59,6 +60,7 @@ extension JJActivityToastItem {
     /// Activity的`taost`配置项
     public struct InnerOptions: JJToastItemOptions {
         public init() {}
+        public var sameToastItemTypeStrategy: JJSameToastItemTypeStrategy = JJReplaceWithOutAnimatorStrategy()
         
         /// 设置Activity颜色
         public var color = UIColor.white

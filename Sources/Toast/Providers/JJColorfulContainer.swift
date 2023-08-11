@@ -10,7 +10,8 @@ import UIKit
 /// 带背景色的容器默认实现
 public final class JJColorfulContainer: UIView, CAAnimationDelegate {
     public var options = JJToastContainerOptions()
-    private var toastItem: (any JJToastItemable)?
+    public var state = JJToastState.presenting
+    public private(set) var toastItem: (any JJToastItemable)?
     private var orientationObserver: NSObjectProtocol?
     init(color: UIColor) {
         super.init(frame: .zero)
@@ -36,8 +37,7 @@ public final class JJColorfulContainer: UIView, CAAnimationDelegate {
     }
     
     public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        layer.removeAllAnimations()
-        remove()
+        handleAnimationDidStop(anim, finished: flag)
     }
 }
 

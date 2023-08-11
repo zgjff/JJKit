@@ -10,7 +10,8 @@ import UIKit
 /// 高斯模糊容器
 public final class JJBlurEffectContainer: UIVisualEffectView, CAAnimationDelegate {
     public var options = JJToastContainerOptions()
-    private var toastItem: (any JJToastItemable)?
+    public var state = JJToastState.presenting
+    public private(set) var toastItem: (any JJToastItemable)?
     private var orientationObserver: NSObjectProtocol?
     
     public override init(effect: UIVisualEffect?) {
@@ -37,8 +38,7 @@ public final class JJBlurEffectContainer: UIVisualEffectView, CAAnimationDelegat
     }
     
     public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        layer.removeAllAnimations()
-        remove()
+        handleAnimationDidStop(anim, finished: flag)
     }
 }
 

@@ -7,9 +7,10 @@
 
 import UIKit
 
-/// 混合两项`toast`的`toast`item
+/// 混合两项`toast`样式的`toast`item
 public final class JJMixTwoToastItem<First: JJToastItemable, Second: JJToastItemable>: NSObject, JJToastItemable, JJToastableDelegate {
     weak public var delegate: JJToastableDelegate?
+    public let identifier: String
     public typealias Options = JJMixTwoToastItem.InnerOptions
     private var options = Options.init()
     private var firstToast: First
@@ -18,6 +19,7 @@ public final class JJMixTwoToastItem<First: JJToastItemable, Second: JJToastItem
     init(first: First, second: Second) {
         self.firstToast = first
         self.secondToast = second
+        identifier = first.identifier + "_" + second.identifier
         super.init()
         self.firstToast.delegate = self
         self.secondToast.delegate = self
@@ -138,7 +140,7 @@ extension JJMixTwoToastItem {
     /// 混合两项`toast`的`taost`配置项
     public struct InnerOptions: JJToastItemOptions {
         public init() {}
-
+        public var sameToastItemTypeStrategy: JJSameToastItemTypeStrategy = JJReplaceWithOutAnimatorStrategy()
         /// 布局方式: 默认上到下, 宽度较小者居中
         public var layout = Layout.ttb_center
         

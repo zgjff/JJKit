@@ -7,7 +7,7 @@
 
 import UIKit
 
-/// 显示自定义图像的`toast`,可提供动画
+/// 显示自定义图像样式的`toast`,可提供动画
 public final class JJImageToastItem: JJIndicatorToastItemable {
     /// `ImageToast`的数据类型
     ///
@@ -22,6 +22,7 @@ public final class JJImageToastItem: JJIndicatorToastItemable {
     }
     
     weak public var delegate: JJToastableDelegate?
+    public let identifier = JJToastItemIdentifiers.image.identifier
     public typealias Options = JJImageToastItem.InnerOptions
     private lazy var imageView = UIImageView()
     private var options = Options.init()
@@ -158,6 +159,7 @@ extension JJImageToastItem {
     /// 自定义图像`taost`配置项
     public struct InnerOptions: JJToastItemOptions {
         public init() {}
+        public var sameToastItemTypeStrategy: JJSameToastItemTypeStrategy = JJReplaceWithOutAnimatorStrategy()
         /// 设置图像外边距
         public var margin = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         

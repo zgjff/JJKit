@@ -27,6 +27,10 @@
 		2F7AAEBC2A84F4B10071B2D0 /* JJColorfulContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7AAEBB2A84F4B10071B2D0 /* JJColorfulContainer.swift */; };
 		2F7AAEBE2A84F6620071B2D0 /* JJGradientContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7AAEBD2A84F6620071B2D0 /* JJGradientContainer.swift */; };
 		2F7AAEC02A84FEAB0071B2D0 /* JJMixTwoToastItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7AAEBF2A84FEAB0071B2D0 /* JJMixTwoToastItem.swift */; };
+		2F7AAEC22A85D3AC0071B2D0 /* JJToastState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7AAEC12A85D3AC0071B2D0 /* JJToastState.swift */; };
+		2F7AAEC42A8627A60071B2D0 /* JJSameToastItemTypeStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7AAEC32A8627A60071B2D0 /* JJSameToastItemTypeStrategy.swift */; };
+		2F7AAEC62A8628690071B2D0 /* JJToastItemOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7AAEC52A8628690071B2D0 /* JJToastItemOptions.swift */; };
+		2F7AAECA2A863AF20071B2D0 /* JJToastItemIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7AAEC92A863AF20071B2D0 /* JJToastItemIdentifiers.swift */; };
 		5E594E4C28EA73E30026CCED /* PassParameterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E3528EA73E30026CCED /* PassParameterRouter.swift */; };
 		5E594E4D28EA73E30026CCED /* BlockRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E3628EA73E30026CCED /* BlockRouter.swift */; };
 		5E594E4E28EA73E30026CCED /* SimpleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E3728EA73E30026CCED /* SimpleRouter.swift */; };
@@ -161,6 +165,10 @@
 		2F7AAEBB2A84F4B10071B2D0 /* JJColorfulContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJColorfulContainer.swift; sourceTree = "<group>"; };
 		2F7AAEBD2A84F6620071B2D0 /* JJGradientContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJGradientContainer.swift; sourceTree = "<group>"; };
 		2F7AAEBF2A84FEAB0071B2D0 /* JJMixTwoToastItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJMixTwoToastItem.swift; sourceTree = "<group>"; };
+		2F7AAEC12A85D3AC0071B2D0 /* JJToastState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJToastState.swift; sourceTree = "<group>"; };
+		2F7AAEC32A8627A60071B2D0 /* JJSameToastItemTypeStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJSameToastItemTypeStrategy.swift; sourceTree = "<group>"; };
+		2F7AAEC52A8628690071B2D0 /* JJToastItemOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJToastItemOptions.swift; sourceTree = "<group>"; };
+		2F7AAEC92A863AF20071B2D0 /* JJToastItemIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJToastItemIdentifiers.swift; sourceTree = "<group>"; };
 		5E594E3528EA73E30026CCED /* PassParameterRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassParameterRouter.swift; sourceTree = "<group>"; };
 		5E594E3628EA73E30026CCED /* BlockRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockRouter.swift; sourceTree = "<group>"; };
 		5E594E3728EA73E30026CCED /* SimpleRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleRouter.swift; sourceTree = "<group>"; };
@@ -297,8 +305,11 @@
 				2F7AAEA72A8335870071B2D0 /* JJToastContainerOptions.swift */,
 				2F7AAEA92A8335A00071B2D0 /* JJToastDuration.swift */,
 				2F7AAEAB2A8336680071B2D0 /* JJToastPosition.swift */,
+				2F7AAEC12A85D3AC0071B2D0 /* JJToastState.swift */,
 				2F7AAEAD2A8336A70071B2D0 /* JJContainerAnimator.swift */,
 				2F7AAEB12A836C3A0071B2D0 /* JJToastContaienrQueue.swift */,
+				2F7AAEC32A8627A60071B2D0 /* JJSameToastItemTypeStrategy.swift */,
+				2F7AAEC92A863AF20071B2D0 /* JJToastItemIdentifiers.swift */,
 			);
 			path = Toast;
 			sourceTree = "<group>";
@@ -308,6 +319,7 @@
 			children = (
 				2F7AAE952A821A9B0071B2D0 /* JJToastContainer.swift */,
 				2F7AAE992A821CBC0071B2D0 /* JJToastItemable.swift */,
+				2F7AAEC52A8628690071B2D0 /* JJToastItemOptions.swift */,
 			);
 			path = Abstract;
 			sourceTree = "<group>";
@@ -793,7 +805,9 @@
 				5EA794E729EAF46400DA83A3 /* YJText+Namespace.swift in Sources */,
 				2F7AAEB42A837EE30071B2D0 /* JJWeakProxy.swift in Sources */,
 				9D073B2628E68CD000D7B42A /* JJBox.swift in Sources */,
+				2F7AAEC22A85D3AC0071B2D0 /* JJToastState.swift in Sources */,
 				9D073B9C28E6E55600D7B42A /* JJCarouselDotPageView.swift in Sources */,
+				2F7AAECA2A863AF20071B2D0 /* JJToastItemIdentifiers.swift in Sources */,
 				5EA794E929EAF4A000DA83A3 /* RunDelegate.swift in Sources */,
 				2F7AAEA82A8335870071B2D0 /* JJToastContainerOptions.swift in Sources */,
 				2F7AAEAA2A8335A00071B2D0 /* JJToastDuration.swift in Sources */,
@@ -866,6 +880,7 @@
 				5E594E5828EA73E30026CCED /* FrontBlockBController.swift in Sources */,
 				2F7AAEBA2A84E7F90071B2D0 /* JJArcrotationToastItem.swift in Sources */,
 				2F7AAEA12A821EE30071B2D0 /* JJToastDSL.swift in Sources */,
+				2F7AAEC62A8628690071B2D0 /* JJToastItemOptions.swift in Sources */,
 				5E594E5E28EA73E30026CCED /* PassParameterByUrlWithQueryController.swift in Sources */,
 				9D073B4128E6AFE800D7B42A /* RouteMatchResultSource.swift in Sources */,
 				9D073B6828E6BBB100D7B42A /* JJPushPopPresentAnimator.swift in Sources */,
@@ -900,6 +915,7 @@
 				9D62D1A529C8261E009B79E2 /* JJChildrenDisplayDriver.swift in Sources */,
 				9D073B0F28E6883100D7B42A /* AppDelegate.swift in Sources */,
 				5EA5022B29EBCD5900C06A0F /* RubyAnnotation.swift in Sources */,
+				2F7AAEC42A8627A60071B2D0 /* JJSameToastItemTypeStrategy.swift in Sources */,
 				9D602A1828F118FF00E9D429 /* ExtensionDemosController.swift in Sources */,
 				2F7AAEC02A84FEAB0071B2D0 /* JJMixTwoToastItem.swift in Sources */,
 				9D073B9728E6E52200D7B42A /* FullCarouselContainerView.swift in Sources */,
