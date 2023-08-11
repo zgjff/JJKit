@@ -26,6 +26,7 @@ public protocol JJToastContainer: UIView, JJToastableDelegate, CAAnimationDelega
 
 extension JJToastContainer {
     public func present(_ viewToShow: UIView, animated flag: Bool) {
+        cancelperformAutoDismiss()
         self.center = options.postition.centerForContainer(self, inView: viewToShow)
         layer.jj.setCornerRadius(options.cornerRadius, corner: options.corners)
         clipsToBounds = true

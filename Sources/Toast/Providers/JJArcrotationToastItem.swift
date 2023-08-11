@@ -24,7 +24,11 @@ extension JJArcrotationToastItem {
     
     public func resetContentSizeWithViewSize(_ size: CGSize) {
         let viewFrame = CGRect(x: options.margin.left, y: options.margin.top, width: options.radius * 2, height: options.radius * 2)
-        view = View(frame: viewFrame, options: options)
+        if view == nil {
+            view = View(frame: viewFrame, options: options)
+        } else {
+            view.frame = viewFrame
+        }
         let viewSize = CGSize(width: options.radius * 2 + options.margin.left + options.margin.right, height: options.radius * 2 + options.margin.top + options.margin.bottom)
         delegate?.didCalculationView(view, viewSize: viewSize, sender: self)
     }

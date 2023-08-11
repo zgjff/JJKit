@@ -18,7 +18,7 @@ public protocol JJToastableDelegate: NSObjectProtocol {
 }
 
 /// toast组件协议
-public protocol JJToastItemable {
+public protocol JJToastItemable: AnyObject {
     associatedtype Options: JJToastItemOptions
     var delegate: JJToastableDelegate? { get set }
     func layoutToastView(with options: Options, inViewSize size: CGSize)

@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// `toast`容器动画
 public struct JJContainerAnimator {
     internal let keyPath: String
     internal let fromValue: Any?
@@ -45,21 +46,25 @@ extension JJContainerAnimator: Hashable {
 }
 
 extension JJContainerAnimator {
+    /// 整体缩放动画
     public static var scale: (_ fromValue: Double) -> JJContainerAnimator = { fromValue in
         let from = fromValue < 0 ? 0 : (fromValue > 1) ? 1 : fromValue
         return JJContainerAnimator(keyPath: "transform.scale", fromValue: from, toValue: 1)!
     }
     
+    /// 宽度缩放动画
     public static var scaleX: (_ fromValue: Double) -> JJContainerAnimator = { fromValue in
         let from = fromValue < 0 ? 0 : (fromValue > 1) ? 1 : fromValue
         return JJContainerAnimator(keyPath: "transform.scale.x", fromValue: from, toValue: 1)!
     }
     
+    /// 高度缩放动画
     public static var scaleY: (_ fromValue: Double) -> JJContainerAnimator = { fromValue in
         let from = fromValue < 0 ? 0 : (fromValue > 1) ? 1 : fromValue
         return JJContainerAnimator(keyPath: "transform.scale.y", fromValue: from, toValue: 1)!
     }
     
+    /// 透明度动画
     public static var opacity: (_ fromValue: Double) -> JJContainerAnimator = { fromValue in
         let from = fromValue < 0 ? 0 : (fromValue > 1) ? 1 : fromValue
         return JJContainerAnimator(keyPath: "opacity", fromValue: from, toValue: 1)!

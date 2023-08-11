@@ -6,11 +6,16 @@
 //
 
 import UIKit
+import SDWebImage
 private let cellIdentifier = "cell"
 /// taost demo
 class ToastDemosController: UIViewController {
     private lazy var tableView = UITableView()
     private var actions: [RootRowAction] = []
+    
+    deinit {
+        print("ToastDemosController  deinit")
+    }
 }
 
 extension ToastDemosController: JJRouterDestination {
@@ -88,8 +93,16 @@ private extension ToastDemosController {
             RootRowAction(title: "显示本地图片", action: "showSingleImageAtSafeBottom"),
             RootRowAction(title: "在3/4处显示多个图片动画", action: "showMultipleImagesAtThreeQuarter"),
             RootRowAction(title: "显示网络图片", action: "showWebImage"),
+            RootRowAction(title: "使用SDAnimatedImageView显示gif图片", action: "showSDGifImage"),
             RootRowAction(title: "使用带有色彩的容器来显示toast", action: "showUsingColorContainerTextToast"),
             RootRowAction(title: "使用渐变色的容器来显示toast", action: "showUsingGradientContainerTextToast"),
+            RootRowAction(title: "混合文字+文字的toast", action: "showMixTextAndTextToast"),
+            RootRowAction(title: "混合指示器+文字的toast", action: "showMixActivityAndTextToast"),
+            RootRowAction(title: "左右展示混合三色转动指示器+文字的toast", action: "showMixArcrotationAndTextToast"),
+            RootRowAction(title: "左右展示混合三色转动指示器+指示器的toast", action: "showMixArcrotationAndActivityToast"),
+            RootRowAction(title: "上下展示混合文字+网络图片的toast", action: "showMixTextAndWebImageToast"),
+            RootRowAction(title: "自定义展示动画的toast", action: "showCustomAppearAniamtorToast"),
+            RootRowAction(title: "自定义消失动画的toast", action: "showCustomDisappearAniamtorToast"),
         ]
     }
 }
@@ -170,6 +183,24 @@ private extension ToastDemosController {
         .position(.center).show()
     }
     
+    @IBAction func showSDGifImage() {
+        guard let url = URL(string: "http://assets.sbnation.com/assets/2512203/dogflops.gif") else {
+            return
+        }
+        view.makeToast(JJImageToastItem(data: .web(url: url, display: { url, _ in
+            let animatedView = SDAnimatedImageView()
+            animatedView.sd_setImage(with: url, completed: nil)
+            return animatedView
+        }))).updateItem(options: { opt in
+            opt.imageSize = .fixed(CGSize(width: 150, height: 150))
+            opt.margin = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        })
+        .duration(.distantFuture)
+        .position(.threeQuarter)
+        .autoDismissOnTap()
+        .show()
+    }
+    
     @IBAction func showUsingColorContainerTextToast() {
         view.makeToast(JJTextToastItem(text: "我是一个带色彩背景的toast"))
             .useContainer(JJColorfulContainer(color: .jRandom()))
@@ -185,5 +216,74 @@ private extension ToastDemosController {
             .duration(.distantFuture)
             .autoDismissOnTap()
             .show()
+    }
+    
+    @IBAction func showMixTextAndTextToast() {
+        view.makeToast(JJMixTwoToastItem(first: JJTextToastItem(attributedString: NSAttributedString(string: "标题", attributes: [.font: UIFont.systemFont(ofSize: 22), .foregroundColor: UIColor.jRandom()])), second: JJTextToastItem(text: "我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容")))
+            .duration(.distantFuture)
+            .autoDismissOnTap()
+            .show()
+    }
+    
+    @IBAction func showMixActivityAndTextToast() {
+        view.makeToast(JJMixTwoToastItem(first: JJActivityToastItem(), second: JJTextToastItem(text: "我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容")))
+            .duration(.distantFuture)
+            .autoDismissOnTap()
+            .show()
+    }
+    
+    @IBAction func showMixArcrotationAndTextToast() {
+        view.makeToast(JJMixTwoToastItem(first: JJArcrotationToastItem(), second: JJTextToastItem(text: "我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容")))
+            .updateItem(options: { options in
+                options.layout = .ltr_center
+            })
+            .duration(.distantFuture)
+            .autoDismissOnTap()
+            .show()
+    }
+    
+    @IBAction func showMixArcrotationAndActivityToast() {
+        view.makeToast(JJMixTwoToastItem(first: JJArcrotationToastItem(), second: JJActivityToastItem()))
+            .updateItem(options: { options in
+                options.layout = .ltr_center
+            })
+            .duration(.distantFuture)
+            .autoDismissOnTap()
+            .show()
+    }
+    
+    @IBAction func showMixTextAndWebImageToast() {
+        guard let url = URL(string: "http://apng.onevcat.com/assets/elephant.png") else {
+            return
+        }
+        view.makeToast(JJMixTwoToastItem(first: JJTextToastItem(text: "进击的象🐘"), second: JJImageToastItem(url: url, display: { url, imageView in
+            imageView.sd_setImage(with: url, completed: nil)
+        }))).updateItem(options: { opt in
+            opt.secondOptions.imageSize = .fixed(CGSize(width: 150, height: 150))
+            opt.secondOptions.configUIImageView = { iv in
+                iv.contentMode = .scaleAspectFill
+                iv.clipsToBounds = true
+            }
+        })
+        .useContainer(JJGradientContainer(colors: [.jRandom(), .jRandom(), .jRandom()]))
+        .autoDismissOnTap()
+        .duration(.distantFuture)
+        .show()
+    }
+    
+    @IBAction func showCustomAppearAniamtorToast() {
+        view.makeToast(JJArcrotationToastItem())
+            .appearAnimations([.scaleX(0.2), .opacity(0.3)])
+            .autoDismissOnTap()
+            .duration(.distantFuture)
+            .show(animated: true)
+    }
+    
+    @IBAction func showCustomDisappearAniamtorToast() {
+        view.makeToast(JJArcrotationToastItem())
+            .disappearAnimations([.scaleY(0.2).opposite, .opacity(0.3).opposite])
+            .autoDismissOnTap()
+            .duration(.distantFuture)
+            .show(animated: true)
     }
 }
