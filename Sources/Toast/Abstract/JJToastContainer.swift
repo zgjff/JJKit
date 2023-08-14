@@ -35,26 +35,8 @@ private let JJ_Toast_AnimationKey = "jj_toast__animator_key"
 
 extension JJToastContainer {
     public func present(_ viewToShow: UIView, animated flag: Bool) {
-        cancelperformAutoDismiss()
-        state = .presenting
-        self.center = options.postition.centerForContainer(self, inView: viewToShow)
-        layer.jj.setCornerRadius(options.cornerRadius, corner: options.corners)
-        clipsToBounds = true
-        viewToShow.addSubview(self)
-        shownContaienrQueue.append(self)
-        options.onAppear?()
-        var needAnimation = false
-        if flag, let ani = options.startAppearAnimations(for: self) {
-            ani.delegate = JJWeakProxy(target: self).target
-            needAnimation = true
-            let key = options.layerAnimationKey(forShow: true)
-            ani.setValue(key, forKey: JJ_Toast_AnimationKey)
-            layer.add(ani, forKey: key)
-        } else {
-            state = .presented
-        }
-        if case let .seconds(t) = options.duration, needAnimation {
-            performAutoDismiss(after: t + options.showOrHiddenAnimationDuration)
+        if let toastItem {
+            toastItem.options.sameToastItemTypeStrategy.toatContainer(self, willPresentIn: viewToShow, animated: flag)
         }
     }
     
@@ -108,6 +90,34 @@ extension JJToastContainer {
 }
 
 extension JJToastContainer {
+    /// 处理显示`toast`逻辑
+    /// - Parameters:
+    ///   - viewToShow: 显示`toast`的`view`
+    ///   - flag: 显示动画标志
+    public func dealShow(in viewToShow: UIView, animated flag: Bool) {
+        cancelperformAutoDismiss()
+        state = .presenting
+        self.center = options.postition.centerForContainer(self, inView: viewToShow)
+        layer.jj.setCornerRadius(options.cornerRadius, corner: options.corners)
+        clipsToBounds = true
+        viewToShow.addSubview(self)
+        viewToShow.shownContaienrQueue.append(self)
+        options.onAppear?()
+        var needAnimation = false
+        if flag, let ani = options.startAppearAnimations(for: self) {
+            ani.delegate = JJWeakProxy(target: self).target
+            needAnimation = true
+            let key = options.layerAnimationKey(forShow: true)
+            ani.setValue(key, forKey: JJ_Toast_AnimationKey)
+            layer.add(ani, forKey: key)
+        } else {
+            state = .presented
+        }
+        if case let .seconds(t) = options.duration  {
+            performAutoDismiss(after: needAnimation ? (t + options.showOrHiddenAnimationDuration) : t)
+        }
+    }
+    
     /// 处理动画结束逻辑
     public func handleAnimationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         layer.removeAllAnimations()

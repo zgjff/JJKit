@@ -1,6 +1,6 @@
 //
 //  JJArcrotationToastItem.swift
-//  Demo
+//  JJKit
 //
 //  Created by zgjff on 2023/8/10.
 //
@@ -12,7 +12,7 @@ public final class JJArcrotationToastItem: JJIndicatorToastItemable {
     weak public var delegate: JJToastableDelegate?
     public let identifier = JJToastItemIdentifiers.arcrotation.identifier
     public typealias Options = JJArcrotationToastItem.InnerOptions
-    private var options = Options.init()
+    public private(set) lazy var options = Options.init()
     private var view: View!
 }
 
@@ -46,7 +46,7 @@ extension JJArcrotationToastItem {
     /// 三色旋转器配置项
     public struct InnerOptions: JJToastItemOptions {
         public init() {}
-        public var sameToastItemTypeStrategy: JJSameToastItemTypeStrategy = JJReplaceWithOutAnimatorStrategy()
+        public var sameToastItemTypeStrategy: JJSameToastItemTypeStrategy = JJReplaceToastWithOutAnimatorStrategy()
         
         /// 三个圆弧的颜色
         public var colors = (UIColor.white, UIColor.systemGreen, UIColor.systemRed)

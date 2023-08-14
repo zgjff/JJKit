@@ -1,6 +1,6 @@
 //
 //  JJGradientContainer.swift
-//  Demo
+//  JJKit
 //
 //  Created by zgjff on 2023/8/10.
 //
@@ -64,11 +64,12 @@ extension JJGradientContainer: JJToastContainer {
 // MARK: - JJToastableDelegate
 extension JJGradientContainer {
     public func didCalculationView(_ view: UIView, viewSize size: CGSize, sender: any JJToastItemable) {
-        toastItem = sender
         bounds.size = size
         gradientLayer.frame = CGRect(origin: .zero, size: size)
-        if view.superview == nil {
+        if view.superview == nil { // 第一次添加
+            toastItem = sender
             addSubview(view)
+            return
         }
         if let sv = superview {
             self.center = options.postition.centerForContainer(self, inView: sv)

@@ -21,7 +21,7 @@ public final class JJTextToastItem: JJTextToastItemable {
     }
     
     private let attributedString: NSAttributedString
-    private var options = Options.init()
+    public private(set) lazy var options = Options.init()
     private lazy var label: UILabel = {
        let l = UILabel()
         l.backgroundColor = .clear
@@ -99,7 +99,7 @@ extension JJTextToastItem {
     /// 文字`taost`配置项
     public struct InnerOptions: JJToastItemOptions {
         public init() {}
-        public var sameToastItemTypeStrategy: JJSameToastItemTypeStrategy = JJReplaceWithOutAnimatorStrategy()
+        public var sameToastItemTypeStrategy: JJSameToastItemTypeStrategy = JJReplaceToastWithOutAnimatorStrategy()
         
         /// 通过block方式设置label的属性
         public var configLabel: ((UILabel) -> ())?

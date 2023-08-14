@@ -109,7 +109,10 @@ private extension ToastDemosController {
 
 private extension ToastDemosController {
     @IBAction func showTextAtCenter() {
-        view.jj.show(message: "居中文字")
+        let texts = ["居中文字", "Swift 5.9 新功能速览", "if/else 和 switch 语句作为表达式", "的更准确的编译器诊断", "支持参数长度重载", "使用 Swift 重写的 Foundation 框架"]
+        if let text = texts.randomElement() {
+            view.jj.show(message: text)
+        }
     }
     
     @IBAction func showAttrTextAtSafeTop() {

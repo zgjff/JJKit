@@ -1,6 +1,6 @@
 //
 //  JJMixTwoToastItem.swift
-//  Demo
+//  JJKit
 //
 //  Created by zgjff on 2023/8/10.
 //
@@ -12,7 +12,7 @@ public final class JJMixTwoToastItem<First: JJToastItemable, Second: JJToastItem
     weak public var delegate: JJToastableDelegate?
     public let identifier: String
     public typealias Options = JJMixTwoToastItem.InnerOptions
-    private var options = Options.init()
+    public private(set) lazy var options = Options.init()
     private var firstToast: First
     private var secondToast: Second
     private lazy var contentView = UIView()
@@ -140,7 +140,7 @@ extension JJMixTwoToastItem {
     /// 混合两项`toast`的`taost`配置项
     public struct InnerOptions: JJToastItemOptions {
         public init() {}
-        public var sameToastItemTypeStrategy: JJSameToastItemTypeStrategy = JJReplaceWithOutAnimatorStrategy()
+        public var sameToastItemTypeStrategy: JJSameToastItemTypeStrategy = JJReplaceToastWithOutAnimatorStrategy()
         /// 布局方式: 默认上到下, 宽度较小者居中
         public var layout = Layout.ttb_center
         

@@ -60,10 +60,11 @@ extension JJBlurEffectContainer: JJToastContainer {
 // MARK: - JJToastableDelegate
 extension JJBlurEffectContainer {
     public func didCalculationView(_ view: UIView, viewSize size: CGSize, sender: any JJToastItemable) {
-        toastItem = sender
         bounds.size = size
-        if view.superview == nil {
+        if view.superview == nil { // 第一次添加
+            toastItem = sender
             contentView.addSubview(view)
+            return
         }
         if let sv = superview {
             self.center = options.postition.centerForContainer(self, inView: sv)

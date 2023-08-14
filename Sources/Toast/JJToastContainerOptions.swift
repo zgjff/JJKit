@@ -24,7 +24,6 @@ public struct JJToastContainerOptions {
     static let layerShowAnimationKey = "showJJToastContainerGroupAnimations"
     /// 隐藏动画key
     static let layerDismissAnimationKey = "hideJJToastContainerGroupAnimations"
-    
     /// 显示隐藏动画时间
     internal var showOrHiddenAnimationDuration = 0.15
     /// 圆角大小: 默认8

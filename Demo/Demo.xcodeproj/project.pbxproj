@@ -28,9 +28,11 @@
 		2F7AAEBE2A84F6620071B2D0 /* JJGradientContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7AAEBD2A84F6620071B2D0 /* JJGradientContainer.swift */; };
 		2F7AAEC02A84FEAB0071B2D0 /* JJMixTwoToastItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7AAEBF2A84FEAB0071B2D0 /* JJMixTwoToastItem.swift */; };
 		2F7AAEC22A85D3AC0071B2D0 /* JJToastState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7AAEC12A85D3AC0071B2D0 /* JJToastState.swift */; };
-		2F7AAEC42A8627A60071B2D0 /* JJSameToastItemTypeStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7AAEC32A8627A60071B2D0 /* JJSameToastItemTypeStrategy.swift */; };
 		2F7AAEC62A8628690071B2D0 /* JJToastItemOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7AAEC52A8628690071B2D0 /* JJToastItemOptions.swift */; };
 		2F7AAECA2A863AF20071B2D0 /* JJToastItemIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7AAEC92A863AF20071B2D0 /* JJToastItemIdentifiers.swift */; };
+		2FC7F7DB2A89B6FA0019A944 /* JJSameToastItemTypeStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC7F7DA2A89B6FA0019A944 /* JJSameToastItemTypeStrategy.swift */; };
+		2FC7F7DD2A89B70A0019A944 /* JJReplaceToastWithOutAnimatorStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC7F7DC2A89B70A0019A944 /* JJReplaceToastWithOutAnimatorStrategy.swift */; };
+		2FC7F7DF2A89D54B0019A944 /* JJAddDirectlyToastStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC7F7DE2A89D54B0019A944 /* JJAddDirectlyToastStrategy.swift */; };
 		5E594E4C28EA73E30026CCED /* PassParameterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E3528EA73E30026CCED /* PassParameterRouter.swift */; };
 		5E594E4D28EA73E30026CCED /* BlockRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E3628EA73E30026CCED /* BlockRouter.swift */; };
 		5E594E4E28EA73E30026CCED /* SimpleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E3728EA73E30026CCED /* SimpleRouter.swift */; };
@@ -166,9 +168,11 @@
 		2F7AAEBD2A84F6620071B2D0 /* JJGradientContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJGradientContainer.swift; sourceTree = "<group>"; };
 		2F7AAEBF2A84FEAB0071B2D0 /* JJMixTwoToastItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJMixTwoToastItem.swift; sourceTree = "<group>"; };
 		2F7AAEC12A85D3AC0071B2D0 /* JJToastState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJToastState.swift; sourceTree = "<group>"; };
-		2F7AAEC32A8627A60071B2D0 /* JJSameToastItemTypeStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJSameToastItemTypeStrategy.swift; sourceTree = "<group>"; };
 		2F7AAEC52A8628690071B2D0 /* JJToastItemOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJToastItemOptions.swift; sourceTree = "<group>"; };
 		2F7AAEC92A863AF20071B2D0 /* JJToastItemIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJToastItemIdentifiers.swift; sourceTree = "<group>"; };
+		2FC7F7DA2A89B6FA0019A944 /* JJSameToastItemTypeStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJSameToastItemTypeStrategy.swift; sourceTree = "<group>"; };
+		2FC7F7DC2A89B70A0019A944 /* JJReplaceToastWithOutAnimatorStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJReplaceToastWithOutAnimatorStrategy.swift; sourceTree = "<group>"; };
+		2FC7F7DE2A89D54B0019A944 /* JJAddDirectlyToastStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJAddDirectlyToastStrategy.swift; sourceTree = "<group>"; };
 		5E594E3528EA73E30026CCED /* PassParameterRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassParameterRouter.swift; sourceTree = "<group>"; };
 		5E594E3628EA73E30026CCED /* BlockRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockRouter.swift; sourceTree = "<group>"; };
 		5E594E3728EA73E30026CCED /* SimpleRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleRouter.swift; sourceTree = "<group>"; };
@@ -308,7 +312,6 @@
 				2F7AAEC12A85D3AC0071B2D0 /* JJToastState.swift */,
 				2F7AAEAD2A8336A70071B2D0 /* JJContainerAnimator.swift */,
 				2F7AAEB12A836C3A0071B2D0 /* JJToastContaienrQueue.swift */,
-				2F7AAEC32A8627A60071B2D0 /* JJSameToastItemTypeStrategy.swift */,
 				2F7AAEC92A863AF20071B2D0 /* JJToastItemIdentifiers.swift */,
 			);
 			path = Toast;
@@ -320,6 +323,7 @@
 				2F7AAE952A821A9B0071B2D0 /* JJToastContainer.swift */,
 				2F7AAE992A821CBC0071B2D0 /* JJToastItemable.swift */,
 				2F7AAEC52A8628690071B2D0 /* JJToastItemOptions.swift */,
+				2FC7F7DA2A89B6FA0019A944 /* JJSameToastItemTypeStrategy.swift */,
 			);
 			path = Abstract;
 			sourceTree = "<group>";
@@ -335,6 +339,8 @@
 				2F7AAEB92A84E7F90071B2D0 /* JJArcrotationToastItem.swift */,
 				2F7AAEB72A84E6270071B2D0 /* JJImageToastItem.swift */,
 				2F7AAEBF2A84FEAB0071B2D0 /* JJMixTwoToastItem.swift */,
+				2FC7F7DC2A89B70A0019A944 /* JJReplaceToastWithOutAnimatorStrategy.swift */,
+				2FC7F7DE2A89D54B0019A944 /* JJAddDirectlyToastStrategy.swift */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -816,6 +822,7 @@
 				9D073B4728E6B01200D7B42A /* RouterOpenFailure.swift in Sources */,
 				5E594E4C28EA73E30026CCED /* PassParameterRouter.swift in Sources */,
 				5E594E4D28EA73E30026CCED /* BlockRouter.swift in Sources */,
+				2FC7F7DD2A89B70A0019A944 /* JJReplaceToastWithOutAnimatorStrategy.swift in Sources */,
 				9D073B4F28E6B04C00D7B42A /* RoutingPatternToken.swift in Sources */,
 				9D073B8F28E6E4B700D7B42A /* JJCarouselViewPageable.swift in Sources */,
 				9D073B3928E6AF8E00D7B42A /* RouterSource.swift in Sources */,
@@ -834,6 +841,7 @@
 				5E594E7728EA8D150026CCED /* WebCarouselModel.swift in Sources */,
 				9D602A2028F1542E00E9D429 /* UIImageRenderController.swift in Sources */,
 				9D602A2428F15E4C00E9D429 /* FilterImageDemoController.swift in Sources */,
+				2FC7F7DF2A89D54B0019A944 /* JJAddDirectlyToastStrategy.swift in Sources */,
 				9D073B1328E6883100D7B42A /* ViewController.swift in Sources */,
 				2F7AAEA42A8227640071B2D0 /* ToastDemosController.swift in Sources */,
 				9D073B5B28E6B92300D7B42A /* JJAlertPresentationController.swift in Sources */,
@@ -887,6 +895,7 @@
 				9D073B6428E6BB1E00D7B42A /* JJPushPopStylePresentDelegate.swift in Sources */,
 				9D073B9E28E6E56400D7B42A /* JJCarouselNumberPageView.swift in Sources */,
 				9D073B8528E6E46D00D7B42A /* JJCarouselStyle.swift in Sources */,
+				2FC7F7DB2A89B6FA0019A944 /* JJSameToastItemTypeStrategy.swift in Sources */,
 				9D073B8928E6E48A00D7B42A /* JJCarouselConfig.swift in Sources */,
 				9D073B6E28E6BFA400D7B42A /* UIGesture+Extension.swift in Sources */,
 				9D602A1A28F1196900E9D429 /* DemoRouter.swift in Sources */,
@@ -915,7 +924,6 @@
 				9D62D1A529C8261E009B79E2 /* JJChildrenDisplayDriver.swift in Sources */,
 				9D073B0F28E6883100D7B42A /* AppDelegate.swift in Sources */,
 				5EA5022B29EBCD5900C06A0F /* RubyAnnotation.swift in Sources */,
-				2F7AAEC42A8627A60071B2D0 /* JJSameToastItemTypeStrategy.swift in Sources */,
 				9D602A1828F118FF00E9D429 /* ExtensionDemosController.swift in Sources */,
 				2F7AAEC02A84FEAB0071B2D0 /* JJMixTwoToastItem.swift in Sources */,
 				9D073B9728E6E52200D7B42A /* FullCarouselContainerView.swift in Sources */,

@@ -37,8 +37,13 @@ extension UIView {
 internal final class JJToastContaienrQueue {
     private lazy var arr: NSHashTable<AnyObject> = NSHashTable.weakObjects()
     
-    var all: [AnyObject] {
-        arr.allObjects
+    var all: [any JJToastContainer] {
+        arr.allObjects.compactMap({ ele -> JJToastContainer? in
+            if let obj = ele as? JJToastContainer {
+                return obj
+            }
+            return nil
+        })
     }
     
     func append(_ container: any JJToastContainer) {
@@ -58,7 +63,7 @@ internal final class JJToastContaienrQueue {
     }
     
     func contains(_ container: any JJToastContainer) -> Bool {
-        return arr.contains(container)
+        arr.contains(container)
     }
     
     func forEach(body: (any JJToastContainer) -> Void) {

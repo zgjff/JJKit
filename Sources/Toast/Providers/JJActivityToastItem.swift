@@ -1,6 +1,6 @@
 //
 //  JJActivityToastItem.swift
-//  Demo
+//  JJKit
 //
 //  Created by zgjff on 2023/8/10.
 //
@@ -12,7 +12,7 @@ public final class JJActivityToastItem: JJIndicatorToastItemable {
     weak public var delegate: JJToastableDelegate?
     public let identifier = JJToastItemIdentifiers.activity.identifier
     public typealias Options = JJActivityToastItem.InnerOptions
-    private var options = Options.init()
+    public private(set) lazy var options = Options.init()
     private lazy var activity: UIActivityIndicatorView = {
         if #available(iOS 13.0, *) {
             return UIActivityIndicatorView(style: .large)
@@ -60,7 +60,7 @@ extension JJActivityToastItem {
     /// Activity的`taost`配置项
     public struct InnerOptions: JJToastItemOptions {
         public init() {}
-        public var sameToastItemTypeStrategy: JJSameToastItemTypeStrategy = JJReplaceWithOutAnimatorStrategy()
+        public var sameToastItemTypeStrategy: JJSameToastItemTypeStrategy = JJReplaceToastWithOutAnimatorStrategy()
         
         /// 设置Activity颜色
         public var color = UIColor.white

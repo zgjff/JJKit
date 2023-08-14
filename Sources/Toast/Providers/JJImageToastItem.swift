@@ -1,6 +1,6 @@
 //
 //  JJImageToastItem.swift
-//  Demo
+//  JJKit
 //
 //  Created by zgjff on 2023/8/10.
 //
@@ -25,7 +25,7 @@ public final class JJImageToastItem: JJIndicatorToastItemable {
     public let identifier = JJToastItemIdentifiers.image.identifier
     public typealias Options = JJImageToastItem.InnerOptions
     private lazy var imageView = UIImageView()
-    private var options = Options.init()
+    public private(set) lazy var options = Options.init()
     private let data: DataSource
     
     /// 创建显示本地图片的组件
@@ -51,30 +51,30 @@ public final class JJImageToastItem: JJIndicatorToastItemable {
     ///
     ///   - example1: 使用本地单张图片
     ///
-    ///         ImageToastItem(data: .local(image: image, display: nil))
+    ///         JJImageToastItem(data: .local(image: image, display: nil))
     ///
     ///   - example2: 使用本地多张图片组成动画
     ///
     ///         let image = UIImage.animatedImage(with: [image1, image2, image3, image4], duration: 2.0)
-    ///         ImageToastItem(data: .local(image: imgae, display: nil))
+    ///         JJImageToastItem(data: .local(image: imgae, display: nil))
     ///
     ///   - example3: 使用`SDWebImage`的`SDAnimatedImageView`展示gif图片
     ///
     ///         let animatedImage = SDAnimatedImage(named: "image.gif")
-    ///         ImageToastItem(data: .local(image: animatedImage, display: {
+    ///         JJImageToastItem(data: .local(image: animatedImage, display: {
     ///             return SDAnimatedImageView()
     ///         }))
     ///
     ///   - example4: 使用`SDWebImage`展示网络图片
     ///
-    ///         ImageToastItem(data: .web(url: url, display: { url, imageView in
+    ///         JJImageToastItem(data: .web(url: url, display: { url, imageView in
     ///             imageView.sd_setImage(with: url, placeholderImage: nil)
     ///             return nil
     ///         }))
     ///
     ///   - example5: 使用`SDWebImage`的`SDAnimatedImageView`展示网络`WebP`图片
     ///
-    ///         ImageToastItem(data: .web(url: url, display: { url, _ in
+    ///         JJImageToastItem(data: .web(url: url, display: { url, _ in
     ///             let imageView = SDAnimatedImageView()
     ///             imageView.sd_setImage(with: url, placeholderImage: nil)
     ///             return imageView
@@ -159,7 +159,7 @@ extension JJImageToastItem {
     /// 自定义图像`taost`配置项
     public struct InnerOptions: JJToastItemOptions {
         public init() {}
-        public var sameToastItemTypeStrategy: JJSameToastItemTypeStrategy = JJReplaceWithOutAnimatorStrategy()
+        public var sameToastItemTypeStrategy: JJSameToastItemTypeStrategy = JJReplaceToastWithOutAnimatorStrategy()
         /// 设置图像外边距
         public var margin = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         
