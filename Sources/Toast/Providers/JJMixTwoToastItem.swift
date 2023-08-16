@@ -16,7 +16,7 @@ public final class JJMixTwoToastItem<First: JJToastItemable, Second: JJToastItem
     private var firstToast: First
     private var secondToast: Second
     private lazy var contentView = UIView()
-    init(first: First, second: Second) {
+    public init(first: First, second: Second) {
         self.firstToast = first
         self.secondToast = second
         identifier = first.identifier + "_" + second.identifier

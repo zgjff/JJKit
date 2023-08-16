@@ -13,7 +13,7 @@ public final class JJColorfulContainer: UIView, CAAnimationDelegate {
     public var state = JJToastState.presenting
     public private(set) var toastItem: (any JJToastItemable)?
     private var orientationObserver: NSObjectProtocol?
-    init(color: UIColor) {
+    public init(color: UIColor) {
         super.init(frame: .zero)
         backgroundColor = color
         let tap = UITapGestureRecognizer(target: self, action: #selector(onTap))

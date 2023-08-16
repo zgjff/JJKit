@@ -13,7 +13,6 @@ public final class JJBlurEffectContainer: UIVisualEffectView, CAAnimationDelegat
     public var state = JJToastState.presenting
     public private(set) var toastItem: (any JJToastItemable)?
     private var orientationObserver: NSObjectProtocol?
-    
     public override init(effect: UIVisualEffect?) {
         let eff = effect == nil ? UIBlurEffect(style: .dark) : effect
         super.init(effect: eff)

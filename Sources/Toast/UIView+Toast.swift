@@ -61,10 +61,28 @@ public extension JJBox where Base: UIView {
     }
     
     /// 隐藏系统转动指示器样式`toast`
-    func hideActivityIndicator() {
+    func dismissActivityIndicator(animated flag: Bool) {
         for object in base.shownContaienrQueue.all {
             if let item = object.toastItem, item.identifier == JJToastItemIdentifiers.activity.identifier {
-                object.dismiss(animated: true)
+                object.dismiss(animated: flag)
+            }
+        }
+    }
+    
+    /// 显示一个永久显示的三色转动动指示器样式`toast`
+    /// - Returns: `toast`容器
+    @discardableResult
+    func showArcrotationIndicator() -> any JJToastContainer {
+        JJToastDSL(view: base, item: JJArcrotationToastItem())
+            .duration(.distantFuture)
+            .show()
+    }
+    
+    /// 隐藏三色转动指示器样式`toast`
+    func dismissArcrotationIndicator(animated flag: Bool) {
+        for object in base.shownContaienrQueue.all {
+            if let item = object.toastItem, item.identifier == JJToastItemIdentifiers.arcrotation.identifier {
+                object.dismiss(animated: flag)
             }
         }
     }

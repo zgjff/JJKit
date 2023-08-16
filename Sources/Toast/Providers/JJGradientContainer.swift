@@ -14,7 +14,7 @@ public final class JJGradientContainer: UIView, CAAnimationDelegate {
     public private(set) var toastItem: (any JJToastItemable)?
     private var orientationObserver: NSObjectProtocol?
     private lazy var gradientLayer = CAGradientLayer()
-    init(colors: [UIColor], locations: [NSNumber]? = nil, startPoint: CGPoint = CGPoint(x: 0, y: 0.5), endPoint: CGPoint = CGPoint(x: 1, y: 0.5)) {
+    public init(colors: [UIColor], locations: [NSNumber]? = nil, startPoint: CGPoint = CGPoint(x: 0, y: 0.5), endPoint: CGPoint = CGPoint(x: 1, y: 0.5)) {
         super.init(frame: .zero)
         gradientLayer.colors = colors.map { $0.cgColor }
         gradientLayer.locations = locations

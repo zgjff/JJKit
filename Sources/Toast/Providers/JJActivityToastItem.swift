@@ -20,6 +20,7 @@ public final class JJActivityToastItem: JJIndicatorToastItemable {
             return UIActivityIndicatorView(style: .white)
         }
     }()
+    public init() {}
 }
 
 // MARK: - JJIndicatorToastItemable

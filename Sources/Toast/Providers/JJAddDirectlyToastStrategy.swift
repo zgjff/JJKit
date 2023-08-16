@@ -9,6 +9,8 @@ import UIKit
 
 /// 直接添加`toast`, 不论是否存在相同的
 public struct JJAddDirectlyToastStrategy: JJSameToastItemTypeStrategy {
+    public init() {}
+    
     public func toatContainer(_ container: some JJToastContainer, willPresentIn viewToShow: UIView, animated animatedFlag: Bool) {
         container.dealShow(in: viewToShow, animated: animatedFlag)
     }

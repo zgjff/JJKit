@@ -14,6 +14,7 @@ public final class JJArcrotationToastItem: JJIndicatorToastItemable {
     public typealias Options = JJArcrotationToastItem.InnerOptions
     public private(set) lazy var options = Options.init()
     private var view: View!
+    public init() {}
 }
 
 // MARK: - JJIndicatorToastItemable
