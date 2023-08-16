@@ -62,10 +62,10 @@ public extension JJBox where Base: UIView {
     
     /// 隐藏系统转动指示器样式`toast`
     func hideActivityIndicator() {
-//        for object in base.shownContaienrQueue.all {
-//            if let obj = object as? JJToastContainer, let item = obj.toastItem, item.identifier == JJToastItemIdentifiers.activity.identifier {
-//                obj.dismiss(animated: true)
-//            }
-//        }
+        for object in base.shownContaienrQueue.all {
+            if let item = object.toastItem, item.identifier == JJToastItemIdentifiers.activity.identifier {
+                object.dismiss(animated: true)
+            }
+        }
     }
 }

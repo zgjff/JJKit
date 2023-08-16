@@ -14,6 +14,7 @@ internal struct JJToastItemIdentifiers {
 
 extension JJToastItemIdentifiers {
     static let text = JJToastItemIdentifiers(identifier: "JJTextToastItem")
+    static let varyText = JJToastItemIdentifiers(identifier: "JJVaryTextToastItem")
     static let activity = JJToastItemIdentifiers(identifier: "JJActivityToastItem")
     static let arcrotation = JJToastItemIdentifiers(identifier: "JJArcrotationToastItem")
     static let image = JJToastItemIdentifiers(identifier: "JJImageToastItem")

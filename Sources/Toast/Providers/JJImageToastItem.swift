@@ -162,10 +162,8 @@ extension JJImageToastItem {
         public var sameToastItemTypeStrategy: JJSameToastItemTypeStrategy = JJReplaceToastWithOutAnimatorStrategy()
         /// 设置图像外边距
         public var margin = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-        
         /// 设置图像大小---默认是固定的大小
         public var imageSize = ImageSize.fixed(CGSize(width: 60, height: 60))
-        
         /// 通过block方式设置UIImageView的属性
         public var configUIImageView: ((UIImageView) -> ())?
     }

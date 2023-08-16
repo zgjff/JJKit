@@ -19,10 +19,6 @@ public class JJToastDSL<T> where T: JJToastItemable {
         self.item = item
         container = JJBlurEffectContainer()
     }
-    
-    deinit {
-        debugPrint("ToastDSL  deinit")
-    }
 }
 
 // MARK: - Config

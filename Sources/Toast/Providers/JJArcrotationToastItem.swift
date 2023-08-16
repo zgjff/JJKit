@@ -47,25 +47,18 @@ extension JJArcrotationToastItem {
     public struct InnerOptions: JJToastItemOptions {
         public init() {}
         public var sameToastItemTypeStrategy: JJSameToastItemTypeStrategy = JJReplaceToastWithOutAnimatorStrategy()
-        
         /// 三个圆弧的颜色
         public var colors = (UIColor.white, UIColor.systemGreen, UIColor.systemRed)
-        
         /// 圆的半径
         public var radius: CGFloat = 20
-        
         /// 圆弧角度--必须小于120度
         public var angle = CGFloat.pi / 3.0
-        
         /// 圆弧外边距
         public var margin = UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
-        
         /// 圆弧线条宽度
         public var layerLineWidth: CGFloat = 3
-        
         /// 动画节奏
         public var timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
-        
         /// 动画周期时间
         public var animationDuration: CFTimeInterval = 1.5
     }

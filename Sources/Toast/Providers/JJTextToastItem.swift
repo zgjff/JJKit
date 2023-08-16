@@ -12,10 +12,13 @@ public final class JJTextToastItem: JJTextToastItemable {
     public weak var delegate: JJToastableDelegate?
     public let identifier = JJToastItemIdentifiers.text.identifier
     public typealias Options = JJTextToastItem.InnerOptions
+    /// 初始化文字内容`toast`样式: 默认白色、字号17
+    /// - Parameter text: 文字内容
     public init(text: String) {
         attributedString = NSAttributedString(string: text, attributes: [.font: UIFont.systemFont(ofSize: 17), .foregroundColor: UIColor.white])
     }
-    
+    /// 初始化富文本内容`toast`样式
+    /// - Parameter attributedString: 富文本内容
     public init(attributedString: NSAttributedString) {
         self.attributedString = attributedString
     }
@@ -47,6 +50,10 @@ extension JJTextToastItem {
         label.frame = CGRect(origin: CGPoint(x: options.margin.left, y: options.margin.top), size: lsize)
         delegate?.didCalculationView(label, viewSize: vsize, sender: self)
     }
+    
+    public func display(text: NSAttributedString, in labelToShow: UILabel) {
+        labelToShow.attributedText = text
+    }
 }
 
 // MARK: - private
@@ -76,10 +83,10 @@ private extension JJTextToastItem {
                 paragraphStyle.alignment = self.label.textAlignment
                 paragraphStyle.lineBreakMode = self.label.lineBreakMode
             }
-            paragraphStyle.lineSpacing = options.lineSpacing >= 0 ? options.lineSpacing : paragraphStyle.lineSpacing
+            paragraphStyle.lineSpacing = options.lineSpacing > 0 ? options.lineSpacing : paragraphStyle.lineSpacing
             att.addAttribute(.paragraphStyle, value: paragraphStyle, range: subRange)
         }
-        label.attributedText = att
+        display(text: att, in: label)
     }
     
     func calculationSize(with margin: UIEdgeInsets, maxSize: CGSize) -> (CGSize, CGSize) {
@@ -100,21 +107,17 @@ extension JJTextToastItem {
     public struct InnerOptions: JJToastItemOptions {
         public init() {}
         public var sameToastItemTypeStrategy: JJSameToastItemTypeStrategy = JJReplaceToastWithOutAnimatorStrategy()
-        
         /// 通过block方式设置label的属性
         public var configLabel: ((UILabel) -> ())?
-        
-        /// 多行显示时的文字行间隔。默认为6；少于0无效；
+        /// 多行显示时的文字行间隔。默认为5；少于0无效；
+        /// 小于等于0,使用系统的间距
         ///
         /// 设置此项,可能会导致`TextToastProvider`通过`init(attributedString: NSAttributedString)`方式初始化时,设置的`paragraphStyle`行间距无效
-        public var lineSpacing: CGFloat = 6
-        
+        public var lineSpacing: CGFloat = 5
         /// 文字对齐方式
         public var textAlignment = NSTextAlignment.center
-        
         /// 设置文字label外边距
         public var margin = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-        
         /// 设置内容区域的最大size
         public var maxSize: (_ viewSize: CGSize) -> (CGSize) = { viewSize in
             if viewSize.width == 0 || viewSize.height == 0 {

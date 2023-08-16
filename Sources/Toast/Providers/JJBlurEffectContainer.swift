@@ -29,7 +29,6 @@ public final class JJBlurEffectContainer: UIVisualEffectView, CAAnimationDelegat
     }
     
     deinit {
-        debugPrint("BlurEffectContainer deinit")
         removeOrientationDidChangeObserver(orientationObserver)
     }
     
@@ -69,5 +68,9 @@ extension JJBlurEffectContainer {
         if let sv = superview {
             self.center = options.postition.centerForContainer(self, inView: sv)
         }
+    }
+    
+    public func triggerAutoDismiss(sender: any JJToastItemable, animated flag: Bool) {
+        dismiss(animated: flag)
     }
 }

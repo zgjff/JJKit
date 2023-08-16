@@ -44,6 +44,10 @@ public final class JJMixTwoToastItem<First: JJToastItemable, Second: JJToastItem
             secondToastProvider = SubToastProvider(view: view, contentSize: view.bounds.size, toastSize: size)
         }
     }
+    
+    public func triggerAutoDismiss(sender: any JJToastItemable, animated flag: Bool) {
+        delegate?.triggerAutoDismiss(sender: self, animated: flag)
+    }
 }
 
 // MARK: - JJIndicatorToastItemable
@@ -143,16 +147,12 @@ extension JJMixTwoToastItem {
         public var sameToastItemTypeStrategy: JJSameToastItemTypeStrategy = JJReplaceToastWithOutAnimatorStrategy()
         /// 布局方式: 默认上到下, 宽度较小者居中
         public var layout = Layout.ttb_center
-        
         /// 两者之间的间距
         public var space: CGFloat = 15
-        
         /// 设置内容外边距
         public var margin = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-        
         /// 第一个`toast`的配置
         public var firstOptions = First.Options.init()
-        
         /// 第二个`toast`的配置
         public var secondOptions = Second.Options.init()
     }

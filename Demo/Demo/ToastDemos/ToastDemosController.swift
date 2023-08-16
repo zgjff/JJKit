@@ -88,6 +88,8 @@ private extension ToastDemosController {
         actions = [
             RootRowAction(title: "文字居中", action: "showTextAtCenter"),
             RootRowAction(title: "富文本顶部安全区域显示", action: "showAttrTextAtSafeTop"),
+            RootRowAction(title: "一次变换显示内容, 自动隐藏", action: "showVartTextAtCenter"),
+            RootRowAction(title: "永久循环变换显示内容", action: "showLoopVartTextAtCenter"),
             RootRowAction(title: "显示系统的指示器", action: "showSystemActivityIndicatorAtCenter"),
             RootRowAction(title: "显示三色转动的的指示器", action: "showArcrotationIndicatorAtCenter"),
             RootRowAction(title: "显示本地图片", action: "showSingleImageAtSafeBottom"),
@@ -98,6 +100,7 @@ private extension ToastDemosController {
             RootRowAction(title: "使用渐变色的容器来显示toast", action: "showUsingGradientContainerTextToast"),
             RootRowAction(title: "混合文字+文字的toast", action: "showMixTextAndTextToast"),
             RootRowAction(title: "混合指示器+文字的toast", action: "showMixActivityAndTextToast"),
+            RootRowAction(title: "加载中: 混合指示器+变换文字的toast", action: "showLoadingMixActivityAndTextToast"),
             RootRowAction(title: "左右展示混合三色转动指示器+文字的toast", action: "showMixArcrotationAndTextToast"),
             RootRowAction(title: "左右展示混合三色转动指示器+指示器的toast", action: "showMixArcrotationAndActivityToast"),
             RootRowAction(title: "上下展示混合文字+网络图片的toast", action: "showMixTextAndWebImageToast"),
@@ -125,6 +128,25 @@ private extension ToastDemosController {
         view.jj.makeToast(JJTextToastItem(attributedString: att))
             .position(.safeTop)
             .show()
+    }
+    
+    @IBAction func showVartTextAtCenter() {
+        let color = UIColor.jRandom()
+        let texts = (1..<11).reversed().map { NSAttributedString(string: "\($0)", attributes: [.font: UIFont.systemFont(ofSize: 37), .foregroundColor: color]) }
+        view.jj.makeToast(JJVaryTextToastItem(attributedStrings: texts))
+            .updateItem(options: { options in
+                options.loopCount = 1
+            })
+            .duration(.distantFuture)
+            .autoDismissOnTap()
+            .show(animated: true)
+    }
+    
+    @IBAction func showLoopVartTextAtCenter() {
+        view.jj.makeToast(JJVaryTextToastItem(texts: ["10", "9", "8", "7", "6", "5", "4", "3", "2", "1"]))
+            .duration(.distantFuture)
+            .autoDismissOnTap()
+            .show(animated: true)
     }
     
     @IBAction func showSystemActivityIndicatorAtCenter() {
@@ -227,6 +249,16 @@ private extension ToastDemosController {
     
     @IBAction func showMixActivityAndTextToast() {
         view.jj.makeToast(JJMixTwoToastItem(first: JJActivityToastItem(), second: JJTextToastItem(text: "我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容")))
+            .duration(.distantFuture)
+            .autoDismissOnTap()
+            .show()
+    }
+    
+    @IBAction func showLoadingMixActivityAndTextToast() {
+        view.jj.makeToast(JJMixTwoToastItem(first: JJActivityToastItem(), second: JJVaryTextToastItem(texts: ["加载中", "加载中.", "加载中..", "加载中..."])))
+            .updateItem(options: { options in
+                options.secondOptions.displayDuration = 0.5
+            })
             .duration(.distantFuture)
             .autoDismissOnTap()
             .show()

@@ -9,7 +9,21 @@ import UIKit
 
 /// toast样式组件代理
 public protocol JJToastableDelegate: NSObjectProtocol {
+    /// 计算出显示`toast`内容的view及其大小
+    /// - Parameters:
+    ///   - view: 显示`toast`内容的view
+    ///   - size: 计算出需要显示`toast`容器的大小
+    ///   - sender: `toast`样式
     func didCalculationView(_ view: UIView, viewSize size: CGSize, sender: any JJToastItemable)
+    /// 触发了自动隐藏
+    ///
+    /// 一般适用了`JJToastItemable`内部的相关逻辑引起了需要隐藏`toast`.
+    /// 比如gif、`imageView`的动画达到了设定的`animationRepeatCount`、或者变换的文字达到了设定的循环次数,
+    /// 这时候就需要根据需求自动隐藏`toast`容器
+    /// - Parameters:
+    ///   - sender: `toast`样式
+    ///   - flag: 是否需要动画
+    func triggerAutoDismiss(sender: any JJToastItemable, animated flag: Bool)
 }
 
 /// `toast`样式组件协议
@@ -33,12 +47,11 @@ public protocol JJToastItemable: AnyObject {
 
 /// 显示文字的 `toast`样式组件协议
 public protocol JJTextToastItemable: JJToastItemable {
-    /// 初始化文字内容`toast`样式
-    /// - Parameter text: 文字内容
-    init(text: String)
-    /// 初始化富文本内容`toast`样式
-    /// - Parameter attributedString: 富文本内容
-    init(attributedString: NSAttributedString)
+    /// 展示文字内容
+    /// - Parameters:
+    ///   - text: 内容
+    ///   - labelToShow: label
+    func display(text: NSAttributedString, in labelToShow: UILabel)
 }
 
 /// 显示指示器的 `toast`样式组件协议

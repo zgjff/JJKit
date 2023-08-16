@@ -33,6 +33,7 @@
 		2FC7F7DB2A89B6FA0019A944 /* JJSameToastItemTypeStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC7F7DA2A89B6FA0019A944 /* JJSameToastItemTypeStrategy.swift */; };
 		2FC7F7DD2A89B70A0019A944 /* JJReplaceToastWithOutAnimatorStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC7F7DC2A89B70A0019A944 /* JJReplaceToastWithOutAnimatorStrategy.swift */; };
 		2FC7F7DF2A89D54B0019A944 /* JJAddDirectlyToastStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC7F7DE2A89D54B0019A944 /* JJAddDirectlyToastStrategy.swift */; };
+		2FC7F7E12A89F7870019A944 /* JJVaryTextToastItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC7F7E02A89F7870019A944 /* JJVaryTextToastItem.swift */; };
 		5E594E4C28EA73E30026CCED /* PassParameterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E3528EA73E30026CCED /* PassParameterRouter.swift */; };
 		5E594E4D28EA73E30026CCED /* BlockRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E3628EA73E30026CCED /* BlockRouter.swift */; };
 		5E594E4E28EA73E30026CCED /* SimpleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E3728EA73E30026CCED /* SimpleRouter.swift */; };
@@ -173,6 +174,7 @@
 		2FC7F7DA2A89B6FA0019A944 /* JJSameToastItemTypeStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJSameToastItemTypeStrategy.swift; sourceTree = "<group>"; };
 		2FC7F7DC2A89B70A0019A944 /* JJReplaceToastWithOutAnimatorStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJReplaceToastWithOutAnimatorStrategy.swift; sourceTree = "<group>"; };
 		2FC7F7DE2A89D54B0019A944 /* JJAddDirectlyToastStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJAddDirectlyToastStrategy.swift; sourceTree = "<group>"; };
+		2FC7F7E02A89F7870019A944 /* JJVaryTextToastItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJVaryTextToastItem.swift; sourceTree = "<group>"; };
 		5E594E3528EA73E30026CCED /* PassParameterRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassParameterRouter.swift; sourceTree = "<group>"; };
 		5E594E3628EA73E30026CCED /* BlockRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockRouter.swift; sourceTree = "<group>"; };
 		5E594E3728EA73E30026CCED /* SimpleRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleRouter.swift; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 				2F7AAEBB2A84F4B10071B2D0 /* JJColorfulContainer.swift */,
 				2F7AAEBD2A84F6620071B2D0 /* JJGradientContainer.swift */,
 				2F7AAE9B2A821D390071B2D0 /* JJTextToastItem.swift */,
+				2FC7F7E02A89F7870019A944 /* JJVaryTextToastItem.swift */,
 				2F7AAEB52A84E3F80071B2D0 /* JJActivityToastItem.swift */,
 				2F7AAEB92A84E7F90071B2D0 /* JJArcrotationToastItem.swift */,
 				2F7AAEB72A84E6270071B2D0 /* JJImageToastItem.swift */,
@@ -847,6 +850,7 @@
 				9D073B5B28E6B92300D7B42A /* JJAlertPresentationController.swift in Sources */,
 				9D602A2628F1708B00E9D429 /* ShapeImageDemoController.swift in Sources */,
 				9D073B9A28E6E54800D7B42A /* JJCarouselHiddenPageView.swift in Sources */,
+				2FC7F7E12A89F7870019A944 /* JJVaryTextToastItem.swift in Sources */,
 				5E594E7928EA8DF10026CCED /* AddCloseNaviItemToDismissable.swift in Sources */,
 				9D7F33712910F73E0055B08F /* FirstViewController.swift in Sources */,
 				9D073B5328E6B06800D7B42A /* Route.swift in Sources */,

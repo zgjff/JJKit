@@ -61,10 +61,8 @@ extension JJActivityToastItem {
     public struct InnerOptions: JJToastItemOptions {
         public init() {}
         public var sameToastItemTypeStrategy: JJSameToastItemTypeStrategy = JJReplaceToastWithOutAnimatorStrategy()
-        
         /// 设置Activity颜色
         public var color = UIColor.white
-        
         /// 设置`UIActivityIndicatorView.Style`
         public var style: UIActivityIndicatorView.Style = {
             if #available(iOS 13.0, *) {
@@ -73,7 +71,6 @@ extension JJActivityToastItem {
                 return .white
             }
         }()
-        
         /// 设置Activity外边距
         public var margin = UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
     }

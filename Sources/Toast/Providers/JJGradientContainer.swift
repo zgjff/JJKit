@@ -33,7 +33,6 @@ public final class JJGradientContainer: UIView, CAAnimationDelegate {
     }
     
     deinit {
-        debugPrint("JJColorfulContainer deinit")
         removeOrientationDidChangeObserver(orientationObserver)
     }
     
@@ -74,5 +73,9 @@ extension JJGradientContainer {
         if let sv = superview {
             self.center = options.postition.centerForContainer(self, inView: sv)
         }
+    }
+    
+    public func triggerAutoDismiss(sender: any JJToastItemable, animated flag: Bool) {
+        dismiss(animated: flag)
     }
 }
