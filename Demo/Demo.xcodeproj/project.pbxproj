@@ -30,6 +30,7 @@
 		2F7AAEC22A85D3AC0071B2D0 /* JJToastState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7AAEC12A85D3AC0071B2D0 /* JJToastState.swift */; };
 		2F7AAEC62A8628690071B2D0 /* JJToastItemOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7AAEC52A8628690071B2D0 /* JJToastItemOptions.swift */; };
 		2F7AAECA2A863AF20071B2D0 /* JJToastItemIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7AAEC92A863AF20071B2D0 /* JJToastItemIdentifiers.swift */; };
+		2FB133DB2A8E0BDF00A51F45 /* UIView+TransferResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB133DA2A8E0BDF00A51F45 /* UIView+TransferResponder.swift */; };
 		2FC7F7DB2A89B6FA0019A944 /* JJSameToastItemTypeStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC7F7DA2A89B6FA0019A944 /* JJSameToastItemTypeStrategy.swift */; };
 		2FC7F7DD2A89B70A0019A944 /* JJReplaceToastWithOutAnimatorStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC7F7DC2A89B70A0019A944 /* JJReplaceToastWithOutAnimatorStrategy.swift */; };
 		2FC7F7DF2A89D54B0019A944 /* JJAddDirectlyToastStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC7F7DE2A89D54B0019A944 /* JJAddDirectlyToastStrategy.swift */; };
@@ -171,6 +172,7 @@
 		2F7AAEC12A85D3AC0071B2D0 /* JJToastState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJToastState.swift; sourceTree = "<group>"; };
 		2F7AAEC52A8628690071B2D0 /* JJToastItemOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJToastItemOptions.swift; sourceTree = "<group>"; };
 		2F7AAEC92A863AF20071B2D0 /* JJToastItemIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJToastItemIdentifiers.swift; sourceTree = "<group>"; };
+		2FB133DA2A8E0BDF00A51F45 /* UIView+TransferResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+TransferResponder.swift"; sourceTree = "<group>"; };
 		2FC7F7DA2A89B6FA0019A944 /* JJSameToastItemTypeStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJSameToastItemTypeStrategy.swift; sourceTree = "<group>"; };
 		2FC7F7DC2A89B70A0019A944 /* JJReplaceToastWithOutAnimatorStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJReplaceToastWithOutAnimatorStrategy.swift; sourceTree = "<group>"; };
 		2FC7F7DE2A89D54B0019A944 /* JJAddDirectlyToastStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJAddDirectlyToastStrategy.swift; sourceTree = "<group>"; };
@@ -536,6 +538,7 @@
 				5ECDF51128E827D7007BF43F /* UIImage+MemoryCache.swift */,
 				9D073B2D28E6973000D7B42A /* UIColor+Extension.swift */,
 				9D073B2F28E697E200D7B42A /* UIView+Frame.swift */,
+				2FB133DA2A8E0BDF00A51F45 /* UIView+TransferResponder.swift */,
 				9D073B3128E69B5300D7B42A /* CALayer+Frame.swift */,
 				9D073B6B28E6BE7D00D7B42A /* UIControl+Extension.swift */,
 				9D073B6D28E6BFA400D7B42A /* UIGesture+Extension.swift */,
@@ -863,6 +866,7 @@
 				9D073B7A28E6DD2200D7B42A /* ReusableViewExtension.swift in Sources */,
 				9D073B3B28E6AFB300D7B42A /* RouterDestination.swift in Sources */,
 				9D073B7028E6C09B00D7B42A /* UIBarButtonItem+Extension.swift in Sources */,
+				2FB133DB2A8E0BDF00A51F45 /* UIView+TransferResponder.swift in Sources */,
 				5E8BCFF529EBECF1006C0777 /* Archiver.swift in Sources */,
 				5E594E5D28EA73E30026CCED /* PassParameterByContextController.swift in Sources */,
 				5E594E5128EA73E30026CCED /* ShowMatchRouterable.swift in Sources */,
