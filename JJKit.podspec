@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "JJKit"
-  s.version      = "1.0.9"
+  s.version      = "1.1.0"
   s.summary      = "包括便捷扩展、路由、轮播图、转场动画的框架"
   s.homepage     = "https://github.com/zgjff/JJKit"
   s.license      = "MIT"

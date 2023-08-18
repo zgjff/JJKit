@@ -37,7 +37,7 @@ public extension JJToastDSL {
     }
     
     /// 设置显示容器的圆角
-    func cornerRadius(_ cornerRadius: CGFloat) -> Self {
+    func cornerRadius(_ cornerRadius: JJToastContainerOptions.CornerRadius) -> Self {
         containerOptions.cornerRadius = cornerRadius
         return self
     }

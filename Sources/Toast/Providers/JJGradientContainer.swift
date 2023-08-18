@@ -71,6 +71,12 @@ extension JJGradientContainer {
             return
         }
         if let sv = superview {
+            switch options.cornerRadius {
+            case .fix(let f):
+                layer.jj.setCornerRadius(f, corner: options.corners)
+            case .halfHeight:
+                layer.jj.setCornerRadius(bounds.height * 0.5, corner: options.corners)
+            }
             self.center = options.postition.centerForContainer(self, inView: sv)
         }
     }

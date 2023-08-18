@@ -98,7 +98,12 @@ extension JJToastContainer {
         cancelperformAutoDismiss()
         state = .presenting
         self.center = options.postition.centerForContainer(self, inView: viewToShow)
-        layer.jj.setCornerRadius(options.cornerRadius, corner: options.corners)
+        switch options.cornerRadius {
+        case .fix(let f):
+            layer.jj.setCornerRadius(f, corner: options.corners)
+        case .halfHeight:
+            layer.jj.setCornerRadius(bounds.height * 0.5, corner: options.corners)
+        }
         clipsToBounds = true
         viewToShow.addSubview(self)
         viewToShow.shownContaienrQueue.append(self)

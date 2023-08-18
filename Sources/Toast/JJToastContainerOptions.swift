@@ -7,14 +7,13 @@
 
 import UIKit
 
-/// 容器圆角配置
-internal struct JJContainerCornerRadius {
-    internal let cornerRadius: CGFloat
-    internal let corners: UIRectCorner
-    
-    init(cornerRadius: CGFloat, corners: UIRectCorner = .allCorners) {
-        self.cornerRadius = cornerRadius
-        self.corners = corners
+extension JJToastContainerOptions {
+    /// 圆角
+    public enum CornerRadius {
+        /// 固定大小
+        case fix(CGFloat)
+        /// 高度的一半: 大小随高度变化
+        case halfHeight
     }
 }
 
@@ -27,7 +26,7 @@ public struct JJToastContainerOptions {
     /// 显示隐藏动画时间
     internal var showOrHiddenAnimationDuration = 0.15
     /// 圆角大小: 默认8
-    internal var cornerRadius: CGFloat = 8
+    internal var cornerRadius = CornerRadius.fix(8)
     /// 圆角位置
     internal var corners = UIRectCorner.allCorners
     /// 显示时间

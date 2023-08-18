@@ -126,6 +126,9 @@ private extension ToastDemosController {
         let r1 = (str as NSString).range(of: "从安全区域顶部显示")
         att.addAttributes([.font: UIFont.boldSystemFont(ofSize: 13), .foregroundColor: UIColor.cyan], range: r1)
         view.jj.makeToast(JJTextToastItem(attributedString: att))
+            .cornerRadius(.halfHeight)
+            .duration(.distantFuture)
+            .autoDismissOnTap()
             .position(.safeTop)
             .show()
     }

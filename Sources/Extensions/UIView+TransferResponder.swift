@@ -1,13 +1,15 @@
 //
 //  UIView+TransferResponder.swift
-//  Demo
+//  JJKit
 //
 //  Created by zgjff on 2023/8/17.
 //
 
 import UIKit
 
-public extension JJBox where Base: UIView {
+extension UIResponder: JJCompatible {}
+
+public extension JJBox where Base: UIResponder {
     /// 事件跨层传递
     ///
     /// 一般用于将UIView事件跨层传递给其它View或者ViewController. 注意,此方法是通过响应者链去检查并处理的,并不能用于不同的响应者链。
