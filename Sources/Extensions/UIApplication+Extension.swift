@@ -7,8 +7,6 @@
 
 import UIKit
 
-extension UIApplication: JJCompatible {}
-
 extension JJBox where Base: UIApplication {
     /// 根据系统版本获取`UIApplication`的`keyWindow`
     ///

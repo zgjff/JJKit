@@ -29,8 +29,6 @@ extension JJPushPopStylePresentDelegate {
     }
 }
 
-extension UIViewController: JJCompatible {}
-
 extension JJBox where Base: JJPushPopStylePresentDelegate {
     /// 添加跟系统pop一样的动画的手势dismiss
     public func addScreenPanGestureDismiss() {

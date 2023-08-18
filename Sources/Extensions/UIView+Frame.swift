@@ -7,8 +7,6 @@
 
 import UIKit
 
-extension UIView: JJCompatible {}
-
 public extension JJBox where Base: UIView {
     @discardableResult
     func addViews(_ views: UIView...) -> Base {
