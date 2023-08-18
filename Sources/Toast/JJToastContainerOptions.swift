@@ -81,6 +81,8 @@ extension JJToastContainerOptions {
         group.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         group.duration = showOrHiddenAnimationDuration
         group.animations = anis
+        group.isRemovedOnCompletion = false
+        group.fillMode = .forwards
         return group
     }
     
