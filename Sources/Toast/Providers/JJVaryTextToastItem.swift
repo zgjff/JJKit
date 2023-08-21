@@ -140,8 +140,8 @@ private extension JJVaryTextToastItem {
                 self.options.varyLoopHandler?(loopCount)
                 if loopCount >= self.options.loopCount, self.options.loopCount > 0 { // 次数到了,停止循环
                     self.stopTimer()
-                    if options.autoDismissWhenLoopCompletion {
-                        delegate?.triggerAutoDismiss(sender: self, animated: true)
+                    if self?.options.autoDismissWhenLoopCompletion {
+                        self?.delegate?.triggerAutoDismiss(sender: self, animated: true)
                     }
                     return
                 }
