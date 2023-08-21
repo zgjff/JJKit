@@ -48,9 +48,6 @@ extension IdeaController {
     }
     
     func startShow() {
-        let a = YJText.RubyAnnotation()
-        print(a)
-        let c = a.ctRubyAnnotation
-        print(c)
+
     }
 }

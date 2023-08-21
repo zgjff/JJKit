@@ -36,7 +36,7 @@ public struct JJToastContainerOptions {
     /// 显示动画
     internal var appearAnimations: Set<JJContainerAnimator> = [.scale(0.7)]
     /// 隐藏动画
-    internal var disappearAnimations: Set<JJContainerAnimator> = [.scale(0.7).opposite, .opacity(0.5).opposite]
+    internal var disappearAnimations: Set<JJContainerAnimator> = [.scale(0.7).opposite, .opacity(0).opposite]
     /// 显示回调
     internal var onAppear: (() -> ())?
     /// 消失回调
@@ -69,18 +69,10 @@ extension JJToastContainerOptions {
         if animations.isEmpty {
             return nil
         }
-        var anis: [CAAnimation] = []
-        for ani in animations {
-            CATransaction.begin()
-            CATransaction.setDisableActions(true)
-            view.layer.setValue(ani.toValue, forKey: ani.keyPath)
-            CATransaction.commit()
-            anis.append(ani.animation)
-        }
         let group = CAAnimationGroup()
         group.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         group.duration = showOrHiddenAnimationDuration
-        group.animations = anis
+        group.animations = animations.map { $0.animation }
         group.isRemovedOnCompletion = false
         group.fillMode = .forwards
         return group
