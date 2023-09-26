@@ -7,7 +7,12 @@
 
 import UIKit
 /// 想法、思路演示
-class IdeaController: UIViewController {}
+class IdeaController: UIViewController {
+    
+    deinit {
+        print("IdeaController   deinit")
+    }
+}
 
 extension IdeaController: JJRouterDestination {
     func showDetail(withMatchRouterResult result: JJRouter.MatchResult, from sourceController: UIViewController) {
@@ -17,17 +22,12 @@ extension IdeaController: JJRouterDestination {
     }
 }
 
-extension IdeaController: UITextViewDelegate {
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        return textView.jj.shouldChangeCharactersWithReplacementString(text, range: range, maxCount: 20)
-    }
-}
-
-extension IdeaController {
+extension IdeaController: AddCloseNaviItemToDismissable {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Idea"
         view.backgroundColor = .jRandom()
+        addCloseNaviItem()
         
         let b = UIButton()
         b.backgroundColor = .jRandom()
@@ -42,12 +42,12 @@ extension IdeaController {
         c.backgroundColor = .jRandom()
         c.frame = b.frame.offsetBy(dx: 0, dy: 80)
         view.addSubview(c)
-        c.jj.handler({ [unowned self] _ in
-            self.dismiss(animated: true)
+        c.jj.handler({  _ in
+            
         }, for: .primaryActionTriggered)
     }
     
     func startShow() {
-
+        
     }
 }

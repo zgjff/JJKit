@@ -1,6 +1,6 @@
 //
 //  JJColorfulContainer.swift
-//  JJKit
+//  JJToast
 //
 //  Created by zgjff on 2023/8/10.
 //

@@ -1,6 +1,6 @@
 //
 //  JJCarouselConfig.swift
-//  JJKit
+//  JJCarouselView
 //
 //  Created by zgjff on 2022/9/30.
 //
