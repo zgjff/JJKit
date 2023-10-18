@@ -73,10 +73,6 @@ private extension ViewController {
         openDemoRouter(.toast)
     }
     
-    @IBAction func showEventBusDemos() {
-        openDemoRouter(.eventBus)
-    }
-    
     @IBAction func showTestIdeas() {
         openDemoRouter(.test)
     }
@@ -99,7 +95,6 @@ private extension ViewController {
             ("轮播图", "showCarouselDemos"),
             ("Extensions", "showExtensionDemos"),
             ("Toast", "showToastDemos"),
-            ("EventBus", "showEventBusDemos"),
             ("Idea", "showTestIdeas")
         ]
         tableView.delegate = self

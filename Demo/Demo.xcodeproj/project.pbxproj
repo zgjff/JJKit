@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2F2BB8582AB4501200FD2434 /* JJEventBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2BB8572AB4501200FD2434 /* JJEventBus.swift */; };
-		2F2BB85A2AB4525300FD2434 /* JJEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2BB8592AB4525300FD2434 /* JJEvent.swift */; };
 		2F2BB85C2AB459AD00FD2434 /* JJCarousel+namespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2BB85B2AB459AD00FD2434 /* JJCarousel+namespace.swift */; };
 		2F7AAE962A821A9B0071B2D0 /* JJToastContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7AAE952A821A9B0071B2D0 /* JJToastContainer.swift */; };
 		2F7AAE982A821C340071B2D0 /* JJBlurEffectContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7AAE972A821C340071B2D0 /* JJBlurEffectContainer.swift */; };
@@ -34,15 +32,10 @@
 		2F7AAEC62A8628690071B2D0 /* JJToastItemOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7AAEC52A8628690071B2D0 /* JJToastItemOptions.swift */; };
 		2F7AAECA2A863AF20071B2D0 /* JJToastItemIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7AAEC92A863AF20071B2D0 /* JJToastItemIdentifiers.swift */; };
 		2FB133DB2A8E0BDF00A51F45 /* UIView+TransferResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB133DA2A8E0BDF00A51F45 /* UIView+TransferResponder.swift */; };
-		2FB47DBF2AB7F8390086C829 /* JJEventBusReceiverDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB47DBE2AB7F8390086C829 /* JJEventBusReceiverDSL.swift */; };
-		2FB47DC22AB835EE0086C829 /* JJEventIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB47DC12AB835EE0086C829 /* JJEventIdentifier.swift */; };
 		2FC7F7DB2A89B6FA0019A944 /* JJSameToastItemTypeStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC7F7DA2A89B6FA0019A944 /* JJSameToastItemTypeStrategy.swift */; };
 		2FC7F7DD2A89B70A0019A944 /* JJReplaceToastWithOutAnimatorStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC7F7DC2A89B70A0019A944 /* JJReplaceToastWithOutAnimatorStrategy.swift */; };
 		2FC7F7DF2A89D54B0019A944 /* JJAddDirectlyToastStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC7F7DE2A89D54B0019A944 /* JJAddDirectlyToastStrategy.swift */; };
 		2FC7F7E12A89F7870019A944 /* JJVaryTextToastItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC7F7E02A89F7870019A944 /* JJVaryTextToastItem.swift */; };
-		2FDB902A2ABD784700D74475 /* JJEventDisposeBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDB90292ABD784700D74475 /* JJEventDisposeBag.swift */; };
-		2FDB902C2ABD7D7C00D74475 /* JJEventDispose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDB902B2ABD7D7C00D74475 /* JJEventDispose.swift */; };
-		2FDB90312ABD813000D74475 /* EventBusDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDB90302ABD813000D74475 /* EventBusDemoController.swift */; };
 		5E594E4C28EA73E30026CCED /* PassParameterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E3528EA73E30026CCED /* PassParameterRouter.swift */; };
 		5E594E4D28EA73E30026CCED /* BlockRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E3628EA73E30026CCED /* BlockRouter.swift */; };
 		5E594E4E28EA73E30026CCED /* SimpleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E594E3728EA73E30026CCED /* SimpleRouter.swift */; };
@@ -150,8 +143,6 @@
 
 /* Begin PBXFileReference section */
 		27818B47D8E551B90C4BFF5F /* Pods_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2F2BB8572AB4501200FD2434 /* JJEventBus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJEventBus.swift; sourceTree = "<group>"; };
-		2F2BB8592AB4525300FD2434 /* JJEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJEvent.swift; sourceTree = "<group>"; };
 		2F2BB85B2AB459AD00FD2434 /* JJCarousel+namespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JJCarousel+namespace.swift"; sourceTree = "<group>"; };
 		2F7AAE952A821A9B0071B2D0 /* JJToastContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJToastContainer.swift; sourceTree = "<group>"; };
 		2F7AAE972A821C340071B2D0 /* JJBlurEffectContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJBlurEffectContainer.swift; sourceTree = "<group>"; };
@@ -178,15 +169,10 @@
 		2F7AAEC52A8628690071B2D0 /* JJToastItemOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJToastItemOptions.swift; sourceTree = "<group>"; };
 		2F7AAEC92A863AF20071B2D0 /* JJToastItemIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJToastItemIdentifiers.swift; sourceTree = "<group>"; };
 		2FB133DA2A8E0BDF00A51F45 /* UIView+TransferResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+TransferResponder.swift"; sourceTree = "<group>"; };
-		2FB47DBE2AB7F8390086C829 /* JJEventBusReceiverDSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJEventBusReceiverDSL.swift; sourceTree = "<group>"; };
-		2FB47DC12AB835EE0086C829 /* JJEventIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJEventIdentifier.swift; sourceTree = "<group>"; };
 		2FC7F7DA2A89B6FA0019A944 /* JJSameToastItemTypeStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJSameToastItemTypeStrategy.swift; sourceTree = "<group>"; };
 		2FC7F7DC2A89B70A0019A944 /* JJReplaceToastWithOutAnimatorStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJReplaceToastWithOutAnimatorStrategy.swift; sourceTree = "<group>"; };
 		2FC7F7DE2A89D54B0019A944 /* JJAddDirectlyToastStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJAddDirectlyToastStrategy.swift; sourceTree = "<group>"; };
 		2FC7F7E02A89F7870019A944 /* JJVaryTextToastItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJVaryTextToastItem.swift; sourceTree = "<group>"; };
-		2FDB90292ABD784700D74475 /* JJEventDisposeBag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJEventDisposeBag.swift; sourceTree = "<group>"; };
-		2FDB902B2ABD7D7C00D74475 /* JJEventDispose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJEventDispose.swift; sourceTree = "<group>"; };
-		2FDB90302ABD813000D74475 /* EventBusDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBusDemoController.swift; sourceTree = "<group>"; };
 		5E594E3528EA73E30026CCED /* PassParameterRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassParameterRouter.swift; sourceTree = "<group>"; };
 		5E594E3628EA73E30026CCED /* BlockRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockRouter.swift; sourceTree = "<group>"; };
 		5E594E3728EA73E30026CCED /* SimpleRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleRouter.swift; sourceTree = "<group>"; };
@@ -307,19 +293,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2F2BB8562AB4500800FD2434 /* EventBus */ = {
-			isa = PBXGroup;
-			children = (
-				2F2BB8572AB4501200FD2434 /* JJEventBus.swift */,
-				2FB47DBE2AB7F8390086C829 /* JJEventBusReceiverDSL.swift */,
-				2F2BB8592AB4525300FD2434 /* JJEvent.swift */,
-				2FB47DC12AB835EE0086C829 /* JJEventIdentifier.swift */,
-				2FDB902B2ABD7D7C00D74475 /* JJEventDispose.swift */,
-				2FDB90292ABD784700D74475 /* JJEventDisposeBag.swift */,
-			);
-			path = EventBus;
-			sourceTree = "<group>";
-		};
 		2F7AAE922A82192E0071B2D0 /* Toast */ = {
 			isa = PBXGroup;
 			children = (
@@ -373,14 +346,6 @@
 				2F7AAEA32A8227640071B2D0 /* ToastDemosController.swift */,
 			);
 			path = ToastDemos;
-			sourceTree = "<group>";
-		};
-		2FDB902F2ABD812500D74475 /* EventBusDemos */ = {
-			isa = PBXGroup;
-			children = (
-				2FDB90302ABD813000D74475 /* EventBusDemoController.swift */,
-			);
-			path = EventBusDemos;
 			sourceTree = "<group>";
 		};
 		5E594E3328EA73E30026CCED /* RouterDemos */ = {
@@ -493,7 +458,6 @@
 		9D073B0D28E6883100D7B42A /* Demo */ = {
 			isa = PBXGroup;
 			children = (
-				2FDB902F2ABD812500D74475 /* EventBusDemos */,
 				2F7AAEA22A8227310071B2D0 /* ToastDemos */,
 				9D602A1628F118D400E9D429 /* ExtensionDemos */,
 				5E594E6228EA8C400026CCED /* CarouselDemo */,
@@ -514,7 +478,6 @@
 		9D073B2228E68A7A00D7B42A /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				2F2BB8562AB4500800FD2434 /* EventBus */,
 				2F7AAE922A82192E0071B2D0 /* Toast */,
 				9D073B7F28E6E41900D7B42A /* CarouselView */,
 				9D073B5828E6B76100D7B42A /* Transitions */,
@@ -829,7 +792,6 @@
 				9D073B4F28E6B04C00D7B42A /* RoutingPatternToken.swift in Sources */,
 				9D073B8F28E6E4B700D7B42A /* JJCarouselViewPageable.swift in Sources */,
 				9D073B3928E6AF8E00D7B42A /* RouterSource.swift in Sources */,
-				2FDB90312ABD813000D74475 /* EventBusDemoController.swift in Sources */,
 				9D94B8D729065A4D00D06306 /* HelpForHashController.swift in Sources */,
 				5E594E6028EA73E30026CCED /* UpdateUIWhenMatchSameController.swift in Sources */,
 				5E594E4E28EA73E30026CCED /* SimpleRouter.swift in Sources */,
@@ -846,7 +808,6 @@
 				9D602A2028F1542E00E9D429 /* UIImageRenderController.swift in Sources */,
 				9D602A2428F15E4C00E9D429 /* FilterImageDemoController.swift in Sources */,
 				2FC7F7DF2A89D54B0019A944 /* JJAddDirectlyToastStrategy.swift in Sources */,
-				2F2BB8582AB4501200FD2434 /* JJEventBus.swift in Sources */,
 				9D073B1328E6883100D7B42A /* ViewController.swift in Sources */,
 				2F7AAEA42A8227640071B2D0 /* ToastDemosController.swift in Sources */,
 				9D073B5B28E6B92300D7B42A /* JJAlertPresentationController.swift in Sources */,
@@ -902,10 +863,8 @@
 				9D073B9E28E6E56400D7B42A /* JJCarouselNumberPageView.swift in Sources */,
 				9D073B8528E6E46D00D7B42A /* JJCarouselStyle.swift in Sources */,
 				2FC7F7DB2A89B6FA0019A944 /* JJSameToastItemTypeStrategy.swift in Sources */,
-				2FB47DC22AB835EE0086C829 /* JJEventIdentifier.swift in Sources */,
 				9D073B8928E6E48A00D7B42A /* JJCarouselConfig.swift in Sources */,
 				9D073B6E28E6BFA400D7B42A /* UIGesture+Extension.swift in Sources */,
-				2F2BB85A2AB4525300FD2434 /* JJEvent.swift in Sources */,
 				9D602A1A28F1196900E9D429 /* DemoRouter.swift in Sources */,
 				9D073B6C28E6BE7D00D7B42A /* UIControl+Extension.swift in Sources */,
 				2F7AAEBC2A84F4B10071B2D0 /* JJColorfulContainer.swift in Sources */,
@@ -916,14 +875,11 @@
 				5E594E5428EA73E30026CCED /* BackBlockController.swift in Sources */,
 				9D073B8B28E6E49700D7B42A /* JJCarouselEvent.swift in Sources */,
 				9D073B2828E6909000D7B42A /* UIApplication+Extension.swift in Sources */,
-				2FDB902C2ABD7D7C00D74475 /* JJEventDispose.swift in Sources */,
-				2FDB902A2ABD784700D74475 /* JJEventDisposeBag.swift in Sources */,
 				9D073B6628E6BB6700D7B42A /* JJPushPopPresentTransitionDelegate.swift in Sources */,
 				2F7AAEB22A836C3A0071B2D0 /* JJToastContaienrQueue.swift in Sources */,
 				9D073B8728E6E47D00D7B42A /* JJCarouselDirection.swift in Sources */,
 				2F7AAE982A821C340071B2D0 /* JJBlurEffectContainer.swift in Sources */,
 				5E594E5528EA73E30026CCED /* PassParameterMixUrlAndContextController.swift in Sources */,
-				2FB47DBF2AB7F8390086C829 /* JJEventBusReceiverDSL.swift in Sources */,
 				2F7AAEB62A84E3F80071B2D0 /* JJActivityToastItem.swift in Sources */,
 				2F7AAE962A821A9B0071B2D0 /* JJToastContainer.swift in Sources */,
 				9D073B9128E6E4C400D7B42A /* CellContainer.swift in Sources */,
