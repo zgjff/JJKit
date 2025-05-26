@@ -72,6 +72,8 @@ final public class JJAlertPresentationContext {
     ///     }
     ///
     public var willDismissAnimatorForBelowCoverView: ((_ belowCoverView: UIView, _ coordinator: UIViewControllerTransitionCoordinator) -> ())? = Default.dimmingBelowCoverViewAnimator(false)
+    
+    public var willTransitionSize: ((_ ctx: JJAlertPresentationContext, _ containerViewSize: CGSize, _ containerViewSafeAreaInsets: UIEdgeInsets, _ tovc: UIViewController) -> ())?
 }
 
 extension JJAlertPresentationContext {

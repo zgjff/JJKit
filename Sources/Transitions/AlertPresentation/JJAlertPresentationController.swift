@@ -27,6 +27,7 @@ final public class JJAlertPresentationController: UIPresentationController {
     private let context: JJAlertPresentationContext
     private var belowCoverView: UIView?
     private var presentationWrappingView: UIView?
+    private var didTransitionToNewSize = false
 }
 
 // MARK: - public
@@ -146,9 +147,23 @@ extension JJAlertPresentationController {
     
     public override func containerViewWillLayoutSubviews() {
         super.containerViewWillLayoutSubviews()
-        if let cv = containerView {
-            belowCoverView?.frame = cv.bounds
-            presentationWrappingView?.frame = frameOfPresentedViewInContainerView
+        guard let containerView else {
+            return
+        }
+        if didTransitionToNewSize {
+            context.willTransitionSize?(context, containerView.bounds.size, containerView.safeAreaInsets, presentedViewController)
+        }
+        belowCoverView?.frame = containerView.bounds
+        presentationWrappingView?.frame = frameOfPresentedViewInContainerView
+    }
+    
+    public override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        didTransitionToNewSize = true
+        coordinator.animate { _ in
+            
+        } completion: { [weak self] _ in
+            self?.didTransitionToNewSize = false
         }
     }
 }
