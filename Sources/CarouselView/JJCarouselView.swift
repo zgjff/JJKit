@@ -188,6 +188,7 @@ private extension JJCarouselView {
         }
         containerView.reload()
         if datas.count > 1 {
+            destoryTimer()
             createTimer()
         } else {
             destoryTimer()
